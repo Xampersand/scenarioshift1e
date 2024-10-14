@@ -1,23 +1,19 @@
-export const BOILERPLATE = {};
+export const SCENARIOSHIFT1E = {};
 
 /**
  * The set of Ability Scores used within the system.
  * @type {Object}
  */
-BOILERPLATE.abilities = {
-  str: 'BOILERPLATE.Ability.Str.long',
-  dex: 'BOILERPLATE.Ability.Dex.long',
-  con: 'BOILERPLATE.Ability.Con.long',
-  int: 'BOILERPLATE.Ability.Int.long',
-  wis: 'BOILERPLATE.Ability.Wis.long',
-  cha: 'BOILERPLATE.Ability.Cha.long',
+SCENARIOSHIFT1E.attributes = {
+  str: "Strength",
+  agi: "Agility",
+  con: "Constitution",
+  mgp: "Magic Power",
 };
 
-BOILERPLATE.abilityAbbreviations = {
-  str: 'BOILERPLATE.Ability.Str.abbr',
-  dex: 'BOILERPLATE.Ability.Dex.abbr',
-  con: 'BOILERPLATE.Ability.Con.abbr',
-  int: 'BOILERPLATE.Ability.Int.abbr',
-  wis: 'BOILERPLATE.Ability.Wis.abbr',
-  cha: 'BOILERPLATE.Ability.Cha.abbr',
+SCENARIOSHIFT1E.attributeAbbreviations = {
+	str: "STR",
+	agi: "AGI",
+	con: "CON",
+	mgp: "MGP",
 };

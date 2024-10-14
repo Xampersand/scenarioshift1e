@@ -1,56 +1,38 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["character", "npc", "constellation"],
     "templates": {
       "base": {
         "health": {
-          "value": 10,
-          "min": 0,
-          "max": 10
+            "value": 1,
+            "max": 1
         },
-        "power": {
-          "value": 5,
-          "min": 0,
-          "max": 5
-        },
-        "biography": ""
+        "biography": "Template Biography"
       }
     },
     "character": {
       "templates": ["base"],
-      "attributes": {
-        "level": {
-          "value": 1
-        }
+      "attributes": [],
+      "skills": [],
+      "stats": {
+        "str": {"value": 1, "label": "Strength"},
+        "agi": {"value": 1, "label": "Agility"},
+        "con": {"value": 1, "label": "Constitution"},
+        "mgp": {"value": 1, "label": "Magic Power"}
       },
-      "abilities": {
-        "str": {
-          "value": 10
-        },
-        "dex": {
-          "value": 10
-        },
-        "con": {
-          "value": 10
-        },
-        "int": {
-          "value": 10
-        },
-        "wis": {
-          "value": 10
-        },
-        "cha": {
-          "value": 10
-        }
-      }
+      "sponsor": "none",
+      "evaluation": ""
     },
     "npc": {
       "templates": ["base"],
       "cr": 0
+    },
+    "constellation": {
+      "trueName": "None"
     }
   },
   "Item": {
-    "types": ["item", "feature", "spell"],
+    "types": ["item", "feature", "spell", "weapon"],
     "templates": {
       "base": {
         "description": ""
@@ -60,7 +42,7 @@
       "templates": ["base"],
       "quantity": 1,
       "weight": 0,
-      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+      "formula": "d20 + @str.value + ceil(@lvl / 2)"
     },
     "feature": {
       "templates": ["base"]
@@ -68,6 +50,15 @@
     "spell": {
       "templates": ["base"],
       "spellLevel": 1
+    },
+    "weapon": {
+      "templates": ["base"],
+      "damageFormula": "d4",
+      "type": "slashing",
+      "size": "small",
+      "range": 5,
+      "thrown": false,
+      "hand": "versatile"
     }
   }
 }
