@@ -11,15 +11,15 @@ export class SS1EActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ["scenarioshift1e", "sheet", "actor"],
+			classes: ['scenarioshift1e', 'sheet', 'actor'],
 			width: 600,
 			height: 800,
 			resizable: false,
 			tabs: [
 				{
-					navSelector: ".sheet-tabs",
-					contentSelector: ".sheet-body",
-					initial: "features",
+					navSelector: '.sheet-tabs',
+					contentSelector: '.sheet-body',
+					initial: 'features',
 				},
 			],
 		});
@@ -109,7 +109,7 @@ export class SS1EActorSheet extends ActorSheet {
 	 *
 	 * @return {undefined}
 	 */
-	_prepareCharacterData(context) { }
+	_prepareCharacterData(context) {}
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -130,9 +130,9 @@ export class SS1EActorSheet extends ActorSheet {
 		super.activateListeners(html);
 
 		// Render the item sheet for viewing/editing prior to the editable check.
-		html.on("click", ".item-edit", (ev) => {
-			const li = $(ev.currentTarget).parents(".item");
-			const item = this.actor.items.get(li.data("itemId"));
+		html.on('click', '.item-edit', (ev) => {
+			const li = $(ev.currentTarget).parents('.item');
+			const item = this.actor.items.get(li.data('itemId'));
 			item.sheet.render(true);
 		});
 		// Render the item sheet for viewing/editing prior to the editable check.
@@ -173,25 +173,28 @@ export class SS1EActorSheet extends ActorSheet {
 		// Rollable abilities.
 		html.on('click', '.rollable', this._onRoll.bind(this));
 
-		html.find('button[data-action="attributeLevelUp"]').click(this._onStatLevelUp.bind(this));
-		html.find('button[data-action="openCurrencyPanel"]').click(this._openCurrencyPanel.bind(this));
-
+		html
+			.find('button[data-action="attributeLevelUp"]')
+			.click(this._onStatLevelUp.bind(this));
+		html
+			.find('button[data-action="openCurrencyPanel"]')
+			.click(this._openCurrencyPanel.bind(this));
 
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
-			html.find("li.item").each((i, li) => {
-				if (li.classList.contains("inventory-header")) return;
-				li.setAttribute("draggable", true);
-				li.addEventListener("dragstart", handler, false);
+			html.find('li.item').each((i, li) => {
+				if (li.classList.contains('inventory-header')) return;
+				li.setAttribute('draggable', true);
+				li.addEventListener('dragstart', handler, false);
 			});
 		}
 
 		// Send Public Message
-		html.on("click", ".send-public", this._onSendPublicMessage.bind(this));
+		html.on('click', '.send-public', this._onSendPublicMessage.bind(this));
 
 		// Send Whisper Message
-		html.on("click", ".send-whisper", this._onSendWhisperMessage.bind(this));
+		html.on('click', '.send-whisper', this._onSendWhisperMessage.bind(this));
 	}
 
 	/**
@@ -234,8 +237,8 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Handle item rolls.
 		if (dataset.rollType) {
-			if (dataset.rollType == "item") {
-				const itemId = element.closest(".item").dataset.itemId;
+			if (dataset.rollType == 'item') {
+				const itemId = element.closest('.item').dataset.itemId;
 				const item = this.actor.items.get(itemId);
 				if (item) return item.roll();
 			}
@@ -243,12 +246,12 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
-			let label = dataset.label ? `[attribute] ${dataset.label}` : "";
+			let label = dataset.label ? `[attribute] ${dataset.label}` : '';
 			let roll = new Roll(dataset.roll, this.actor.getRollData());
 			roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
 				flavor: label,
-				rollMode: game.settings.get("core", "rollMode"),
+				rollMode: game.settings.get('core', 'rollMode'),
 			});
 			return roll;
 		}
@@ -256,21 +259,38 @@ export class SS1EActorSheet extends ActorSheet {
 
 	/**
 	 * Handle sending a public message
+	 * Deduct 50 coins if successful.
+	 * Show error if not enough coins.
 	 * @private
 	 */
 	_onSendPublicMessage(event) {
 		event.preventDefault();
 		const message = this._getMessage();
-		if (message) {
-			ChatMessage.create({
-				content: message,
-				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+		if (!message) return;
+
+		// Check if actor has enough coins (50 coins needed)
+		if (this.actor.system.coins >= 50) {
+			// Deduct 50 coins
+			const updatedCoins = this.actor.system.coins - 50;
+			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
+				// Create the chat message
+				ChatMessage.create({
+					content: message,
+					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				});
 			});
+		} else {
+			// Show error notification
+			ui.notifications.error(
+				'Not enough coins to send the message! (50 coins required)'
+			);
 		}
 	}
 
 	/**
 	 * Handle sending a whisper message to the selected character
+	 * Deduct 50 coins if successful.
+	 * Show error if not enough coins.
 	 * @private
 	 */
 	_onSendWhisperMessage(event) {
@@ -278,34 +298,47 @@ export class SS1EActorSheet extends ActorSheet {
 		const message = this._getMessage();
 		const selectedCharacterId = this._getSelectedCharacterId();
 
-		if (message && selectedCharacterId) {
-			const selectedActor = game.actors.get(selectedCharacterId);
+		if (!message || !selectedCharacterId) return;
 
-			// Get the user associated with the selected actor
-			const ownerUser = game.users.find(
-				(user) => user.character?.id === selectedActor.id
+		// Check if actor has enough coins (50 coins needed)
+		if (this.actor.system.coins >= 50) {
+			// Deduct 50 coins
+			const updatedCoins = this.actor.system.coins - 50;
+			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
+				const selectedActor = game.actors.get(selectedCharacterId);
+
+				// Get the user associated with the selected actor
+				const ownerUser = game.users.find(
+					(user) => user.character?.id === selectedActor.id
+				);
+
+				if (ownerUser) {
+					// Create a whisper message
+					ChatMessage.create({
+						content: message,
+						whisper: [ownerUser._id], // Whisper to the user ID
+						speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+					});
+				} else {
+					console.warn('The selected character has no associated user.');
+				}
+			});
+		} else {
+			// Show error notification
+			ui.notifications.error(
+				'Not enough coins to send the message! (50 coins required)'
 			);
-
-			if (ownerUser) {
-				ChatMessage.create({
-					content: message,
-					whisper: [ownerUser._id], // Whisper to the user ID
-					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				});
-			} else {
-				console.warn("The selected character has no associated user.");
-			}
 		}
 	}
 
 	_onStatLevelUp(event) {
 		event.preventDefault();
-	
+
 		const key = event.currentTarget.dataset.key;
 		const stat = this.actor.system.stats[key];
-	
+
 		new Dialog({
-			title: "Level Up!",
+			title: 'Level Up!',
 			content: `
 				<p>${stat.label} Lv. ${stat.value} → ${stat.label} Lv. ${stat.value + 1}</p>
 				<p>Cost: ${stat.value * 100} Coins</p>
@@ -313,76 +346,80 @@ export class SS1EActorSheet extends ActorSheet {
 			buttons: {
 				yes: {
 					icon: '<i class="fas fa-check"></i>',
-					label: "Yes",
+					label: 'Yes',
 					callback: () => {
 						// Check if the actor has enough coins
 						if (this.actor.system.coins >= stat.value * 100) {
 							const cost = stat.value * 100;
 							const updatedCoins = this.actor.system.coins - cost;
 							const newStatValue = stat.value + 1;
-	
+
 							// Update the actor's coins and stat value
-							this.actor.update({
-								[`system.coins`]: updatedCoins, // Dynamically update coins
-								[`system.stats.${key}.value`]: newStatValue // Update the stat value
-							}).then(() => this.render());  // Re-render the sheet after the update
+							this.actor
+								.update({
+									[`system.coins`]: updatedCoins, // Dynamically update coins
+									[`system.stats.${key}.value`]: newStatValue, // Update the stat value
+								})
+								.then(() => this.render()); // Re-render the sheet after the update
 						} else {
-							ui.notifications.error("Not enough coins to level up!");
+							ui.notifications.error('Not enough coins to level up!');
 						}
-					}
+					},
 				},
 				no: {
 					icon: '<i class="fas fa-times"></i>',
-					label: "No",
-					callback: () => console.log("Level up canceled")
-				}
+					label: 'No',
+					callback: () => console.log('Level up canceled'),
+				},
 			},
-			default: "no",
-			close: () => console.log("Dialog closed without choosing.")
+			default: 'no',
+			close: () => console.log('Dialog closed without choosing.'),
 		}).render(true);
 	}
-	
 
 	_openCurrencyPanel(event) {
 		event.preventDefault();
-	
+
 		new Dialog({
-			title: "Adjust Coins",
+			title: 'Adjust Coins',
 			content: `
 				<p>Enter the number of coins to add or remove:</p>
 				<input type="number" id="coin-input" value="0" />
 			`,
 			buttons: {
 				add: {
-					label: "Add",
-					callback: html => {
-						const input = html.find("#coin-input").val();
+					label: 'Add',
+					callback: (html) => {
+						const input = html.find('#coin-input').val();
 						const amount = parseInt(input, 10) || 0;
-						this._adjustCoins(this.actor, amount);  // Add coins
-					}
+						this._adjustCoins(this.actor, amount); // Add coins
+					},
 				},
 				remove: {
-					label: "Remove",
-					callback: html => {
-						const input = html.find("#coin-input").val();
+					label: 'Remove',
+					callback: (html) => {
+						const input = html.find('#coin-input').val();
 						const amount = parseInt(input, 10) || 0;
-						this._adjustCoins(this.actor, -amount);  // Remove coins
-					}
+						this._adjustCoins(this.actor, -amount); // Remove coins
+					},
 				},
 				cancel: {
-					label: "Cancel"
-				}
+					label: 'Cancel',
+				},
 			},
-			default: "cancel"
+			default: 'cancel',
 		}).render(true);
 	}
-	
+
 	/**
 	 * Get the message from the input box
 	 * @private
 	 */
 	_getMessage() {
-		return document.getElementById("messageInput").value.trim();
+		const dropdown = document.getElementById('messageDropdown');
+		const input = document.getElementById('messageInput');
+		// If a message is selected in the dropdown, use that; otherwise, use the input value
+		return dropdown.value || input.value.trim();
 	}
 
 	/**
@@ -390,22 +427,24 @@ export class SS1EActorSheet extends ActorSheet {
 	 * @private
 	 */
 	_getSelectedCharacterId() {
-		const selectElement = document.getElementById("characterSelect");
+		const selectElement = document.getElementById('characterSelect');
 		return selectElement.value;
 	}
 
 	_adjustCoins(actor, amount) {
 		const currentCoins = actor.system.coins || 0;
-		const newCoins = Math.max(currentCoins + amount, 0);  // Ensure it doesn't go below 0
-	
-		// Update the actor's currency
-		actor.update({
-			"system.coins": newCoins
-		}).then(() => this.render());  // Re-render the sheet after the update
-	
-		// Log the result or give feedback
-		console.log(`Updated coins for ${actor.name}: ${currentCoins} → ${newCoins}`);
-	}
-	
+		const newCoins = Math.max(currentCoins + amount, 0); // Ensure it doesn't go below 0
 
+		// Update the actor's currency
+		actor
+			.update({
+				'system.coins': newCoins,
+			})
+			.then(() => this.render()); // Re-render the sheet after the update
+
+		// Log the result or give feedback
+		console.log(
+			`Updated coins for ${actor.name}: ${currentCoins} → ${newCoins}`
+		);
+	}
 }

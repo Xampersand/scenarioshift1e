@@ -1,120 +1,120 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
 
 	<!-- Character Information Section moved to the very top below the controls -->
-	<header class="sheet-header">
-		<div class="character-info-header">&lt;CONSTELLATION INFORMATION&gt;</div>
+	<header class='sheet-header'>
+		<div class='character-info-header'>&lt;CONSTELLATION INFORMATION&gt;</div>
 		<img
-			class="profile-img"
-			src="{{actor.img}}"
-			data-edit="img"
-			title="{{actor.name}}"
-			height="150"
-			width="150"
+			class='profile-img'
+			src='{{actor.img}}'
+			data-edit='img'
+			title='{{actor.name}}'
+			height='150'
+			width='150'
 		/>
-		<div class="header-fields">
-			<label for="name" class="input-label">MODIFIER:</label>
-			<h1 class="charname">
+		<div class='header-fields'>
+			<label for='name' class='input-label'>MODIFIER:</label>
+			<h1 class='charname'>
 				<input
-					name="name"
-					id="name"
-					class="input-text"
-					type="text"
-					value="{{actor.name}}"
-					placeholder="Name"
+					name='name'
+					id='name'
+					class='input-text'
+					type='text'
+					value='{{actor.name}}'
+					placeholder='Name'
 				/>
 			</h1>
-			<label for="trueName" class="input-label">TRUE NAME:</label>
-			<h1 class="charname">
+			<label for='trueName' class='input-label'>TRUE NAME:</label>
+			<h1 class='charname'>
 				<input
-					name="system.trueName"
-					id="trueName"
-					class="input-text"
-					type="text"
-					value="{{system.trueName}}"
-					placeholder="None"
+					name='system.trueName'
+					id='trueName'
+					class='input-text'
+					type='text'
+					value='{{system.trueName}}'
+					placeholder='None'
 				/>
 			</h1>
-			<label for="grade" class="input-label">GRADE:</label>
-			<h1 class="charname">
+			<label for='grade' class='input-label'>GRADE:</label>
+			<h1 class='charname'>
 				<input
-					name="system.grade"
-					id="grade"
-					class="input-text"
-					type="text"
-					value="{{system.grade}}"
-					placeholder="None"
+					name='system.grade'
+					id='grade'
+					class='input-text'
+					type='text'
+					value='{{system.grade}}'
+					placeholder='None'
 				/>
 			</h1>
-			<label for="incarnation" class="input-label">INCARNATION:</label>
-			<h1 class="charname">
+			<label for='incarnation' class='input-label'>INCARNATION:</label>
+			<h1 class='charname'>
 				<input
-					name="system.incarnation"
-					id="incarnation"
-					class="input-text"
-					type="text"
-					value="{{system.incarnation}}"
-					placeholder="None"
+					name='system.incarnation'
+					id='incarnation'
+					class='input-text'
+					type='text'
+					value='{{system.incarnation}}'
+					placeholder='None'
 				/>
 			</h1>
 		</div>
 	</header>
 
-	<section class="sheet-body scenarioshift1e">
-		<div class="stat flexrow flex-group-center">
+	<section class='sheet-body scenarioshift1e'>
+		<div class='stat flexrow flex-group-center'>
 			<label
-				for="system.coins"
-				class="resource-label flexlarge align-left"
-				data-label="Coins:"
+				for='system.coins'
+				class='resource-label flexlarge align-left'
+				data-label='Coins:'
 			>Coins:</label>
 			<input
-				type="text"
-				class="input-text"
-				name="system.coins"
-				value="{{system.coins}}"
-				data-dtype="Number"
+				type='text'
+				class='input-text'
+				name='system.coins'
+				value='{{system.coins}}'
+				data-dtype='Number'
 			/>
-			<button class="resource-label" data-action="openCurrencyPanel">Manage
+			<button class='resource-label' data-action='openCurrencyPanel'>Manage
 				Currency</button>
 		</div>
-		<div class="message-sender">
-			<div class="message-input-container">
-				<label for="messageDropdown" class="input-label">Select a message:</label>
-				<select id="messageDropdown" class="input-text">
-					<option value="">Select a message...</option>
-					<option value="is saddened by the situation.">SAD</option>
-					<option value="is disgusted by the characters.">DISGUSTED</option>
-					<option value="rejoices at the sight!">JOY</option>
-					<option value="is angered by the choices made!">ANGRY</option>
-					<option value="sighs in boredom.">BORED</option>
-					<option value="jumps up and down with excitement!">EXCITED</option>
-					<option value="is covering their eyes!">CANT LOOK</option>
-					<option value="has tears streaming down their face!">CRY</option>
+		<div class='message-sender'>
+			<div class='message-input-container'>
+				<label for='messageDropdown' class='input-label'>Select a message:</label>
+				<select id='messageDropdown' class='input-text'>
+					<option value=''>Select a message...</option>
+					<option value='is saddened by the situation.'>SAD</option>
+					<option value='is disgusted by the characters.'>DISGUSTED</option>
+					<option value='rejoices at the sight!'>JOY</option>
+					<option value='is angered by the choices made!'>ANGRY</option>
+					<option value='sighs in boredom.'>BORED</option>
+					<option value='jumps up and down with excitement!'>EXCITED</option>
+					<option value='is covering their eyes!'>CANT LOOK</option>
+					<option value='has tears streaming down their face!'>CRY</option>
 				</select>
 
-				<label for="messageInput" class="input-label">Or type your message:</label>
-				<input
-					type="text"
-					id="messageInput"
-					class="input-text"
-					placeholder="Type your message here..."
-				/>
+				<div><label for='messageInput' class='input-label'>Or type your message:</label>
+					<input
+						type='text'
+						id='messageInput'
+						class='input-text'
+						placeholder='Type your message here...'
+					/>
+				</div>
 			</div>
-
-			<button class="send-public" data-action="sendPublic">Send Public</button>
+			<button class='send-public' data-action='sendPublic'>Send Public</button>
 			<div>
-				<div class="dropdown">
-					<label for="characterSelect" class="input-label">Select Character:</label>
+				<div class='dropdown'>
+					<label for='characterSelect' class='input-label'>Select Character:</label>
 					<select
-						id="characterSelect"
-						name="characterSelect"
-						class="input-text"
+						id='characterSelect'
+						name='characterSelect'
+						class='input-text'
 					>
 						{{#each players}}
-							<option value="{{this.id}}">{{this.name}}</option>
+							<option value='{{this.id}}'>{{this.name}}</option>
 						{{/each}}
 					</select>
 				</div>
-				<button class="send-whisper" data-action="sendWhisper">Send Whisper</button></div>
+				<button class='send-whisper' data-action='sendWhisper'>Send Whisper</button></div>
 		</div>
 
 	</section>
