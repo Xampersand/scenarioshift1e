@@ -1,425 +1,326 @@
+/* Import Font */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
+/* CSS Variables for Colors */
 :root {
-  --background-color: rgba(37, 186, 255, 0.5);
-  --stat-container-color: rgba(37, 186, 255, 0.1);
-  --primary-text-color: rgb(255, 255, 255);
-  --accent-color: #4fc4fa;
-  --subaccent-color: #1807af;
-  --label-color: #ffffff;
+	--background-color: rgba(37, 186, 255, 0.5);
+	--stat-container-color: rgba(37, 186, 255, 0.1);
+	--primary-text-color: rgb(255, 255, 255);
+	--accent-color: #4fc4fa;
+	--subaccent-color: #1807af;
+	--label-color: #ffffff;
 }
 
-/* Global styles */
+/* ------------------- GLOBAL STYLES ------------------- */
 .window-app {
-  font-family: "Roboto", sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
-.rollable:hover, .rollable:focus {
-  text-shadow: 0 0 10px var(--subaccent-color);
-  cursor: pointer;
+/* Hover and focus effects for rollable elements */
+.rollable:hover,
+.rollable:focus {
+	text-shadow: 0 0 10px var(--subaccent-color);
+	cursor: pointer;
 }
 
+/* ------------------- GRID SYSTEM ------------------- */
 .grid,
 .grid-2col {
-  display: grid;
-  grid-column: span 2/span 2;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin: 10px 0;
-  padding: 0;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 10px;
+	margin: 10px 0;
 }
 
-.grid-3col {
-  grid-column: span 3/span 3;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.grid-3col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4col { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-5col { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.grid-6col { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.grid-7col { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.grid-8col { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.grid-9col { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+.grid-10col { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+.grid-11col { grid-template-columns: repeat(11, minmax(0, 1fr)); }
+.grid-12col { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+/* Span classes for grid items */
+.grid-span-2 { grid-column-end: span 2; }
+.grid-span-3 { grid-column-end: span 3; }
+.grid-span-4 { grid-column-end: span 4; }
+.grid-span-5 { grid-column-end: span 5; }
+.grid-span-6 { grid-column-end: span 6; }
+.grid-span-7 { grid-column-end: span 7; }
+.grid-span-8 { grid-column-end: span 8; }
+.grid-span-9 { grid-column-end: span 9; }
+.grid-span-10 { grid-column-end: span 10; }
+.grid-span-11 { grid-column-end: span 11; }
+.grid-span-12 { grid-column-end: span 12; }
+
+/* ------------------- FLEX LAYOUTS ------------------- */
+.flex-group-center, .flex-group-left, .flex-group-right {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
-.grid-4col {
-  grid-column: span 4/span 4;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
+.flex-group-left { justify-content: flex-start; text-align: left; }
+.flex-group-right { justify-content: flex-end; text-align: right; }
 
-.grid-5col {
-  grid-column: span 5/span 5;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
+.flex-between { justify-content: space-between; }
+.flexlarge { flex: 2; }
+.flexshrink { flex: 0; }
 
-.grid-6col {
-  grid-column: span 6/span 6;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
+.align-left { justify-content: flex-start; text-align: left; }
+.align-right { justify-content: flex-end; text-align: right; }
+.align-center { justify-content: center; text-align: center; }
 
-.grid-7col {
-  grid-column: span 7/span 7;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.grid-8col {
-  grid-column: span 8/span 8;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-}
-
-.grid-9col {
-  grid-column: span 9/span 9;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-}
-
-.grid-10col {
-  grid-column: span 10/span 10;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-}
-
-.grid-11col {
-  grid-column: span 11/span 11;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
-}
-
-.grid-12col {
-  grid-column: span 12/span 12;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
-.grid-start-2 {
-  grid-column-start: 2;
-}
-
-.grid-start-3 {
-  grid-column-start: 3;
-}
-
-.grid-start-4 {
-  grid-column-start: 4;
-}
-
-.grid-start-5 {
-  grid-column-start: 5;
-}
-
-.grid-start-6 {
-  grid-column-start: 6;
-}
-
-.grid-start-7 {
-  grid-column-start: 7;
-}
-
-.grid-start-8 {
-  grid-column-start: 8;
-}
-
-.grid-start-9 {
-  grid-column-start: 9;
-}
-
-.grid-start-10 {
-  grid-column-start: 10;
-}
-
-.grid-start-11 {
-  grid-column-start: 11;
-}
-
-.grid-start-12 {
-  grid-column-start: 12;
-}
-
-.grid-span-2 {
-  grid-column-end: span 2;
-}
-
-.grid-span-3 {
-  grid-column-end: span 3;
-}
-
-.grid-span-4 {
-  grid-column-end: span 4;
-}
-
-.grid-span-5 {
-  grid-column-end: span 5;
-}
-
-.grid-span-6 {
-  grid-column-end: span 6;
-}
-
-.grid-span-7 {
-  grid-column-end: span 7;
-}
-
-.grid-span-8 {
-  grid-column-end: span 8;
-}
-
-.grid-span-9 {
-  grid-column-end: span 9;
-}
-
-.grid-span-10 {
-  grid-column-end: span 10;
-}
-
-.grid-span-11 {
-  grid-column-end: span 11;
-}
-
-.grid-span-12 {
-  grid-column-end: span 12;
-}
-
-.flex-group-center,
-.flex-group-left,
-.flex-group-right {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.flex-group-left {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.flex-group-right {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.flexshrink {
-  flex: 0;
-}
-
-.flex-between {
-  justify-content: space-between;
-}
-
-.flexlarge {
-  flex: 2;
-}
-
-.align-left {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.align-right {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.align-center {
-  justify-content: center;
-  text-align: center;
-}
-
-/* Styles limited to scenarioshift1e sheets */
+/* ------------------- SHEET SPECIFIC STYLES ------------------- */
 .scenarioshift1e .item-form {
-  font-family: "Roboto", sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
+/* Window and header styles */
 .scenarioshift1e .sheet-header {
-  flex: 0 auto;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  cursor: move; /* Indicates to the user that the element is draggable */
-  position: relative; /* Set initial position so JavaScript can modify it */
-  z-index: 1000; /* Ensures the header appears above other elements while being dragged */
-  margin-bottom: 10px;
-  border: 25%;
-  background: none;
-  color: var(--primary-text-color);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin-bottom: 0px;
+	color: var(--primary-text-color);
+	background: none;
+	cursor: move;
 }
 
 .scenarioshift1e .sheet-header .profile-img {
-  flex: 0 0 150px;
-  height: 150px;
-  margin-right: 10px;
+	flex: 0 0 150px;
+	height: 150px;
+	width: 150px;
+	margin-right: -30px;
 }
 
 .scenarioshift1e .sheet-header .header-fields {
-  flex: 1;
+	flex: 1;
+	margin-top: 10%;
 }
 
 .scenarioshift1e .sheet-header h1.charname {
-  height: 50px;
-  padding: 0;
-  margin: 5px 0;
-  border-bottom: 0;
+	height: 50px;
+	margin: 5px 0;
 }
 
 .scenarioshift1e .sheet-header h1.charname input {
-  width: 100%;
-  height: 100%;
-  margin: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
 }
 
-.scenarioshift1e .sheet-tabs {
-  flex: 0;
-  background-color: var(--background-color);
-  color: var(--primary-text-color);
+/* Background and window content */
+.scenarioshift1e .sheet-body {
+	color: var(--primary-text-color);
+	padding: 20px;
+	background: none;
 }
 
-.scenarioshift1e .header-fields {
-  margin-top: 10%; /* Adjust this value to fit the header's height */
+.scenarioshift1e .window-content {
+	background: none !important;
+	background-color: var(--background-color) !important;
+	border-radius: 20px;
+	box-shadow: 0 0 20px rgba(145, 220, 255, 0.7),
+		0 0 40px rgba(0, 174, 255, 0.6),
+		0 0 60px rgba(0, 174, 255, 0.5);
+	backdrop-filter: blur(5px);
 }
 
-.scenarioshift1e .profile-img {
-  height: 150px;
-  width: 150px;
-  margin-top: 10%;
+/* Title and header styling */
+.scenarioshift1e .character-info-header {
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+	height: 100%;
+	color: var(--primary-text-color);
+	width: 100%;
+	position: relative;
+	transform: translate(19%, 25%);
 }
 
+.scenarioshift1e .constellation-info-header {
+	font-size: 1.8rem;
+	font-weight: bold;
+	text-align: center;
+	height: 100%;
+	color: var(--primary-text-color);
+	width: 100%;
+	position: relative;
+	transform: translate(15%, 40%);
+}
+
+.scenarioshift1e .charage {
+	border: none;
+}
+
+.scenarioshift1e .charage:focus {
+	border: none;
+	outline: none;
+}
+
+.scenarioshift1e .charname {
+	border: none;
+}
+
+.scenarioshift1e .charname:focus {
+	border: none;
+	outline: none;
+}
+
+
+.scenarioshift1e .input-label {
+	font-size: 1rem;
+	width: auto;
+	height: auto;
+	padding: 0px;
+}
+
+.scenarioshift1e .window-header {
+	background: none;
+	border-bottom: 0px;
+}
+
+/* Button and input styling */
+.resource-label {
+	color: var(--label-color);
+	font-weight: bold;
+	font-size: 1rem;
+	text-transform: uppercase;
+}
+
+.resource-label button:focus, button:hover {
+	outline: none;
+	box-shadow: 0 0 5px var(--subaccent-color);
+}
+
+.scenarioshift1e .input-text {
+	background: none;
+	color: var(--primary-text-color);
+	border: none;
+	font-weight: bold;
+	font-size: 1.2rem;
+	padding: 5px;
+}
+
+.scenarioshift1e .input-text:hover {
+	border: none;
+	outline: none;
+}
+
+.scenarioshift1e .input-text:focus {
+	border: none;
+	outline: none;
+}
+
+/* ------------------- STATS CONTAINER ------------------- */
 .scenarioshift1e .stat-container {
-  grid-column: 1 / 2;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: var(--stat-container-color);
-  padding: 10px;
-  border: 1px solid #ffffff; /* White border around stats */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(145, 220, 255, 0.7), /* Main glow */
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background-color: var(--stat-container-color);
+	padding: 10px;
+	border: 1px solid #ffffff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(145, 220, 255, 0.7);
 }
 
 .scenarioshift1e .stat {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 0;
-  color: var(--primary-text-color);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 0;
+	color: var(--primary-text-color);
 }
 
 /* Ensure Coins is also aligned properly */
 .scenarioshift1e .stat:last-child {
-  margin-bottom: 0; /* Make sure the last stat (Coins) has no extra margin at the bottom */
+	margin-bottom: 0;
 }
 
-.scenarioshift1e .stat label {
-  flex: 1;
+.scenarioshift1e .coin-button {
+	padding: 5px 10px;
+	font-size: 1rem;
+	height: 40px;
+	line-height: 1.5;
+	min-width: 150px;  /* Ensures both buttons are of equal width */
+	box-sizing: border-box;  /* Make sure padding and border are included in the width/height */
 }
 
-.scenarioshift1e .stat span {
-  margin-right: 5px;
+/* ------------------- THREE COLUMNS LAYOUT ------------------- */
+.scenarioshift1e .three-columns {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 30px;
 }
 
-.scenarioshift1e .stat input {
-  width: 10px;
+/* Profile Image */
+.scenarioshift1e .profile-column {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 30px;
 }
 
-.scenarioshift1e .character-info-header {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  background: none;
-  width: 100%;
-  color: var(--primary-text-color);
+/* Name and Age Column */
+.scenarioshift1e .info-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 20px;
+	width: 250px;
 }
 
-/* Main background for the entire sheet */
-.scenarioshift1e .sheet-body {
-  background: none;
-  color: var(--primary-text-color);
-  font-family: 'Roboto', sans-serif;
-  width: auto;
-  height: auto;
-  overflow: hidden;
-  padding: 10px;
-  margin: 0;
+/* HP and Mana Bars */
+.scenarioshift1e .bars-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 30px;
+	width: 279px;
 }
 
-.sheet-header {
-	background-color: var(--background-color);
-	color: var(--primary-text-color);
+.scenarioshift1e .resource-bar {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
-.scenarioshift1e .window-content {
-  background: none !important;
-  background-color: var(--background-color) !important;
-  border-radius: 20px;
-
-  box-shadow: 0 0 20px rgba(145, 220, 255, 0.7), /* Main glow */
-  0 0 40px rgba(0, 174, 255, 0.6), /* Secondary softer glow */
-  0 0 60px rgba(0, 174, 255, 0.5); /* Additional extended glow */
-
-  backdrop-filter: blur(5px); /* Optional: add blur for a frosted glass effect */
+.scenarioshift1e .bar {
+	background-color: #ccc;
+	border-radius: 5px;
+	height: 25px;
+	position: relative;
+	overflow: hidden;
 }
 
-.scenarioshift1e .window-app {
-  background: none;
+.scenarioshift1e .bar-inner {
+	height: 100%;
 }
 
-.scenarioshift1e .window-title {
-  /* visibility: hidden; */
-	color: var(--background-color);
-}
-.scenarioshift1e .window-header {
-  background: none;
-  /* display: none; */
-  border: 25%;
-  border-bottom: 0px;
-}
-.scenarioshift1e .window-header a {
-  font-size: 0px;
-}
-.scenarioshift1e .window-header a i {
-  font-size: 14px;
-}
-.scenarioshift1e .window-header a span {
-  font-size: 14px;
+.scenarioshift1e .hp-bar {
+	background-color: rgb(245, 113, 113);
 }
 
+.scenarioshift1e .mana-bar {
+	background-color: rgb(102, 102, 248);
+}
+
+/* Text inside resource bars */
+.scenarioshift1e .bar-text {
+	font-size: 14px;
+	margin-top: 5px;
+	text-align: center;
+}
+
+/* ------------------- MISCELLANEOUS ------------------- */
 .scenarioshift1e .orvdialog {
-	background-color: #007BFF; /* Blue background */
-	color: white;              /* White text */
-	border: 2px solid #0056b3;  /* Darker blue border */
-  }
-
-.scenarioshift1e .charage {
-  border-bottom: 0px;
-}
-
-/* Label styling for the stats */
-.resource-label {
-  color: var(--label-color);
-  font-weight: bold;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-.resource-label button:focus, button:hover {
-  outline: none;
-  box-shadow: 0 0 5px var(--subaccent-color);
-}
-
-/* Level input styling */
-.scenarioshift1e .input-text {
-  background: none;
-  color: var(--primary-text-color);
-  border: none;
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 5px;
-}
-
-.scenarioshift1e .input-text:focus {
-  outline: none;
-}
-
-
-.scenarioshift1e .roll-table-config {
-	background-color: rgba(0, 174, 255, 0.1); /* Light blue with some transparency */
-	border: 2px solid rgba(0, 174, 255, 0.6); /* Solid border with a glowing effect */
-	border-radius: 10px; /* Rounded corners for better aesthetics */
-	padding: 10px; /* Internal padding for better spacing */
-	box-shadow: 0 0 10px rgba(0, 174, 255, 0.5); /* Soft glow effect for the rollable table */
-	color: var(--primary-text-color); /* Use your system's primary text color for consistency */
+	background-color: #007BFF;
+	color: white;
+	border: 2px solid #0056b3;
 }
