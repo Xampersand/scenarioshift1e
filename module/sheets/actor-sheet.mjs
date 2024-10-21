@@ -91,8 +91,6 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-		return context;
-	}
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -127,9 +125,6 @@ export class SS1EActorSheet extends ActorSheet {
 	/* -------------------------------------------- */
 	/* -------------------------------------------- */
 
-	/** @override */
-	activateListeners(html) {
-		super.activateListeners(html);
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
@@ -225,24 +220,13 @@ export class SS1EActorSheet extends ActorSheet {
 		// Finally, create the item!
 		return await Item.create(itemData, { parent: this.actor });
 	}
-		// Finally, create the item!
-		return await Item.create(itemData, { parent: this.actor });
-	}
 
 	/**
 	 * Handle clickable rolls.
 	 * @param {Event} event   The originating click event
 	 * @private
 	 */
-	_onRoll(event) {
-		event.preventDefault();
-		const element = event.currentTarget;
-		const dataset = element.dataset;
-	/**
-	 * Handle clickable rolls.
-	 * @param {Event} event   The originating click event
-	 * @private
-	 */
+
 	_onRoll(event) {
 		event.preventDefault();
 		const element = event.currentTarget;
@@ -311,35 +295,6 @@ export class SS1EActorSheet extends ActorSheet {
 			} else {
 				console.warn("The selected character has no associated user.");
 			}
-		}
-	}
-
-	/**
-	 * Get the message from the input box
-	 * @private
-	 */
-	_getMessage() {
-		return document.getElementById("messageInput").value.trim();
-	}
-
-	/**
-	 * Get the selected character ID from the dropdown
-	 * @private
-	 */
-	_getSelectedCharacterId() {
-		const selectElement = document.getElementById("characterSelect");
-		return selectElement.value;
-	}
-		// Handle rolls that supply the formula directly.
-		if (dataset.roll) {
-			let label = dataset.label ? `[attribute] ${dataset.label}` : '';
-			let roll = new Roll(dataset.roll, this.actor.getRollData());
-			roll.toMessage({
-				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				flavor: label,
-				rollMode: game.settings.get('core', 'rollMode'),
-			});
-			return roll;
 		}
 	}
 
@@ -422,6 +377,23 @@ export class SS1EActorSheet extends ActorSheet {
 		}).render(true);
 	}
 	
+	/**
+	 * Get the message from the input box
+	 * @private
+	 */
+	_getMessage() {
+		return document.getElementById("messageInput").value.trim();
+	}
+
+	/**
+	 * Get the selected character ID from the dropdown
+	 * @private
+	 */
+	_getSelectedCharacterId() {
+		const selectElement = document.getElementById("characterSelect");
+		return selectElement.value;
+	}
+
 	_adjustCoins(actor, amount) {
 		const currentCoins = actor.system.coins || 0;
 		const newCoins = Math.max(currentCoins + amount, 0);  // Ensure it doesn't go below 0
