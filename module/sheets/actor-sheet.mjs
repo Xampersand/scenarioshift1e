@@ -11,15 +11,15 @@ export class SS1EActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['scenarioshift1e', 'sheet', 'actor'],
+			classes: ["scenarioshift1e", "sheet", "actor"],
 			width: 600,
 			height: 800,
 			resizable: false,
 			tabs: [
 				{
-					navSelector: '.sheet-tabs',
-					contentSelector: '.sheet-body',
-					initial: 'features',
+					navSelector: ".sheet-tabs",
+					contentSelector: ".sheet-body",
+					initial: "features",
 				},
 			],
 		});
@@ -29,7 +29,12 @@ export class SS1EActorSheet extends ActorSheet {
 	get template() {
 		return `systems/scenarioshift1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
 	}
+	/** @override */
+	get template() {
+		return `systems/scenarioshift1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+	}
 
+	/* -------------------------------------------- */
 	/* -------------------------------------------- */
 
 	/** @override */
@@ -53,6 +58,16 @@ export class SS1EActorSheet extends ActorSheet {
 			this._prepareCharacterData(context);
 		}
 
+		// Get all player characters
+		context.players = game.actors
+			.filter((actor) => actor.hasPlayerOwner)
+			.map((actor) => ({
+				id: actor.id,
+				name: actor.name,
+			}));
+
+		context.system = actorData.system;
+		context.flags = actorData.flags;
 		// Prepare NPC data and items.
 		if (actorData.type == 'npc') {
 			this._prepareItems(context);
@@ -60,7 +75,13 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
+		// Add roll data for TinyMCE editors.
+		context.rollData = context.actor.getRollData();
 
+		// Prepare active effects
+		context.effects = prepareActiveEffectCategories(
+			this.actor.allApplicableEffects()
+		);
 		// Prepare active effects
 		context.effects = prepareActiveEffectCategories(
 			// A generator that returns all effects stored on the actor
@@ -70,7 +91,19 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
+		return context;
+	}
 
+	/**
+	 * Organize and classify Items for Character sheets.
+	 *
+	 * @param {Object} actorData The actor to prepare.
+	 *
+	 * @return {undefined}
+	 */
+	_prepareCharacterData(context) {
+		// This method can be used to prepare specific character data if needed
+	}
 	/**
 	 * Organize and classify Items for Character sheets.
 	 *
@@ -88,53 +121,25 @@ export class SS1EActorSheet extends ActorSheet {
 	 * @return {undefined}
 	 */
 	_prepareItems(context) {
-		// // Initialize containers.
-		// const gear = [];
-		// const features = [];
-		// const spells = {
-		//   0: [],
-		//   1: [],
-		//   2: [],
-		//   3: [],
-		//   4: [],
-		//   5: [],
-		//   6: [],
-		//   7: [],
-		//   8: [],
-		//   9: [],
-		// };
-
-		// // Iterate through items, allocating to containers
-		// for (let i of context.items) {
-		//   i.img = i.img || Item.DEFAULT_ICON;
-		//   // Append to gear.
-		//   if (i.type === 'item') {
-		//     gear.push(i);
-		//   }
-		//   // Append to features.
-		//   else if (i.type === 'feature') {
-		//     features.push(i);
-		//   }
-		//   // Append to spells.
-		//   else if (i.type === 'spell') {
-		//     if (i.system.spellLevel != undefined) {
-		//       spells[i.system.spellLevel].push(i);
-		//     }
-		//   }
-		// }
-
-		// // Assign and return
-		// context.gear = gear;
-		// context.features = features;
-		// context.spells = spells;
+		// You can add any specific item preparation logic here if needed
 	}
 
+	/* -------------------------------------------- */
 	/* -------------------------------------------- */
 
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
+	/** @override */
+	activateListeners(html) {
+		super.activateListeners(html);
 
+		// Render the item sheet for viewing/editing prior to the editable check.
+		html.on("click", ".item-edit", (ev) => {
+			const li = $(ev.currentTarget).parents(".item");
+			const item = this.actor.items.get(li.data("itemId"));
+			item.sheet.render(true);
+		});
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.on('click', '.item-edit', (ev) => {
 			const li = $(ev.currentTarget).parents('.item');
@@ -142,6 +147,9 @@ export class SS1EActorSheet extends ActorSheet {
 			item.sheet.render(true);
 		});
 
+		// -------------------------------------------------------------
+		// Everything below here is only needed if the sheet is editable
+		if (!this.isEditable) return;
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
@@ -177,13 +185,18 @@ export class SS1EActorSheet extends ActorSheet {
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
-			html.find('li.item').each((i, li) => {
-				if (li.classList.contains('inventory-header')) return;
-				li.setAttribute('draggable', true);
-				li.addEventListener('dragstart', handler, false);
+			html.find("li.item").each((i, li) => {
+				if (li.classList.contains("inventory-header")) return;
+				li.setAttribute("draggable", true);
+				li.addEventListener("dragstart", handler, false);
 			});
 		}
 
+		// Send Public Message
+		html.on("click", ".send-public", this._onSendPublicMessage.bind(this));
+
+		// Send Whisper Message
+		html.on("click", ".send-whisper", this._onSendWhisperMessage.bind(this));
 	}
 
 	/**
@@ -212,7 +225,19 @@ export class SS1EActorSheet extends ActorSheet {
 		// Finally, create the item!
 		return await Item.create(itemData, { parent: this.actor });
 	}
+		// Finally, create the item!
+		return await Item.create(itemData, { parent: this.actor });
+	}
 
+	/**
+	 * Handle clickable rolls.
+	 * @param {Event} event   The originating click event
+	 * @private
+	 */
+	_onRoll(event) {
+		event.preventDefault();
+		const element = event.currentTarget;
+		const dataset = element.dataset;
 	/**
 	 * Handle clickable rolls.
 	 * @param {Event} event   The originating click event
@@ -225,13 +250,86 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Handle item rolls.
 		if (dataset.rollType) {
-			if (dataset.rollType == 'item') {
-				const itemId = element.closest('.item').dataset.itemId;
+			if (dataset.rollType == "item") {
+				const itemId = element.closest(".item").dataset.itemId;
 				const item = this.actor.items.get(itemId);
 				if (item) return item.roll();
 			}
 		}
 
+		// Handle rolls that supply the formula directly.
+		if (dataset.roll) {
+			let label = dataset.label ? `[attribute] ${dataset.label}` : "";
+			let roll = new Roll(dataset.roll, this.actor.getRollData());
+			roll.toMessage({
+				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				flavor: label,
+				rollMode: game.settings.get("core", "rollMode"),
+			});
+			return roll;
+		}
+	}
+
+	/**
+	 * Handle sending a public message
+	 * @private
+	 */
+	_onSendPublicMessage(event) {
+		event.preventDefault();
+		const message = this._getMessage();
+		if (message) {
+			ChatMessage.create({
+				content: message,
+				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+			});
+		}
+	}
+
+	/**
+	 * Handle sending a whisper message to the selected character
+	 * @private
+	 */
+	_onSendWhisperMessage(event) {
+		event.preventDefault();
+		const message = this._getMessage();
+		const selectedCharacterId = this._getSelectedCharacterId();
+
+		if (message && selectedCharacterId) {
+			const selectedActor = game.actors.get(selectedCharacterId);
+
+			// Get the user associated with the selected actor
+			const ownerUser = game.users.find(
+				(user) => user.character?.id === selectedActor.id
+			);
+
+			if (ownerUser) {
+				ChatMessage.create({
+					content: message,
+					whisper: [ownerUser._id], // Whisper to the user ID
+					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				});
+			} else {
+				console.warn("The selected character has no associated user.");
+			}
+		}
+	}
+
+	/**
+	 * Get the message from the input box
+	 * @private
+	 */
+	_getMessage() {
+		return document.getElementById("messageInput").value.trim();
+	}
+
+	/**
+	 * Get the selected character ID from the dropdown
+	 * @private
+	 */
+	_getSelectedCharacterId() {
+		const selectElement = document.getElementById("characterSelect");
+		return selectElement.value;
+	}
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
 			let label = dataset.label ? `[attribute] ${dataset.label}` : '';
