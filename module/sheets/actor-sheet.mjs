@@ -195,6 +195,11 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Send Whisper Message
 		html.on('click', '.send-whisper', this._onSendWhisperMessage.bind(this));
+
+		// Handle sending coins to another character
+		html
+			.find('button[data-action="sendCoins"]')
+			.click(this._onSendCoins.bind(this));
 	}
 
 	/**
@@ -411,6 +416,87 @@ export class SS1EActorSheet extends ActorSheet {
 		}).render(true);
 	}
 
+	/**
+	 * Handle sending coins to another character
+	 * @param {Event} event   The originating click event
+	 * @private
+	 */
+	_onSendCoins(event) {
+		event.preventDefault();
+
+		// Open a dialog to choose a recipient and amount of coins to send
+		new Dialog({
+			title: 'Send Coins',
+			content: `
+			<form>
+				<div class="form-group">
+					<label>Select Character:</label>
+					<select id="target-character">
+						${game.actors
+							.filter((actor) => actor.hasPlayerOwner)
+							.map(
+								(actor) => `<option value="${actor.id}">${actor.name}</option>`
+							)
+							.join('')}
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Amount:</label>
+					<input type="number" id="coin-amount" value="0" min="1"/>
+				</div>
+			</form>
+		`,
+			buttons: {
+				send: {
+					label: 'Send',
+					callback: (html) => {
+						const targetCharacterId = html.find('#target-character').val();
+						const amount = parseInt(html.find('#coin-amount').val(), 10);
+
+						if (amount > 0) {
+							this._transferCoins(this.actor, targetCharacterId, amount);
+						} else {
+							ui.notifications.error('You must send at least 1 coin!');
+						}
+					},
+				},
+				cancel: {
+					label: 'Cancel',
+				},
+			},
+		}).render(true);
+	}
+
+	/**
+	 * Transfer coins from the current actor to the target actor
+	 * @param {Actor} sender     The actor sending the coins
+	 * @param {String} targetId  The ID of the target actor
+	 * @param {Number} amount    The amount of coins to send
+	 * @private
+	 */
+	_transferCoins(sender, targetId, amount) {
+		const targetActor = game.actors.get(targetId);
+
+		// Check if the sender has enough coins
+		if (sender.system.coins >= amount) {
+			// Deduct coins from sender
+			const updatedSenderCoins = sender.system.coins - amount;
+
+			// Add coins to target
+			const updatedTargetCoins = (targetActor.system.coins || 0) + amount;
+
+			// Update both actors' coins and re-render sheets
+			sender.update({ 'system.coins': updatedSenderCoins });
+			targetActor.update({ 'system.coins': updatedTargetCoins });
+
+			// Notification to confirm success
+			ui.notifications.info(
+				`${amount} coins sent to ${targetActor.name} successfully!`
+			);
+		} else {
+			ui.notifications.error('Not enough coins to send!');
+		}
+	}
 	/**
 	 * Get the message from the input box
 	 * @private
