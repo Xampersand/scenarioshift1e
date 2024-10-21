@@ -12,14 +12,15 @@
     },
     "character": {
       "templates": ["base"],
-      "attributes": [],
       "skills": [],
+      "age": 1,
       "stats": {
         "str": {"value": 1, "label": "Strength"},
         "agi": {"value": 1, "label": "Agility"},
         "con": {"value": 1, "label": "Constitution"},
         "mgp": {"value": 1, "label": "Magic Power"}
       },
+      "coins": 0,
       "sponsor": "none",
       "evaluation": ""
     },
@@ -28,7 +29,8 @@
       "cr": 0
     },
     "constellation": {
-      "trueName": "None"
+      "grade": "historical",
+      "trueName": "none"
     }
   },
   "Item": {

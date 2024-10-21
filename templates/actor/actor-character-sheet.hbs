@@ -1,33 +1,48 @@
 <form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-        {{!-- Header stuff goes here --}}
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-            <div class="resources grid grid-2col">{{!-- resources here --}}</div>
-            <div class="abilities grid grid-3col">{{!-- abilities here --}}</div>
-        </div>
-    </header>
+  <!-- Character Information Section moved to the very top below the controls -->
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="character-info-header">&lt;CHARACTER INFORMATION&gt;</div>
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150" />
+    <div class="header-fields">
+      <!-- Display the label separately -->
+      <label for="name" class="input-label">NAME:</label>
+      <h1 class="charname">
+        <input name="name" id="name" class="input-text" type="text" value="{{actor.name}}" placeholder="Name" />
+      </h1>
 
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="items">Items</a>
-    </nav>
+      <label for="age" class="input-label">AGE:</label>
+      <h2 class="charage">
+        <input type="text" id="age" class="input-text" name="system.age" value="{{system.age}}" data-dtype="Number"
+          placeholder="Age" />
+      </h2>
+    </div>
+  </header>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-      <div class="stats grid grid-3col">
-        {{#each system.stats as |stat key|}}
-          <div class="stat flexrow flex-group-center">
-			{{!-- <label for="system.stats.{{key}}.value" class="resource-label">{{key}}</label> --}}
-			<label for="system.stats.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@stats.{{key}}.value" data-label="{{stat.label}}">{{stat.value}}</label>
-            <input type="text" name="system.stats.{{key}}.value" value="{{stat.value}}" data-dtype="Number"/>
-			<span class="ability-mod">{{stat.value}}</span>
-          </div>
-        {{/each}}
+  <section class="sheet-body scenarioshift1e">
+    <!-- Left column -->
+    <div class="stat-container">
+      {{#each system.stats as |stat key|}}
+      <div class="stat flexrow flex-group-center">
+        <label for="system.stats.{{key}}.value" class="resource-label rollable flexlarge align-left"
+          data-roll="@stats.{{key}}.value" data-label="{{stat.label}}">
+          {{stat.label}}
+        </label>
+        <span class="resource-label">Lv.</span> <!-- "Lv." placed before the input -->
+        <input type="text" class="input-text" name="system.stats.{{key}}.value" value="{{stat.value}}"
+          data-dtype="Number" />
       </div>
-    </section>
+      {{/each}}
+
+      <!-- Adding Coins -->
+      <div class="stat flexrow flex-group-center">
+        <label for="system.stats.coins" class="resource-label flexlarge align-left" data-label="Coins:">
+          Coins:
+        </label>
+        <input type="text" class="input-text" name="system.coins" value="{{system.coins}}" data-dtype="Number" />
+      </div>
+    </div>
+  </section>
+
 </form>

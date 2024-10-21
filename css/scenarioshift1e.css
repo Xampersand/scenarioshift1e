@@ -1,12 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+:root {
+  --background-color: rgba(37, 186, 255, 0.5);
+  --stat-container-color: rgba(37, 186, 255, 0.1);
+  --primary-text-color: rgb(255, 255, 255);
+  --accent-color: #4fc4fa;
+  --subaccent-color: #1807af;
+  --label-color: #ffffff;
+}
+
 /* Global styles */
 .window-app {
   font-family: "Roboto", sans-serif;
 }
 
 .rollable:hover, .rollable:focus {
-  color: #000;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 10px var(--subaccent-color);
   cursor: pointer;
 }
 
@@ -207,6 +216,7 @@
 .scenarioshift1e .item-form {
   font-family: "Roboto", sans-serif;
 }
+
 .scenarioshift1e .sheet-header {
   flex: 0 auto;
   overflow: hidden;
@@ -214,153 +224,190 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  cursor: move; /* Indicates to the user that the element is draggable */
+  position: relative; /* Set initial position so JavaScript can modify it */
+  z-index: 1000; /* Ensures the header appears above other elements while being dragged */
   margin-bottom: 10px;
+  border: 25%;
+  background: none;
+  color: var(--primary-text-color);
 }
+
 .scenarioshift1e .sheet-header .profile-img {
-  flex: 0 0 100px;
-  height: 100px;
+  flex: 0 0 150px;
+  height: 150px;
   margin-right: 10px;
 }
+
 .scenarioshift1e .sheet-header .header-fields {
   flex: 1;
 }
+
 .scenarioshift1e .sheet-header h1.charname {
   height: 50px;
-  padding: 0px;
+  padding: 0;
   margin: 5px 0;
   border-bottom: 0;
 }
+
 .scenarioshift1e .sheet-header h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
 }
+
 .scenarioshift1e .sheet-tabs {
   flex: 0;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
 }
-.scenarioshift1e .sheet-body,
-.scenarioshift1e .sheet-body .tab,
-.scenarioshift1e .sheet-body .tab .editor {
-  height: 100%;
+
+.scenarioshift1e .header-fields {
+  margin-top: 10%; /* Adjust this value to fit the header's height */
 }
-.scenarioshift1e .tox .tox-editor-container {
-  background: #fff;
+
+.scenarioshift1e .profile-img {
+  height: 150px;
+  width: 150px;
+  margin-top: 10%;
 }
-.scenarioshift1e .tox .tox-edit-area {
-  padding: 0 8px;
-}
-.scenarioshift1e .resource-label {
-  font-weight: bold;
-}
-.scenarioshift1e .items-header {
-  height: 28px;
-  margin: 2px 0;
-  padding: 0;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px groove #eeede0;
-  font-weight: bold;
-}
-.scenarioshift1e .items-header > * {
-  font-size: 14px;
-  text-align: center;
-}
-.scenarioshift1e .items-header .item-name {
-  font-weight: bold;
-  padding-left: 5px;
-  text-align: left;
+
+.scenarioshift1e .stat-container {
+  grid-column: 1 / 2;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--stat-container-color);
+  padding: 10px;
+  border: 1px solid #ffffff; /* White border around stats */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(145, 220, 255, 0.7), /* Main glow */
 }
-.scenarioshift1e .items-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  color: #444;
-}
-.scenarioshift1e .items-list .item-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.scenarioshift1e .items-list .item-name {
-  flex: 2;
-  margin: 0;
-  overflow: hidden;
-  font-size: 13px;
-  text-align: left;
-  align-items: center;
+
+.scenarioshift1e .stat {
+  width: 100%;
   display: flex;
-}
-.scenarioshift1e .items-list .item-name h3, .scenarioshift1e .items-list .item-name h4 {
-  margin: 0;
-  white-space: nowrap;
-  overflow-x: hidden;
-}
-.scenarioshift1e .items-list .item-controls {
-  display: flex;
-  flex: 0 0 100px;
-  justify-content: flex-end;
-}
-.scenarioshift1e .items-list .item-controls a {
-  font-size: 12px;
-  text-align: center;
-  margin: 0 6px;
-}
-.scenarioshift1e .items-list .item {
+  justify-content: space-between;
   align-items: center;
-  padding: 0 2px;
-  border-bottom: 1px solid #c9c7b8;
+  padding: 5px 0;
+  color: var(--primary-text-color);
 }
-.scenarioshift1e .items-list .item:last-child {
-  border-bottom: none;
+
+/* Ensure Coins is also aligned properly */
+.scenarioshift1e .stat:last-child {
+  margin-bottom: 0; /* Make sure the last stat (Coins) has no extra margin at the bottom */
 }
-.scenarioshift1e .items-list .item .item-name {
-  color: #191813;
+
+.scenarioshift1e .stat label {
+  flex: 1;
 }
-.scenarioshift1e .items-list .item .item-name .item-image {
-  flex: 0 0 30px;
-  height: 30px;
-  background-size: 30px;
-  border: none;
+
+.scenarioshift1e .stat span {
   margin-right: 5px;
 }
-.scenarioshift1e .items-list .item-prop {
-  text-align: center;
-  border-left: 1px solid #c9c7b8;
-  border-right: 1px solid #c9c7b8;
-  font-size: 12px;
+
+.scenarioshift1e .stat input {
+  width: 10px;
 }
-.scenarioshift1e .items-list .items-header {
-  height: 28px;
-  margin: 2px 0;
-  padding: 0;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px groove #eeede0;
+
+.scenarioshift1e .character-info-header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
   font-weight: bold;
-}
-.scenarioshift1e .items-list .items-header > * {
-  font-size: 12px;
   text-align: center;
+  padding: 10px;
+  background: none;
+  width: 100%;
+  color: var(--primary-text-color);
 }
-.scenarioshift1e .items-list .items-header .item-name {
-  padding-left: 5px;
-  text-align: left;
+
+/* Main background for the entire sheet */
+.scenarioshift1e .sheet-body {
+  background: none;
+  color: var(--primary-text-color);
+  font-family: 'Roboto', sans-serif;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  padding: 10px;
+  margin: 0;
 }
-.scenarioshift1e .item-formula {
-  flex: 0 0 200px;
-  padding: 0 8px;
+
+.sheet-header {
+	background-color: var(--background-color);
+	color: var(--primary-text-color);
 }
-.scenarioshift1e .effects .item .effect-source,
-.scenarioshift1e .effects .item .effect-duration,
-.scenarioshift1e .effects .item .effect-controls {
-  text-align: center;
-  border-left: 1px solid #c9c7b8;
-  border-right: 1px solid #c9c7b8;
-  font-size: 12px;
+
+.scenarioshift1e .window-content {
+  background: none !important;
+  background-color: var(--background-color) !important;
+  border-radius: 20px;
+
+  box-shadow: 0 0 20px rgba(145, 220, 255, 0.7), /* Main glow */
+  0 0 40px rgba(0, 174, 255, 0.6), /* Secondary softer glow */
+  0 0 60px rgba(0, 174, 255, 0.5); /* Additional extended glow */
+
+  backdrop-filter: blur(5px); /* Optional: add blur for a frosted glass effect */
 }
-.scenarioshift1e .effects .item .effect-controls {
+
+.scenarioshift1e .window-app {
+  background: none;
+}
+
+.scenarioshift1e .window-title {
+  visibility: hidden;
+	color: var(--background-color);
+}
+.scenarioshift1e .window-header {
+  background: none;
+  /* display: none; */
+  border: 25%;
+  border-bottom: 0px;
+}
+.scenarioshift1e .window-header a {
+  font-size: 0px;
+}
+.scenarioshift1e .window-header a i {
+  font-size: 14px;
+}
+.scenarioshift1e .window-header a span {
+  font-size: 14px;
+}
+
+.scenarioshift1e .charage {
+  border-bottom: 0px;
+}
+
+/* Label styling for the stats */
+.resource-label {
+  color: var(--label-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Level input styling */
+.scenarioshift1e .input-text {
+  background: none;
+  color: var(--primary-text-color);
   border: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 5px;
+}
+
+.scenarioshift1e .input-text:focus {
+  outline: none;
+}
+
+
+.scenarioshift1e .roll-table-config {
+	background-color: rgba(0, 174, 255, 0.1); /* Light blue with some transparency */
+	border: 2px solid rgba(0, 174, 255, 0.6); /* Solid border with a glowing effect */
+	border-radius: 10px; /* Rounded corners for better aesthetics */
+	padding: 10px; /* Internal padding for better spacing */
+	box-shadow: 0 0 10px rgba(0, 174, 255, 0.5); /* Soft glow effect for the rollable table */
+	color: var(--primary-text-color); /* Use your system's primary text color for consistency */
 }

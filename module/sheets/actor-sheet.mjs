@@ -13,7 +13,8 @@ export class SS1EActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['scenarioshift1e', 'sheet', 'actor'],
       width: 600,
-      height: 600,
+      height: 800,
+	  resizable: false,
       tabs: [
         {
           navSelector: '.sheet-tabs',
