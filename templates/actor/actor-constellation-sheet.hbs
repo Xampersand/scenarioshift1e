@@ -76,7 +76,18 @@
 			<button class="resource-label" data-action="openCurrencyPanel">Manage
 				Currency</button>
 		</div>
+		<div class="message-sender">
+			<label for="messageInput" class="input-label">Message:</label>
+			<input
+				type="text"
+				id="messageInput"
+				class="input-text"
+				placeholder="Type your message here..."
+			/>
 
+			<button class="send-public" data-action="sendPublic">Send Public</button>
+			<button class="send-whisper" data-action="sendWhisper">Send Whisper</button>
+		</div>
 		<div class="dropdown">
 			<label for="characterSelect" class="input-label">Select Character:</label>
 			<select id="characterSelect" name="characterSelect" class="input-text">

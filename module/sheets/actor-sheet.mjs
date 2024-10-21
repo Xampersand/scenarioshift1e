@@ -137,6 +137,12 @@ export class SS1EActorSheet extends ActorSheet {
 				li.addEventListener("dragstart", handler, false);
 			});
 		}
+
+		// Send Public Message
+		html.on("click", ".send-public", this._onSendPublicMessage.bind(this));
+
+		// Send Whisper Message
+		html.on("click", ".send-whisper", this._onSendWhisperMessage.bind(this));
 	}
 
 	/**
@@ -196,5 +202,66 @@ export class SS1EActorSheet extends ActorSheet {
 			});
 			return roll;
 		}
+	}
+
+	/**
+	 * Handle sending a public message
+	 * @private
+	 */
+	_onSendPublicMessage(event) {
+		event.preventDefault();
+		const message = this._getMessage();
+		if (message) {
+			ChatMessage.create({
+				content: message,
+				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+			});
+		}
+	}
+
+	/**
+	 * Handle sending a whisper message to the selected character
+	 * @private
+	 */
+	_onSendWhisperMessage(event) {
+		event.preventDefault();
+		const message = this._getMessage();
+		const selectedCharacterId = this._getSelectedCharacterId();
+
+		if (message && selectedCharacterId) {
+			const selectedActor = game.actors.get(selectedCharacterId);
+
+			// Get the user associated with the selected actor
+			const ownerUser = game.users.find(
+				(user) => user.character?.id === selectedActor.id
+			);
+
+			if (ownerUser) {
+				ChatMessage.create({
+					content: message,
+					whisper: [ownerUser._id], // Whisper to the user ID
+					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				});
+			} else {
+				console.warn("The selected character has no associated user.");
+			}
+		}
+	}
+
+	/**
+	 * Get the message from the input box
+	 * @private
+	 */
+	_getMessage() {
+		return document.getElementById("messageInput").value.trim();
+	}
+
+	/**
+	 * Get the selected character ID from the dropdown
+	 * @private
+	 */
+	_getSelectedCharacterId() {
+		const selectElement = document.getElementById("characterSelect");
+		return selectElement.value;
 	}
 }
