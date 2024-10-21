@@ -1,66 +1,68 @@
 {
-  "Actor": {
-    "types": ["character", "npc", "constellation"],
-    "templates": {
-      "base": {
-        "health": {
-            "value": 1,
-            "max": 1
-        },
-        "biography": "Template Biography"
-      }
-    },
-    "character": {
-      "templates": ["base"],
-      "skills": [],
-      "age": 1,
-      "stats": {
-        "str": {"value": 1, "label": "Strength"},
-        "agi": {"value": 1, "label": "Agility"},
-        "con": {"value": 1, "label": "Constitution"},
-        "mgp": {"value": 1, "label": "Magic Power"}
-      },
-      "coins": 0,
-      "sponsor": "none",
-      "evaluation": ""
-    },
-    "npc": {
-      "templates": ["base"],
-      "cr": 0
-    },
-    "constellation": {
-      "grade": "historical",
-      "trueName": "none"
-    }
-  },
-  "Item": {
-    "types": ["item", "feature", "spell", "weapon"],
-    "templates": {
-      "base": {
-        "description": ""
-      }
-    },
-    "item": {
-      "templates": ["base"],
-      "quantity": 1,
-      "weight": 0,
-      "formula": "d20 + @str.value + ceil(@lvl / 2)"
-    },
-    "feature": {
-      "templates": ["base"]
-    },
-    "spell": {
-      "templates": ["base"],
-      "spellLevel": 1
-    },
-    "weapon": {
-      "templates": ["base"],
-      "damageFormula": "d4",
-      "type": "slashing",
-      "size": "small",
-      "range": 5,
-      "thrown": false,
-      "hand": "versatile"
-    }
-  }
+	"Actor": {
+		"types": ["character", "npc", "constellation"],
+		"templates": {
+			"base": {
+				"health": {
+					"value": 1,
+					"max": 1
+				},
+				"biography": "Template Biography"
+			}
+		},
+		"character": {
+			"templates": ["base"],
+			"skills": [],
+			"age": 1,
+			"stats": {
+				"str": { "value": 1, "label": "Strength" },
+				"agi": { "value": 1, "label": "Agility" },
+				"con": { "value": 1, "label": "Constitution" },
+				"mgp": { "value": 1, "label": "Magic Power" }
+			},
+			"coins": 0,
+			"sponsor": "none",
+			"evaluation": ""
+		},
+		"npc": {
+			"templates": ["base"],
+			"cr": 0
+		},
+		"constellation": {
+			"grade": "historical",
+			"trueName": "none",
+			"incarnation": "NIGGER",
+			"stigmas": []
+		}
+	},
+	"Item": {
+		"types": ["item", "feature", "spell", "weapon"],
+		"templates": {
+			"base": {
+				"description": ""
+			}
+		},
+		"item": {
+			"templates": ["base"],
+			"quantity": 1,
+			"weight": 0,
+			"formula": "d20 + @str.value + ceil(@lvl / 2)"
+		},
+		"feature": {
+			"templates": ["base"]
+		},
+		"spell": {
+			"templates": ["base"],
+			"spellLevel": 1
+		},
+		"weapon": {
+			"templates": ["base"],
+			"damageFormula": "d4",
+			"type": "slashing",
+			"size": "small",
+			"range": 5,
+			"thrown": false,
+			"hand": "versatile"
+		}
+	}
 }
