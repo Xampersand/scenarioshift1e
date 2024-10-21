@@ -377,6 +377,10 @@
   font-size: 14px;
 }
 
+.scenarioshift1e .orvdialog {
+	background: none;
+}
+
 .scenarioshift1e .charage {
   border-bottom: 0px;
 }

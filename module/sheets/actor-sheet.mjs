@@ -170,6 +170,8 @@ export class SS1EActorSheet extends ActorSheet {
     // Rollable abilities.
     html.on('click', '.rollable', this._onRoll.bind(this));
 
+	html.find('button[data-action="attributeLevelUp"]').click(this._onStatLevelUp.bind(this));
+
     // Drag events for macros.
     if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
@@ -179,6 +181,7 @@ export class SS1EActorSheet extends ActorSheet {
         li.addEventListener('dragstart', handler, false);
       });
     }
+
   }
 
   /**
@@ -238,5 +241,28 @@ export class SS1EActorSheet extends ActorSheet {
       });
       return roll;
     }
+  }
+
+  _onStatLevelUp(event) {
+	event.preventDefault();
+
+    new Dialog({
+		title: "Confirmation",
+		content: "<p>Are you sure you want to proceed?</p>",
+		buttons: {
+		  yes: {
+			icon: '<i class="fas fa-check"></i>',
+			label: "Yes",
+			callback: () => console.log("You clicked Yes!")
+		  },
+		  no: {
+			icon: '<i class="fas fa-times"></i>',
+			label: "No",
+			callback: () => console.log("You clicked No!")
+		  }
+		},
+		default: "no",  // Default button is "No"
+		close: () => console.log("Dialog closed without choosing.")
+	  }, {classes: ["orvdialog"]}).render(true);
   }
 }

@@ -17,9 +17,9 @@
         "str": {"value": 1, "label": "Strength"},
         "agi": {"value": 1, "label": "Agility"},
         "con": {"value": 1, "label": "Constitution"},
-        "mgp": {"value": 1, "label": "Magic"},
-        "man": {"value": 1, "label": "Mana"},
-        "per": {"value": 1, "label": "Personality"}
+        "mgp": {"value": 1, "label": "Intelligence"},
+        "cha": {"value": 1, "label": "Charisma"},
+        "man": {"value": 1, "label": "Mana"}
       },
       "coins": 0
     },
