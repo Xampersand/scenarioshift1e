@@ -50,9 +50,8 @@
           {{stat.label}}
         </label>
         <span class="resource-label flex0">Lv.</span>
-        <input type="text" class="input-text flex0" name="system.stats.{{key}}.value" value="{{stat.value}}"
-          data-dtype="Number" />
-		<button class="resource-label flex0" data-action="attributeLevelUp">+</button>
+        <span type="text" class="input-text flex0" name="system.stats.{{key}}.value">{{stat.value}}</span>
+		<button class="resource-label flex0" data-action="attributeLevelUp" data-key="{{key}}">+</button>
       </div>
       {{/each}}
 

@@ -172,6 +172,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 	html.find('button[data-action="attributeLevelUp"]').click(this._onStatLevelUp.bind(this));
 
+
     // Drag events for macros.
     if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
@@ -246,19 +247,29 @@ export class SS1EActorSheet extends ActorSheet {
   _onStatLevelUp(event) {
 	event.preventDefault();
 
+	const key = event.currentTarget.dataset.key;
+
+	const stat = this.actor.system.stats[key];
     new Dialog({
-		title: "Confirmation",
-		content: "<p>Are you sure you want to proceed?</p>",
+		title: "Level Up!",
+		content: `
+		<p> ${stat.label} Lv. ${stat.value} → ${stat.label} Lv. ${stat.value + 1} </p>
+		<p>Cost: ${stat.value * 100} Coins</p>
+		`,
 		buttons: {
 		  yes: {
 			icon: '<i class="fas fa-check"></i>',
 			label: "Yes",
-			callback: () => console.log("You clicked Yes!")
+			callback: () => {
+				stat.value++;
+				this.actor.update();
+				this.render();
+			}
 		  },
 		  no: {
 			icon: '<i class="fas fa-times"></i>',
 			label: "No",
-			callback: () => console.log("You clicked No!")
+			callback: () => console.log("Nevermind")
 		  }
 		},
 		default: "no",  // Default button is "No"

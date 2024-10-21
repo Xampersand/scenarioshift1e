@@ -378,8 +378,10 @@
 }
 
 .scenarioshift1e .orvdialog {
-	background: none;
-}
+	background-color: #007BFF; /* Blue background */
+	color: white;              /* White text */
+	border: 2px solid #0056b3;  /* Darker blue border */
+  }
 
 .scenarioshift1e .charage {
   border-bottom: 0px;
