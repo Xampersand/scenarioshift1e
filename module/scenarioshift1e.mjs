@@ -58,6 +58,10 @@ Hooks.once('init', function () {
   return preloadHandlebarsTemplates();
 });
 
+Hooks.on('manageCurrency', function () {
+	console.log("clicked currency");
+})
+
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
 /* -------------------------------------------- */

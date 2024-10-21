@@ -12,6 +12,7 @@
     "character": {
       "templates": ["base"],
       "skills": [],
+	  "age": 1,
       "stats": {
         "str": {"value": 1, "label": "Strength"},
         "agi": {"value": 1, "label": "Agility"},
@@ -19,7 +20,6 @@
         "mgp": {"value": 1, "label": "Magic"},
         "man": {"value": 1, "label": "Mana"},
         "per": {"value": 1, "label": "Personality"}
-
       },
       "coins": 0
     },
