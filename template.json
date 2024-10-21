@@ -13,13 +13,13 @@
       "templates": ["base"],
       "skills": [],
 	  "age": 1,
+	  "mana": {"value": 0, "max": 0},
       "stats": {
         "str": {"value": 1, "label": "Strength"},
         "agi": {"value": 1, "label": "Agility"},
         "con": {"value": 1, "label": "Constitution"},
         "mgp": {"value": 1, "label": "Intelligence"},
-        "cha": {"value": 1, "label": "Charisma"},
-        "man": {"value": 1, "label": "Mana"}
+        "cha": {"value": 1, "label": "Charisma"}
       },
       "coins": 0
     },

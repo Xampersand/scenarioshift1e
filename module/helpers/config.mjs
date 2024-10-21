@@ -10,7 +10,6 @@ SCENARIOSHIFT1E.attributes = {
   con: "Constitution",
   int: "Intelligence",
   cha: "Charisma",
-  man: "Mana",
 };
 
 SCENARIOSHIFT1E.attributeAbbreviations = {
@@ -19,5 +18,4 @@ SCENARIOSHIFT1E.attributeAbbreviations = {
 	con: "CON",
 	int: "INT",
 	cha: "CHA",
-	man: "MAN",
 };
