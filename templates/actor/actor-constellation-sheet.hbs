@@ -2,7 +2,7 @@
 
 	<!-- Character Information Section moved to the very top below the controls -->
 	<header class="sheet-header">
-		<div class="character-info-header">&lt;CHARACTER INFORMATION&gt;</div>
+		<div class="character-info-header">&lt;CONSTELLATION INFORMATION&gt;</div>
 		<img
 			class="profile-img"
 			src="{{actor.img}}"
@@ -77,24 +77,45 @@
 				Currency</button>
 		</div>
 		<div class="message-sender">
-			<label for="messageInput" class="input-label">Message:</label>
-			<input
-				type="text"
-				id="messageInput"
-				class="input-text"
-				placeholder="Type your message here..."
-			/>
+			<div class="message-input-container">
+				<label for="messageDropdown" class="input-label">Select a message:</label>
+				<select id="messageDropdown" class="input-text">
+					<option value="">Select a message...</option>
+					<option value="is saddened by the situation.">SAD</option>
+					<option value="is disgusted by the characters.">DISGUSTED</option>
+					<option value="rejoices at the sight!">JOY</option>
+					<option value="is angered by the choices made!">ANGRY</option>
+					<option value="sighs in boredom.">BORED</option>
+					<option value="jumps up and down with excitement!">EXCITED</option>
+					<option value="is covering their eyes!">CANT LOOK</option>
+					<option value="has tears streaming down their face!">CRY</option>
+				</select>
+
+				<label for="messageInput" class="input-label">Or type your message:</label>
+				<input
+					type="text"
+					id="messageInput"
+					class="input-text"
+					placeholder="Type your message here..."
+				/>
+			</div>
 
 			<button class="send-public" data-action="sendPublic">Send Public</button>
-			<button class="send-whisper" data-action="sendWhisper">Send Whisper</button>
+			<div>
+				<div class="dropdown">
+					<label for="characterSelect" class="input-label">Select Character:</label>
+					<select
+						id="characterSelect"
+						name="characterSelect"
+						class="input-text"
+					>
+						{{#each players}}
+							<option value="{{this.id}}">{{this.name}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<button class="send-whisper" data-action="sendWhisper">Send Whisper</button></div>
 		</div>
-		<div class="dropdown">
-			<label for="characterSelect" class="input-label">Select Character:</label>
-			<select id="characterSelect" name="characterSelect" class="input-text">
-				{{#each players}}
-					<option value="{{this.id}}">{{this.name}}</option>
-				{{/each}}
-			</select>
-		</div>
+
 	</section>
 </form>
