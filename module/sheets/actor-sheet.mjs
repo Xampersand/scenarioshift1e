@@ -191,11 +191,16 @@ export class SS1EActorSheet extends ActorSheet {
 		}
 
 		// Send Public Message
-		html.on('click', '.send-public', this._onSendPublicMessage.bind(this));
+		html.on(
+			'click',
+			'.send-message',
+			this._onSendPublicPresetMessage.bind(this)
+		);
 
 		// Send Whisper Message
 		html.on('click', '.send-whisper', this._onSendWhisperMessage.bind(this));
-
+		// Send Custom Public Message
+		html.on('click', '.send-public', this._onSendPublicMessage.bind(this));
 		// Handle sending coins to another character
 		html
 			.find('button[data-action="sendCoins"]')
@@ -268,10 +273,31 @@ export class SS1EActorSheet extends ActorSheet {
 	 * Show error if not enough coins.
 	 * @private
 	 */
+	_onSendPublicPresetMessage(event) {
+		event.preventDefault();
+		const message = event.currentTarget.dataset.message; // Get message from the button's data attribute
+
+		// Check if actor has enough coins (50 coins needed)
+		if (this.actor.system.coins >= 50) {
+			// Deduct 50 coins
+			const updatedCoins = this.actor.system.coins - 50;
+			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
+				// Create the chat message
+				ChatMessage.create({
+					content: message,
+					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				});
+			});
+		} else {
+			// Show error notification
+			ui.notifications.error(
+				'Not enough coins to send the message! (50 coins required)'
+			);
+		}
+	}
 	_onSendPublicMessage(event) {
 		event.preventDefault();
-		const message = this._getMessage();
-		if (!message) return;
+		const message = this._getMessage(); // Get message from the input box
 
 		// Check if actor has enough coins (50 coins needed)
 		if (this.actor.system.coins >= 50) {
@@ -300,8 +326,8 @@ export class SS1EActorSheet extends ActorSheet {
 	 */
 	_onSendWhisperMessage(event) {
 		event.preventDefault();
-		const message = this._getMessage();
-		const selectedCharacterId = this._getSelectedCharacterId();
+		const message = this._getMessage(); // Ensure this retrieves the correct message
+		const selectedCharacterId = this._getSelectedCharacterId(); // Ensure this gets the selected character ID
 
 		if (!message || !selectedCharacterId) return;
 
@@ -503,7 +529,7 @@ export class SS1EActorSheet extends ActorSheet {
 			}
 			// You can add more conditions based on your actor types
 
-			// Send a whisper message to the target user if found
+			// Send a whisper message to the target user if foundc
 			if (ownerUser) {
 				ChatMessage.create({
 					content: customMessage,
@@ -527,10 +553,8 @@ export class SS1EActorSheet extends ActorSheet {
 	 * @private
 	 */
 	_getMessage() {
-		const dropdown = document.getElementById('messageDropdown');
 		const input = document.getElementById('messageInput');
-		// If a message is selected in the dropdown, use that; otherwise, use the input value
-		return dropdown.value || input.value.trim();
+		return input.value.trim(); // Return the trimmed input value directly
 	}
 
 	/**

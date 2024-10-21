@@ -65,18 +65,20 @@
 		</div>
 		<div class='message-sender'>
 			<div class='message-input-container'>
-				<label for='messageDropdown' class='input-label'>Select a message:</label>
-				<select id='messageDropdown' class='input-text'>
-					<option value=''>Select a message...</option>
-					<option value='is saddened by the situation.'>SAD</option>
-					<option value='is disgusted by the characters.'>DISGUSTED</option>
-					<option value='rejoices at the sight!'>JOY</option>
-					<option value='is angered by the choices made!'>ANGRY</option>
-					<option value='sighs in boredom.'>BORED</option>
-					<option value='jumps up and down with excitement!'>EXCITED</option>
-					<option value='is covering their eyes!'>CANT LOOK</option>
-					<option value='has tears streaming down their face!'>CRY</option>
-				</select>
+				<div class="public-message-buttons">
+    <h3>Send Public Message</h3>
+    <div class="button-flexbox">
+        <button class="send-message resource-label" data-message="{{actor.name}} is saddened by the situation.">SADNESS</button>
+        <button class="send-message resource-label" data-message="{{actor.name}} is disgusted by what transpired.">DISGUST</button>
+        <button class="send-message resource-label" data-message='{{actor.name}} rejoices at the sight!'>JOY</button>
+        <button class="send-message resource-label" data-message="{{actor.name}} is angered by the choices made!">BORED</button>
+        <button class="send-message resource-label" data-message="{{actor.name}} sighs in boredom.">ANGER</button>
+        <button class="send-message resource-label" data-message="{{actor.name}} jumps up and down with excitement!">EXCITED</button>
+        <button class="send-message resource-label" data-message="{{actor.name}} is covering their eyes!">CANT LOOK</button>
+        <button class="send-message resource-label" data-message="{{actor.name}} has tears streaming down their face!">CRY</button>
+        <!-- Add more buttons as needed -->
+    </div>
+</div>
 
 				<div><label for='messageInput' class='input-label'>Or type your message:</label>
 					<input
