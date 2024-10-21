@@ -282,7 +282,7 @@ export class SS1EActorSheet extends ActorSheet {
 				ChatMessage.create({
 					content: message,
 					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				});
+				}, {classes: ["resource-label"]});
 			});
 		} else {
 			// Show error notification
