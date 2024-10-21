@@ -1,89 +1,89 @@
 <form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
+  <!-- 1st Row: Character Information Title -->
+  <section class="sheet-header scenarioshift1e">
+    <div class="title-row">
+      <div class="character-info-header">&lt;CHARACTER INFORMATION&gt;</div>
+    </div>
+  </section>
 
-	<!-- Character Information Section moved to the very top below the controls -->
-	{{! Sheet Header }}
-	<header class='sheet-header'>
-		<div class='character-info-header'>&lt;CHARACTER INFORMATION&gt;</div>
-		<img
-			class='profile-img'
-			src='{{actor.img}}'
-			data-edit='img'
-			title='{{actor.name}}'
-			height='150'
-			width='150'
-		/>
-		<div class='header-fields'>
-			<!-- Display the label separately -->
-			<label for='name' class='input-label'>NAME:</label>
-			<h1 class='charname'>
-				<input
-					name='name'
-					id='name'
-					class='input-text'
-					type='text'
-					value='{{actor.name}}'
-					placeholder='Name'
-				/>
-			</h1>
+  <!-- 2nd Row: Three Columns (Image, Name/Age, HP/Mana) -->
+  <section class="sheet-header scenarioshift1e">
+    <div class="stat flexrow three-columns">
+      <!-- First Column: Profile Image -->
+      <div class="column profile-column">
+        <img class='profile-img' src='{{actor.img}}' data-edit='img' title='{{actor.name}}' height='150' width='150' />
+      </div>
 
-			<label for='age' class='input-label'>AGE:</label>
-			<h2 class='charage'>
-				<input
-					type='text'
-					id='age'
-					class='input-text'
-					name='system.age'
-					value='{{system.age}}'
-					data-dtype='Number'
-					placeholder='Age'
-				/>
-			</h2>
-		</div>
-	</header>
+      <!-- Second Column: Name and Age -->
+      <div class="column info-column">
+        <div class='header-fields'>
+          <div class="field-row">
+            <label for='name' class='input-label'>NAME:</label>
+            <h1 class='charname'>
+              <input name='name' id='name' class='input-text' type='text' value='{{actor.name}}' placeholder='Name' />
+            </h1>
+          </div>
+          <div class="field-row">
+            <label for='age' class='input-label'>AGE:</label>
+            <h1 class='charage'>
+              <input type='text' id='age' class='input-text' name='system.age' value='{{system.age}}' data-dtype='Number'
+                placeholder='Age' />
+            </h1>
+          </div>
+        </div>
+      </div>
 
-	<section class='sheet-body scenarioshift1e'>
-		<div class='stat-container'>
-			{{#each system.stats as |stat key|}}
-				<div class='stat flexrow'>
-					<label
-						for='system.stats.{{key}}.value'
-						class='resource-label rollable flex1'
-						data-roll='@stats.{{key}}.value'
-						data-label='{{stat.label}}'
-					>
-						{{stat.label}}
-					</label>
-					<span class='resource-label flex0'>Lv.</span>
-					<span
-						type='text'
-						class='input-text flex0'
-						name='system.stats.{{key}}.value'
-					>{{stat.value}}</span>
-					<button
-						class='resource-label flex0'
-						data-action='attributeLevelUp'
-						data-key='{{key}}'
-					>+</button>
-				</div>
-			{{/each}}
+      <!-- Third Column: HP and Mana Bars -->
+      <div class='column bars-column'>
+        <!-- HP Bar -->
+        <div class='resource-bar'>
+          <label for='hp'>HP:</label>
+          <div class='bar'>
+            <div class='bar-inner hp-bar' style='width: calc({{system.health.value}} / {{system.health.max}} * 100%)'></div>
+          </div>
+          <span class='bar-text'>{{system.health.value}} / {{system.health.max}}</span>
+        </div>
 
-			<div class='stat flexrow flex-group-center'>
-				<label
-					for='system.coins'
-					class='resource-label flexlarge align-left'
-					data-label='Coins:'
-				>
-					Coins:
-				</label>
-				<span
-					class='resource-label flex1'
-					name='system.coins'
-				>{{system.coins}}</span>
-				<button class='resource-label' data-action='openCurrencyPanel'>Manage
-					Coins</button>
-				<button class='resource-label' data-action='sendCoins'>Send Coins</button>
-			</div>
-		</div>
-	</section>
+        <!-- Mana Bar -->
+        <div class='resource-bar'>
+          <label for='mana'>MANA:</label>
+          <div class='bar'>
+            <div class='bar-inner mana-bar' style='width: calc({{system.mana.value}} / {{system.mana.max}} * 100%)'></div>
+          </div>
+          <span class='bar-text'>{{system.mana.value}} / {{system.mana.max}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- 3rd Row: Stats and Coins -->
+  <section class='sheet-body scenarioshift1e'>
+    <div class='stat-container'>
+      {{#each system.stats as |stat key|}}
+      <div class='stat flexrow'>
+        <label for='system.stats.{{key}}.value' class='resource-label rollable flex1'
+          data-roll='@stats.{{key}}.value' data-label='{{stat.label}}'>
+          {{stat.label}}
+        </label>
+        <span class='resource-label flex0'>Lv.</span>
+        <span type='text' class='input-text flex0' name='system.stats.{{key}}.value'>{{stat.value}}</span>
+        <button class='resource-label flex0' data-action='attributeLevelUp' data-key='{{key}}'>+</button>
+      </div>
+      {{/each}}
+
+      <div class='stat flexrow flex-group-center'>
+        <label for='system.coins' class='resource-label flexlarge align-left' data-label='Coins:'>
+          Coins:
+        </label>
+        <span class='resource-label flex1' name='system.coins'>{{system.coins}}</span>
+        <button class='resource-label coin-button' data-action='openCurrencyPanel'>Manage Coins</button>
+        <button class='resource-label coin-button' data-action='sendCoins'>Send Coins</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4th Row: Empty Section for Future Content or Spacing -->
+  <section class="empty-row scenarioshift1e">
+    <div style="height: 50px;"></div> <!-- Placeholder spacing -->
+  </section>
 </form>
