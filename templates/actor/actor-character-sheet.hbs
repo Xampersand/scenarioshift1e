@@ -1,24 +1,45 @@
 <form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
 
-  <!-- Character Information Section moved to the very top below the controls -->
-  {{!-- Sheet Header --}}
-  <header class="sheet-header">
-    <div class="character-info-header">&lt;CHARACTER INFORMATION&gt;</div>
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150" />
-    <div class="header-fields">
-      <!-- Display the label separately -->
-      <label for="name" class="input-label">NAME:</label>
-      <h1 class="charname">
-        <input name="name" id="name" class="input-text" type="text" value="{{actor.name}}" placeholder="Name" />
-      </h1>
+	<!-- Character Information Section moved to the very top below the controls -->
+	{{! Sheet Header }}
+	<header class="sheet-header">
+		<div class="character-info-header">&lt;CHARACTER INFORMATION&gt;</div>
+		<img
+			class="profile-img"
+			src="{{actor.img}}"
+			data-edit="img"
+			title="{{actor.name}}"
+			height="150"
+			width="150"
+		/>
+		<div class="header-fields">
+			<!-- Display the label separately -->
+			<label for="name" class="input-label">NAME:</label>
+			<h1 class="charname">
+				<input
+					name="name"
+					id="name"
+					class="input-text"
+					type="text"
+					value="{{actor.name}}"
+					placeholder="Name"
+				/>
+			</h1>
 
-      <label for="age" class="input-label">AGE:</label>
-      <h2 class="charage">
-        <input type="text" id="age" class="input-text" name="system.age" value="{{system.age}}" data-dtype="Number"
-          placeholder="Age" />
-      </h2>
-    </div>
-  </header>
+			<label for="age" class="input-label">AGE:</label>
+			<h2 class="charage">
+				<input
+					type="text"
+					id="age"
+					class="input-text"
+					name="system.age"
+					value="{{system.age}}"
+					data-dtype="Number"
+					placeholder="Age"
+				/>
+			</h2>
+		</div>
+	</header>
 
   <section class="sheet-body scenarioshift1e">
     <!-- Left column -->
