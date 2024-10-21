@@ -489,6 +489,31 @@ export class SS1EActorSheet extends ActorSheet {
 			sender.update({ 'system.coins': updatedSenderCoins });
 			targetActor.update({ 'system.coins': updatedTargetCoins });
 
+			// Get the user associated with the target actor
+			const ownerUser = game.users.find(
+				(user) => user.character?.id === targetActor.id
+			);
+
+			// Prepare a custom message based on the sender's type
+			let customMessage = `${sender.name} sent you ${amount} coins.`;
+			if (sender.type === 'constellation') {
+				customMessage = `${sender.name} has sponsored you with ${amount} coins!`;
+			} else if (sender.type === 'character') {
+				customMessage = `${sender.name} sent you ${amount} coins.`;
+			}
+			// You can add more conditions based on your actor types
+
+			// Send a whisper message to the target user if found
+			if (ownerUser) {
+				ChatMessage.create({
+					content: customMessage,
+					whisper: [ownerUser._id], // Whisper to the user ID
+					speaker: ChatMessage.getSpeaker({ actor: sender }),
+				});
+			} else {
+				console.warn('The selected character has no associated user.');
+			}
+
 			// Notification to confirm success
 			ui.notifications.info(
 				`${amount} coins sent to ${targetActor.name} successfully!`
