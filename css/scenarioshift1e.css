@@ -12,6 +12,11 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
+.scenarioshift1e.sheet.actor .config-button {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
 /* Variables */
 /* Global Styles */
 .window-app {
@@ -205,7 +210,6 @@
 }
 .scenarioshift1e .sheet-body {
   color: #ffffff;
-  background-color: #4fc4fa;
   padding: 20px;
   background: none;
 }
