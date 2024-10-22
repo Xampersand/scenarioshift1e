@@ -66,16 +66,28 @@
 		<div class='message-sender'>
 			<div class='message-input-container'>
 				<div class="public-message-buttons">
-    <h3>Send Public Message</h3>
+    <h3>Send Messages</h3>
+	<div class='dropdown'>
+					<label for='messageRecepient' class='input-label'>Select Recepient:</label>
+					<select
+						id='messageRecepient'
+						name='messageRecepient'
+						class='input-text'
+					>		<option value="public">Public</option>
+						{{#each players}}
+							<option value='{{this.id}}'>{{this.name}}</option>
+						{{/each}}
+					</select>
+				</div>
     <div class="button-flexbox">
-        <button class="send-message resource-label" data-message="{{actor.name}} is saddened by the situation.">SADNESS</button>
-        <button class="send-message resource-label" data-message="{{actor.name}} is disgusted by what transpired.">DISGUST</button>
-        <button class="send-message resource-label" data-message='{{actor.name}} rejoices at the sight!'>JOY</button>
-        <button class="send-message resource-label" data-message="{{actor.name}} is angered by the choices made!">BORED</button>
-        <button class="send-message resource-label" data-message="{{actor.name}} sighs in boredom.">ANGER</button>
-        <button class="send-message resource-label" data-message="{{actor.name}} jumps up and down with excitement!">EXCITED</button>
-        <button class="send-message resource-label" data-message="{{actor.name}} is covering their eyes!">CANT LOOK</button>
-        <button class="send-message resource-label" data-message="{{actor.name}} has tears streaming down their face!">CRY</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is saddened by the situation.">SADNESS</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is disgusted by what transpired.">DISGUST</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message='{{actor.name}} rejoices at the sight!'>JOY</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is angered by the choices made!">BORED</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} sighs in boredom.">ANGER</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} jumps up and down with excitement!">EXCITED</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is covering their eyes!">CANT LOOK</button>
+        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} has tears streaming down their face!">CRY</button>
         <!-- Add more buttons as needed -->
     </div>
 </div>
@@ -89,21 +101,9 @@
 					/>
 				</div>
 			</div>
-			<button class='send-public resource-label' data-action='sendPublic'>Send Public</button>
 			<div>
-				<div class='dropdown'>
-					<label for='characterSelect' class='input-label'>Select Character:</label>
-					<select
-						id='characterSelect'
-						name='characterSelect'
-						class='input-text'
-					>
-						{{#each players}}
-							<option value='{{this.id}}'>{{this.name}}</option>
-						{{/each}}
-					</select>
-				</div>
-				<button class='send-whisper resource-label' data-action='sendWhisper'>Send Whisper</button></div>
+				
+				<button class='send-custom resource-label' data-action='sendCustom'>Send Custom Message</button></div>
 		</div>
 
 	</section>
