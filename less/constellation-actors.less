@@ -9,9 +9,17 @@
 // A font variable, check actor-character-sheet.hbs
 // Imported it from google as a stylesheet href link whatever
 @font: 'Garamond';
+// removes shit padding, rounds corners of window
+.window-app .window-content {
+	padding: 0;
+	border-radius: 10px;
+}
+form {
+	background-color: @background-color;
+}
 
 // Targets anything with the ss1e sheet actor character classes (must have all of them)
-.ss1e.sheet.actor.constellation {
+.ss1e.sheet.actor.constellation.header {
 	// Sets the font for everything
 	font-family: @font;
 	.header {
@@ -21,7 +29,6 @@
 			border: none;
 			box-shadow: none;
 		}
-		background-color: @accent-color;
 
 		// center stuff
 		display: flex;
@@ -60,6 +67,128 @@
 					&::selection {
 						background-color: @subaccent-color; // change the color when you select text, was red lol
 					}
+				}
+			}
+		}
+	}
+}
+.ss1e.sheet.actor.constellation.actions {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 50%;
+	.ss1e.sheet.actor.constellation.coins {
+		font-family: @font;
+		display: flex;
+		flex-direction: row;
+		flex: 0 1 auto; /* Prevents stretching */
+		justify-content: space-between; /* Space items evenly without large gaps */
+
+		div.coin-counter {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			label {
+				font-size: 1.5rem;
+				color: @label-color;
+			}
+			input {
+				font-size: 1.5rem;
+				color: @label-color;
+				border: none;
+				box-shadow: none;
+				width: 50%;
+				&::selection {
+					background-color: @subaccent-color;
+				}
+			}
+		}
+
+		div.coin-buttons {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+
+			button {
+				font-size: 1.3rem;
+				color: @primary-text-color;
+				width: 50%;
+				height: auto;
+				border: 0;
+				&:hover {
+					box-shadow: 0 0 6px @subaccent-color;
+				}
+			}
+		}
+	}
+	.ss1e.sheet.actor.constellation.messages {
+		display: flex;
+		flex-direction: column;
+		flex: 0 1 auto;
+		.message-top-section {
+			display: flex;
+			flex-direction: column;
+			.message-recipient {
+				display: flex;
+				justify-content: space-evenly;
+				margin: 15px;
+				label {
+					font-size: 1.5rem;
+					color: @label-color;
+				}
+				select {
+					font-size: 1.5rem;
+					color: @label-color;
+					border: none;
+					&::selection {
+						background-color: @subaccent-color;
+					}
+				}
+			}
+		}
+		.preset-message-buttons {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			flex-wrap: wrap;
+			button {
+				font-size: 1rem;
+				width: 20%;
+				color: @primary-text-color;
+				border: 0;
+				margin: 2px;
+				&:hover {
+					box-shadow: 0 0 6px @subaccent-color;
+				}
+			}
+		}
+		.message-bottom-section {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			label {
+				font-size: 1.5rem;
+				color: @label-color;
+				margin: 10px;
+			}
+			input {
+				font-size: 1.5rem;
+				color: @label-color;
+				box-shadow: none;
+				border-color: @subaccent-color;
+				margin: 10px;
+				&::selection {
+					background-color: @subaccent-color;
+				}
+			}
+			button {
+				font-size: 1.3rem;
+				color: @primary-text-color;
+				height: auto;
+				margin: 10px;
+				border: 0;
+				&:hover {
+					box-shadow: 0 0 6px @subaccent-color;
 				}
 			}
 		}

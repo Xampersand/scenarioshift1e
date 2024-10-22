@@ -5,7 +5,7 @@
 		rel='stylesheet'
 		href='https://fonts.googleapis.com/css?family=Garamond'
 	/>
-	<section class='ss1e sheet actor constellation'>
+	<section class='ss1e sheet actor constellation header'>
 		<div class='header title'>&lt;CONSTELLATION INFORMATION&gt;</div>
 		<div class='header info'>
 			<!-- First Column: Profile Image -->
@@ -59,91 +59,81 @@
 			</div>
 		</div>
 	</section>
-
-	<section class=''>
-		<div class=''>
-			<label for='system.coins' class='' data-label='Coins:'>Coins:</label>
-			<input
-				type='text'
-				class=''
-				name='system.coins'
-				value='{{system.coins}}'
-				data-dtype='Number'
-			/>
-			<button class='' data-action='openCurrencyPanel'>Manage Coins</button>
-			<button class='' data-action='sendCoins'>Send Coins</button>
+	<section class='ss1e sheet actor constellation actions'>
+		<div class='ss1e sheet actor constellation coins'>
+			<div class='coin-counter'>
+				<label for='system.coins' class='' data-label='Coins:'>Coins:</label>
+				<input
+					type='text'
+					class=''
+					name='system.coins'
+					value='{{system.coins}}'
+					data-dtype='Number'
+				/></div>
+			<div class='coin-buttons'>
+				<button class='' data-action='openCurrencyPanel'>Manage Coins</button>
+				<button class='' data-action='sendCoins'>Send Coins</button>
+			</div>
 		</div>
-		<div class=''>
-			<div class=''>
-				<div class=''>
-					<h3>Send Messages</h3>
-					<div class=''>
-						<label for='messageRecepient' class=''>Select Recipient:</label>
-						<select id='messageRecepient' name='messageRecepient' class=''>
-							<option value='public'>Public</option>
-							{{#each players}}
-								<option value='{{this.id}}'>{{this.name}}</option>
-							{{/each}}
-						</select>
-					</div>
-					<div>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} is saddened by the situation.'
-						>SADNESS</button>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} is disgusted by what transpired.'
-						>DISGUST</button>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} rejoices at the sight!'
-						>JOY</button>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} is angered by the choices made!'
-						>BORED</button>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} sighs in boredom.'
-						>ANGER</button>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} jumps up and down with excitement!'
-						>EXCITED</button>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} is covering their eyes!'
-						>CANT LOOK</button>
-						<button
-							class=''
-							data-action='sendPreset'
-							data-message='{{actor.name}} has tears streaming down their face!'
-						>CRY</button>
-						<!-- Add more buttons as needed -->
-					</div>
+		<div class='ss1e sheet actor constellation messages'>
+			<div class='message-top-section'>
+				<div class='message-recipient'>
+					<label for='messageRecepient' class=''>Select Message Recipient:</label>
+					<select id='messageRecepient' name='messageRecepient' class=''>
+						<option value='public'>Public</option>
+						{{#each players}}
+							<option value='{{this.id}}'>{{this.name}}</option>
+						{{/each}}
+					</select>
 				</div>
-
-				<div>
-					<label for='messageInput' class=''>Or type your message:</label>
-					<input
-						type='text'
-						id='messageInput'
+				<div class='preset-message-buttons'>
+					<button
 						class=''
-						placeholder='Type your message here...'
-					/>
+						data-action='sendPreset'
+						data-message='{{actor.name}} is saddened by the situation.'
+					>SADNESS</button>
+					<button
+						class=''
+						data-action='sendPreset'
+						data-message='{{actor.name}} is disgusted by what transpired.'
+					>DISGUST</button>
+					<button
+						class=''
+						data-action='sendPreset'
+						data-message='{{actor.name}} rejoices at the sight!'
+					>JOY</button>
+					<button
+						class=''
+						data-action='sendPreset'
+						data-message='{{actor.name}} is angered by the choices made!'
+					>BORED</button>
+					<button
+						class=''
+						data-action='sendPreset'
+						data-message='{{actor.name}} sighs in boredom.'
+					>ANGER</button>
+					<button
+						class=''
+						data-action='sendPreset'
+						data-message='{{actor.name}} jumps up and down with excitement!'
+					>EXCITED</button>
+					<button
+						class=''
+						data-action='sendPreset'
+						data-message='{{actor.name}} is covering their eyes!'
+					>CANT LOOK</button>
+					<button
+						class=''
+						data-action='sendPreset'
+						data-message='{{actor.name}} has tears streaming down their face!'
+					>CRY</button>
+					<!-- Add more buttons as needed -->
 				</div>
-
-				<div>
-					<button class='' data-action='sendCustom'>Send Custom Message</button>
-				</div>
+			</div>
+			<div class='message-bottom-section'>
+				<label for='messageInput' class=''>Or type your message:</label>
+				<input type='text' id='messageInput' class='' placeholder='' />
+				<button class='' data-action='sendCustom'>Send Custom Message</button>
 			</div>
 		</div>
 	</section>
