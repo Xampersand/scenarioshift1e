@@ -22,7 +22,7 @@
   font-size: 14px;
 }
 .ss1e.sheet.actor.character {
-  font-family: "Garamond";
+  font-family: 'Garamond';
 }
 .ss1e.sheet.actor.character .header {
   background-color: #4fc4fa;
@@ -82,7 +82,7 @@
   color: #ffffff;
   border: none;
   box-shadow: none;
-  font-family: "Garamond";
+  font-family: 'Garamond';
   background-color: #28aae6;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container button:hover {
@@ -94,5 +94,51 @@
   box-shadow: none;
 }
 .ss1e.sheet.actor.character .header.info input.input-text::selection {
+  background-color: #1807af;
+}
+.ss1e.sheet.actor.constellation {
+  font-family: 'Garamond';
+}
+.ss1e.sheet.actor.constellation .header {
+  background-color: #4fc4fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ss1e.sheet.actor.constellation .header .remove-glow {
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.ss1e.sheet.actor.constellation .header.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  flex-grow: 0;
+}
+.ss1e.sheet.actor.constellation .header.info {
+  color: #ffffff;
+  font-size: 1.5rem;
+  align-items: flex-start;
+}
+.ss1e.sheet.actor.constellation .header.info img.profile-img {
+  border: none;
+  box-shadow: 0 0 10px #1807af;
+  margin: 10px;
+}
+.ss1e.sheet.actor.constellation .header.info div.info-container {
+  flex: 1 1 50%;
+}
+.ss1e.sheet.actor.constellation .header.info div.info-container label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.ss1e.sheet.actor.constellation .header.info div.info-container input.input-text {
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.ss1e.sheet.actor.constellation .header.info div.info-container input.input-text::selection {
   background-color: #1807af;
 }

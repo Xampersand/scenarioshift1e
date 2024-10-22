@@ -1,110 +1,150 @@
 <form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
 
 	<!-- Character Information Section moved to the very top below the controls -->
+	<link
+		rel='stylesheet'
+		href='https://fonts.googleapis.com/css?family=Garamond'
+	/>
+	<section class='ss1e sheet actor constellation'>
+		<div class='header title'>&lt;CONSTELLATION INFORMATION&gt;</div>
+		<div class='header info'>
+			<!-- First Column: Profile Image -->
+			<img
+				class='profile-img'
+				src='{{actor.img}}'
+				data-edit='img'
+				title='{{actor.name}}'
+				height='250'
+				width='250'
+			/>
+			<!-- Second Column: Modifier, True Name, Grade, Incarnation -->
+			<div class='info-container'>
+				<label for='name' class='input-label'>MODIFIER:</label>
+				<input
+					name='name'
+					id='name'
+					class='input-text'
+					type='text'
+					value='{{actor.name}}'
+					placeholder='name'
+				/>
+				<label for='trueName' class='input-label'>TRUE NAME:</label>
 
-	<section class="sheet-header scenarioshift1e">
-		<div class="title-row">
-		<div class="constellation-info-header">&lt;CONSTELLATION INFORMATION&gt;</div>
+				<input
+					name='system.trueName'
+					id='trueName'
+					class='input-text'
+					type='text'
+					value='{{system.trueName}}'
+					placeholder='true_name'
+				/>
+				<label for='grade' class='input-label'>GRADE:</label>
+				<input
+					name='system.grade'
+					id='grade'
+					class='input-text'
+					type='text'
+					value='{{system.grade}}'
+					placeholder='grade'
+				/>
+				<label for='incarnation' class='input-label'>INCARNATION:</label>
+				<input
+					name='system.incarnation'
+					id='incarnation'
+					class='input-text'
+					type='text'
+					value='{{system.incarnation}}'
+					placeholder='incarnation'
+				/>
+			</div>
 		</div>
 	</section>
 
-	<section class="sheet-header scenarioshift1e">
-    <div class="stat flexrow two-columns">
-      <!-- First Column: Profile Image -->
-      <div class="column profile-column">
-        <img class='profile-img' src='{{actor.img}}' data-edit='img' title='{{actor.name}}' height='150' width='150' />
-      </div>
-
-      <!-- Second Column: Modifier, True Name, Grade, Incarnation -->
-      <div class="column info-column">
-        <div class='header-fields'>
-          <div class="field-row">
-            <label for='name' class='input-label'>MODIFIER:</label>
-            <h1 class='charname'>
-              <input name='name' id='name' class='input-text' type='text' value='{{actor.name}}' placeholder='name' />
-            </h1>
-          </div>
-          <div class="field-row">
-            <label for='trueName' class='input-label'>TRUE NAME:</label>
-            <h1 class='charname'>
-              <input name='system.trueName' id='trueName' class='input-text' type='text' value='{{system.trueName}}' placeholder='true_name' />
-            </h1>
-          </div>
-          <div class="field-row">
-            <label for='grade' class='input-label'>GRADE:</label>
-            <h1 class='charname'>
-              <input name='system.grade' id='grade' class='input-text' type='text' value='{{system.grade}}' placeholder='grade' />
-            </h1>
-          </div>
-		    <div class="field-row">
-            <label for='grade' class='input-label'>INCARNATION:</label>
-            <h1 class='charname'>
-              <input name='system.incarnation' id='incarnation' class='input-text' type='text' value='{{system.incarnation}}' placeholder='incarnation' />
-            </h1>
-          </div>
-        </div>
-      </div>
-  </section>
-
-	<section class='sheet-body scenarioshift1e'>
-		<div class='stat flexrow flex-group-center'>
-			<label
-				for='system.coins'
-				class='resource-label flexlarge align-left'
-				data-label='Coins:'
-			>Coins:</label>
+	<section class=''>
+		<div class=''>
+			<label for='system.coins' class='' data-label='Coins:'>Coins:</label>
 			<input
 				type='text'
-				class='input-text'
+				class=''
 				name='system.coins'
 				value='{{system.coins}}'
 				data-dtype='Number'
 			/>
-			<button class='resource-label coin-button' data-action='openCurrencyPanel'>Manage Coins</button>
-			<button class='send-coins resource-label coin-button' data-action='sendCoins'>Send Coins</button>
+			<button class='' data-action='openCurrencyPanel'>Manage Coins</button>
+			<button class='' data-action='sendCoins'>Send Coins</button>
 		</div>
-		<div class='message-sender'>
-			<div class='message-input-container'>
-				<div class="public-message-buttons">
-    <h3>Send Messages</h3>
-	<div class='dropdown'>
-					<label for='messageRecepient' class='input-label'>Select Recepient:</label>
-					<select
-						id='messageRecepient'
-						name='messageRecepient'
-						class='input-text'
-					>		<option value="public">Public</option>
-						{{#each players}}
-							<option value='{{this.id}}'>{{this.name}}</option>
-						{{/each}}
-					</select>
+		<div class=''>
+			<div class=''>
+				<div class=''>
+					<h3>Send Messages</h3>
+					<div class=''>
+						<label for='messageRecepient' class=''>Select Recipient:</label>
+						<select id='messageRecepient' name='messageRecepient' class=''>
+							<option value='public'>Public</option>
+							{{#each players}}
+								<option value='{{this.id}}'>{{this.name}}</option>
+							{{/each}}
+						</select>
+					</div>
+					<div>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} is saddened by the situation.'
+						>SADNESS</button>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} is disgusted by what transpired.'
+						>DISGUST</button>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} rejoices at the sight!'
+						>JOY</button>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} is angered by the choices made!'
+						>BORED</button>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} sighs in boredom.'
+						>ANGER</button>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} jumps up and down with excitement!'
+						>EXCITED</button>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} is covering their eyes!'
+						>CANT LOOK</button>
+						<button
+							class=''
+							data-action='sendPreset'
+							data-message='{{actor.name}} has tears streaming down their face!'
+						>CRY</button>
+						<!-- Add more buttons as needed -->
+					</div>
 				</div>
-    <div class="button-flexbox">
-        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is saddened by the situation.">SADNESS</button>
-        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is disgusted by what transpired.">DISGUST</button>
-        <button class="send-message resource-label" data-action="sendPreset" data-message='{{actor.name}} rejoices at the sight!'>JOY</button>
-        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is angered by the choices made!">BORED</button>
-        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} sighs in boredom.">ANGER</button>
-        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} jumps up and down with excitement!">EXCITED</button>
-        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} is covering their eyes!">CANT LOOK</button>
-        <button class="send-message resource-label" data-action="sendPreset" data-message="{{actor.name}} has tears streaming down their face!">CRY</button>
-        <!-- Add more buttons as needed -->
-    </div>
-</div>
 
-				<div><label for='messageInput' class='input-label'>Or type your message:</label>
+				<div>
+					<label for='messageInput' class=''>Or type your message:</label>
 					<input
 						type='text'
 						id='messageInput'
-						class='input-text resource-label'
+						class=''
 						placeholder='Type your message here...'
 					/>
 				</div>
-			</div>
-			<div>
-				
-				<button class='send-custom resource-label' data-action='sendCustom'>Send Custom Message</button></div>
-		</div>
 
+				<div>
+					<button class='' data-action='sendCustom'>Send Custom Message</button>
+				</div>
+			</div>
+		</div>
 	</section>
 </form>
