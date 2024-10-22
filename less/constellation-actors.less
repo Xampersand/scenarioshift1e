@@ -8,20 +8,22 @@
 @label-color: #ffffff;
 // A font variable, check actor-character-sheet.hbs
 // Imported it from google as a stylesheet href link whatever
-@font: 'Garamond';
+@constellation-font: 'Teko';
 // removes shit padding, rounds corners of window
 .window-app .window-content {
 	padding: 0;
-	border-radius: 10px;
+	background-image: none;
 }
 form.constellation.form {
 	background-color: @background-color;
+	border-radius: 10px;
+	font-family: @constellation-font;
 }
 
 // Targets anything with the ss1e sheet actor character classes (must have all of them)
 .ss1e.sheet.actor.constellation.header {
 	// Sets the font for everything
-	font-family: @font;
+
 	.header {
 		.remove-glow {
 			// "mixin" function, call it like a macro later
@@ -131,66 +133,83 @@ form.constellation.form {
 				display: flex;
 				justify-content: space-evenly;
 				margin: 15px;
-				label {
-					font-size: 1.5rem;
-					color: @label-color;
-				}
-				select {
-					font-size: 1.5rem;
-					color: @label-color;
-					border: none;
-					&::selection {
-						background-color: @subaccent-color;
-					}
-				}
 			}
-		}
-		.preset-message-buttons {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-evenly;
-			flex-wrap: wrap;
-			button {
-				font-size: 1rem;
-				width: 20%;
-				color: @primary-text-color;
-				border: 0;
-				margin: 2px;
-				&:hover {
-					box-shadow: 0 0 6px @subaccent-color;
-				}
-			}
-		}
-		.message-bottom-section {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
 			label {
 				font-size: 1.5rem;
 				color: @label-color;
-				margin: 10px;
 			}
-			input {
+			select {
 				font-size: 1.5rem;
 				color: @label-color;
-				box-shadow: none;
-				border-color: @subaccent-color;
-				margin: 10px;
+				border: none;
 				&::selection {
 					background-color: @subaccent-color;
 				}
 			}
-			button {
-				font-size: 1.3rem;
+			.message-recipient-dropdown {
+				padding: 0;
+			}
+			.message-recipient-option {
+				background-color: @background-color;
 				color: @primary-text-color;
-				height: auto;
-				margin: 10px;
-				border: 0;
-				&:hover {
-					box-shadow: 0 0 6px @subaccent-color;
-				}
 			}
 		}
 	}
+	.preset-message-buttons {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		button {
+			font-size: 1rem;
+			width: 20%;
+			color: @primary-text-color;
+			border: 0;
+			margin: 2px;
+			&:hover {
+				box-shadow: 0 0 6px @subaccent-color;
+			}
+		}
+	}
+	.message-bottom-section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		label {
+			font-size: 1.5rem;
+			color: @label-color;
+			margin: 10px;
+		}
+		input {
+			font-size: 1.5rem;
+			color: @label-color;
+			box-shadow: none;
+			border-color: @subaccent-color;
+			width: 75%;
+			margin: 10px;
+			&::selection {
+				background-color: @subaccent-color;
+			}
+		}
+		button {
+			font-size: 1.3rem;
+			color: @primary-text-color;
+			height: auto;
+			width: 50%;
+			margin: 10px;
+			border: 0;
+			&:hover {
+				box-shadow: 0 0 6px @subaccent-color;
+			}
+		}
+	}
+}
+
+.constellation-sheet-button {
+	font-family: @constellation-font;
+}
+.actor-sheet-label,
+.actor-sheet-input {
+	font-family: @constellation-font;
 }

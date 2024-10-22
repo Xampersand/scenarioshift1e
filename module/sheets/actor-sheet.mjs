@@ -249,7 +249,7 @@ export class SS1EActorSheet extends ActorSheet {
 	_onSendPublicPresetMessage(event) {
 		event.preventDefault();
 		const message = event.currentTarget.dataset.message; // Get message from the button's data attribute
-		const selectedCharacterId = this._getMessageRecepient(); // Ensure this gets the selected character ID
+		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
 		if (!message) return;
 		// Check if actor has enough coins (50 coins needed)
 		if (this.actor.system.coins >= 50) {
@@ -303,7 +303,7 @@ export class SS1EActorSheet extends ActorSheet {
 	onSendCustomMessage(event) {
 		event.preventDefault();
 		const message = this._getMessage(); // Ensure this retrieves the correct message
-		const selectedCharacterId = this._getMessageRecepient(); // Ensure this gets the selected character ID
+		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
 		if (!message) return;
 		// Check if actor has enough coins (50 coins needed)
 		if (this.actor.system.coins >= 50) {
@@ -547,8 +547,8 @@ export class SS1EActorSheet extends ActorSheet {
 	 * Get the selected character ID from the dropdown
 	 * @private
 	 */
-	_getMessageRecepient() {
-		const selectElement = document.getElementById('messageRecepient');
+	_getmessageRecipient() {
+		const selectElement = document.getElementById('messageRecipient');
 		return selectElement.value;
 	}
 

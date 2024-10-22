@@ -5,8 +5,8 @@
 
 	<!-- Character Information Section moved to the very top below the controls -->
 	<link
+		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
-		href='https://fonts.googleapis.com/css?family=Garamond'
 	/>
 	<section class='ss1e sheet actor constellation header'>
 		<div class='header title'>&lt;CONSTELLATION INFORMATION&gt;</div>
@@ -65,68 +65,86 @@
 	<section class='ss1e sheet actor constellation actions'>
 		<div class='ss1e sheet actor constellation coins'>
 			<div class='coin-counter'>
-				<label for='system.coins' class='' data-label='Coins:'>Coins:</label>
+				<label
+					for='system.coins'
+					class='actor-sheet-label'
+					data-label='Coins:'
+				>Coins:</label>
 				<input
 					type='text'
-					class=''
+					class='actor-sheet-input'
 					name='system.coins'
 					value='{{system.coins}}'
 					data-dtype='Number'
 				/></div>
 			<div class='coin-buttons'>
-				<button class='' data-action='openCurrencyPanel'>Manage Coins</button>
-				<button class='' data-action='sendCoins'>Send Coins</button>
+				<button
+					class='constellation-sheet-button'
+					data-action='openCurrencyPanel'
+				>Manage Coins</button>
+				<button class='constellation-sheet-button' data-action='sendCoins'>Send
+					Coins</button>
 			</div>
 		</div>
 		<div class='ss1e sheet actor constellation messages'>
 			<div class='message-top-section'>
 				<div class='message-recipient'>
-					<label for='messageRecepient' class=''>Select Message Recipient:</label>
-					<select id='messageRecepient' name='messageRecepient' class=''>
-						<option value='public'>Public</option>
+					<label for='messageRecipient' class=''>Select Message Recipient:</label>
+					<select
+						id='messageRecipient'
+						name='messageRecipient'
+						class='message-recipient-dropdown'
+					>
+						<option
+							value='public'
+							class='message-recipient-option'
+						>Public</option>
 						{{#each players}}
-							<option value='{{this.id}}'>{{this.name}}</option>
+							<option
+								value='{{this.id}}'
+								class='message-recipient-option'
+							>{{this.name}}</option>
 						{{/each}}
 					</select>
 				</div>
 				<div class='preset-message-buttons'>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} is saddened by the situation.'
 					>SADNESS</button>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} is disgusted by what transpired.'
 					>DISGUST</button>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} rejoices at the sight!'
 					>JOY</button>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} is angered by the choices made!'
 					>BORED</button>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} sighs in boredom.'
 					>ANGER</button>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} jumps up and down with excitement!'
 					>EXCITED</button>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} is covering their eyes!'
 					>CANT LOOK</button>
 					<button
-						class=''
+						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='{{actor.name}} has tears streaming down their face!'
 					>CRY</button>
@@ -136,7 +154,8 @@
 			<div class='message-bottom-section'>
 				<label for='messageInput' class=''>Or type your message:</label>
 				<input type='text' id='messageInput' class='' placeholder='' />
-				<button class='' data-action='sendCustom'>Send Custom Message</button>
+				<button class='constellation-sheet-button' data-action='sendCustom'>Send
+					Custom Message</button>
 			</div>
 		</div>
 	</section>
