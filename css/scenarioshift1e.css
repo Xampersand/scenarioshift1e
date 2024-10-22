@@ -156,7 +156,7 @@ form.constellation.form {
   flex: 1 1 50%;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins {
-  font-family: "Garamond";
+  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex: 0 1 auto;
@@ -262,7 +262,7 @@ form.constellation.form {
   font-size: 1.5rem;
   color: #ffffff;
   box-shadow: none;
-  border-color: #1807af;
+  border: 0;
   width: 75%;
   margin: 10px;
 }

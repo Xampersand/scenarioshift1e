@@ -9,18 +9,20 @@
 // A font variable, check actor-character-sheet.hbs
 // Imported it from google as a stylesheet href link whatever
 @constellation-font: 'Teko';
-// removes shit padding, rounds corners of window
+
+// removes shit padding, rounds corners of window <  GENERAL SETTING, REMOVE IF U DONT LIKE
 .window-app .window-content {
 	padding: 0;
 	background-image: none;
 }
+//Background and for and rounded corner for constellation sheet
 form.constellation.form {
 	background-color: @background-color;
 	border-radius: 10px;
 	font-family: @constellation-font;
 }
 
-// Targets anything with the ss1e sheet actor character classes (must have all of them)
+//top part of constellation sheet, contains info and img
 .ss1e.sheet.actor.constellation.header {
 	// Sets the font for everything
 
@@ -74,12 +76,13 @@ form.constellation.form {
 		}
 	}
 }
+//bottom part of constellation sheet, contains coins and messages
 .ss1e.sheet.actor.constellation.actions {
 	display: flex;
 	flex-direction: column;
 	flex: 1 1 50%;
 	.ss1e.sheet.actor.constellation.coins {
-		font-family: @font;
+		font-family: @constellation-font;
 		display: flex;
 		flex-direction: row;
 		flex: 0 1 auto; /* Prevents stretching */
@@ -185,7 +188,7 @@ form.constellation.form {
 			font-size: 1.5rem;
 			color: @label-color;
 			box-shadow: none;
-			border-color: @subaccent-color;
+			border: 0;
 			width: 75%;
 			margin: 10px;
 			&::selection {
@@ -205,7 +208,7 @@ form.constellation.form {
 		}
 	}
 }
-
+//overwriting font for certain buttons, was too lazy to do it by lcass above and it showed. will fix later maybe
 .constellation-sheet-button {
 	font-family: @constellation-font;
 }
