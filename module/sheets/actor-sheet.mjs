@@ -29,12 +29,6 @@ export class SS1EActorSheet extends ActorSheet {
 	get template() {
 		return `systems/scenarioshift1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
 	}
-	/** @override */
-	get template() {
-		return `systems/scenarioshift1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
-	}
-
-	/* -------------------------------------------- */
 	/* -------------------------------------------- */
 
 	/** @override */
@@ -91,24 +85,6 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-
-	/**
-	 * Organize and classify Items for Character sheets.
-	 *
-	 * @param {Object} actorData The actor to prepare.
-	 *
-	 * @return {undefined}
-	 */
-	_prepareCharacterData(context) {
-		// This method can be used to prepare specific character data if needed
-	}
-	/**
-	 * Organize and classify Items for Character sheets.
-	 *
-	 * @param {Object} actorData The actor to prepare.
-	 *
-	 * @return {undefined}
-	 */
 	_prepareCharacterData(context) {}
 
 	/**
@@ -305,10 +281,13 @@ export class SS1EActorSheet extends ActorSheet {
 			const updatedCoins = this.actor.system.coins - 50;
 			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
 				// Create the chat message
-				ChatMessage.create({
-					content: message,
-					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				}, {classes: ["resource-label"]});
+				ChatMessage.create(
+					{
+						content: message,
+						speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+					},
+					{ classes: ['resource-label'] }
+				);
 			});
 		} else {
 			// Show error notification
