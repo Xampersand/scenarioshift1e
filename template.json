@@ -1,67 +1,89 @@
 {
-  "Actor": {
-    "types": ["character", "npc", "constellation"],
-    "templates": {
-      "base": {
-        "health": {
-            "value": 100,
-            "max": 100
-        }
-      }
-    },
-    "character": {
-      "templates": ["base"],
-      "skills": [],
-	  "age": 1,
-	  "mana": {"value": 20, "max": 20},
-      "stats": {
-        "str": {"value": 1, "label": "Strength"},
-        "agi": {"value": 1, "label": "Agility"},
-        "con": {"value": 1, "label": "Constitution"},
-        "mgp": {"value": 1, "label": "Intelligence"},
-        "cha": {"value": 1, "label": "Charisma"}
-      },
-      "coins": 0
-    },
-    "npc": {
-      "templates": ["base"],
-      "cr": 0
-    },
-    "constellation": {
-      "grade": "historical",
-      "trueName": "none",
-	  "incarnation": "NIGGER",
-	  "stigmas": []
-    }
-  },
-  "Item": {
-    "types": ["item", "feature", "spell", "weapon"],
-    "templates": {
-      "base": {
-        "description": ""
-      }
-    },
-    "item": {
-      "templates": ["base"],
-      "quantity": 1,
-      "weight": 0,
-      "formula": "d20 + @str.value + ceil(@lvl / 2)"
-    },
-    "feature": {
-      "templates": ["base"]
-    },
-    "spell": {
-      "templates": ["base"],
-      "spellLevel": 1
-    },
-    "weapon": {
-      "templates": ["base"],
-      "damageFormula": "d4",
-      "type": "slashing",
-      "size": "small",
-      "range": 5,
-      "thrown": false,
-      "hand": "versatile"
-    }
-  }
+	"Actor": {
+		"types": ["character", "npc", "constellation"],
+		"templates": {
+			"base": {
+				"health": {
+					"value": 100,
+					"max": 100
+				}
+			}
+		},
+		"character": {
+			"templates": ["base"],
+			"skills": [],
+			"age": 1,
+			"mana": { "value": 20, "max": 20 },
+			"stats": {
+				"str": { "value": 1, "label": "Strength" },
+				"agi": { "value": 1, "label": "Agility" },
+				"con": { "value": 1, "label": "Constitution" },
+				"mgp": { "value": 1, "label": "Intelligence" },
+				"cha": { "value": 1, "label": "Charisma" }
+			},
+			"coins": 0
+		},
+		"npc": {
+			"templates": ["base"],
+			"cr": 0
+		},
+		"constellation": {
+			"grade": "historical",
+			"trueName": "none",
+			"incarnation": "none",
+			"stigmas": []
+		}
+	},
+	"Item": {
+		"types": [
+			"item",
+			"spell",
+			"meleeWeapon",
+			"rangedWeapon",
+			"ammo",
+			"accessory",
+			"equipment",
+			"consumable"
+		],
+		"templates": {
+			"base": {
+				"description": ""
+			},
+			"weapon": {
+				"accuracy": 0,
+				"range": 5,
+				"requirement": 0,
+				"requirement-type": "str"
+			}
+		},
+		"item": {
+			"templates": ["base"],
+			"quantity": 1,
+			"weight": 0,
+			"formula": "d20 + @str.value + ceil(@lvl / 2)"
+		},
+		"spell": {
+			"templates": ["base"],
+			"spellLevel": 1
+		},
+		"meleeWeapon": {
+			"templates": ["weapon", "base"],
+			"damageFormula": "d4",
+			"type": "slashing"
+		},
+		"rangedWeapon": {
+			"templates": ["weapon", "base"],
+			"damageModifier": 1
+		},
+		"ammo": {
+			"templates": ["base"],
+			"damageFormula": "d4",
+			"type": "piercing"
+		},
+		"consumable": {
+			"templates": ["base"],
+			"quantity": 0,
+			"Effect": "none"
+		}
+	}
 }
