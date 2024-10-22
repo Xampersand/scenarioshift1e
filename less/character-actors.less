@@ -1,0 +1,97 @@
+@background-color: rgba(37, 186, 255, 0.5);
+@stat-container-color: rgba(37, 186, 255, 0.1);
+@primary-text-color: rgb(255, 255, 255);
+@accent-color: #4fc4fa;
+@subaccent-color: #1807af;
+@button-color: #28aae6;
+@label-color: #ffffff;
+@hp-color: #0a7765;
+@mana-color: #1807af;
+
+// A font variable, check actor-character-sheet.hbs
+// Imported it from google as a stylesheet href link whatever
+@font: "Garamond";
+
+// Targets anything with the ss1e sheet actor character classes (must have all of them)
+.ss1e.sheet.actor.character {
+	// Sets the font for everything
+	font-family: @font;
+
+	// Targets anything with the header class within the parent class
+	.header {
+		.remove-glow { // "mixin" function, call it like a macro later
+			color: @label-color;
+			border: none;
+			box-shadow: none;
+		}
+		background-color: @accent-color;
+
+		// center stuff
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&.title { // target children with ONLY the title class
+			font-size: 2.5rem;
+			font-weight: bold;
+			color: @label-color;
+			flex-grow: 0; // makes it shrink and take up as little space as possible
+		}
+		&.info {
+			color: @label-color;
+			font-size: 1.5rem;
+			align-items: flex-start; // move the name and age (and img) to the very top
+			
+			& img.profile-img {
+				border: none;
+				box-shadow: 0 0 10px @subaccent-color; // add a cute shadow to the image
+				margin: 10px; // make it have a little space around
+				// ps don't use padding, use margin, keeps the border or shadow stuck to the image
+				// padding leaves space and then adds the border/shadow to the original place the image was at
+			}
+
+			& div.info-container {
+				flex: 1 1 50%; // FUCK flexbox | this makes it grow & shrink & take up 50% of the available space
+				& label {
+					font-weight: bold;
+					font-size: 1.1rem;
+				}
+			}
+			& div.resource-container {
+				flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
+				display: flex; // for moving around flexy children
+				flex-direction: column; // make it column (by default it's in a row)
+				justify-content: center;
+				align-items: center;
+				font-weight: bold;
+				& label {
+					font-size: 1.1rem;
+				}
+				& span {
+					font-weight: normal;
+					&.health { // target any span and then sub-target the specific classes, cool stuff
+						color: @hp-color;
+					}
+					&.mana {
+						color: @mana-color;
+					}
+				}
+				& button {
+					.remove-glow(); // call the mixin
+					font-family: @font;
+					background-color: @button-color;
+					&:hover {
+						box-shadow: 0 0 6px @subaccent-color; // add cute shadow when u hover
+					}
+				}
+			}
+
+			& input.input-text {
+				.remove-glow(); // call the mixin
+				&::selection {
+					background-color: @subaccent-color; // change the color when you select text, was red lol
+				}
+			}
+		}
+	}
+}
