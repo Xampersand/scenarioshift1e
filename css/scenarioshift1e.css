@@ -12,6 +12,13 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
+form.editable {
+  background-color: rgba(37, 186, 255, 0.5);
+}
+.window-app .window-content {
+  padding: 0;
+  background-image: none;
+}
 .window-content {
   padding: 0;
 }
@@ -23,6 +30,30 @@
 }
 .window-header a span {
   font-size: 14px;
+}
+li.chat-message.message {
+  background-color: rgba(37, 186, 255, 0.5);
+  background-image: none;
+  border-color: #4fc4fa;
+}
+li.chat-message.message .message-sender {
+  color: #4fc4fa;
+}
+li.chat-message.message .message-content {
+  color: #ffffff;
+}
+li.chat-message.message .message-timestamp {
+  color: #ffffff;
+}
+li.chat-message.message .flavor-text {
+  color: #4fc4fa;
+}
+li.chat-message.whisper {
+  background-color: rgba(37, 186, 255, 0.5);
+  background-image: none;
+}
+li.chat-message.whisper .whisper-to {
+  color: #4fc4fa;
 }
 .ss1e.sheet.actor.character {
   font-family: "Garamond";
@@ -98,10 +129,6 @@
 }
 .ss1e.sheet.actor.character .header.info input.input-text::selection {
   background-color: #1807af;
-}
-.window-app .window-content {
-  padding: 0;
-  background-image: none;
 }
 form.constellation.form {
   background-color: rgba(37, 186, 255, 0.5);

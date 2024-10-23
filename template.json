@@ -47,7 +47,7 @@
 		],
 		"templates": {
 			"base": {
-				"description": ""
+				"description": "Description"
 			},
 			"weapon": {
 				"accuracy": 0,
