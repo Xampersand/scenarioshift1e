@@ -29,12 +29,6 @@ export class SS1EActorSheet extends ActorSheet {
 	get template() {
 		return `systems/scenarioshift1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
 	}
-	/** @override */
-	get template() {
-		return `systems/scenarioshift1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
-	}
-
-	/* -------------------------------------------- */
 	/* -------------------------------------------- */
 
 	/** @override */
@@ -91,24 +85,6 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-
-	/**
-	 * Organize and classify Items for Character sheets.
-	 *
-	 * @param {Object} actorData The actor to prepare.
-	 *
-	 * @return {undefined}
-	 */
-	_prepareCharacterData(context) {
-		// This method can be used to prepare specific character data if needed
-	}
-	/**
-	 * Organize and classify Items for Character sheets.
-	 *
-	 * @param {Object} actorData The actor to prepare.
-	 *
-	 * @return {undefined}
-	 */
 	_prepareCharacterData(context) {}
 
 	/**
@@ -190,12 +166,14 @@ export class SS1EActorSheet extends ActorSheet {
 			});
 		}
 
-		// Send Public Message
-		html.on('click', '.send-public', this._onSendPublicMessage.bind(this));
-
-		// Send Whisper Message
-		html.on('click', '.send-whisper', this._onSendWhisperMessage.bind(this));
-
+		// Send Preset Message
+		html
+			.find('button[data-action="sendPreset"]')
+			.click(this._onSendPublicPresetMessage.bind(this));
+		// Send Custom Message
+		html
+			.find('button[data-action="sendCustom"]')
+			.click(this.onSendCustomMessage.bind(this));
 		// Handle sending coins to another character
 		html
 			.find('button[data-action="sendCoins"]')
@@ -268,21 +246,45 @@ export class SS1EActorSheet extends ActorSheet {
 	 * Show error if not enough coins.
 	 * @private
 	 */
-	_onSendPublicMessage(event) {
+	_onSendPublicPresetMessage(event) {
 		event.preventDefault();
-		const message = this._getMessage();
+		const message = event.currentTarget.dataset.message; // Get message from the button's data attribute
+		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
 		if (!message) return;
-
 		// Check if actor has enough coins (50 coins needed)
 		if (this.actor.system.coins >= 50) {
 			// Deduct 50 coins
 			const updatedCoins = this.actor.system.coins - 50;
 			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
-				// Create the chat message
-				ChatMessage.create({
-					content: message,
-					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				}, {classes: ["resource-label"]});
+				// Check if the selectedCharacterId is 'public'
+				if (selectedCharacterId === 'public') {
+					// Send a public message
+					ChatMessage.create({
+						content: message,
+						speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+					});
+				} else {
+					// Get the selected actor and check if it's defined
+					const selectedActor = game.actors.get(selectedCharacterId);
+					if (selectedActor) {
+						// Get the user associated with the selected actor
+						const ownerUser = game.users.find(
+							(user) => user.character?.id === selectedActor.id
+						);
+						if (ownerUser) {
+							// Create a whisper message
+							ChatMessage.create({
+								content: message,
+								whisper: [ownerUser._id], // Whisper to the user ID
+								speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+							});
+						} else {
+							console.warn('The selected character has no associated user.');
+						}
+					} else {
+						console.warn('Selected character not found.');
+					}
+				}
 			});
 		} else {
 			// Show error notification
@@ -293,39 +295,49 @@ export class SS1EActorSheet extends ActorSheet {
 	}
 
 	/**
-	 * Handle sending a whisper message to the selected character
+	 * Handle sending a custom message to the selected character
 	 * Deduct 50 coins if successful.
 	 * Show error if not enough coins.
 	 * @private
 	 */
-	_onSendWhisperMessage(event) {
+	onSendCustomMessage(event) {
 		event.preventDefault();
-		const message = this._getMessage();
-		const selectedCharacterId = this._getSelectedCharacterId();
-
-		if (!message || !selectedCharacterId) return;
-
+		const message = this._getMessage(); // Ensure this retrieves the correct message
+		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
+		if (!message) return;
 		// Check if actor has enough coins (50 coins needed)
 		if (this.actor.system.coins >= 50) {
 			// Deduct 50 coins
 			const updatedCoins = this.actor.system.coins - 50;
 			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
-				const selectedActor = game.actors.get(selectedCharacterId);
-
-				// Get the user associated with the selected actor
-				const ownerUser = game.users.find(
-					(user) => user.character?.id === selectedActor.id
-				);
-
-				if (ownerUser) {
-					// Create a whisper message
+				// Check if the selectedCharacterId is 'public'
+				if (selectedCharacterId === 'public') {
+					// Send a public message
 					ChatMessage.create({
 						content: message,
-						whisper: [ownerUser._id], // Whisper to the user ID
 						speaker: ChatMessage.getSpeaker({ actor: this.actor }),
 					});
 				} else {
-					console.warn('The selected character has no associated user.');
+					// Get the selected actor and check if it's defined
+					const selectedActor = game.actors.get(selectedCharacterId);
+					if (selectedActor) {
+						// Get the user associated with the selected actor
+						const ownerUser = game.users.find(
+							(user) => user.character?.id === selectedActor.id
+						);
+						if (ownerUser) {
+							// Create a whisper message
+							ChatMessage.create({
+								content: message,
+								whisper: [ownerUser._id], // Whisper to the user ID
+								speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+							});
+						} else {
+							console.warn('The selected character has no associated user.');
+						}
+					} else {
+						console.warn('Selected character not found.');
+					}
 				}
 			});
 		} else {
@@ -503,7 +515,7 @@ export class SS1EActorSheet extends ActorSheet {
 			}
 			// You can add more conditions based on your actor types
 
-			// Send a whisper message to the target user if found
+			// Send a whisper message to the target user if foundc
 			if (ownerUser) {
 				ChatMessage.create({
 					content: customMessage,
@@ -527,18 +539,16 @@ export class SS1EActorSheet extends ActorSheet {
 	 * @private
 	 */
 	_getMessage() {
-		const dropdown = document.getElementById('messageDropdown');
 		const input = document.getElementById('messageInput');
-		// If a message is selected in the dropdown, use that; otherwise, use the input value
-		return dropdown.value || input.value.trim();
+		return input.value.trim(); // Return the trimmed input value directly
 	}
 
 	/**
 	 * Get the selected character ID from the dropdown
 	 * @private
 	 */
-	_getSelectedCharacterId() {
-		const selectElement = document.getElementById('characterSelect');
+	_getmessageRecipient() {
+		const selectElement = document.getElementById('messageRecipient');
 		return selectElement.value;
 	}
 

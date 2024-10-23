@@ -1,108 +1,163 @@
-<form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
+<form
+	class='{{cssClass}} {{actor.type}} flexcol constellation form'
+	autocomplete='off'
+>
 
 	<!-- Character Information Section moved to the very top below the controls -->
+	<link
+		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
+		rel='stylesheet'
+	/>
+	<section class='ss1e sheet actor constellation header'>
+		<div class='header title'>&lt;CONSTELLATION INFORMATION&gt;</div>
+		<div class='header info'>
+			<!-- First Column: Profile Image -->
+			<img
+				class='profile-img'
+				src='{{actor.img}}'
+				data-edit='img'
+				title='{{actor.name}}'
+				height='250'
+				width='250'
+			/>
+			<!-- Second Column: Modifier, True Name, Grade, Incarnation -->
+			<div class='info-container'>
+				<label for='name' class='input-label'>MODIFIER:</label>
+				<input
+					name='name'
+					id='name'
+					class='input-text'
+					type='text'
+					value='{{actor.name}}'
+					placeholder='name'
+				/>
+				<label for='trueName' class='input-label'>TRUE NAME:</label>
 
-	<section class="sheet-header scenarioshift1e">
-		<div class="title-row">
-		<div class="constellation-info-header">&lt;CONSTELLATION INFORMATION&gt;</div>
+				<input
+					name='system.trueName'
+					id='trueName'
+					class='input-text'
+					type='text'
+					value='{{system.trueName}}'
+					placeholder='true_name'
+				/>
+				<label for='grade' class='input-label'>GRADE:</label>
+				<input
+					name='system.grade'
+					id='grade'
+					class='input-text'
+					type='text'
+					value='{{system.grade}}'
+					placeholder='grade'
+				/>
+				<label for='incarnation' class='input-label'>INCARNATION:</label>
+				<input
+					name='system.incarnation'
+					id='incarnation'
+					class='input-text'
+					type='text'
+					value='{{system.incarnation}}'
+					placeholder='incarnation'
+				/>
+			</div>
 		</div>
 	</section>
-
-	<section class="sheet-header scenarioshift1e">
-    <div class="stat flexrow two-columns">
-      <!-- First Column: Profile Image -->
-      <div class="column profile-column">
-        <img class='profile-img' src='{{actor.img}}' data-edit='img' title='{{actor.name}}' height='150' width='150' />
-      </div>
-
-      <!-- Second Column: Modifier, True Name, Grade, Incarnation -->
-      <div class="column info-column">
-        <div class='header-fields'>
-          <div class="field-row">
-            <label for='name' class='input-label'>MODIFIER:</label>
-            <h1 class='charname'>
-              <input name='name' id='name' class='input-text' type='text' value='{{actor.name}}' placeholder='name' />
-            </h1>
-          </div>
-          <div class="field-row">
-            <label for='trueName' class='input-label'>TRUE NAME:</label>
-            <h1 class='charname'>
-              <input name='system.trueName' id='trueName' class='input-text' type='text' value='{{system.trueName}}' placeholder='true_name' />
-            </h1>
-          </div>
-          <div class="field-row">
-            <label for='grade' class='input-label'>GRADE:</label>
-            <h1 class='charname'>
-              <input name='system.grade' id='grade' class='input-text' type='text' value='{{system.grade}}' placeholder='grade' />
-            </h1>
-          </div>
-		    <div class="field-row">
-            <label for='grade' class='input-label'>INCARNATION:</label>
-            <h1 class='charname'>
-              <input name='system.incarnation' id='incarnation' class='input-text' type='text' value='{{system.incarnation}}' placeholder='incarnation' />
-            </h1>
-          </div>
-        </div>
-      </div>
-  </section>
-
-	<section class='sheet-body scenarioshift1e'>
-		<div class='stat flexrow flex-group-center'>
-			<label
-				for='system.coins'
-				class='resource-label flexlarge align-left'
-				data-label='Coins:'
-			>Coins:</label>
-			<input
-				type='text'
-				class='input-text'
-				name='system.coins'
-				value='{{system.coins}}'
-				data-dtype='Number'
-			/>
-			<button class='resource-label coin-button' data-action='openCurrencyPanel'>Manage Coins</button>
-			<button class='send-coins resource-label coin-button' data-action='sendCoins'>Send Coins</button>
-		</div>
-		<div class='message-sender'>
-			<div class='message-input-container'>
-				<label for='messageDropdown' class='input-label'>Select a message:</label>
-				<select id='messageDropdown' class='input-text'>
-					<option value=''>Select a message...</option>
-					<option value='is saddened by the situation.'>SAD</option>
-					<option value='is disgusted by the characters.'>DISGUSTED</option>
-					<option value='rejoices at the sight!'>JOY</option>
-					<option value='is angered by the choices made!'>ANGRY</option>
-					<option value='sighs in boredom.'>BORED</option>
-					<option value='jumps up and down with excitement!'>EXCITED</option>
-					<option value='is covering their eyes!'>CANT LOOK</option>
-					<option value='has tears streaming down their face!'>CRY</option>
-				</select>
-
-				<div><label for='messageInput' class='input-label'>Or type your message:</label>
-					<input
-						type='text'
-						id='messageInput'
-						class='input-text resource-label'
-						placeholder='Type your message here...'
-					/>
-				</div>
+	{{! second part of the sheet, contains coins and chat messages }}
+	<section class='ss1e sheet actor constellation actions'>
+		<div class='ss1e sheet actor constellation coins'>
+			<div class='coin-counter'>
+				<label
+					for='system.coins'
+					class='actor-sheet-label'
+					data-label='Coins:'
+				>Coins:</label>
+				<input
+					type='text'
+					class='actor-sheet-input'
+					name='system.coins'
+					value='{{system.coins}}'
+					data-dtype='Number'
+				/></div>
+			<div class='coin-buttons'>
+				<button
+					class='constellation-sheet-button'
+					data-action='openCurrencyPanel'
+				>Manage Coins</button>
+				<button class='constellation-sheet-button' data-action='sendCoins'>Send
+					Coins</button>
 			</div>
-			<button class='send-public resource-label' data-action='sendPublic'>Send Public</button>
-			<div>
-				<div class='dropdown'>
-					<label for='characterSelect' class='input-label'>Select Character:</label>
+		</div>
+		<div class='ss1e sheet actor constellation messages'>
+			<div class='message-top-section'>
+				<div class='message-recipient'>
+					<label for='messageRecipient' class=''>Select Message Recipient:</label>
 					<select
-						id='characterSelect'
-						name='characterSelect'
-						class='input-text'
+						id='messageRecipient'
+						name='messageRecipient'
+						class='message-recipient-dropdown'
 					>
+						<option
+							value='public'
+							class='message-recipient-option'
+						>Public</option>
 						{{#each players}}
-							<option value='{{this.id}}'>{{this.name}}</option>
+							<option
+								value='{{this.id}}'
+								class='message-recipient-option'
+							>{{this.name}}</option>
 						{{/each}}
 					</select>
 				</div>
-				<button class='send-whisper resource-label' data-action='sendWhisper'>Send Whisper</button></div>
+				<div class='preset-message-buttons'>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} is saddened by the situation.'
+					>SADNESS</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} is disgusted by what transpired.'
+					>DISGUST</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} rejoices at the sight!'
+					>JOY</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} is angered by the choices made!'
+					>BORED</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} sighs in boredom.'
+					>ANGER</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} jumps up and down with excitement!'
+					>EXCITED</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} is covering their eyes!'
+					>CANT LOOK</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='{{actor.name}} has tears streaming down their face!'
+					>CRY</button>
+					<!-- Add more buttons as needed -->
+				</div>
+			</div>
+			<div class='message-bottom-section'>
+				<label for='messageInput' class=''>Type a custom message:</label>
+				<input type='text' id='messageInput' class='' placeholder='' />
+				<button class='constellation-sheet-button' data-action='sendCustom'>Send
+					Custom Message</button>
+			</div>
 		</div>
-
 	</section>
 </form>

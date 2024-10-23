@@ -12,6 +12,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
+.window-content {
+  padding: 0;
+}
 .window-header a {
   font-size: 0px;
 }
@@ -95,4 +98,192 @@
 }
 .ss1e.sheet.actor.character .header.info input.input-text::selection {
   background-color: #1807af;
+}
+.window-app .window-content {
+  padding: 0;
+  background-image: none;
+}
+form.constellation.form {
+  background-color: rgba(37, 186, 255, 0.5);
+  border-radius: 10px;
+  font-family: 'Teko';
+}
+.ss1e.sheet.actor.constellation.header .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ss1e.sheet.actor.constellation.header .header .remove-glow {
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.ss1e.sheet.actor.constellation.header .header.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  flex-grow: 0;
+}
+.ss1e.sheet.actor.constellation.header .header.info {
+  color: #ffffff;
+  font-size: 1.5rem;
+  align-items: flex-start;
+}
+.ss1e.sheet.actor.constellation.header .header.info img.profile-img {
+  border: none;
+  box-shadow: 0 0 10px #1807af;
+  margin: 10px;
+}
+.ss1e.sheet.actor.constellation.header .header.info div.info-container {
+  flex: 1 1 50%;
+}
+.ss1e.sheet.actor.constellation.header .header.info div.info-container label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.ss1e.sheet.actor.constellation.header .header.info div.info-container input.input-text {
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.ss1e.sheet.actor.constellation.header .header.info div.info-container input.input-text::selection {
+  background-color: #1807af;
+}
+.ss1e.sheet.actor.constellation.actions {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 50%;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+  flex: 0 1 auto;
+  /* Prevents stretching */
+  justify-content: space-between;
+  /* Space items evenly without large gaps */
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-counter label {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-counter input {
+  font-size: 1.5rem;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+  width: 50%;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-counter input::selection {
+  background-color: #1807af;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-buttons button {
+  font-size: 1.3rem;
+  color: #ffffff;
+  width: 50%;
+  height: auto;
+  border: 0;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-buttons button:hover {
+  box-shadow: 0 0 6px #1807af;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section {
+  display: flex;
+  flex-direction: column;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section .message-recipient {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 15px;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section label {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section select {
+  font-size: 1.5rem;
+  color: #ffffff;
+  border: none;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section select::selection {
+  background-color: #1807af;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section .message-recipient-dropdown {
+  padding: 0;
+}
+.ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section .message-recipient-option {
+  background-color: rgba(37, 186, 255, 0.5);
+  color: #ffffff;
+}
+.ss1e.sheet.actor.constellation.actions .preset-message-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.ss1e.sheet.actor.constellation.actions .preset-message-buttons button {
+  font-size: 1rem;
+  width: 20%;
+  color: #ffffff;
+  border: 0;
+  margin: 2px;
+}
+.ss1e.sheet.actor.constellation.actions .preset-message-buttons button:hover {
+  box-shadow: 0 0 6px #1807af;
+}
+.ss1e.sheet.actor.constellation.actions .message-bottom-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ss1e.sheet.actor.constellation.actions .message-bottom-section label {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 10px;
+}
+.ss1e.sheet.actor.constellation.actions .message-bottom-section input {
+  font-size: 1.5rem;
+  color: #ffffff;
+  box-shadow: none;
+  border: 0;
+  width: 75%;
+  margin: 10px;
+}
+.ss1e.sheet.actor.constellation.actions .message-bottom-section input::selection {
+  background-color: #1807af;
+}
+.ss1e.sheet.actor.constellation.actions .message-bottom-section button {
+  font-size: 1.3rem;
+  color: #ffffff;
+  height: auto;
+  width: 50%;
+  margin: 10px;
+  border: 0;
+}
+.ss1e.sheet.actor.constellation.actions .message-bottom-section button:hover {
+  box-shadow: 0 0 6px #1807af;
+}
+.constellation-sheet-button {
+  font-family: 'Teko';
+}
+.actor-sheet-label,
+.actor-sheet-input {
+  font-family: 'Teko';
 }
