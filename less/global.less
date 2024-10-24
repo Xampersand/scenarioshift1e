@@ -1,6 +1,24 @@
 // Removes text from Options, Token & Close buttons
 // From the topbar
+@background-color: rgba(37, 186, 255, 0.5);
+@stat-container-color: rgba(37, 186, 255, 0.1);
+@primary-text-color: rgb(255, 255, 255);
+@accent-color: #4fc4fa;
+@subaccent-color: #1807af;
+@button-color: #28aae6;
+@label-color: #ffffff;
+
+// changes background color for most menus
+form.editable {
+	background-color: @background-color;
+}
+// removes shit padding, rounds corners of window, and removes background image on...most stuff
+
 .window-app .window-content {
+	padding: 0;
+	background-image: none;
+}
+.window-content {
 	padding: 0;
 	background-image: none;
 }
@@ -15,4 +33,29 @@
 
 .window-header a span {
 	font-size: 14px;
+}
+//chat changes
+li.chat-message.message {
+	background-color: @background-color;
+	background-image: none;
+	border-color: @accent-color;
+	.message-sender {
+		color: @accent-color;
+	}
+	.message-content {
+		color: @primary-text-color;
+	}
+	.message-timestamp {
+		color: @primary-text-color;
+	}
+	.flavor-text {
+		color: @accent-color;
+	}
+}
+li.chat-message.whisper {
+	background-color: @background-color;
+	background-image: none;
+	.whisper-to {
+		color: @accent-color;
+	}
 }
