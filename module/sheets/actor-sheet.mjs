@@ -173,7 +173,7 @@ export class SS1EActorSheet extends ActorSheet {
 		// Send Custom Message
 		html
 			.find('button[data-action="sendCustom"]')
-			.click(this.onSendCustomMessage.bind(this));
+			.click(this._onSendCustomMessage.bind(this));
 		// Handle sending coins to another character
 		html
 			.find('button[data-action="sendCoins"]')
@@ -249,12 +249,13 @@ export class SS1EActorSheet extends ActorSheet {
 	_onSendPublicPresetMessage(event) {
 		event.preventDefault();
 		const message = event.currentTarget.dataset.message; // Get message from the button's data attribute
+		const cost = Number(event.currentTarget.dataset.cost); // Get message cost
 		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
 		if (!message) return;
 		// Check if actor has enough coins (50 coins needed)
-		if (this.actor.system.coins >= 50) {
+		if (this.actor.system.coins >= cost) {
 			// Deduct 50 coins
-			const updatedCoins = this.actor.system.coins - 50;
+			const updatedCoins = this.actor.system.coins - cost;
 			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
 				// Check if the selectedCharacterId is 'public'
 				if (selectedCharacterId === 'public') {
@@ -300,7 +301,7 @@ export class SS1EActorSheet extends ActorSheet {
 	 * Show error if not enough coins.
 	 * @private
 	 */
-	onSendCustomMessage(event) {
+	_onSendCustomMessage(event) {
 		event.preventDefault();
 		const message = this._getMessage(); // Ensure this retrieves the correct message
 		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID

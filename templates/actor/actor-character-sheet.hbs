@@ -1,6 +1,9 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<form class="{{cssClass}} {{actor.type}} flexcol character form" autocomplete="off">
 	<!-- 1st Row: Character Information Title -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Garamond">
+	<link
+		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
+		rel='stylesheet'
+	/>
 	<section class="ss1e sheet actor character">
 		<div class="header title">&lt;CHARACTER INFORMATION&gt;</div>
 
@@ -31,11 +34,7 @@
 				</button>
 			</div>
 		</div>
-	</section>
 
-
-	<!-- 3rd Row: Stats and Coins -->
-	<section class="ss1e sheet actor character">
 		<div class="body">
 			{{#each system.stats as |stat key|}}
 			<div class="stat flexrow">
@@ -58,10 +57,6 @@
 				<button class="resource-label coin-button" data-action="sendCoins">Send Coins</button>
 			</div>
 		</div>
-	</section>
-
-	<!-- 4th Row: Empty Section for Future Content or Spacing -->
-	<section class="empty-row scenarioshift1e">
 		<div style="height: 50px;"></div> <!-- Placeholder spacing -->
 	</section>
 </form>

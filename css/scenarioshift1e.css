@@ -13,32 +13,69 @@
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
 form.editable {
-  background-color: rgba(37, 186, 255, 0.5);
+  background-color: rgba(37, 186, 255, 0.4);
+}
+label {
+  color: #ffffff;
+  font-family: "Teko";
+}
+select {
+  color: #ffffff;
+  font-family: "Teko";
+}
+option {
+  color: #ffffff;
+  background-color: rgba(37, 186, 255, 0.4);
+  font-family: "Teko";
+}
+button {
+  color: #ffffff;
+  font-family: "Teko";
 }
 .window-app .window-content {
   padding: 0;
   background-image: none;
+  border-radius: 10px;
+  background-color: rgba(37, 186, 255, 0.4);
+  color: #ffffff;
+  overflow: visible;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
 }
-.window-content {
-  padding: 0;
-  background-image: none;
+.window-app .window-content:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
 }
-.window-header a {
+.window-app .window-header {
+  background-color: rgba(37, 186, 255, 0.4);
+  color: #ffffff;
+  padding: 0px;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  overflow: visible;
+  border-radius: 10px;
+}
+.window-app .window-header:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+}
+.window-app .window-header a {
+  background-color: none;
   font-size: 0px;
 }
+.window-app .window-header a i {
+  background: none;
+}
 .window-header a i {
+  background-color: rgba(37, 186, 255, 0.4);
   font-size: 14px;
 }
 .window-header a span {
   font-size: 14px;
 }
 li.chat-message.message {
-  background-color: rgba(37, 186, 255, 0.5);
+  background-color: rgba(37, 186, 255, 0.4);
   background-image: none;
   border-color: #4fc4fa;
 }
 li.chat-message.message .message-sender {
-  color: #4fc4fa;
+  color: #ffffff;
 }
 li.chat-message.message .message-content {
   color: #ffffff;
@@ -50,25 +87,23 @@ li.chat-message.message .flavor-text {
   color: #4fc4fa;
 }
 li.chat-message.whisper {
-  background-color: rgba(37, 186, 255, 0.5);
+  background-color: rgba(37, 186, 255, 0.4);
   background-image: none;
 }
 li.chat-message.whisper .whisper-to {
   color: #4fc4fa;
 }
-.ss1e.sheet.actor.character {
+.window-content.dialog-content {
+  background-color: rgba(37, 186, 255, 0.4);
+}
+form.character.form {
+  border-radius: 10px;
   font-family: "Teko";
 }
 .ss1e.sheet.actor.character .header {
-  background-color: #4fc4fa;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.ss1e.sheet.actor.character .header .remove-glow {
-  color: #ffffff;
-  border: none;
-  box-shadow: none;
 }
 .ss1e.sheet.actor.character .header.title {
   font-size: 2.5rem;
@@ -83,8 +118,11 @@ li.chat-message.whisper .whisper-to {
 }
 .ss1e.sheet.actor.character .header.info img.profile-img {
   border: none;
-  box-shadow: 0 0 10px #1807af;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
   margin: 10px;
+}
+.ss1e.sheet.actor.character .header.info img.profile-img:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
 }
 .ss1e.sheet.actor.character .header.info div.info-container {
   flex: 1 1 50%;
@@ -108,43 +146,41 @@ li.chat-message.whisper .whisper-to {
   font-weight: normal;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container span.health {
-  color: #0a7765;
+  color: #65f3db;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container span.mana {
   color: #1807af;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container button {
-  color: #ffffff;
   border: none;
   box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
   font-family: "Teko";
-  background-color: #28aae6;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container button:hover {
-  box-shadow: 0 0 6px #1807af;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
 }
 .ss1e.sheet.actor.character .header.info input.input-text {
-  color: #ffffff;
   border: none;
   box-shadow: none;
+  color: #ffffff;
 }
 .ss1e.sheet.actor.character .header.info input.input-text::selection {
   background-color: #1807af;
 }
 form.constellation.form {
-  background-color: rgba(37, 186, 255, 0.5);
+  background-color: rgba(37, 186, 255, 0.4);
   border-radius: 10px;
-  font-family: 'Teko';
+  font-family: "Teko";
+}
+.remove-glow {
+  border: none;
+  box-shadow: none;
 }
 .ss1e.sheet.actor.constellation.header .header {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.ss1e.sheet.actor.constellation.header .header .remove-glow {
-  color: #ffffff;
-  border: none;
-  box-shadow: none;
 }
 .ss1e.sheet.actor.constellation.header .header.title {
   font-size: 2rem;
@@ -184,7 +220,7 @@ form.constellation.form {
   flex: 1 1 50%;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins {
-  font-family: 'Teko';
+  font-family: "Teko";
   display: flex;
   flex-direction: row;
   flex: 0 1 auto;
@@ -256,7 +292,7 @@ form.constellation.form {
   padding: 0;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section .message-recipient-option {
-  background-color: rgba(37, 186, 255, 0.5);
+  background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
 }
 .ss1e.sheet.actor.constellation.actions .preset-message-buttons {
@@ -309,9 +345,9 @@ form.constellation.form {
   box-shadow: 0 0 6px #1807af;
 }
 .constellation-sheet-button {
-  font-family: 'Teko';
+  font-family: "Teko";
 }
 .actor-sheet-label,
 .actor-sheet-input {
-  font-family: 'Teko';
+  font-family: "Teko";
 }

@@ -1,20 +1,18 @@
-//Color variables
-@background-color: rgba(37, 186, 255, 0.5);
-@stat-container-color: rgba(37, 186, 255, 0.1);
-@primary-text-color: rgb(255, 255, 255);
-@accent-color: #4fc4fa;
-@subaccent-color: #1807af;
-@button-color: #28aae6;
-@label-color: #ffffff;
-// A font variable, check actor-character-sheet.hbs
-// Imported it from google as a stylesheet href link whatever
-@constellation-font: 'Teko';
+@import "./config.less";
+@import "./mixins.less";
 
 //Background and for and rounded corner for constellation sheet
 form.constellation.form {
 	background-color: @background-color;
 	border-radius: 10px;
-	font-family: @constellation-font;
+	font-family: @font;
+}
+
+// Mixins
+
+.remove-glow {
+	border: none;
+	box-shadow: none;
 }
 
 //top part of constellation sheet, contains info and img
@@ -22,12 +20,6 @@ form.constellation.form {
 	// Sets the font for everything
 
 	.header {
-		.remove-glow {
-			// "mixin" function, call it like a macro later
-			color: @label-color;
-			border: none;
-			box-shadow: none;
-		}
 
 		// center stuff
 		display: flex;
@@ -38,11 +30,11 @@ form.constellation.form {
 			// target children with ONLY the title class
 			font-size: 2rem;
 			font-weight: bold;
-			color: @label-color;
+			color: @primary-text-color;
 			flex-grow: 0; // makes it shrink and take up as little space as possible
 		}
 		&.info {
-			color: @label-color;
+			color: @primary-text-color;
 			font-size: 1.5rem;
 			align-items: flex-start; // move the name and age (and img) to the very top
 
@@ -77,7 +69,7 @@ form.constellation.form {
 	flex-direction: column;
 	flex: 1 1 50%;
 	.ss1e.sheet.actor.constellation.coins {
-		font-family: @constellation-font;
+		font-family: @font;
 		display: flex;
 		flex-direction: row;
 		flex: 0 1 auto; /* Prevents stretching */
@@ -89,11 +81,11 @@ form.constellation.form {
 			justify-content: space-evenly;
 			label {
 				font-size: 1.5rem;
-				color: @label-color;
+				color: @primary-text-color;
 			}
 			input {
 				font-size: 1.5rem;
-				color: @label-color;
+				color: @primary-text-color;
 				border: none;
 				box-shadow: none;
 				width: 50%;
@@ -134,11 +126,11 @@ form.constellation.form {
 			}
 			label {
 				font-size: 1.5rem;
-				color: @label-color;
+				color: @primary-text-color;
 			}
 			select {
 				font-size: 1.5rem;
-				color: @label-color;
+				color: @primary-text-color;
 				border: none;
 				&::selection {
 					background-color: @subaccent-color;
@@ -176,12 +168,12 @@ form.constellation.form {
 		align-items: center;
 		label {
 			font-size: 1.5rem;
-			color: @label-color;
+			color: @primary-text-color;
 			margin: 10px;
 		}
 		input {
 			font-size: 1.5rem;
-			color: @label-color;
+			color: @primary-text-color;
 			box-shadow: none;
 			border: 0;
 			width: 75%;
@@ -205,9 +197,9 @@ form.constellation.form {
 }
 //overwriting font for certain buttons, was too lazy to do it by lcass above and it showed. will fix later maybe
 .constellation-sheet-button {
-	font-family: @constellation-font;
+	font-family: @font;
 }
 .actor-sheet-label,
 .actor-sheet-input {
-	font-family: @constellation-font;
+	font-family: @font;
 }

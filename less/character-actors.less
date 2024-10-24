@@ -1,30 +1,17 @@
-@background-color: rgba(37, 186, 255, 0.5);
-@stat-container-color: rgba(37, 186, 255, 0.1);
-@primary-text-color: rgb(255, 255, 255);
-@accent-color: #4fc4fa;
-@subaccent-color: #1807af;
-@button-color: #28aae6;
-@label-color: #ffffff;
-@hp-color: #0a7765;
-@mana-color: #1807af;
+@import "./config.less";
+@import "./mixins.less";
 
-// A font variable, check actor-character-sheet.hbs
-// Imported it from google as a stylesheet href link whatever
-@font: "Teko";
+form.character.form {
+	// background-color: @background-color;
+	border-radius: 10px;
+	font-family: @font;
+	// .add-glow(@glow-color, 5px, 10px);
+}
 
 // Targets anything with the ss1e sheet actor character classes (must have all of them)
 .ss1e.sheet.actor.character {
-	// Sets the font for everything
-	font-family: @font;
-
 	// Targets anything with the header class within the parent class
 	.header {
-		.remove-glow { // "mixin" function, call it like a macro later
-			color: @label-color;
-			border: none;
-			box-shadow: none;
-		}
-		background-color: @accent-color;
 
 		// center stuff
 		display: flex;
@@ -34,20 +21,18 @@
 		&.title { // target children with ONLY the title class
 			font-size: 2.5rem;
 			font-weight: bold;
-			color: @label-color;
+			color: @primary-text-color;
 			flex-grow: 0; // makes it shrink and take up as little space as possible
 		}
 		&.info {
-			color: @label-color;
+			color: @primary-text-color;
 			font-size: 1.5rem;
 			align-items: flex-start; // move the name and age (and img) to the very top
 			
 			& img.profile-img {
 				border: none;
-				box-shadow: 0 0 10px @subaccent-color; // add a cute shadow to the image
+				.add-glow(@glow-color, 5px, 10px);
 				margin: 10px; // make it have a little space around
-				// ps don't use padding, use margin, keeps the border or shadow stuck to the image
-				// padding leaves space and then adds the border/shadow to the original place the image was at
 			}
 
 			& div.info-container {
@@ -77,17 +62,15 @@
 					}
 				}
 				& button {
-					.remove-glow(); // call the mixin
+					.remove-default-glow(); // call the mixin
+					.add-glow(@glow-color, 2px, 5px);
 					font-family: @font;
-					background-color: @button-color;
-					&:hover {
-						box-shadow: 0 0 6px @subaccent-color; // add cute shadow when u hover
-					}
 				}
 			}
 
 			& input.input-text {
-				.remove-glow(); // call the mixin
+				.remove-default-glow(); // call the mixin
+				color: @primary-text-color;
 				&::selection {
 					background-color: @subaccent-color; // change the color when you select text, was red lol
 				}
@@ -96,6 +79,6 @@
 	}
 
 	.body {
-		
+
 	}
 }

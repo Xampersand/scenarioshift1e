@@ -112,50 +112,70 @@
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} is saddened by the situation.'
+						data-message='is saddened by the situation.'
+						data-cost="200"
 					>SADNESS</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} is disgusted by what transpired.'
+						data-message='is disgusted by what transpired.'
+						data-cost="200"
 					>DISGUST</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} rejoices at the sight!'
+						data-message='rejoices at the sight!'
+						data-cost="200"
 					>JOY</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} is angered by the choices made!'
+						data-message='is angered by the choices made!'
+						data-cost="200"
 					>BORED</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} sighs in boredom.'
+						data-message='sighs in boredom.'
+						data-cost="200"
 					>ANGER</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} jumps up and down with excitement!'
+						data-message='jumps up and down with excitement!'
+						data-cost="200"
 					>EXCITED</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} is covering their eyes!'
+						data-message='is covering their eyes!'
+						data-cost="200"
 					>CANT LOOK</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='{{actor.name}} has tears streaming down their face!'
+						data-message='has tears streaming down their face!'
+						data-cost="200"
 					>CRY</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='has joined channel EN-305.'
+						data-cost="0"
+					>JOIN</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
+						data-message='has left channel EN-305.'
+						data-cost="0"
+					>LEAVE</button>
 					<!-- Add more buttons as needed -->
 				</div>
 			</div>
 			<div class='message-bottom-section'>
 				<label for='messageInput' class=''>Type a custom message:</label>
 				<input type='text' id='messageInput' class='' placeholder='' />
-				<button class='constellation-sheet-button' data-action='sendCustom'>Send
+				<button class='constellation-sheet-button' data-action='sendCustom' data-cost="1000">Send
 					Custom Message</button>
 			</div>
 		</div>

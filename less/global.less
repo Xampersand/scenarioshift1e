@@ -1,12 +1,5 @@
-// Removes text from Options, Token & Close buttons
-// From the topbar
-@background-color: rgba(37, 186, 255, 0.5);
-@stat-container-color: rgba(37, 186, 255, 0.1);
-@primary-text-color: rgb(255, 255, 255);
-@accent-color: #4fc4fa;
-@subaccent-color: #1807af;
-@button-color: #28aae6;
-@label-color: #ffffff;
+@import "./mixins.less";
+@import "./config.less";
 
 // changes background color for most menus
 form.editable {
@@ -14,20 +7,59 @@ form.editable {
 }
 // removes shit padding, rounds corners of window, and removes background image on...most stuff
 
-.window-app .window-content {
-	padding: 0;
-	background-image: none;
-}
-.window-content {
-	padding: 0;
-	background-image: none;
+label {
+	color: @primary-text-color;
+	font-family: @font;
 }
 
-.window-header a {
-	font-size: 0px;
+select {
+	color: @primary-text-color;
+	font-family: @font;
+}
+
+option {
+	color: @primary-text-color;
+	background-color: @background-color;
+	font-family: @font;
+}
+
+button {
+	color: @primary-text-color;
+	font-family: @font;
+}
+
+.window-app {
+
+	.window-content {
+		padding: 0;
+		background-image: none;
+		// background: none !important;
+		border-radius: 10px;
+		background-color: @background-color;
+		color: @primary-text-color;
+		overflow: visible;
+		.add-glow(@glow-color, 5px, 10px);
+	}
+
+	.window-header {
+		background-color: @background-color;
+		color: @primary-text-color;
+		padding: 0px;
+		.add-glow(@glow-color, 5px);
+		overflow: visible;
+		border-radius: 10px;
+		& a {
+			background-color: none;
+			font-size: 0px;
+			& i {
+				background: none;
+			}
+		}
+	}
 }
 
 .window-header a i {
+	background-color: @background-color;
 	font-size: 14px;
 }
 
@@ -40,7 +72,7 @@ li.chat-message.message {
 	background-image: none;
 	border-color: @accent-color;
 	.message-sender {
-		color: @accent-color;
+		color: @primary-text-color;
 	}
 	.message-content {
 		color: @primary-text-color;
@@ -57,5 +89,13 @@ li.chat-message.whisper {
 	background-image: none;
 	.whisper-to {
 		color: @accent-color;
+	}
+}
+
+// dialog changes
+
+.window-content {
+	&.dialog-content {
+		background-color: @background-color;
 	}
 }
