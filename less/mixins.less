@@ -14,3 +14,10 @@
 		0 0 @onhover * 3 rgba(79, 196, 250, 0.5);
 	}
 }
+
+.add-border(@radius) {
+	border: @radius solid rgba(79, 196, 250, 0.5);
+	&:hover, &:active {
+		border: @radius solid rgba(79, 196, 250, 1);
+	}
+}

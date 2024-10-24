@@ -34,10 +34,19 @@ ol, nav, div #chat-form {
 	.add-glow(@glow-color, 5px);
 }
 
+li {
+	.add-glow(@glow-color, 5px) !important;
+	.add-border(1px) !important;
+}
+
 div #chat-controls {
 	background-color: @background-color;
 }
 
+#logo {
+	content: url("../assets/images/orv_logo.png");
+	height: 100px;
+}
 
 .window-app {
 

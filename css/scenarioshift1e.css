@@ -44,8 +44,23 @@ nav:hover,
 div #chat-form:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
 }
+li {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5) !important;
+  border: 1px solid rgba(79, 196, 250, 0.5) !important;
+}
+li:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5) !important;
+}
+li:hover,
+li:active {
+  border: 1px solid #4fc4fa !important;
+}
 div #chat-controls {
   background-color: rgba(37, 186, 255, 0.4);
+}
+#logo {
+  content: url("../assets/images/orv_logo.png");
+  height: 100px;
 }
 .window-app .window-content {
   padding: 0;

@@ -16,8 +16,8 @@
 	"media": [
 		{
 			"type": "setup",
-			"url": "systems/scenarioshift1e/assets/anvil-impact.png",
-			"thumbnail": "systems/scenarioshift1e/assets/anvil-impact.png"
+			"url": "systems/scenarioshift1e/assets/images/orv_logo.png",
+			"thumbnail": "systems/scenarioshift1e/assets/images/orv_logo.png"
 		}
 	],
 	"version": "1.0.0",
@@ -29,7 +29,7 @@
 	"styles": ["css/scenarioshift1e.css"],
 	"packs": [],
 	"socket": false,
-	"background": "systems/scenarioshift1e/assets/anvil-impact.png",
+	"background": "systems/scenarioshift1e/assets/images/orv_logo.png",
 	"gridDistance": 5,
 	"gridUnits": "ft",
 	"primaryTokenAttribute": "name",
