@@ -1,62 +1,108 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
 	<!-- 1st Row: Character Information Title -->
 	<link
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
-	<section class="ss1e sheet actor character">
-		<div class="header title">&lt;CHARACTER INFORMATION&gt;</div>
+	<section class='ss1e sheet actor character'>
+		<div class='header title'>&lt;CHARACTER INFORMATION&gt;</div>
 
-		<div class="header info">
-			<img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="175"
-				width="175" />
-			<div class="info-container">
-				<label for="name" class="input-label">NAME:</label>
-				<input name="name" id="name" class="input-text" type="text" value="{{actor.name}}" placeholder="Name" />
-				<label for="age" class="input-label">AGE:</label>
-				<input type="text" id="age" class="input-text" name="system.age" value="{{system.age}}"
-					data-dtype="Number" placeholder="Age" />
+		<div class='header info'>
+			<img
+				class='profile-img'
+				src='{{actor.img}}'
+				data-edit='img'
+				title='{{actor.name}}'
+				height='175'
+				width='175'
+			/>
+			<div class='info-container'>
+				<label for='name' class='input-label'>NAME:</label>
+				<input
+					name='name'
+					id='name'
+					class='input-text'
+					type='text'
+					value='{{actor.name}}'
+					placeholder='Name'
+				/>
+				<label for='age' class='input-label'>AGE:</label>
+				<input
+					type='text'
+					id='age'
+					class='input-text'
+					name='system.age'
+					value='{{system.age}}'
+					data-dtype='Number'
+					placeholder='Age'
+				/>
 			</div>
-			<div class="resource-container">
+			<div class='resource-container'>
 				<div>
-					<label for="health">HP:</label>
-					<span class="health">{{system.health.value}}/{{system.health.max}}</span>
+					<label for='health'>HP:</label>
+					<span
+						class='health'
+					>{{system.health.value}}/{{system.health.max}}</span>
 				</div>
-				<button data-action="openHealthPanel">
+				<button data-action='openHealthPanel'>
 					MANAGE HEALTH
 				</button>
 				<div>
-					<label for="mana">MANA:</label>
-					<span class="mana">{{system.mana.value}}/{{system.mana.max}}</span>
+					<label for='mana'>MANA:</label>
+					<span class='mana'>{{system.mana.value}}/{{system.mana.max}}</span>
 				</div>
-				<button data-action="openManaPanel">
+				<button data-action='openManaPanel'>
 					MANAGE MANA
 				</button>
 			</div>
 		</div>
 
-		<div class="body">
+		<div class='body'>
 			{{#each system.stats as |stat key|}}
-			<div class="stat flexrow">
-				<label for="system.stats.{{key}}.value" class="resource-label rollable flex1"
-					data-roll="@stats.{{key}}.value" data-label="{{stat.label}}">
-					{{stat.label}}
-				</label>
-				<span class="resource-label flex0">Lv.</span>
-				<span type="text" class="input-text flex0" name="system.stats.{{key}}.value">{{stat.value}}</span>
-				<button class="resource-label flex0" data-action="attributeLevelUp" data-key="{{key}}">+</button>
-			</div>
+				<div class='stat flexrow'>
+					<label
+						for='system.stats.{{key}}.value'
+						class='resource-label rollable flex1'
+						data-roll='@stats.{{key}}.value'
+						data-label='{{stat.label}}'
+					>
+						{{stat.label}}
+					</label>
+					<span class='resource-label flex0'>Lv.</span>
+					<span
+						type='text'
+						class='input-text flex0'
+						name='system.stats.{{key}}.value'
+					>{{stat.value}}</span>
+					<button
+						class='resource-label flex0'
+						data-action='attributeLevelUp'
+						data-key='{{key}}'
+					>+</button>
+				</div>
 			{{/each}}
 
-			<div class="stat flexrow flex-group-center">
-				<label for="system.coins" class="resource-label flexlarge align-left" data-label="Coins:">
+			<div class='stat flexrow flex-group-center'>
+				<label
+					for='system.coins'
+					class='resource-label flexlarge align-left'
+					data-label='Coins:'
+				>
 					Coins:
 				</label>
-				<span class="resource-label flex1" name="system.coins">{{system.coins}}</span>
-				<button class="resource-label coin-button" data-action="openCurrencyPanel">Manage Coins</button>
-				<button class="resource-label coin-button" data-action="sendCoins">Send Coins</button>
+				<span
+					class='resource-label flex1'
+					name='system.coins'
+				>{{system.coins}}</span>
+				<button
+					class='resource-label coin-button'
+					data-action='openCurrencyPanel'
+				>Manage Coins</button>
+				<button class='resource-label coin-button' data-action='sendCoins'>Send
+					Coins</button>
 			</div>
 		</div>
-		<div style="height: 50px;"></div> <!-- Placeholder spacing -->
+		<div style='height: 50px;'></div>
+		<!-- Placeholder spacing -->
 	</section>
 </form>

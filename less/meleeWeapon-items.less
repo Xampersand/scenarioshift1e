@@ -1,6 +1,69 @@
-@import "./config.less";
-@import "./mixins.less";
+@import './config.less';
+@import './mixins.less';
 
-.ss1e.sheet.item.meleeWeapon {
-	
+.melee-weapon-top-section {
+	display: flex;
+	flex-direction: row;
+	.melee-weapon-img {
+		border: none;
+		.add-glow(@glow-color, 5px, 10px);
+		margin: 10px; // make it have a little space around
+	}
+	.melee-weapon-title {
+		flex-grow: 2;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		input {
+			text-align: center;
+			font-weight: bold;
+			color: @primary-text-color;
+			.remove-default-glow(); // call the mixin
+			&::selection {
+				background-color: @subaccent-color; // change the color when you select text, was red lol
+			}
+		}
+		.melee-weapon-name {
+			font-size: 2rem;
+		}
+		.melee-weapon-rarity {
+			font-size: 1.5rem;
+			display: flex;
+			flex-direction: row;
+		}
+	}
+}
+.melee-weapon-bottom-section {
+	.set-display-flex-row();
+
+	.stats {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+
+		.requirement,
+		.damage,
+		.accuracy,
+		.range {
+			.set-display-flex-row();
+			input {
+				margin: 3px;
+				text-align: center;
+				font-weight: bold;
+				color: @primary-text-color;
+				.remove-default-glow(); // call the mixin
+				&::selection {
+					background-color: @subaccent-color; // change the color when you select text, was red lol
+				}
+			}
+			label {
+				font-weight: bold;
+				font-size: 1.1rem;
+			}
+		}
+	}
+}
+.melee-weapon-actions {
+	.set-display-flex-row();
 }

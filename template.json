@@ -47,7 +47,8 @@
 		],
 		"templates": {
 			"base": {
-				"description": "Description"
+				"description": "Description",
+				"rarity": "Common"
 			},
 			"weapon": {
 				"accuracy": 0,

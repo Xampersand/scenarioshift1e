@@ -1,84 +1,98 @@
 <form class='{{cssClass}}' autocomplete='off'>
-	<header class='sheet-header'>
+	<section class='melee-weapon-top-section'>
 		<img
-			class='profile-img'
+			class='melee-weapon-img'
 			src='{{item.img}}'
 			data-edit='img'
 			title='{{item.name}}'
+			height='200px'
+			width='200px'
 		/>
-		<div class='header-fields'>
-			<h1 class='charname'><input
+		<div class='melee-weapon-title'>
+			<div class='melee-weapon-name'>
+				<input
 					name='name'
 					type='text'
 					value='{{item.name}}'
-					placeholder='Name'
-				/></h1>
+					placeholder='NAME'
+				/>
 			</div>
-		</div>
-	</header>
-
-	{{! Sheet Tab Navigation }}
-	<nav class='sheet-tabs tabs' data-group='primary'>
-		<a class='item' data-tab='description'>Description</a>
-		<a class='item' data-tab='attributes'>Attributes</a>
-	</nav>
+			<div class='melee-weapon-rarity'>
+				<label for='system.rarity'>RARITY:</label>
+				<input
+					name='system.rarity'
+					type='text'
+					value='{{system.rarity}}'
+					placeholder='COMMON'
+				/>
+			</div></div>
+	</section>
 
 	{{! Sheet Body }}
-	<section class='sheet-body'>
-
-		{{! Description Tab }}
-		<div class='tab' data-group='primary' data-tab='description'>
-			{{! To render inline rolls in a TinyMCE editor, you need to pass the parent actor's (if any) roll data to the
-      rollData prop. }}
-			{{editor
-				system.description
-				target='system.description'
-				rollData=rollData
-				button=true
-				owner=owner
-				editable=editable
-			}}
-		</div>
-
-		{{! Attributes Tab }}
-		<div class='tab attributes' data-group='primary' data-tab='attributes'>
-			{{! As you add new fields, add them in here! }}
-			<div class='resource'>
-				<label class='resource-label'>Roll Formula:</label>
-				<span>{{system.formula}}</span>
-				<div class='grid grid-4col'>
-					<div class='grid-span-1'>
-						<label class='resource-label'>Number of Dice</label>
-						<input
-							type='text'
-							name='system.roll.diceNum'
-							value='{{system.roll.diceNum}}'
-							data-dtype='Number'
-						/>
-					</div>
-					<div class='grid-span-1'>
-						<label class='resource-label'>Die Size</label>
-						<input
-							type='text'
-							name='system.roll.diceSize'
-							value='{{system.roll.diceSize}}'
-							data-dtype='String'
-						/>
-					</div>
-					<div class='grid-span-2'>
-						<label class='resource-label'>Roll Modifier</label>
-						<input
-							type='text'
-							name='system.roll.diceBonus'
-							value='{{system.roll.diceBonus}}'
-							data-dtype='String'
-						/>
-					</div>
-				</div>
+	<section class='melee-weapon-bottom-section'>
+		<div class='stats'>
+			<div class='requirement'>
+				<label for='system.requirement'>REQUIRES:</label>
+				<input
+					name='system.requirement'
+					type='text'
+					value='{{system.requirement}}'
+					placeholder=''
+				/>
+				<input
+					name='system.requirement-type'
+					type='text'
+					value='{{system.requirement-type}}'
+					placeholder='str'
+				/>
+			</div>
+			<div class='damage'>
+				<label for='system.damage'>DAMAGE:</label>
+				<input
+					name='system.damageFormula'
+					type='text'
+					value='{{system.damageFormula}}'
+					placeholder='1d4'
+				/>
+				<input
+					name='system.type'
+					type='text'
+					value='{{system.type}}'
+					placeholder='radiant'
+				/>
+			</div>
+			<div class='accuracy'>
+				<label for='system.accuracy'>
+					ACCURACY:
+				</label>
+				<input
+					name='system.accuracy'
+					type='text'
+					value='{{system.accuracy}}'
+					placeholder='1'
+				/>
+			</div>
+			<div class='range'>
+				<label for='system.range'>
+					RANGE:
+				</label>
+				<input
+					name='system.range'
+					type='text'
+					value='{{system.range}}'
+					placeholder='1'
+				/>
 
 			</div>
 		</div>
+		<div class='description'>
+			<label for='meleeWeaponDesc'>LORE:</label>
+			<textarea name='meleeWeaponDesc' id='meleeWeaponDesc'></textarea>
+		</div>
+	</section>
+	<section class='melee-weapon-actions'>
+		<button>ROLL ACCURACY</button>
+		<button>ROLL DAMAGE</button>
+		<button>SEND TO SOMEONE</button>
 	</section>
 </form>
-
-{{log system}}

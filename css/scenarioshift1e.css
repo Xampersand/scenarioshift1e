@@ -366,3 +366,84 @@ li.chat-message.whisper .whisper-to {
 .actor-sheet-input {
   font-family: "Teko";
 }
+.melee-weapon-top-section {
+  display: flex;
+  flex-direction: row;
+}
+.melee-weapon-top-section .melee-weapon-img {
+  border: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  margin: 10px;
+}
+.melee-weapon-top-section .melee-weapon-img:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+}
+.melee-weapon-top-section .melee-weapon-title {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.melee-weapon-top-section .melee-weapon-title input {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.melee-weapon-top-section .melee-weapon-title input::selection {
+  background-color: #1807af;
+}
+.melee-weapon-top-section .melee-weapon-title .melee-weapon-name {
+  font-size: 2rem;
+}
+.melee-weapon-top-section .melee-weapon-title .melee-weapon-rarity {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.melee-weapon-bottom-section {
+  display: flex;
+  flex-direction: row;
+}
+.melee-weapon-bottom-section .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.melee-weapon-bottom-section .stats .requirement,
+.melee-weapon-bottom-section .stats .damage,
+.melee-weapon-bottom-section .stats .accuracy,
+.melee-weapon-bottom-section .stats .range {
+  display: flex;
+  flex-direction: row;
+}
+.melee-weapon-bottom-section .stats .requirement input,
+.melee-weapon-bottom-section .stats .damage input,
+.melee-weapon-bottom-section .stats .accuracy input,
+.melee-weapon-bottom-section .stats .range input {
+  margin: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.melee-weapon-bottom-section .stats .requirement input::selection,
+.melee-weapon-bottom-section .stats .damage input::selection,
+.melee-weapon-bottom-section .stats .accuracy input::selection,
+.melee-weapon-bottom-section .stats .range input::selection {
+  background-color: #1807af;
+}
+.melee-weapon-bottom-section .stats .requirement label,
+.melee-weapon-bottom-section .stats .damage label,
+.melee-weapon-bottom-section .stats .accuracy label,
+.melee-weapon-bottom-section .stats .range label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.melee-weapon-actions {
+  display: flex;
+  flex-direction: row;
+}
