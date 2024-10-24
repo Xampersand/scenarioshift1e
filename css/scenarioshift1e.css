@@ -12,8 +12,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
-.window-content {
+.window-app .window-content {
   padding: 0;
+  background-image: none;
 }
 .window-header a {
   font-size: 0px;
@@ -25,7 +26,7 @@
   font-size: 14px;
 }
 .ss1e.sheet.actor.character {
-  font-family: "Garamond";
+  font-family: "Teko";
 }
 .ss1e.sheet.actor.character .header {
   background-color: #4fc4fa;
@@ -85,7 +86,7 @@
   color: #ffffff;
   border: none;
   box-shadow: none;
-  font-family: "Garamond";
+  font-family: "Teko";
   background-color: #28aae6;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container button:hover {
@@ -98,10 +99,6 @@
 }
 .ss1e.sheet.actor.character .header.info input.input-text::selection {
   background-color: #1807af;
-}
-.window-app .window-content {
-  padding: 0;
-  background-image: none;
 }
 form.constellation.form {
   background-color: rgba(37, 186, 255, 0.5);
