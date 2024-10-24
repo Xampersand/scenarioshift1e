@@ -1,20 +1,6 @@
 @import "./config.less";
 @import "./mixins.less";
 
-//Background and for and rounded corner for constellation sheet
-form.constellation.form {
-	background-color: @background-color;
-	border-radius: 10px;
-	font-family: @font;
-}
-
-// Mixins
-
-.remove-glow {
-	border: none;
-	box-shadow: none;
-}
-
 //top part of constellation sheet, contains info and img
 .ss1e.sheet.actor.constellation.header {
 	// Sets the font for everything
@@ -54,7 +40,7 @@ form.constellation.form {
 				& input.input-text {
 					font-weight: bold;
 					color: @primary-text-color;
-					.remove-glow(); // call the mixin
+					.remove-default-glow(); // call the mixin
 					&::selection {
 						background-color: @subaccent-color; // change the color when you select text, was red lol
 					}
@@ -105,10 +91,7 @@ form.constellation.form {
 				color: @primary-text-color;
 				width: 50%;
 				height: auto;
-				border: 0;
-				&:hover {
-					box-shadow: 0 0 6px @subaccent-color;
-				}
+				.add-glow(@glow-color, 3px, 7px);
 			}
 		}
 	}
@@ -156,9 +139,7 @@ form.constellation.form {
 			color: @primary-text-color;
 			border: 0;
 			margin: 2px;
-			&:hover {
-				box-shadow: 0 0 6px @subaccent-color;
-			}
+			.add-glow(@glow-color, 3px, 7px);
 		}
 	}
 	.message-bottom-section {
@@ -188,10 +169,7 @@ form.constellation.form {
 			height: auto;
 			width: 50%;
 			margin: 10px;
-			border: 0;
-			&:hover {
-				box-shadow: 0 0 6px @subaccent-color;
-			}
+			.add-glow(@glow-color, 3px, 7px);
 		}
 	}
 }

@@ -14,6 +14,7 @@ export class SS1EItemSheet extends ItemSheet {
       classes: ['scenarioshift1e', 'sheet', 'item'],
       width: 520,
       height: 480,
+	  resizable: false,
       tabs: [
         {
           navSelector: '.sheet-tabs',

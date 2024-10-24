@@ -12,9 +12,6 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
-form.editable {
-  background-color: rgba(37, 186, 255, 0.4);
-}
 label {
   color: #ffffff;
   font-family: "Teko";
@@ -126,10 +123,6 @@ li.chat-message.whisper .whisper-to {
 .window-content.dialog-content {
   background-color: rgba(37, 186, 255, 0.4);
 }
-form.character.form {
-  border-radius: 10px;
-  font-family: "Teko";
-}
 .ss1e.sheet.actor.character .header {
   display: flex;
   align-items: center;
@@ -197,15 +190,6 @@ form.character.form {
 }
 .ss1e.sheet.actor.character .header.info input.input-text::selection {
   background-color: #1807af;
-}
-form.constellation.form {
-  background-color: rgba(37, 186, 255, 0.4);
-  border-radius: 10px;
-  font-family: "Teko";
-}
-.remove-glow {
-  border: none;
-  box-shadow: none;
 }
 .ss1e.sheet.actor.constellation.header .header {
   display: flex;
@@ -287,10 +271,10 @@ form.constellation.form {
   color: #ffffff;
   width: 50%;
   height: auto;
-  border: 0;
+  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255), 0 0 9px rgba(79, 196, 250, 0.5);
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-buttons button:hover {
-  box-shadow: 0 0 6px #1807af;
+  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255), 0 0 21px rgba(79, 196, 250, 0.5);
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages {
   display: flex;
@@ -337,9 +321,10 @@ form.constellation.form {
   color: #ffffff;
   border: 0;
   margin: 2px;
+  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255), 0 0 9px rgba(79, 196, 250, 0.5);
 }
 .ss1e.sheet.actor.constellation.actions .preset-message-buttons button:hover {
-  box-shadow: 0 0 6px #1807af;
+  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255), 0 0 21px rgba(79, 196, 250, 0.5);
 }
 .ss1e.sheet.actor.constellation.actions .message-bottom-section {
   display: flex;
@@ -369,10 +354,10 @@ form.constellation.form {
   height: auto;
   width: 50%;
   margin: 10px;
-  border: 0;
+  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255), 0 0 9px rgba(79, 196, 250, 0.5);
 }
 .ss1e.sheet.actor.constellation.actions .message-bottom-section button:hover {
-  box-shadow: 0 0 6px #1807af;
+  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255), 0 0 21px rgba(79, 196, 250, 0.5);
 }
 .constellation-sheet-button {
   font-family: "Teko";
