@@ -24,13 +24,28 @@ select {
   font-family: "Teko";
 }
 option {
+  background-color: #1807af;
   color: #ffffff;
-  background-color: rgba(37, 186, 255, 0.4);
   font-family: "Teko";
 }
 button {
+  background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
   font-family: "Teko";
+}
+ol,
+nav,
+div #chat-form {
+  background-color: rgba(37, 186, 255, 0.4);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+}
+ol:hover,
+nav:hover,
+div #chat-form:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+}
+div #chat-controls {
+  background-color: rgba(37, 186, 255, 0.4);
 }
 .window-app .window-content {
   padding: 0;

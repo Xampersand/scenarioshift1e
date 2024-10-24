@@ -18,15 +18,26 @@ select {
 }
 
 option {
+	background-color: @subaccent-color;
 	color: @primary-text-color;
-	background-color: @background-color;
 	font-family: @font;
 }
 
 button {
+	background-color: @background-color;
 	color: @primary-text-color;
 	font-family: @font;
 }
+
+ol, nav, div #chat-form {
+	background-color: @background-color;
+	.add-glow(@glow-color, 5px);
+}
+
+div #chat-controls {
+	background-color: @background-color;
+}
+
 
 .window-app {
 
