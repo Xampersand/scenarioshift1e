@@ -92,6 +92,10 @@
 			"requirement-type": "str",
 			"defense": 1,
 			"type": "armor"
+		},
+		"accessory": {
+			"templates": ["base"],
+			"bonus": "+1 Constitution"
 		}
 	}
 }

@@ -559,3 +559,283 @@ textarea {
 .equipment-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
 }
+.ammo-top-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+}
+.ammo-top-section .ammo-img {
+  border: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  margin: 10px;
+}
+.ammo-top-section .ammo-img:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+}
+.ammo-top-section .ammo-title {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.ammo-top-section .ammo-title input {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ffffff00;
+  border: none;
+  box-shadow: none;
+}
+.ammo-top-section .ammo-title input::selection {
+  background-color: #1807af;
+}
+.ammo-top-section .ammo-title .ammo-name {
+  font-size: 2rem;
+}
+.ammo-top-section .ammo-title .ammo-rarity {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.ammo-bottom-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1 1 50%;
+}
+.ammo-bottom-section .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.ammo-bottom-section .stats .requirement,
+.ammo-bottom-section .stats .damage,
+.ammo-bottom-section .stats .accuracy,
+.ammo-bottom-section .stats .range {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+.ammo-bottom-section .stats .requirement input,
+.ammo-bottom-section .stats .damage input,
+.ammo-bottom-section .stats .accuracy input,
+.ammo-bottom-section .stats .range input {
+  margin: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.ammo-bottom-section .stats .requirement input::selection,
+.ammo-bottom-section .stats .damage input::selection,
+.ammo-bottom-section .stats .accuracy input::selection,
+.ammo-bottom-section .stats .range input::selection {
+  background-color: #1807af;
+}
+.ammo-bottom-section .stats .requirement label,
+.ammo-bottom-section .stats .damage label,
+.ammo-bottom-section .stats .accuracy label,
+.ammo-bottom-section .stats .range label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.ammo-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.ammo-actions button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  font-family: 'Teko';
+  height: fit-content;
+}
+.ammo-actions button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+}
+.accessory-top-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+}
+.accessory-top-section .accessory-img {
+  border: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  margin: 10px;
+}
+.accessory-top-section .accessory-img:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+}
+.accessory-top-section .accessory-title {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.accessory-top-section .accessory-title input {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ffffff00;
+  border: none;
+  box-shadow: none;
+}
+.accessory-top-section .accessory-title input::selection {
+  background-color: #1807af;
+}
+.accessory-top-section .accessory-title .accessory-name {
+  font-size: 2rem;
+}
+.accessory-top-section .accessory-title .accessory-rarity {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.accessory-bottom-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1 1 50%;
+}
+.accessory-bottom-section .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.accessory-bottom-section .stats .bonus {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+.accessory-bottom-section .stats .bonus input {
+  margin: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.accessory-bottom-section .stats .bonus input::selection {
+  background-color: #1807af;
+}
+.accessory-bottom-section .stats .bonus label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.accessory-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.accessory-actions button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  font-family: 'Teko';
+  height: fit-content;
+}
+.accessory-actions button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+}
+.consumable-top-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+}
+.consumable-top-section .consumable-img {
+  border: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  margin: 10px;
+}
+.consumable-top-section .consumable-img:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+}
+.consumable-top-section .consumable-title {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.consumable-top-section .consumable-title input {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ffffff00;
+  border: none;
+  box-shadow: none;
+}
+.consumable-top-section .consumable-title input::selection {
+  background-color: #1807af;
+}
+.consumable-top-section .consumable-title .consumable-name {
+  font-size: 2rem;
+}
+.consumable-top-section .consumable-title .consumable-rarity {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.consumable-bottom-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1 1 50%;
+}
+.consumable-bottom-section .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.consumable-bottom-section .stats .quantity,
+.consumable-bottom-section .stats .effect {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+.consumable-bottom-section .stats .quantity input,
+.consumable-bottom-section .stats .effect input {
+  margin: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.consumable-bottom-section .stats .quantity input::selection,
+.consumable-bottom-section .stats .effect input::selection {
+  background-color: #1807af;
+}
+.consumable-bottom-section .stats .quantity label,
+.consumable-bottom-section .stats .effect label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.consumable-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.consumable-actions button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  font-family: 'Teko';
+  height: fit-content;
+}
+.consumable-actions button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+}
