@@ -1,15 +1,19 @@
-<form class='{{cssClass}}' autocomplete='off'>
-	<section class='melee-weapon-top-section'>
+<form class='{{cssClass}} flexcol' autocomplete='off'>
+	<link
+		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
+		rel='stylesheet'
+	/>
+	<section class='weapon-top-section'>
 		<img
-			class='melee-weapon-img'
+			class='weapon-img'
 			src='{{item.img}}'
 			data-edit='img'
 			title='{{item.name}}'
 			height='200px'
 			width='200px'
 		/>
-		<div class='melee-weapon-title'>
-			<div class='melee-weapon-name'>
+		<div class='weapon-title'>
+			<div class='weapon-name'>
 				<input
 					name='name'
 					type='text'
@@ -17,7 +21,7 @@
 					placeholder='NAME'
 				/>
 			</div>
-			<div class='melee-weapon-rarity'>
+			<div class='weapon-rarity'>
 				<label for='system.rarity'>RARITY:</label>
 				<input
 					name='system.rarity'
@@ -29,7 +33,7 @@
 	</section>
 
 	{{! Sheet Body }}
-	<section class='melee-weapon-bottom-section'>
+	<section class='weapon-bottom-section'>
 		<div class='stats'>
 			<div class='requirement'>
 				<label for='system.requirement'>REQUIRES:</label>
@@ -85,14 +89,11 @@
 
 			</div>
 		</div>
-		<div class='description'>
-			<label for='meleeWeaponDesc'>LORE:</label>
-			<textarea name='meleeWeaponDesc' id='meleeWeaponDesc'></textarea>
+		<div class='weapon-actions'>
+			<button>ROLL ACCURACY</button>
+			<button>ROLL DAMAGE</button>
+			<button>SEND TO SOMEONE</button>
 		</div>
-	</section>
-	<section class='melee-weapon-actions'>
-		<button>ROLL ACCURACY</button>
-		<button>ROLL DAMAGE</button>
-		<button>SEND TO SOMEONE</button>
+
 	</section>
 </form>

@@ -74,7 +74,7 @@
 		},
 		"rangedWeapon": {
 			"templates": ["weapon", "base"],
-			"damageModifier": 1
+			"damageModifier": 1.2
 		},
 		"ammo": {
 			"templates": ["base"],

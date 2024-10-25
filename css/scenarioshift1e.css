@@ -14,21 +14,21 @@
 }
 label {
   color: #ffffff;
-  font-family: "Teko";
+  font-family: 'Teko';
 }
 select {
   color: #ffffff;
-  font-family: "Teko";
+  font-family: 'Teko';
 }
 option {
   background-color: #1807af;
   color: #ffffff;
-  font-family: "Teko";
+  font-family: 'Teko';
 }
 button {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
-  font-family: "Teko";
+  font-family: 'Teko';
 }
 ol,
 nav,
@@ -178,7 +178,7 @@ li.chat-message.whisper .whisper-to {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
-  font-family: "Teko";
+  font-family: 'Teko';
 }
 .ss1e.sheet.actor.character .header.info div.resource-container button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
@@ -234,7 +234,7 @@ li.chat-message.whisper .whisper-to {
   flex: 1 1 50%;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins {
-  font-family: "Teko";
+  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex: 0 1 auto;
@@ -360,69 +360,74 @@ li.chat-message.whisper .whisper-to {
   box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255), 0 0 21px rgba(79, 196, 250, 0.5);
 }
 .constellation-sheet-button {
-  font-family: "Teko";
+  font-family: 'Teko';
 }
 .actor-sheet-label,
 .actor-sheet-input {
-  font-family: "Teko";
+  font-family: 'Teko';
 }
-.melee-weapon-top-section {
+.weapon-top-section {
+  font-family: 'Teko';
   display: flex;
   flex-direction: row;
 }
-.melee-weapon-top-section .melee-weapon-img {
+.weapon-top-section .weapon-img {
   border: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
   margin: 10px;
 }
-.melee-weapon-top-section .melee-weapon-img:hover {
+.weapon-top-section .weapon-img:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
 }
-.melee-weapon-top-section .melee-weapon-title {
+.weapon-top-section .weapon-title {
   flex-grow: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.melee-weapon-top-section .melee-weapon-title input {
+.weapon-top-section .weapon-title input {
   text-align: center;
   font-weight: bold;
   color: #ffffff;
+  background-color: #ffffff00;
   border: none;
   box-shadow: none;
 }
-.melee-weapon-top-section .melee-weapon-title input::selection {
+.weapon-top-section .weapon-title input::selection {
   background-color: #1807af;
 }
-.melee-weapon-top-section .melee-weapon-title .melee-weapon-name {
+.weapon-top-section .weapon-title .weapon-name {
   font-size: 2rem;
 }
-.melee-weapon-top-section .melee-weapon-title .melee-weapon-rarity {
+.weapon-top-section .weapon-title .weapon-rarity {
   font-size: 1.5rem;
   display: flex;
   flex-direction: row;
 }
-.melee-weapon-bottom-section {
+.weapon-bottom-section {
+  font-family: 'Teko';
   display: flex;
   flex-direction: row;
+  flex-grow: 1 1 50%;
 }
-.melee-weapon-bottom-section .stats {
+.weapon-bottom-section .stats {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.melee-weapon-bottom-section .stats .requirement,
-.melee-weapon-bottom-section .stats .damage,
-.melee-weapon-bottom-section .stats .accuracy,
-.melee-weapon-bottom-section .stats .range {
+.weapon-bottom-section .stats .requirement,
+.weapon-bottom-section .stats .damage,
+.weapon-bottom-section .stats .accuracy,
+.weapon-bottom-section .stats .range {
   display: flex;
   flex-direction: row;
+  flex: auto;
 }
-.melee-weapon-bottom-section .stats .requirement input,
-.melee-weapon-bottom-section .stats .damage input,
-.melee-weapon-bottom-section .stats .accuracy input,
-.melee-weapon-bottom-section .stats .range input {
+.weapon-bottom-section .stats .requirement input,
+.weapon-bottom-section .stats .damage input,
+.weapon-bottom-section .stats .accuracy input,
+.weapon-bottom-section .stats .range input {
   margin: 3px;
   text-align: center;
   font-weight: bold;
@@ -430,20 +435,32 @@ li.chat-message.whisper .whisper-to {
   border: none;
   box-shadow: none;
 }
-.melee-weapon-bottom-section .stats .requirement input::selection,
-.melee-weapon-bottom-section .stats .damage input::selection,
-.melee-weapon-bottom-section .stats .accuracy input::selection,
-.melee-weapon-bottom-section .stats .range input::selection {
+.weapon-bottom-section .stats .requirement input::selection,
+.weapon-bottom-section .stats .damage input::selection,
+.weapon-bottom-section .stats .accuracy input::selection,
+.weapon-bottom-section .stats .range input::selection {
   background-color: #1807af;
 }
-.melee-weapon-bottom-section .stats .requirement label,
-.melee-weapon-bottom-section .stats .damage label,
-.melee-weapon-bottom-section .stats .accuracy label,
-.melee-weapon-bottom-section .stats .range label {
+.weapon-bottom-section .stats .requirement label,
+.weapon-bottom-section .stats .damage label,
+.weapon-bottom-section .stats .accuracy label,
+.weapon-bottom-section .stats .range label {
   font-weight: bold;
   font-size: 1.1rem;
 }
-.melee-weapon-actions {
+.weapon-actions {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.weapon-actions button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  font-family: 'Teko';
+  height: fit-content;
+}
+.weapon-actions button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
 }

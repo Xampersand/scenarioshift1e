@@ -1,15 +1,16 @@
 @import './config.less';
 @import './mixins.less';
 
-.melee-weapon-top-section {
+.weapon-top-section {
+	font-family: @font;
 	display: flex;
 	flex-direction: row;
-	.melee-weapon-img {
+	.weapon-img {
 		border: none;
 		.add-glow(@glow-color, 5px, 10px);
 		margin: 10px; // make it have a little space around
 	}
-	.melee-weapon-title {
+	.weapon-title {
 		flex-grow: 2;
 		display: flex;
 		flex-direction: column;
@@ -19,23 +20,26 @@
 			text-align: center;
 			font-weight: bold;
 			color: @primary-text-color;
+			background-color: @transparent;
 			.remove-default-glow(); // call the mixin
 			&::selection {
 				background-color: @subaccent-color; // change the color when you select text, was red lol
 			}
 		}
-		.melee-weapon-name {
+		.weapon-name {
 			font-size: 2rem;
 		}
-		.melee-weapon-rarity {
+		.weapon-rarity {
 			font-size: 1.5rem;
 			display: flex;
 			flex-direction: row;
 		}
 	}
 }
-.melee-weapon-bottom-section {
+.weapon-bottom-section {
+	font-family: @font;
 	.set-display-flex-row();
+	flex-grow: 1 1 50%;
 
 	.stats {
 		display: flex;
@@ -47,6 +51,7 @@
 		.accuracy,
 		.range {
 			.set-display-flex-row();
+			flex: auto;
 			input {
 				margin: 3px;
 				text-align: center;
@@ -64,6 +69,17 @@
 		}
 	}
 }
-.melee-weapon-actions {
-	.set-display-flex-row();
+
+.weapon-actions {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+	button {
+		.remove-default-glow(); // call the mixin
+		.add-glow(@glow-color, 2px, 5px);
+		font-family: @font;
+		height: fit-content;
+	}
 }
