@@ -1,0 +1,83 @@
+@import './config.less';
+@import './mixins.less';
+
+.equipment-top-section {
+	font-family: @font;
+	display: flex;
+	flex-direction: row;
+	.equipment-img {
+		border: none;
+		.add-glow(@glow-color, 5px, 10px);
+		margin: 10px; // make it have a little space around
+	}
+	.equipment-title {
+		flex-grow: 2;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		input {
+			text-align: center;
+			font-weight: bold;
+			color: @primary-text-color;
+			background-color: @transparent;
+			.remove-default-glow(); // call the mixin
+			&::selection {
+				background-color: @subaccent-color; // change the color when you select text, was red lol
+			}
+		}
+		.equipment-name {
+			font-size: 2rem;
+		}
+		.equipment-rarity {
+			font-size: 1.5rem;
+			display: flex;
+			flex-direction: row;
+		}
+	}
+}
+.equipment-bottom-section {
+	font-family: @font;
+	.set-display-flex-row();
+	flex-grow: 1 1 50%;
+
+	.stats {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.requirement,
+		.defense {
+			.set-display-flex-row();
+			flex: auto;
+			input {
+				margin: 3px;
+				text-align: center;
+				font-weight: bold;
+				color: @primary-text-color;
+				.remove-default-glow(); // call the mixin
+				&::selection {
+					background-color: @subaccent-color; // change the color when you select text, was red lol
+				}
+			}
+			label {
+				font-weight: bold;
+				font-size: 1.1rem;
+			}
+		}
+	}
+}
+
+.equipment-actions {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+	button {
+		.remove-default-glow(); // call the mixin
+		.add-glow(@glow-color, 2px, 5px);
+		font-family: @font;
+		height: fit-content;
+	}
+}

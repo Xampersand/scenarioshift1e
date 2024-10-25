@@ -85,6 +85,13 @@
 			"templates": ["base"],
 			"quantity": 0,
 			"Effect": "none"
+		},
+		"equipment": {
+			"templates": ["base"],
+			"requirement": 1,
+			"requirement-type": "str",
+			"defense": 1,
+			"type": "armor"
 		}
 	}
 }

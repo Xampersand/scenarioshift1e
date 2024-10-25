@@ -56,7 +56,7 @@ div #chat-controls {
   background-color: rgba(37, 186, 255, 0.4);
 }
 #logo {
-  content: url("../assets/images/orv_logo.png");
+  content: url('../assets/images/orv_logo.png');
   height: 100px;
 }
 .window-app .window-content {
@@ -122,6 +122,11 @@ li.chat-message.whisper .whisper-to {
 }
 .window-content.dialog-content {
   background-color: rgba(37, 186, 255, 0.4);
+}
+textarea {
+  background-image: none !important;
+  border: 0;
+  color: #ffffff;
 }
 .ss1e.sheet.actor.character .header {
   display: flex;
@@ -462,5 +467,95 @@ li.chat-message.whisper .whisper-to {
   height: fit-content;
 }
 .weapon-actions button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+}
+.equipment-top-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+}
+.equipment-top-section .equipment-img {
+  border: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  margin: 10px;
+}
+.equipment-top-section .equipment-img:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+}
+.equipment-top-section .equipment-title {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.equipment-top-section .equipment-title input {
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ffffff00;
+  border: none;
+  box-shadow: none;
+}
+.equipment-top-section .equipment-title input::selection {
+  background-color: #1807af;
+}
+.equipment-top-section .equipment-title .equipment-name {
+  font-size: 2rem;
+}
+.equipment-top-section .equipment-title .equipment-rarity {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.equipment-bottom-section {
+  font-family: 'Teko';
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1 1 50%;
+}
+.equipment-bottom-section .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.equipment-bottom-section .stats .requirement,
+.equipment-bottom-section .stats .defense {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+.equipment-bottom-section .stats .requirement input,
+.equipment-bottom-section .stats .defense input {
+  margin: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+.equipment-bottom-section .stats .requirement input::selection,
+.equipment-bottom-section .stats .defense input::selection {
+  background-color: #1807af;
+}
+.equipment-bottom-section .stats .requirement label,
+.equipment-bottom-section .stats .defense label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.equipment-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.equipment-actions button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  font-family: 'Teko';
+  height: fit-content;
+}
+.equipment-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
 }

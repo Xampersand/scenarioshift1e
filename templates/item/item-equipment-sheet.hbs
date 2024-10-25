@@ -1,30 +1,75 @@
-{{!-- This template is a fallback for when items don't have more specific templates. --}}
-{{!-- Generally, you'll want to make more specific templates when possible. --}}
-<form class="{{cssClass}}" autocomplete="off">
-  <header class="sheet-header">
-    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-    </div>
-  </header>
+<form class='{{cssClass}} flexcol' autocomplete='off'>
+	<link
+		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
+		rel='stylesheet'
+	/>
+	<section class='equipment-top-section'>
+		<img
+			class='equipment-img'
+			src='{{item.img}}'
+			data-edit='img'
+			title='{{item.name}}'
+			height='200px'
+			width='200px'
+		/>
+		<div class='equipment-title'>
+			<div class='equipment-name'>
+				<input
+					name='name'
+					type='text'
+					value='{{item.name}}'
+					placeholder='NAME'
+				/>
+			</div>
+			<div class='equipment-rarity'>
+				<label for='system.rarity'>RARITY:</label>
+				<input
+					name='system.rarity'
+					type='text'
+					value='{{system.rarity}}'
+					placeholder='COMMON'
+				/>
+			</div></div>
+	</section>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="attributes">Attributes</a>
-  </nav>
+	{{! Sheet Body }}
+	<section class='equipment-bottom-section'>
+		<div class='stats'>
+			<div class='requirement'>
+				<label for='system.requirement'>REQUIRES:</label>
+				<input
+					name='system.requirement'
+					type='text'
+					value='{{system.requirement}}'
+					placeholder=''
+				/>
+				<input
+					name='system.requirement-type'
+					type='text'
+					value='{{system.requirement-type}}'
+					placeholder='str'
+				/>
+			</div>
+			<div class='defense'>
+				<label for='system.defense'>Defense:</label>
+				<input
+					name='system.defense'
+					type='text'
+					value='{{system.defense}}'
+					placeholder='10'
+				/>
+				<input
+					name='system.type'
+					type='text'
+					value='{{system.type}}'
+					placeholder='radiant'
+				/>
+			</div>
+			{{! add another div here for each stat/bonus }}
+		</div>
+		<div class='equipment-actions'>
+			<button>SEND TO SOMEONE</button>
+		</div>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
-
-    {{!-- Description Tab --}}
-    <div class="tab" data-group="primary" data-tab="description">
-      {{editor system.description target="system.description" rollData=rollData button=true owner=owner editable=editable}}
-    </div>
-
-    {{!-- Attributes Tab --}}
-    <div class="tab attributes" data-group="primary" data-tab="attributes">
-      {{!-- As you add new fields, add them in here! --}}
-    </div>
-  </section>
+	</section>
 </form>

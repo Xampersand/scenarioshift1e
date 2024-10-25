@@ -1,5 +1,5 @@
-@import "./mixins.less";
-@import "./config.less";
+@import './mixins.less';
+@import './config.less';
 
 label {
 	color: @primary-text-color;
@@ -23,7 +23,9 @@ button {
 	font-family: @font;
 }
 
-ol, nav, div #chat-form {
+ol,
+nav,
+div #chat-form {
 	background-color: @background-color;
 	.add-glow(@glow-color, 5px);
 }
@@ -38,12 +40,11 @@ div #chat-controls {
 }
 
 #logo {
-	content: url("../assets/images/orv_logo.png");
+	content: url('../assets/images/orv_logo.png');
 	height: 100px;
 }
 
 .window-app {
-
 	.window-content {
 		padding: 0;
 		background-image: none;
@@ -112,4 +113,9 @@ li.chat-message.whisper {
 	&.dialog-content {
 		background-color: @background-color;
 	}
+}
+textarea {
+	background-image: none !important;
+	border: 0;
+	color: @primary-text-color;
 }
