@@ -53,16 +53,28 @@
 			<div class='damage'>
 				<label for='system.damage'>DAMAGE:</label>
 				<input
-					name='system.damageFormula'
+					name='system.damageFormula.diceCount'
 					type='text'
-					value='{{system.damageFormula}}'
-					placeholder='1d4'
+					value='{{system.damageFormula.diceCount}}'
+					placeholder='1'
 				/>
 				<input
-					name='system.type'
+					name='system.damageFormula.diceType'
 					type='text'
-					value='{{system.type}}'
-					placeholder='radiant'
+					value='{{system.damageFormula.diceType}}'
+					placeholder='d4'
+				/>
+				<input
+					name='system.damageFormula.damageBonus'
+					type='text'
+					value='{{system.damageFormula.damageBonus}}'
+					placeholder='1'
+				/>
+				<input
+					name='system.damageType.damageType'
+					type='text'
+					value='{{system.damageType.damageType}}'
+					placeholder='piercing'
 				/>
 			</div>
 			<div class='accuracy'>

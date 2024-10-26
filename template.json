@@ -55,6 +55,12 @@
 				"range": 5,
 				"requirement": 0,
 				"requirement-type": "str"
+			},
+			"damageFormula": {
+				"diceCount": 1,
+				"diceType": "d4",
+				"damageBonus": 1,
+				"damageType": "piercing"
 			}
 		},
 		"item": {
@@ -68,18 +74,14 @@
 			"spellLevel": 1
 		},
 		"meleeWeapon": {
-			"templates": ["weapon", "base"],
-			"damageFormula": "d4",
-			"type": "slashing"
+			"templates": ["weapon", "base", "damageFormula"]
 		},
 		"rangedWeapon": {
 			"templates": ["weapon", "base"],
 			"damageModifier": 1.2
 		},
 		"ammo": {
-			"templates": ["base"],
-			"damageFormula": "d4",
-			"type": "piercing"
+			"templates": ["base", "damageFormula"]
 		},
 		"consumable": {
 			"templates": ["base"],
