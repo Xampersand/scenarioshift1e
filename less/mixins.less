@@ -3,13 +3,12 @@
 	box-shadow: none;
 }
 
-.add-glow(@color, @radius, @onhover:@radius) {
-	box-shadow: 0 0 @radius @color, 0 0 @radius * 2 @color,
-		0 0 @radius * 3 rgba(79, 196, 250, 0.5);
 
+.add-glow(@color, @radius, @onhover:@radius) {
+	box-shadow: 0 0 @radius @color, 0 0 @radius * 2 @color;
+	transition: box-shadow 0.3s ease-in-out;
 	&:hover {
-		box-shadow: 0 0 @onhover @color, 0 0 @onhover * 2 @color,
-			0 0 @onhover * 3 rgba(79, 196, 250, 0.5);
+		box-shadow: 0 0 @onhover @color, 0 0 @onhover * 2 @color;
 	}
 }
 

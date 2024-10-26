@@ -58,48 +58,55 @@
 		</div>
 
 		<div class='body'>
-			{{#each system.stats as |stat key|}}
-				<div class='stat flexrow'>
-					<label
-						for='system.stats.{{key}}.value'
-						class='resource-label rollable flex1'
-						data-roll='@stats.{{key}}.value'
-						data-label='{{stat.label}}'
-					>
-						{{stat.label}}
-					</label>
-					<span class='resource-label flex0'>Lv.</span>
-					<span
-						type='text'
-						class='input-text flex0'
-						name='system.stats.{{key}}.value'
-					>{{stat.value}}</span>
-					<button
-						class='resource-label flex0'
-						data-action='attributeLevelUp'
-						data-key='{{key}}'
-					>+</button>
+			<div class="stat-related">
+				<div class="stat-container">
+					{{#each system.stats as |stat key|}}
+						<div class='stat flexrow'>
+							<label
+								for='system.stats.{{key}}.value'
+								class='resource-label rollable'
+								data-roll='@stats.{{key}}.value'
+								data-label='{{stat.label}}'
+							>
+								{{stat.label}}
+							</label>
+							<span class='resource-label'>Lv.</span>
+							<span
+								class='resource-label'
+								name='system.stats.{{key}}.value'
+							>{{stat.value}}</span>
+							<button
+								class='resource-label'
+								data-action='attributeLevelUp'
+								data-key='{{key}}'
+							>+</button>
+						</div>
+					{{/each}}
 				</div>
-			{{/each}}
+				<div class="attributes">
+					this will hold race info and personal attributes
+				</div>
+			</div>
 
-			<div class='stat flexrow flex-group-center'>
+			<div class='coin-container flexrow'>
 				<label
 					for='system.coins'
-					class='resource-label flexlarge align-left'
+					class='resource-label'
 					data-label='Coins:'
 				>
 					Coins:
 				</label>
 				<span
-					class='resource-label flex1'
+					class='resource-label'
 					name='system.coins'
 				>{{system.coins}}</span>
 				<button
-					class='resource-label coin-button'
+					class='resource-label'
 					data-action='openCurrencyPanel'
-				>Manage Coins</button>
-				<button class='resource-label coin-button' data-action='sendCoins'>Send
-					Coins</button>
+				>MANAGE COINS</button>
+				<button class='resource-label' 
+				data-action='sendCoins'
+				>SEND COINS</button>
 			</div>
 		</div>
 		<div style='height: 50px;'></div>

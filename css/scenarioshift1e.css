@@ -34,19 +34,21 @@ ol,
 nav,
 div #chat-form {
   background-color: rgba(37, 186, 255, 0.4);
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
 }
 ol:hover,
 nav:hover,
 div #chat-form:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 li {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5) !important;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255) !important;
+  transition: box-shadow 0.3s ease-in-out !important;
   border: 1px solid rgba(79, 196, 250, 0.5) !important;
 }
 li:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5) !important;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255) !important;
 }
 li:hover,
 li:active {
@@ -66,21 +68,23 @@ div #chat-controls {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
   overflow: visible;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
 }
 .window-app .window-content:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 .window-app .window-header {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
   padding: 0px;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   overflow: visible;
   border-radius: 10px;
 }
 .window-app .window-header:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .window-app .window-header a {
   background-color: none;
@@ -146,11 +150,12 @@ textarea {
 }
 .ss1e.sheet.actor.character .header.info img.profile-img {
   border: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
 .ss1e.sheet.actor.character .header.info img.profile-img:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.character .header.info div.info-container {
   flex: 1 1 50%;
@@ -182,11 +187,12 @@ textarea {
 .ss1e.sheet.actor.character .header.info div.resource-container button {
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
 }
 .ss1e.sheet.actor.character .header.info div.resource-container button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.character .header.info input.input-text {
   border: none;
@@ -195,6 +201,48 @@ textarea {
 }
 .ss1e.sheet.actor.character .header.info input.input-text::selection {
   background-color: #1807af;
+}
+.ss1e.sheet.actor.character .body {
+  display: flex;
+  flex-direction: column;
+}
+.ss1e.sheet.actor.character .body .resource-label {
+  text-align: center;
+}
+.ss1e.sheet.actor.character .body .stat-related {
+  display: flex;
+  flex-direction: row;
+}
+.ss1e.sheet.actor.character .body .stat-related .attributes {
+  flex: 1 1 50%;
+}
+.ss1e.sheet.actor.character .body .stat-related .stat-container {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+}
+.ss1e.sheet.actor.character .body .stat-related .stat-container .stat {
+  padding-bottom: 10px;
+  align-items: center;
+}
+.ss1e.sheet.actor.character .body .stat-related .stat-container .stat .resource-label {
+  flex: 1 1 10%;
+}
+.ss1e.sheet.actor.character .body .stat-related .stat-container .stat button {
+  margin-left: 5px;
+}
+.ss1e.sheet.actor.character .body .coin-container {
+  flex-direction: row;
+}
+.ss1e.sheet.actor.character .body button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  font-family: 'Teko';
+}
+.ss1e.sheet.actor.character .body button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.constellation.header .header {
   display: flex;
@@ -276,10 +324,11 @@ textarea {
   color: #ffffff;
   width: 50%;
   height: auto;
-  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255), 0 0 9px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-buttons button:hover {
-  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255), 0 0 21px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages {
   display: flex;
@@ -326,10 +375,11 @@ textarea {
   color: #ffffff;
   border: 0;
   margin: 2px;
-  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255), 0 0 9px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
 }
 .ss1e.sheet.actor.constellation.actions .preset-message-buttons button:hover {
-  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255), 0 0 21px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.constellation.actions .message-bottom-section {
   display: flex;
@@ -359,10 +409,11 @@ textarea {
   height: auto;
   width: 50%;
   margin: 10px;
-  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255), 0 0 9px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 3px rgba(37, 186, 255), 0 0 6px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
 }
 .ss1e.sheet.actor.constellation.actions .message-bottom-section button:hover {
-  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255), 0 0 21px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255);
 }
 .constellation-sheet-button {
   font-family: 'Teko';
@@ -378,11 +429,12 @@ textarea {
 }
 .weapon-top-section .weapon-img {
   border: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
 .weapon-top-section .weapon-img:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 .weapon-top-section .weapon-title {
   flex-grow: 2;
@@ -462,12 +514,13 @@ textarea {
 .weapon-actions button {
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
   height: fit-content;
 }
 .weapon-actions button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .equipment-top-section {
   font-family: 'Teko';
@@ -476,11 +529,12 @@ textarea {
 }
 .equipment-top-section .equipment-img {
   border: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
 .equipment-top-section .equipment-img:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 .equipment-top-section .equipment-title {
   flex-grow: 2;
@@ -552,12 +606,13 @@ textarea {
 .equipment-actions button {
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
   height: fit-content;
 }
 .equipment-actions button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ammo-top-section {
   font-family: 'Teko';
@@ -566,11 +621,12 @@ textarea {
 }
 .ammo-top-section .ammo-img {
   border: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
 .ammo-top-section .ammo-img:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 .ammo-top-section .ammo-title {
   flex-grow: 2;
@@ -652,12 +708,13 @@ textarea {
 .ammo-actions button {
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
   height: fit-content;
 }
 .ammo-actions button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .accessory-top-section {
   font-family: 'Teko';
@@ -666,11 +723,12 @@ textarea {
 }
 .accessory-top-section .accessory-img {
   border: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
 .accessory-top-section .accessory-img:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 .accessory-top-section .accessory-title {
   flex-grow: 2;
@@ -740,12 +798,13 @@ textarea {
 .accessory-actions button {
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
   height: fit-content;
 }
 .accessory-actions button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .consumable-top-section {
   font-family: 'Teko';
@@ -754,11 +813,12 @@ textarea {
 }
 .consumable-top-section .consumable-img {
   border: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
 .consumable-top-section .consumable-img:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255), 0 0 30px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 .consumable-top-section .consumable-title {
   flex-grow: 2;
@@ -832,10 +892,11 @@ textarea {
 .consumable-actions button {
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255), 0 0 6px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
   height: fit-content;
 }
 .consumable-actions button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255), 0 0 15px rgba(79, 196, 250, 0.5);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
