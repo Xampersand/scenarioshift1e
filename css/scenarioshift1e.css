@@ -132,6 +132,16 @@ textarea {
   border: 0;
   color: #ffffff;
 }
+.sheet-tabs.tabs {
+  display: flex;
+  position: absolute;
+  left: 100%;
+  flex-direction: column;
+}
+.sheet-tabs .item {
+  padding: 5px 10px;
+  cursor: pointer;
+}
 .ss1e.sheet.actor.character .header {
   display: flex;
   align-items: center;

@@ -104,6 +104,13 @@ export class SS1EActorSheet extends ActorSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
+		// Activate tabs
+		let tabs = new Tabs({
+			navSelector: '.sheet-tabs',
+			contentSelector: '.sheet-body',
+			initial: 'features',
+		});
+		tabs.bind(html[0]);
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.on('click', '.item-edit', (ev) => {
@@ -230,7 +237,7 @@ export class SS1EActorSheet extends ActorSheet {
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
 			let label = dataset.label ? `[attribute] ${dataset.label}` : '';
-			let roll = new roll(dataset.roll, this.actor.getRollData());
+			let roll = new Roll(dataset.roll, this.actor.getRollData());
 			roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
 				flavor: label,
