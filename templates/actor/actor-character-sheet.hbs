@@ -4,7 +4,7 @@
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
-	<button class='edit-mode-toggle'>Edit</button>
+	<button class='edit-mode-toggle'>🛠️</button>
 	<nav class='sheet-tabs tabs'>
 		<a class='item' data-tab='features'>Features</a>
 		<a class='item' data-tab='inventory'>Inventory</a>
@@ -61,21 +61,24 @@
 					</div>
 					<div class='resource-container'>
 						<div class='hp-block'>
-							<label for='hp-bar-container'>
+							<label class='hp-label' for='hp-bar-container'>
 								HP:
 							</label>
 							<div class='hp-bar-container'>
 								<div class='hp-bar' style='width: {{hpBarWidth}}%;'><span
 										class='health'
-									>{{system.health.value}}/{{system.health.max}}</span></div>
-
+									>{{system.health.value}}/{{system.health.max}}</span>
+								</div>
 							</div>
+							<button data-action='openHealthPanel'>
+								-
+							</button>
+							<button data-action='openHealthPanel'>
+								+
+							</button>
 						</div>
-						<button data-action='openHealthPanel'>
-							MANAGE HEALTH
-						</button>
 						<div class='mana-block'>
-							<label for='mana-bar-container'>
+							<label class='mana-label' for='mana-bar-container'>
 								MANA:
 							</label>
 							<div class='mana-bar-container'>
@@ -85,10 +88,40 @@
 									>{{system.mana.value}}/{{system.mana.max}}</span>
 								</div>
 							</div>
+							<button data-action='openManaPanel'>
+								-
+							</button>
+							<button data-action='openManaPanel'>
+								+
+							</button>
 						</div>
-						<button data-action='openManaPanel'>
-							MANAGE MANA
-						</button>
+						<div class='armor-block'>
+							<label
+								class='armor-label'
+								for=''
+							>{{system.armor.label}}:&nbsp;</label>
+							<div
+								class='armor-stat'
+							>{{system.armor.value}}+({{system.armor.bonus}})</div>
+						</div>
+						<div class='evasion-block'>
+							<label
+								class='evasion-label'
+								for=''
+							>{{system.evasion.label}}:&nbsp;</label>
+							<div
+								class='evasion-stat'
+							>{{system.evasion.value}}+({{system.evasion.bonus}})</div>
+						</div>
+						<div class='accuracy-block'>
+							<label
+								class='accuracy-label'
+								for=''
+							>{{system.accuracy.label}}&nbsp;</label>
+							<div
+								class='accuracy-stat'
+							>{{system.accuracy.value}}+({{system.accuracy.bonus}})</div>
+						</div>
 					</div>
 				</div>
 				<div class='body'>

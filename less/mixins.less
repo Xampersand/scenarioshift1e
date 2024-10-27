@@ -3,7 +3,6 @@
 	box-shadow: none;
 }
 
-
 .add-glow(@color, @radius, @onhover:@radius) {
 	box-shadow: 0 0 @radius @color, 0 0 @radius * 2 @color;
 	transition: box-shadow 0.3s ease-in-out;
@@ -22,4 +21,9 @@
 .set-display-flex-row() {
 	display: flex;
 	flex-direction: row;
+}
+.flex-row-jcCenter-aiCenter() {
+	.set-display-flex-row();
+	justify-content: center;
+	align-items: center;
 }

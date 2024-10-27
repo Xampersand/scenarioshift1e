@@ -21,6 +21,7 @@
 			color: @primary-text-color;
 			font-size: 1.5rem;
 			align-items: flex-start; // move the name and age (and img) to the very top
+			justify-content: space-between;
 
 			& img.profile-img {
 				border: none;
@@ -40,63 +41,72 @@
 				display: flex; // for moving around flexy children
 				flex-direction: column; // make it column (by default it's in a row)
 				justify-content: center;
-				align-items: center;
+				align-items: flex-end;
 				font-weight: bold;
 				// hp bar
 				.hp-block {
-					display: flex;
-					flex-direction: row;
+					.set-display-flex-row();
 					justify-content: space-evenly;
+					align-items: center;
 
 					.hp-bar-container {
 						width: 100px;
 						height: auto;
 						background-color: #444;
-						border: 1px solid #222;
-						border-radius: 5px;
+						border: 1px solid @accent-color;
+						border-bottom: 0;
+						border-radius: 50% 50% 0px 0px;
 						overflow: hidden;
+						align-self: flex-end;
 						& span {
 							color: @primary-text-color;
 						}
 
 						.hp-bar {
 							height: 100%;
-							background-color: #ff0000;
+							background-color: @hp-color;
 							transition: width 0.3s ease;
 							display: flex;
 							justify-content: center;
 						}
 
-						& label {
+						.hp-label {
 							font-size: 1.1rem;
 						}
 						& span {
 							font-weight: normal;
 						}
 					}
+					& button {
+						.remove-default-glow(); // call the mixin
+						.add-glow(@glow-color, 2px, 5px);
+						font-family: @font;
+						width: auto;
+					}
 				}
 				.mana-block {
-					display: flex;
-					flex-direction: row;
+					.set-display-flex-row();
 					justify-content: space-evenly;
+					align-items: center;
 					.mana-bar-container {
 						width: 100px;
 						height: auto;
 						background-color: #444;
-						border: 1px solid #222;
-						border-radius: 5px;
+						border: 1px solid @accent-color;
+						border-top: 0;
+						border-radius: 0px 0px 50% 50%;
 						overflow: hidden;
 						& span {
 							color: @primary-text-color;
 						}
 						.mana-bar {
 							height: 100%;
-							background-color: #1900ff;
+							background-color: @mana-color;
 							transition: width 0.3s ease;
 							display: flex;
 							justify-content: center;
 						}
-						& label {
+						.mana-label {
 							font-size: 1.1rem;
 							justify-self: left;
 						}
@@ -104,11 +114,21 @@
 							font-weight: normal;
 						}
 					}
+					& button {
+						.remove-default-glow(); // call the mixin
+						.add-glow(@glow-color, 2px, 5px);
+						font-family: @font;
+						width: auto;
+					}
 				}
-				& button {
-					.remove-default-glow(); // call the mixin
-					.add-glow(@glow-color, 2px, 5px);
-					font-family: @font;
+				.armor-block {
+					.flex-row-jcCenter-aiCenter();
+				}
+				.evasion-block {
+					.flex-row-jcCenter-aiCenter();
+				}
+				.accuracy-block {
+					.flex-row-jcCenter-aiCenter();
 				}
 			}
 		}

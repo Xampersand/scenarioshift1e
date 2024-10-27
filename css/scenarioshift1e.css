@@ -172,6 +172,7 @@ textarea {
   color: #ffffff;
   font-size: 1.5rem;
   align-items: flex-start;
+  justify-content: space-between;
 }
 .ss1e.sheet.actor.character .header.info img.profile-img {
   border: none;
@@ -194,49 +195,65 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   font-weight: bold;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .hp-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container {
   width: 100px;
   height: auto;
   background-color: #444;
-  border: 1px solid #222;
-  border-radius: 5px;
+  border: 1px solid #4fc4fa;
+  border-bottom: 0;
+  border-radius: 50% 50% 0px 0px;
   overflow: hidden;
+  align-self: flex-end;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container span {
   color: #ffffff;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
-  background-color: #ff0000;
+  background-color: #53b8ca;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container label {
+.ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container .hp-label {
   font-size: 1.1rem;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container span {
   font-weight: normal;
 }
+.ss1e.sheet.actor.character .header.info div.resource-container .hp-block button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  font-family: 'Teko';
+  width: auto;
+}
+.ss1e.sheet.actor.character .header.info div.resource-container .hp-block button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
 .ss1e.sheet.actor.character .header.info div.resource-container .mana-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container {
   width: 100px;
   height: auto;
   background-color: #444;
-  border: 1px solid #222;
-  border-radius: 5px;
+  border: 1px solid #4fc4fa;
+  border-top: 0;
+  border-radius: 0px 0px 50% 50%;
   overflow: hidden;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container span {
@@ -244,27 +261,46 @@ textarea {
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container .mana-bar {
   height: 100%;
-  background-color: #1900ff;
+  background-color: #1807af;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container label {
+.ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container .mana-label {
   font-size: 1.1rem;
   justify-self: left;
 }
 .ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container span {
   font-weight: normal;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container button {
+.ss1e.sheet.actor.character .header.info div.resource-container .mana-block button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
+  width: auto;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container button:hover {
+.ss1e.sheet.actor.character .header.info div.resource-container .mana-block button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+.ss1e.sheet.actor.character .header.info div.resource-container .armor-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.ss1e.sheet.actor.character .header.info div.resource-container .evasion-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.ss1e.sheet.actor.character .header.info div.resource-container .accuracy-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .ss1e.sheet.actor.character .header input.input-text {
   border: none;
