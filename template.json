@@ -15,11 +15,11 @@
 			"age": 1,
 			"mana": { "value": 20, "max": 20 },
 			"stats": {
-				"str": { "value": 1, "label": "Strength" },
-				"agi": { "value": 1, "label": "Agility" },
-				"con": { "value": 1, "label": "Constitution" },
-				"mgp": { "value": 1, "label": "Intelligence" },
-				"cha": { "value": 1, "label": "Charisma" }
+				"str": { "value": 1, "label": "Strength", "bonus": 0 },
+				"agi": { "value": 1, "label": "Agility", "bonus": 0 },
+				"con": { "value": 1, "label": "Constitution", "bonus": 0 },
+				"mgp": { "value": 1, "label": "Intelligence", "bonus": 0 },
+				"cha": { "value": 1, "label": "Charisma", "bonus": 0 }
 			},
 			"coins": 0
 		},
