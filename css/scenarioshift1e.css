@@ -146,6 +146,9 @@ textarea:focus {
 .sheet-tabs.tabs:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
+.sheet-tabs.tabs > [data-tab].active {
+  text-shadow: 0 0 10px #4fc4fa;
+}
 .sheet-tabs .item {
   padding: 5px 10px;
   cursor: pointer;
@@ -162,27 +165,33 @@ textarea:focus {
   width: auto;
   top: 0%;
   position: absolute;
-  left: 80%;
+  left: 84%;
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  box-shadow: 0 0 0px rgba(37, 186, 255), 0 0 0px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
   height: fit-content;
+  background-color: #ffffff00;
 }
 .edit-mode-toggle:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  box-shadow: 0 0 0px rgba(37, 186, 255), 0 0 0px rgba(37, 186, 255);
+}
+.ss1e.sheet.actor.character {
+  font-family: 'Teko';
 }
 .ss1e.sheet.actor.character .sheet-title {
   font-size: 2.5rem;
   font-weight: bold;
   color: #ffffff;
   flex-grow: 0;
+  text-align: center;
 }
 .ss1e.sheet.actor.character .sheet-header {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1 1 50%;
 }
 .ss1e.sheet.actor.character .sheet-header.info {
   color: #ffffff;
@@ -190,182 +199,185 @@ textarea:focus {
   align-items: flex-start;
   justify-content: space-between;
 }
-.ss1e.sheet.actor.character .sheet-header.info img.profile-img {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 50%;
+  padding-bottom: 25px;
+}
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img {
   border: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
-.ss1e.sheet.actor.character .sheet-header.info img.profile-img:hover {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img:hover {
   box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
 }
-.ss1e.sheet.actor.character .sheet-header.info div.info-container {
-  flex: 1 1 50%;
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container {
+  position: absolute;
+  top: 29.4%;
+  left: 3.6%;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.info-container label {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container {
-  flex: 1 1 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  font-weight: bold;
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container {
-  width: 100px;
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container {
+  width: 150px;
   height: auto;
-  background-color: #444;
+  background-color: #ffffff00;
   border: 1px solid #4fc4fa;
   border-bottom: 0;
-  border-radius: 50% 50% 0px 0px;
+  border-radius: 35% 35% 0px 0px;
   overflow: hidden;
   align-self: flex-end;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container span {
   color: #ffffff;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container .hp-bar {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
-  background-color: #53b8ca;
+  background-color: #53b8caa6;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container .hp-label {
-  font-size: 1.1rem;
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container span {
   font-weight: normal;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block button {
-  border: none;
-  box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
-  width: auto;
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container {
-  width: 100px;
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container {
+  width: 150px;
   height: auto;
   background-color: #444;
   border: 1px solid #4fc4fa;
   border-top: 0;
-  border-radius: 0px 0px 50% 50%;
+  border-radius: 0px 0px 35% 35%;
   overflow: hidden;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container span {
   color: #ffffff;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container .mana-bar {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container .mana-bar {
   height: 100%;
-  background-color: #1807af;
+  background-color: #1807afa8;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container .mana-label {
-  font-size: 1.1rem;
-  justify-self: left;
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block span {
   font-weight: normal;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block button {
-  border: none;
-  box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
-  width: auto;
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .armor-block {
+.ss1e.sheet.actor.character .sheet-header.info div.info-container {
+  flex: 1 1 50%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .evasion-block {
+.ss1e.sheet.actor.character .sheet-header.info div.info-container label {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.ss1e.sheet.actor.character .sheet-header.info div.attribute-container {
+  flex: 1 1 50%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.resource-container .accuracy-block {
+.ss1e.sheet.actor.character .sheet-header.info div.attribute-container .attributes {
+  flex: 1 1 50%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
-.ss1e.sheet.actor.character .sheet-header input.input-text {
+.ss1e.sheet.actor.character .sheet-header.info div.attribute-container .attributes label {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.ss1e.sheet.actor.character .sheet-header.info div.attribute-container .attributes span {
+  font-weight: normal;
+}
+.ss1e.sheet.actor.character input.input-text {
   border: none;
   box-shadow: none;
   color: #ffffff;
 }
-.ss1e.sheet.actor.character .sheet-header input.input-text::selection {
+.ss1e.sheet.actor.character input.input-text::selection {
   background-color: #1807af;
 }
-.ss1e.sheet.actor.character .sheet-body {
+.sheet-body {
+  font-family: 'Teko';
   display: flex;
   flex-direction: column;
 }
-.ss1e.sheet.actor.character .sheet-body .resource-label {
+.sheet-body .resource-label {
   text-align: center;
 }
-.ss1e.sheet.actor.character .sheet-body .stat-related {
+.sheet-body .stat-related {
   display: flex;
   flex-direction: row;
 }
-.ss1e.sheet.actor.character .sheet-body .stat-related .attributes {
-  flex: 1 1 50%;
+.sheet-body .stat-related .combat-stat-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 10%;
+  justify-content: space-evenly;
 }
-.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container {
+.sheet-body .stat-related .combat-stat-container .combat-stat-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.sheet-body .stat-related .combat-stat-container .combat-stat-block label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.sheet-body .stat-related .combat-stat-container .combat-stat-block span {
+  font-size: 1.5rem;
+}
+.sheet-body .stat-related .stat-container {
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
 }
-.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container .stat {
-  padding-bottom: 10px;
+.sheet-body .stat-related .stat-container .stat {
+  padding-bottom: 5px;
   align-items: center;
 }
-.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container .stat .resource-label {
+.sheet-body .stat-related .stat-container .stat .resource-label {
   flex: 1 1 10%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container .stat button {
+.sheet-body .stat-related .stat-container .stat .resource-span {
+  font-size: 1.5rem;
+}
+.sheet-body .stat-related .stat-container .stat button {
   margin-left: 5px;
 }
-.ss1e.sheet.actor.character .sheet-body .coin-container {
+.sheet-body .coin-container {
   flex-direction: row;
+  font-size: 1.5rem;
 }
-.ss1e.sheet.actor.character .sheet-body button {
+.sheet-body button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
+  font-size: 1.2rem;
 }
-.ss1e.sheet.actor.character .sheet-body button:hover {
+.sheet-body button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.constellation.header .header {

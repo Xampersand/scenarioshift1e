@@ -3,6 +3,7 @@
 
 // Targets anything with the ss1e sheet actor character classes (must have all of them)
 .ss1e.sheet.actor.character {
+	font-family: @font;
 	// Targets anything with the header class within the parent class
 
 	.sheet-title {
@@ -11,6 +12,7 @@
 		font-weight: bold;
 		color: @primary-text-color;
 		flex-grow: 0; // makes it shrink and take up as little space as possible
+		text-align: center;
 	}
 
 	.sheet-header {
@@ -18,169 +20,191 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex: 1 1 50%;
 		&.info {
 			color: @primary-text-color;
 			font-size: 1.5rem;
 			align-items: flex-start; // move the name and age (and img) to the very top
 			justify-content: space-between;
 
-			& img.profile-img {
-				border: none;
-				.add-glow(@glow-color, 5px, 20px);
-				margin: 10px; // make it have a little space around
+			.pfp-hp-mana {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				flex: 1 1 50%;
+				padding-bottom: 25px; // stops hp/mana bar from overlapping
+				& img.profile-img {
+					border: none;
+					.add-glow(@glow-color, 5px, 20px);
+					margin: 10px;
+				}
+				.hp-mana-container {
+					//overlapping bars with picture, values are cringe nad will probably need ot be redone
+					position: absolute;
+					top: 29.4%;
+					left: 3.6%;
+					.hp-block {
+						.set-display-flex-row();
+						justify-content: space-evenly;
+						align-items: center;
+
+						.hp-bar-container {
+							width: 150px;
+							height: auto;
+							background-color: @transparent;
+							border: 1px solid @accent-color;
+							border-bottom: 0;
+							border-radius: 35% 35% 0px 0px;
+							overflow: hidden;
+							align-self: flex-end;
+							& span {
+								color: @primary-text-color;
+							}
+
+							.hp-bar {
+								height: 100%;
+								background-color: @hp-color;
+								transition: width 0.3s ease;
+								display: flex;
+								justify-content: center;
+							}
+							& span {
+								font-weight: normal;
+							}
+						}
+					}
+					.mana-block {
+						.set-display-flex-row();
+						justify-content: space-evenly;
+						align-items: center;
+						.mana-bar-container {
+							width: 150px;
+							height: auto;
+							background-color: #444;
+							border: 1px solid @accent-color;
+							border-top: 0;
+							border-radius: 0px 0px 35% 35%;
+							overflow: hidden;
+							& span {
+								color: @primary-text-color;
+							}
+							.mana-bar {
+								height: 100%;
+								background-color: @mana-color;
+								transition: width 0.3s ease;
+								display: flex;
+								justify-content: center;
+							}
+						}
+						& span {
+							font-weight: normal;
+						}
+					}
+				}
 			}
 
 			& div.info-container {
 				flex: 1 1 50%; // FUCK flexbox | this makes it grow & shrink & take up 50% of the available space
+				display: flex;
+				flex-direction: column;
 				& label {
 					font-weight: bold;
-					font-size: 1.1rem;
+					font-size: 1.2rem;
 				}
 			}
-			& div.resource-container {
+			& div.attribute-container {
 				flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
 				display: flex; // for moving around flexy children
 				flex-direction: column; // make it column (by default it's in a row)
-				justify-content: center;
-				align-items: flex-end;
 				font-weight: bold;
-				// hp bar
-				.hp-block {
-					.set-display-flex-row();
-					justify-content: space-evenly;
-					align-items: center;
-
-					.hp-bar-container {
-						width: 100px;
-						height: auto;
-						background-color: #444;
-						border: 1px solid @accent-color;
-						border-bottom: 0;
-						border-radius: 50% 50% 0px 0px;
-						overflow: hidden;
-						align-self: flex-end;
-						& span {
-							color: @primary-text-color;
-						}
-
-						.hp-bar {
-							height: 100%;
-							background-color: @hp-color;
-							transition: width 0.3s ease;
-							display: flex;
-							justify-content: center;
-						}
-
-						.hp-label {
-							font-size: 1.1rem;
-						}
-						& span {
-							font-weight: normal;
-						}
+				& .attributes {
+					flex: 1 1 50%;
+					display: flex;
+					flex-direction: column;
+					& label {
+						font-weight: bold;
+						font-size: 1.2rem;
 					}
-					& button {
-						.remove-default-glow(); // call the mixin
-						.add-glow(@glow-color, 2px, 5px);
-						font-family: @font;
-						width: auto;
+					& span {
+						font-weight: normal;
 					}
 				}
-				.mana-block {
-					.set-display-flex-row();
-					justify-content: space-evenly;
-					align-items: center;
-					.mana-bar-container {
-						width: 100px;
-						height: auto;
-						background-color: #444;
-						border: 1px solid @accent-color;
-						border-top: 0;
-						border-radius: 0px 0px 50% 50%;
-						overflow: hidden;
-						& span {
-							color: @primary-text-color;
-						}
-						.mana-bar {
-							height: 100%;
-							background-color: @mana-color;
-							transition: width 0.3s ease;
-							display: flex;
-							justify-content: center;
-						}
-						.mana-label {
-							font-size: 1.1rem;
-							justify-self: left;
-						}
-						& span {
-							font-weight: normal;
-						}
-					}
-					& button {
-						.remove-default-glow(); // call the mixin
-						.add-glow(@glow-color, 2px, 5px);
-						font-family: @font;
-						width: auto;
-					}
-				}
-				.armor-block {
-					.flex-row-jcCenter-aiCenter();
-				}
-				.evasion-block {
-					.flex-row-jcCenter-aiCenter();
-				}
-				.accuracy-block {
-					.flex-row-jcCenter-aiCenter();
-				}
-			}
-		}
-
-		& input.input-text {
-			.remove-default-glow(); // call the mixin
-			color: @primary-text-color;
-			&::selection {
-				background-color: @subaccent-color; // change the color when you select text, was red lol
 			}
 		}
 	}
 
-	.sheet-body {
+	& input.input-text {
+		.remove-default-glow(); // call the mixin
+		color: @primary-text-color;
+		&::selection {
+			background-color: @subaccent-color; // change the color when you select text, was red lol
+		}
+	}
+}
+
+.sheet-body {
+	font-family: @font;
+	display: flex;
+	flex-direction: column;
+	& .resource-label {
+		text-align: center;
+	}
+
+	& .stat-related {
 		display: flex;
-		flex-direction: column;
-		& .resource-label {
-			text-align: center;
-		}
-	
-		& .stat-related {
+		flex-direction: row;
+		.combat-stat-container {
 			display: flex;
-			flex-direction: row;
-			& .attributes {
-				flex: 1 1 50%;
-			}
-			& .stat-container {
-				flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
-				display: flex; // for moving around flexy children
-				flex-direction: column;
-				& .stat {
-					& .resource-label {
-						flex: 1 1 10%;
-					}
-					padding-bottom: 10px;
-					align-items: center;
-					& button {
-						margin-left: 5px;
-					}
+			flex-direction: column;
+			flex: 1 1 10%;
+			justify-content: space-evenly;
+			.combat-stat-block {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-evenly;
+				align-items: center;
+				& label {
+					font-size: 1.2rem;
+					font-weight: bold;
+					text-transform: uppercase;
+				}
+				& span {
+					font-size: 1.5rem;
 				}
 			}
 		}
-	
-		& .coin-container {
-			flex-direction: row;
-		}
-		& button {
-			.remove-default-glow(); // call the mixin
-			.add-glow(@glow-color, 2px, 5px);
-			font-family: @font;
+
+		& .stat-container {
+			flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
+			display: flex; // for moving around flexy children
+			flex-direction: column;
+			& .stat {
+				& .resource-label {
+					flex: 1 1 10%;
+					font-size: 1.2rem;
+					font-weight: bold;
+					text-transform: uppercase;
+				}
+				& .resource-span {
+					font-size: 1.5rem;
+				}
+				padding-bottom: 5px;
+				align-items: center;
+				& button {
+					margin-left: 5px;
+				}
+			}
 		}
 	}
-	
+
+	& .coin-container {
+		flex-direction: row;
+		font-size: 1.5rem;
+	}
+	& button {
+		.remove-default-glow(); // call the mixin
+		.add-glow(@glow-color, 2px, 5px);
+		font-family: @font;
+		font-size: 1.2rem;
+	}
 }

@@ -129,6 +129,9 @@ textarea {
 	left: 100%;
 	flex-direction: column;
 	.add-glow(@glow-color, 2px, 5px);
+	> [data-tab].active {
+		text-shadow: 0 0 10px @accent-color;
+	}
 }
 
 .sheet-tabs .item {
@@ -142,9 +145,11 @@ textarea {
 	width: auto;
 	top: 0%;
 	position: absolute;
-	left: 80%;
+	left: 84%;
+	background-color: @transparent;
 	.remove-default-glow(); // call the mixin
-	.add-glow(@glow-color, 2px, 5px);
+	.add-glow(@glow-color, 0px, 0px);
 	font-family: @font;
 	height: fit-content;
+	background-color: @transparent;
 }
