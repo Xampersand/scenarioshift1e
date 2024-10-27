@@ -110,12 +110,12 @@ export class SS1EActorSheet extends ActorSheet {
 
 	/** @override */
 	activateListeners(html) {
+		super.activateListeners(html);
 		// Toggle edit mode when the button is clicked
 		html.find('.edit-mode-toggle').click((ev) => {
 			this.isEditing = !this.isEditing;
 			this.render(); // Re-render the sheet with updated edit mode
 		});
-		super.activateListeners(html);
 		// Activate tabs
 		let tabs = new Tabs({
 			navSelector: '.sheet-tabs',

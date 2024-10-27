@@ -1,6 +1,6 @@
 import {
-  onManageActiveEffect,
-  prepareActiveEffectCategories,
+	onManageActiveEffect,
+	prepareActiveEffectCategories,
 } from '../helpers/effects.mjs';
 
 /**
@@ -8,71 +8,83 @@ import {
  * @extends {ItemSheet}
  */
 export class SS1EItemSheet extends ItemSheet {
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['scenarioshift1e', 'sheet', 'item'],
-      width: 520,
-      height: 480,
-	  resizable: false,
-      tabs: [
-        {
-          navSelector: '.sheet-tabs',
-          contentSelector: '.sheet-body',
-          initial: 'description',
-        },
-      ],
-    });
-  }
+	constructor(...args) {
+		super(...args);
+		this.isEditing = false; // Initialize edit mode state
+	}
+	/** @override */
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			classes: ['scenarioshift1e', 'sheet', 'item'],
+			width: 520,
+			height: 480,
+			resizable: false,
+			tabs: [
+				{
+					navSelector: '.sheet-tabs',
+					contentSelector: '.sheet-body',
+					initial: 'description',
+				},
+			],
+		});
+	}
 
-  /** @override */
-  get template() {
-    const path = 'systems/scenarioshift1e/templates/item';
-    // Return a single sheet for all item types.
-    // return `${path}/item-sheet.hbs`;
+	/** @override */
+	get template() {
+		const path = 'systems/scenarioshift1e/templates/item';
+		// Return a single sheet for all item types.
+		// return `${path}/item-sheet.hbs`;
 
-    // Alternatively, you could use the following return statement to do a
-    // unique item sheet by type, like `weapon-sheet.hbs`.
-    return `${path}/item-${this.item.type}-sheet.hbs`;
-  }
+		// Alternatively, you could use the following return statement to do a
+		// unique item sheet by type, like `weapon-sheet.hbs`.
+		return `${path}/item-${this.item.type}-sheet.hbs`;
+	}
 
-  /* -------------------------------------------- */
+	/* -------------------------------------------- */
 
-  /** @override */
-  getData() {
-    // Retrieve base data structure.
-    const context = super.getData();
+	/** @override */
+	getData() {
+		// Retrieve base data structure.
+		const context = super.getData();
 
-    // Use a safe clone of the item data for further operations.
-    const itemData = context.data;
+		// Use a safe clone of the item data for further operations.
+		const itemData = context.data;
 
-    // Retrieve the roll data for TinyMCE editors.
-    context.rollData = this.item.getRollData();
+		//define editable context
+		context.isEditing = this.isEditing;
 
-    // Add the item's data to context.data for easier access, as well as flags.
-    context.system = itemData.system;
-    context.flags = itemData.flags;
+		// Retrieve the roll data for TinyMCE editors.
+		context.rollData = this.item.getRollData();
 
-    // Prepare active effects for easier access
-    context.effects = prepareActiveEffectCategories(this.item.effects);
+		// Add the item's data to context.data for easier access, as well as flags.
+		context.system = itemData.system;
+		context.flags = itemData.flags;
 
-    return context;
-  }
+		// Prepare active effects for easier access
+		context.effects = prepareActiveEffectCategories(this.item.effects);
 
-  /* -------------------------------------------- */
+		return context;
+	}
 
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
+	/* -------------------------------------------- */
 
-    // Everything below here is only needed if the sheet is editable
-    if (!this.isEditable) return;
+	/** @override */
+	activateListeners(html) {
+		super.activateListeners(html);
+		// Toggle edit mode when the button is clicked
+		html.find('.edit-mode-toggle').click((ev) => {
+			this.isEditing = !this.isEditing;
+			this.render(); // Re-render the sheet with updated edit mode
+		});
 
-    // Roll handlers, click handlers, etc. would go here.
+		// Everything below here is only needed if the sheet is editable
+		if (!this.isEditable) return;
 
-    // Active Effect management
-    html.on('click', '.effect-control', (ev) =>
-      onManageActiveEffect(ev, this.item)
-    );
-  }
+		// Roll handlers, click handlers, etc. would go here.
+
+		// Active Effect management
+		html.on('click', '.effect-control', (ev) =>
+			onManageActiveEffect(ev, this.item)
+		);
+	}
 }
