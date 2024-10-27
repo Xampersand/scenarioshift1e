@@ -60,27 +60,37 @@
 
 					</div>
 					<div class='resource-container'>
-						<div>
-							<label for='health'>HP:</label>
-							<span
-								class='health'
-							>{{system.health.value}}/{{system.health.max}}</span>
+						<div class='hp-block'>
+							<label for='hp-bar-container'>
+								HP:
+							</label>
+							<div class='hp-bar-container'>
+								<div class='hp-bar' style='width: {{hpBarWidth}}%;'><span
+										class='health'
+									>{{system.health.value}}/{{system.health.max}}</span></div>
+
+							</div>
 						</div>
 						<button data-action='openHealthPanel'>
 							MANAGE HEALTH
 						</button>
-						<div>
-							<label for='mana'>MANA:</label>
-							<span
-								class='mana'
-							>{{system.mana.value}}/{{system.mana.max}}</span>
+						<div class='mana-block'>
+							<label for='mana-bar-container'>
+								MANA:
+							</label>
+							<div class='mana-bar-container'>
+								<div class='mana-bar' style='width: {{manaBarWidth}}%;'>
+									<span
+										class='mana'
+									>{{system.mana.value}}/{{system.mana.max}}</span>
+								</div>
+							</div>
 						</div>
 						<button data-action='openManaPanel'>
 							MANAGE MANA
 						</button>
 					</div>
 				</div>
-
 				<div class='body'>
 					<div class='stat-related'>
 						<div class='stat-container'>

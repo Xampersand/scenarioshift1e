@@ -1,17 +1,17 @@
-@import "./config.less";
-@import "./mixins.less";
+@import './config.less';
+@import './mixins.less';
 
 // Targets anything with the ss1e sheet actor character classes (must have all of them)
 .ss1e.sheet.actor.character {
 	// Targets anything with the header class within the parent class
 	.header {
-
 		// center stuff
 		display: flex;
 		align-items: center;
 		justify-content: center;
 
-		&.title { // target children with ONLY the title class
+		&.title {
+			// target children with ONLY the title class
 			font-size: 2.5rem;
 			font-weight: bold;
 			color: @primary-text-color;
@@ -21,7 +21,7 @@
 			color: @primary-text-color;
 			font-size: 1.5rem;
 			align-items: flex-start; // move the name and age (and img) to the very top
-			
+
 			& img.profile-img {
 				border: none;
 				.add-glow(@glow-color, 5px, 20px);
@@ -42,16 +42,67 @@
 				justify-content: center;
 				align-items: center;
 				font-weight: bold;
-				& label {
-					font-size: 1.1rem;
-				}
-				& span {
-					font-weight: normal;
-					&.health { // target any span and then sub-target the specific classes, cool stuff
-						color: @hp-color;
+				// hp bar
+				.hp-block {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-evenly;
+
+					.hp-bar-container {
+						width: 100px;
+						height: auto;
+						background-color: #444;
+						border: 1px solid #222;
+						border-radius: 5px;
+						overflow: hidden;
+						& span {
+							color: @primary-text-color;
+						}
+
+						.hp-bar {
+							height: 100%;
+							background-color: #ff0000;
+							transition: width 0.3s ease;
+							display: flex;
+							justify-content: center;
+						}
+
+						& label {
+							font-size: 1.1rem;
+						}
+						& span {
+							font-weight: normal;
+						}
 					}
-					&.mana {
-						color: @mana-color;
+				}
+				.mana-block {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-evenly;
+					.mana-bar-container {
+						width: 100px;
+						height: auto;
+						background-color: #444;
+						border: 1px solid #222;
+						border-radius: 5px;
+						overflow: hidden;
+						& span {
+							color: @primary-text-color;
+						}
+						.mana-bar {
+							height: 100%;
+							background-color: #1900ff;
+							transition: width 0.3s ease;
+							display: flex;
+							justify-content: center;
+						}
+						& label {
+							font-size: 1.1rem;
+							justify-self: left;
+						}
+						& span {
+							font-weight: normal;
+						}
 					}
 				}
 				& button {
@@ -60,54 +111,54 @@
 					font-family: @font;
 				}
 			}
+		}
 
-			& input.input-text {
-				.remove-default-glow(); // call the mixin
-				color: @primary-text-color;
-				&::selection {
-					background-color: @subaccent-color; // change the color when you select text, was red lol
+		& input.input-text {
+			.remove-default-glow(); // call the mixin
+			color: @primary-text-color;
+			&::selection {
+				background-color: @subaccent-color; // change the color when you select text, was red lol
+			}
+		}
+	}
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	& .resource-label {
+		text-align: center;
+	}
+
+	& .stat-related {
+		display: flex;
+		flex-direction: row;
+		& .attributes {
+			flex: 1 1 50%;
+		}
+		& .stat-container {
+			flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
+			display: flex; // for moving around flexy children
+			flex-direction: column;
+			& .stat {
+				& .resource-label {
+					flex: 1 1 10%;
+				}
+				padding-bottom: 10px;
+				align-items: center;
+				& button {
+					margin-left: 5px;
 				}
 			}
 		}
 	}
 
-	.body {
-		display: flex;
-		flex-direction: column;
-		& .resource-label {
-			text-align: center;
-		}
-
-		& .stat-related {
-			display: flex;
-			flex-direction: row;
-			& .attributes {
-				flex: 1 1 50%;
-			}
-			& .stat-container {
-				flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
-				display: flex; // for moving around flexy children
-				flex-direction: column;
-				& .stat {
-					& .resource-label {
-						flex: 1 1 10%;
-					}
-					padding-bottom: 10px;
-					align-items: center;
-					& button {
-						margin-left: 5px;
-					}
-				}
-			}
-		}
-
-		& .coin-container {
-			flex-direction: row;
-		}
-		& button {
-			.remove-default-glow(); // call the mixin
-			.add-glow(@glow-color, 2px, 5px);
-			font-family: @font;
-		}
+	& .coin-container {
+		flex-direction: row;
+	}
+	& button {
+		.remove-default-glow(); // call the mixin
+		.add-glow(@glow-color, 2px, 5px);
+		font-family: @font;
 	}
 }

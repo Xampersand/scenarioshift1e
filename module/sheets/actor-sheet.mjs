@@ -76,19 +76,24 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
-		// Add roll data for TinyMCE editors.
-		context.rollData = context.actor.getRollData();
 
-		// Prepare active effects
-		context.effects = prepareActiveEffectCategories(
-			this.actor.allApplicableEffects()
-		);
 		// Prepare active effects
 		context.effects = prepareActiveEffectCategories(
 			// A generator that returns all effects stored on the actor
 			// as well as any items
 			this.actor.allApplicableEffects()
 		);
+		const hpValue = this.actor.system.health.value - 5;
+		const hpMax = this.actor.system.health.max;
+		const hpBarWidth = (hpValue / hpMax) * 100;
+
+		const manaValue = this.actor.system.mana.value;
+		const manaMax = this.actor.system.mana.max;
+		const manaBarWidth = (manaValue / manaMax) * 100;
+
+		// Assign this width to the template data
+		context.hpBarWidth = hpBarWidth;
+		context.manaBarWidth = manaBarWidth;
 
 		return context;
 	}
