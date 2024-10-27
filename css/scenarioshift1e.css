@@ -144,10 +144,18 @@ textarea {
 }
 .edit-mode-toggle {
   width: auto;
-  height: auto;
   top: 0%;
   position: absolute;
-  left: 200px;
+  left: 80%;
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  font-family: 'Teko';
+  height: fit-content;
+}
+.edit-mode-toggle:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.character .header {
   display: flex;

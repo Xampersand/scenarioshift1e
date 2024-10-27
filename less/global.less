@@ -133,8 +133,11 @@ textarea {
 }
 .edit-mode-toggle {
 	width: auto;
-	height: auto;
 	top: 0%;
 	position: absolute;
-	left: 200px;
+	left: 80%;
+	.remove-default-glow(); // call the mixin
+	.add-glow(@glow-color, 2px, 5px);
+	font-family: @font;
+	height: fit-content;
 }
