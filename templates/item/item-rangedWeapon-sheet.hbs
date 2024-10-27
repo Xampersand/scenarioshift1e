@@ -3,6 +3,7 @@
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
+	<button class='edit-mode-toggle'>Edit</button>
 	<section class='weapon-top-section'>
 		<img
 			class='weapon-img'
@@ -14,22 +15,36 @@
 		/>
 		<div class='weapon-title'>
 			<div class='weapon-name'>
-				<input
-					name='name'
-					type='text'
-					value='{{item.name}}'
-					placeholder='NAME'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='name'
+						type='text'
+						value='{{item.name}}'
+						placeholder='NAME'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{item.name}}</div>
+				{{/if}}
 			</div>
 			<div class='weapon-rarity'>
 				<label for='system.rarity'>RARITY:</label>
-				<input
-					name='system.rarity'
-					type='text'
-					value='{{system.rarity}}'
-					placeholder='COMMON'
-				/>
-			</div></div>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.rarity'
+						type='text'
+						value='{{system.rarity}}'
+						placeholder='COMMON'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.rarity}}</div>
+				{{/if}}
+
+			</div>
+		</div>
 	</section>
 
 	{{! Sheet Body }}
@@ -37,50 +52,70 @@
 		<div class='stats'>
 			<div class='requirement'>
 				<label for='system.requirement'>REQUIRES:</label>
-				<input
-					name='system.requirement'
-					type='text'
-					value='{{system.requirement}}'
-					placeholder=''
-				/>
-				<input
-					name='system.requirement-type'
-					type='text'
-					value='{{system.requirement-type}}'
-					placeholder='str'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.requirement'
+						type='text'
+						value='{{system.requirement}}'
+						placeholder=''
+					/>
+					<input
+						name='system.requirement-type'
+						type='text'
+						value='{{system.requirement-type}}'
+						placeholder='str'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.requirement}}&nbsp;</div>
+					<div>{{system.requirement-type}}</div>
+				{{/if}}
 			</div>
 			<div class='damage'>
 				<label for='system.damageModifier'>DAMAGE MODIFIER:</label>
-				<input
-					name='system.damageModifier'
-					type='text'
-					value='{{system.damageModifier}}'
-					placeholder='10%'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.damageModifier'
+						type='text'
+						value='{{system.damageModifier}}'
+						placeholder='10%'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.damageModifier}}</div>
+				{{/if}}
 			</div>
 			<div class='accuracy'>
-				<label for='system.accuracy'>
-					ACCURACY:
-				</label>
-				<input
-					name='system.accuracy'
-					type='text'
-					value='{{system.accuracy}}'
-					placeholder='1'
-				/>
+				<label for='system.accuracy'>ACCURACY:</label>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.accuracy'
+						type='text'
+						value='{{system.accuracy}}'
+						placeholder='1'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.accuracy}}</div>
+				{{/if}}
 			</div>
 			<div class='range'>
-				<label for='system.range'>
-					RANGE:
-				</label>
-				<input
-					name='system.range'
-					type='text'
-					value='{{system.range}}'
-					placeholder='1'
-				/>
-
+				<label for='system.range'>RANGE:</label>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.range'
+						type='text'
+						value='{{system.range}}'
+						placeholder='1'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.range}}</div>
+				{{/if}}
 			</div>
 		</div>
 		<div class='weapon-actions'>

@@ -119,3 +119,25 @@ textarea {
 	border: 0;
 	color: @primary-text-color;
 }
+
+.sheet-tabs.tabs {
+	display: flex;
+	position: absolute;
+	left: 100%;
+	flex-direction: column;
+}
+
+.sheet-tabs .item {
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.edit-mode-toggle {
+	width: auto;
+	top: 0%;
+	position: absolute;
+	left: 80%;
+	.remove-default-glow(); // call the mixin
+	.add-glow(@glow-color, 2px, 5px);
+	font-family: @font;
+	height: fit-content;
+}

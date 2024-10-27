@@ -3,6 +3,7 @@
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
+	<button class='edit-mode-toggle'>Edit</button>
 	<section class='weapon-top-section'>
 		<img
 			class='weapon-img'
@@ -14,22 +15,36 @@
 		/>
 		<div class='weapon-title'>
 			<div class='weapon-name'>
-				<input
-					name='name'
-					type='text'
-					value='{{item.name}}'
-					placeholder='NAME'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='name'
+						type='text'
+						value='{{item.name}}'
+						placeholder='NAME'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{item.name}}</div>
+				{{/if}}
 			</div>
 			<div class='weapon-rarity'>
 				<label for='system.rarity'>RARITY:</label>
-				<input
-					name='system.rarity'
-					type='text'
-					value='{{system.rarity}}'
-					placeholder='COMMON'
-				/>
-			</div></div>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.rarity'
+						type='text'
+						value='{{system.rarity}}'
+						placeholder='COMMON'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.rarity}}</div>
+				{{/if}}
+
+			</div>
+		</div>
 	</section>
 
 	{{! Sheet Body }}
@@ -37,55 +52,97 @@
 		<div class='stats'>
 			<div class='requirement'>
 				<label for='system.requirement'>REQUIRES:</label>
-				<input
-					name='system.requirement'
-					type='text'
-					value='{{system.requirement}}'
-					placeholder=''
-				/>
-				<input
-					name='system.requirement-type'
-					type='text'
-					value='{{system.requirement-type}}'
-					placeholder='str'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.requirement'
+						type='text'
+						value='{{system.requirement}}'
+						placeholder=''
+					/>
+					<input
+						name='system.requirement-type'
+						type='text'
+						value='{{system.requirement-type}}'
+						placeholder='str'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.requirement}}&nbsp;</div>
+					<div>{{system.requirement-type}}</div>
+				{{/if}}
 			</div>
 			<div class='damage'>
 				<label for='system.damage'>DAMAGE:</label>
-				<input
-					name='system.damageFormula'
-					type='text'
-					value='{{system.damageFormula}}'
-					placeholder='1d4'
-				/>
-				<input
-					name='system.type'
-					type='text'
-					value='{{system.type}}'
-					placeholder='radiant'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.damageFormula.diceCount'
+						type='text'
+						value='{{system.damageFormula.diceCount}}'
+						placeholder='1'
+					/>
+					<input
+						name='system.damageFormula.diceType'
+						type='text'
+						value='{{system.damageFormula.diceType}}'
+						placeholder='d4'
+					/>
+					<input
+						name='system.damageFormula.damageBonus'
+						type='text'
+						value='{{system.damageFormula.damageBonus}}'
+						placeholder='1'
+					/>
+					<input
+						name='system.damageType.damageType'
+						type='text'
+						value='{{system.damageType.damageType}}'
+						placeholder='piercing'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.damageFormula.diceCount}}&nbsp;</div>
+					<div>{{system.damageFormula.diceType}}</div>
+					<div>+{{system.damageFormula.damageBonus}}&nbsp;</div>
+					<div>{{system.damageType.damageType}}</div>
+				{{/if}}
+
 			</div>
 			<div class='accuracy'>
 				<label for='system.accuracy'>
 					ACCURACY:
 				</label>
-				<input
-					name='system.accuracy'
-					type='text'
-					value='{{system.accuracy}}'
-					placeholder='1'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.accuracy'
+						type='text'
+						value='{{system.accuracy}}'
+						placeholder='1'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.accuracy}}</div>
+				{{/if}}
 			</div>
 			<div class='range'>
 				<label for='system.range'>
 					RANGE:
 				</label>
-				<input
-					name='system.range'
-					type='text'
-					value='{{system.range}}'
-					placeholder='1'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.range'
+						type='text'
+						value='{{system.range}}'
+						placeholder='1'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.range}}</div>
+				{{/if}}
+
 			</div>
 			{{! add another div here for each stat/bonus }}
 		</div>

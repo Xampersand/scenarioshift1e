@@ -1,13 +1,11 @@
-<form
-	class='{{cssClass}} {{actor.type}} flexcol'
-	autocomplete='off'
->
+<form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
 
 	<!-- Character Information Section moved to the very top below the controls -->
 	<link
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
+	<button class='edit-mode-toggle'>Edit</button>
 	<section class='ss1e sheet actor constellation header'>
 		<div class='header title'>&lt;CONSTELLATION INFORMATION&gt;</div>
 		<div class='header info'>
@@ -23,42 +21,67 @@
 			<!-- Second Column: Modifier, True Name, Grade, Incarnation -->
 			<div class='info-container'>
 				<label for='name' class='input-label'>MODIFIER:</label>
-				<input
-					name='name'
-					id='name'
-					class='input-text'
-					type='text'
-					value='{{actor.name}}'
-					placeholder='name'
-				/>
-				<label for='trueName' class='input-label'>TRUE NAME:</label>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='name'
+						id='name'
+						class='input-text'
+						type='text'
+						value='{{actor.name}}'
+						placeholder='name'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{actor.name}}</div>
+				{{/if}}
 
-				<input
-					name='system.trueName'
-					id='trueName'
-					class='input-text'
-					type='text'
-					value='{{system.trueName}}'
-					placeholder='true_name'
-				/>
+				<label for='trueName' class='input-label'>TRUE NAME:</label>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.trueName'
+						id='trueName'
+						class='input-text'
+						type='text'
+						value='{{system.trueName}}'
+						placeholder='true_name'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.trueName}}</div>
+				{{/if}}
 				<label for='grade' class='input-label'>GRADE:</label>
-				<input
-					name='system.grade'
-					id='grade'
-					class='input-text'
-					type='text'
-					value='{{system.grade}}'
-					placeholder='grade'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.grade'
+						id='grade'
+						class='input-text'
+						type='text'
+						value='{{system.grade}}'
+						placeholder='grade'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.grade}}</div>
+				{{/if}}
 				<label for='incarnation' class='input-label'>INCARNATION:</label>
-				<input
-					name='system.incarnation'
-					id='incarnation'
-					class='input-text'
-					type='text'
-					value='{{system.incarnation}}'
-					placeholder='incarnation'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.incarnation'
+						id='incarnation'
+						class='input-text'
+						type='text'
+						value='{{system.incarnation}}'
+						placeholder='incarnation'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.incarnation}}</div>
+				{{/if}}
+
 			</div>
 		</div>
 	</section>
@@ -113,61 +136,61 @@
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='is saddened by the situation.'
-						data-cost="200"
+						data-cost='200'
 					>SADNESS</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='is disgusted by what transpired.'
-						data-cost="200"
+						data-cost='200'
 					>DISGUST</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='rejoices at the sight!'
-						data-cost="200"
+						data-cost='200'
 					>JOY</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='is angered by the choices made!'
-						data-cost="200"
-					>ANGER</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='sighs in boredom.'
-						data-cost="200"
+						data-cost='200'
 					>BORED</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
+						data-message='sighs in boredom.'
+						data-cost='200'
+					>ANGER</button>
+					<button
+						class='constellation-sheet-button'
+						data-action='sendPreset'
 						data-message='jumps up and down with excitement!'
-						data-cost="200"
+						data-cost='200'
 					>EXCITED</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='is covering their eyes!'
-						data-cost="200"
+						data-cost='200'
 					>CANT LOOK</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='has tears streaming down their face!'
-						data-cost="200"
+						data-cost='200'
 					>CRY</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='has joined channel EN-305.'
-						data-cost="0"
+						data-cost='0'
 					>JOIN</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
 						data-message='has left channel EN-305.'
-						data-cost="0"
+						data-cost='0'
 					>LEAVE</button>
 					<!-- Add more buttons as needed -->
 				</div>
@@ -175,8 +198,11 @@
 			<div class='message-bottom-section'>
 				<label for='messageInput' class=''>Type a custom message:</label>
 				<input type='text' id='messageInput' class='' placeholder='' />
-				<button class='constellation-sheet-button' data-action='sendCustom' data-cost="1000">Send
-					Custom Message</button>
+				<button
+					class='constellation-sheet-button'
+					data-action='sendCustom'
+					data-cost='1000'
+				>Send Custom Message</button>
 			</div>
 		</div>
 	</section>

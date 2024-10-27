@@ -3,6 +3,7 @@
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
+	<button class='edit-mode-toggle'>Edit</button>
 	<section class='accessory-top-section'>
 		<img
 			class='accessory-img'
@@ -14,22 +15,35 @@
 		/>
 		<div class='accessory-title'>
 			<div class='accessory-name'>
-				<input
-					name='name'
-					type='text'
-					value='{{item.name}}'
-					placeholder='NAME'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='name'
+						type='text'
+						value='{{item.name}}'
+						placeholder='NAME'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{item.name}}</div>
+				{{/if}}
 			</div>
 			<div class='accessory-rarity'>
 				<label for='system.rarity'>RARITY:</label>
-				<input
-					name='system.rarity'
-					type='text'
-					value='{{system.rarity}}'
-					placeholder='COMMON'
-				/>
-			</div></div>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.rarity'
+						type='text'
+						value='{{system.rarity}}'
+						placeholder='COMMON'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.rarity}}</div>
+				{{/if}}
+			</div>
+		</div>
 	</section>
 
 	{{! Sheet Body }}
@@ -37,12 +51,18 @@
 		<div class='stats'>
 			<div class='bonus'>
 				<label for='system.bonus'>BONUS:</label>
-				<input
-					name='system.bonus'
-					type='text'
-					value='{{system.bonus}}'
-					placeholder='+1 Agility'
-				/>
+				{{#if isEditing}}
+					<!-- Editable fields here -->
+					<input
+						name='system.bonus'
+						type='text'
+						value='{{system.bonus}}'
+						placeholder='+1 Agility'
+					/>
+				{{else}}
+					<!-- Non-editable display here -->
+					<div>{{system.bonus}}</div>
+				{{/if}}
 			</div>
 			{{! add another div here for each stat/bonus }}
 		</div>

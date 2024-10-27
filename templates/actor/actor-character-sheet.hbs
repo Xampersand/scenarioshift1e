@@ -4,115 +4,149 @@
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
+	<button class='edit-mode-toggle'>Edit</button>
+	<nav class='sheet-tabs tabs'>
+		<a class='item' data-tab='features'>Features</a>
+		<a class='item' data-tab='inventory'>Inventory</a>
+		<a class='item' data-tab='abilities'>Abilities</a>
+		<!-- Add more tabs as necessary -->
+	</nav>
 	<section class='ss1e sheet actor character'>
 		<div class='header title'>&lt;CHARACTER INFORMATION&gt;</div>
+		<section class='sheet-body'>
+			<div class='tab' data-tab='features'>
+				<div class='header info'>
+					<img
+						class='profile-img'
+						src='{{actor.img}}'
+						data-edit='img'
+						title='{{actor.name}}'
+						height='175'
+						width='175'
+					/>
+					<div class='info-container'>
+						<label for='name' class='input-label'>NAME:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='name'
+								id='name'
+								class='input-text'
+								type='text'
+								value='{{actor.name}}'
+								placeholder='Name'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{actor.name}}</div>
+						{{/if}}
 
-		<div class='header info'>
-			<img
-				class='profile-img'
-				src='{{actor.img}}'
-				data-edit='img'
-				title='{{actor.name}}'
-				height='175'
-				width='175'
-			/>
-			<div class='info-container'>
-				<label for='name' class='input-label'>NAME:</label>
-				<input
-					name='name'
-					id='name'
-					class='input-text'
-					type='text'
-					value='{{actor.name}}'
-					placeholder='Name'
-				/>
-				<label for='age' class='input-label'>AGE:</label>
-				<input
-					type='text'
-					id='age'
-					class='input-text'
-					name='system.age'
-					value='{{system.age}}'
-					data-dtype='Number'
-					placeholder='Age'
-				/>
-			</div>
-			<div class='resource-container'>
-				<div>
-					<label for='health'>HP:</label>
-					<span
-						name='system.health'
-						class='health'
-					>{{system.health.value}}/{{system.health.max}}</span>
-				</div>
-				<button data-action='openHealthPanel'>
-					MANAGE HEALTH
-				</button>
-				<div>
-					<label for='mana'>MANA:</label>
-					<span
-						name='system.mana'
-						class='mana'
-					>{{system.mana.value}}/{{system.mana.max}}</span>
-				</div>
-				<button data-action='openManaPanel'>
-					MANAGE MANA
-				</button>
-			</div>
-		</div>
+						<label for='age' class='input-label'>AGE:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								type='text'
+								id='age'
+								class='input-text'
+								name='system.age'
+								value='{{system.age}}'
+								data-dtype='Number'
+								placeholder='Age'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.age}}</div>
+						{{/if}}
 
-		<div class='body'>
-			<div class="stat-related">
-				<div class="stat-container">
-					{{#each system.stats as |stat key|}}
-						<div class='stat flexrow'>
-							<label
-								for='system.stats.{{key}}.value'
-								class='resource-label rollable'
-								data-roll='@stats.{{key}}.value'
-								data-label='{{stat.label}}'
-							>
-								{{stat.label}}
-							</label>
-							<span class='resource-label'>Lv.</span>
+					</div>
+					<div class='resource-container'>
+						<div>
+							<label for='health'>HP:</label>
 							<span
-								class='resource-label'
-								name='system.stats.{{key}}.value'
-							>{{stat.value}}</span>
-							<button
-								class='resource-label'
-								data-action='attributeLevelUp'
-								data-key='{{key}}'
-							>+</button>
+								class='health'
+							>{{system.health.value}}/{{system.health.max}}</span>
 						</div>
-					{{/each}}
+						<button data-action='openHealthPanel'>
+							MANAGE HEALTH
+						</button>
+						<div>
+							<label for='mana'>MANA:</label>
+							<span
+								class='mana'
+							>{{system.mana.value}}/{{system.mana.max}}</span>
+						</div>
+						<button data-action='openManaPanel'>
+							MANAGE MANA
+						</button>
+					</div>
 				</div>
-				<div class="attributes">
-					this will hold race info and personal attributes
-				</div>
-			</div>
 
-			<div class='coin-container flexrow'>
-				<label
-					for='system.coins'
-					class='resource-label'
-					data-label='Coins:'
-				>
-					Coins:
-				</label>
-				<span
-					class='resource-label'
-					name='system.coins'
-				>{{system.coins}}</span>
-				<button
-					class='resource-label'
-					data-action='openCurrencyPanel'
-				>MANAGE COINS</button>
-				<button class='resource-label' 
-				data-action='sendCoins'
-				>SEND COINS</button>
+				<div class='body'>
+					<div class='stat-related'>
+						<div class='stat-container'>
+							{{#each system.stats as |stat key|}}
+								<div class='stat flexrow'>
+									<label
+										for='system.stats.{{key}}.value'
+										class='resource-label rollable'
+										data-roll='@stats.{{key}}.value'
+										data-label='{{stat.label}}'
+									>
+										{{stat.label}}
+									</label>
+									<span class='resource-label'>Lv.</span>
+									<span
+										class='resource-label'
+										name='system.stats.{{key}}.value'
+									>{{stat.value}}</span>
+									<span
+										class='resource-label'
+										name='system.stats.{{key}}.value'
+									>&lt;+{{stat.bonus}}&gt;</span>
+									<button
+										class='resource-label'
+										data-action='attributeLevelUp'
+										data-key='{{key}}'
+									>+</button>
+								</div>
+							{{/each}}
+						</div>
+						<div class='attributes'>
+							this will hold race info and personal attributes
+						</div>
+					</div>
+
+					<div class='coin-container flexrow'>
+						<label
+							for='system.coins'
+							class='resource-label'
+							data-label='Coins:'
+						>
+							Coins:
+						</label>
+						<span
+							class='resource-label'
+							name='system.coins'
+						>{{system.coins}}</span>
+						<button
+							class='resource-label'
+							data-action='openCurrencyPanel'
+						>MANAGE COINS</button>
+						<button class='resource-label' data-action='sendCoins'>SEND COINS</button>
+					</div>
+				</div>
 			</div>
-		</div>
+			<div class='tab' data-tab='inventory'>
+				<!-- Inventory content here -->
+				<div>THIS IS THE INVENTORY PAGE</div>
+			</div>
+			<div class='tab' data-tab='abilities'>
+				<!-- Abilities content here -->
+				<div>THIS IS THE ABILITIES PAGE</div>
+			</div>
+			<!-- Add more tab content as necessary -->
+		</section>
+
 		<div style='height: 50px;'></div>
 		<!-- Placeholder spacing -->
 	</section>
