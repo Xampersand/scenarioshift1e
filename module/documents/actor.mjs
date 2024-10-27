@@ -47,12 +47,26 @@ export class SS1EActor extends Actor {
 		// Make modifications to data here. For example:
 		const systemData = actorData.system;
 
-		const stats = systemData.stats
+		const stats = systemData.stats;
+
+		const ARMOR_INCREMENT = 0.5;
+		const EVASION_INCREMENT = 0.5;
+		const ACCURACY_INCREMENT = 2;
+		const MANA_INCREMENT = 5;
+		const HEALTH_INCREMENT = 2.5;
 
 
-		systemData.armor.value = Math.round((stats.str.value + stats.str.bonus) / 2);
-		systemData.evasion.value = Math.round((stats.agi.value + stats.agi.bonus) / 2);
-		systemData.accuracy.value = Math.round((stats.agi.value + stats.agi.bonus) * 2);
+		// ARMOR, EVASION, ACCURACY
+		systemData.armor.value = Math.round((stats.str.value + stats.str.bonus) * ARMOR_INCREMENT);
+		systemData.evasion.value = Math.round((stats.agi.value + stats.agi.bonus) * EVASION_INCREMENT);
+		systemData.accuracy.value = Math.round((stats.agi.value + stats.agi.bonus) * ACCURACY_INCREMENT);
+
+		// HEALTH, MANA
+		systemData.health.max = Math.round((stats.con.value + stats.con.bonus) * HEALTH_INCREMENT);
+		systemData.health.value = systemData.health.max;
+
+		systemData.mana.max = Math.round((stats.int.value + stats.int.bonus) * MANA_INCREMENT);
+		systemData.mana.value = systemData.mana.max;
 	}
 
 	/**

@@ -41,6 +41,7 @@
 				<div>
 					<label for='health'>HP:</label>
 					<span
+						name='system.health'
 						class='health'
 					>{{system.health.value}}/{{system.health.max}}</span>
 				</div>
@@ -49,7 +50,10 @@
 				</button>
 				<div>
 					<label for='mana'>MANA:</label>
-					<span class='mana'>{{system.mana.value}}/{{system.mana.max}}</span>
+					<span
+						name='system.mana'
+						class='mana'
+					>{{system.mana.value}}/{{system.mana.max}}</span>
 				</div>
 				<button data-action='openManaPanel'>
 					MANAGE MANA
