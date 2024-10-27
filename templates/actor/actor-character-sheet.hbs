@@ -12,10 +12,10 @@
 		<!-- Add more tabs as necessary -->
 	</nav>
 	<section class='ss1e sheet actor character'>
-		<div class='header title'>&lt;CHARACTER INFORMATION&gt;</div>
-		<section class='sheet-body'>
+		<div class='sheet-title'>&lt;CHARACTER INFORMATION&gt;</div>
+		<div class='sheet-body'>
 			<div class='tab' data-tab='features'>
-				<div class='header info'>
+				<div class='sheet-header info'>
 					<img
 						class='profile-img'
 						src='{{actor.img}}'
@@ -181,14 +181,14 @@
 			</div>
 			<div class='tab' data-tab='inventory'>
 				<!-- Inventory content here -->
-				<div>THIS IS THE INVENTORY PAGE</div>
+				{{> systems/scenarioshift1e/templates/actor/parts/inventory.hbs}}
 			</div>
 			<div class='tab' data-tab='abilities'>
 				<!-- Abilities content here -->
 				<div>THIS IS THE ABILITIES PAGE</div>
 			</div>
 			<!-- Add more tab content as necessary -->
-		</section>
+		</div>
 
 		<div style='height: 50px;'></div>
 		<!-- Placeholder spacing -->

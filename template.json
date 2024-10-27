@@ -4,23 +4,24 @@
 		"templates": {
 			"base": {
 				"health": {
-					"value": 0,
+					"value": 5,
 					"bonus": 0,
-					"max": 0
+					"max": 5
 				}
 			}
 		},
 		"character": {
 			"templates": ["base"],
+			"items": [],
+			"itemSlots": 5,
 			"skills": [],
 			"age": 1,
 			"mana": {"value": 0, "bonus": 0, "max": 0 },
 			"stats": {
-				"str": { "value": 1, "label": "Strength", "bonus": 0 },
-				"agi": { "value": 1, "label": "Agility", "bonus": 0 },
-				"con": { "value": 1, "label": "Constitution", "bonus": 0 },
-				"int": { "value": 1, "label": "Intelligence", "bonus": 0 },
-				"cha": { "value": 1, "label": "Charisma", "bonus": 0 }
+				"str": { "value": 0, "label": "Strength", "bonus": 0 },
+				"agi": { "value": 0, "label": "Agility", "bonus": 0 },
+				"con": { "value": 0, "label": "Constitution", "bonus": 0 },
+				"int": { "value": 0, "label": "Intelligence", "bonus": 0 }
 			},
 			"armor": {"value": 0, "label": "Armor", "bonus": 0},
 			"evasion": {"value": 0, "label": "Evasion", "bonus": 0},

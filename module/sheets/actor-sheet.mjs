@@ -83,7 +83,7 @@ export class SS1EActorSheet extends ActorSheet {
 			// as well as any items
 			this.actor.allApplicableEffects()
 		);
-		const hpValue = this.actor.system.health.value - 5;
+		const hpValue = this.actor.system.health.value;
 		const hpMax = this.actor.system.health.max;
 		const hpBarWidth = (hpValue / hpMax) * 100;
 
@@ -369,11 +369,13 @@ export class SS1EActorSheet extends ActorSheet {
 		const key = event.currentTarget.dataset.key;
 		const stat = this.actor.system.stats[key];
 
+		const cost = 300 + Math.floor(stat.value / 10) * 100;
+
 		new Dialog({
 			title: 'Level Up!',
 			content: `
 				<p>${stat.label} Lv. ${stat.value} → ${stat.label} Lv. ${stat.value + 1}</p>
-				<p>Cost: ${stat.value * 100} Coins</p>
+				<p>Cost: ${cost} Coins</p>
 			`,
 			buttons: {
 				yes: {
@@ -381,8 +383,7 @@ export class SS1EActorSheet extends ActorSheet {
 					label: 'Yes',
 					callback: () => {
 						// Check if the actor has enough coins
-						if (this.actor.system.coins >= stat.value * 100) {
-							const cost = stat.value * 100;
+						if (this.actor.system.coins >= cost) {
 							const updatedCoins = this.actor.system.coins - cost;
 							const newStatValue = stat.value + 1;
 

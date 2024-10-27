@@ -8,14 +8,12 @@ SCENARIOSHIFT1E.attributes = {
   str: "Strength",
   agi: "Agility",
   con: "Constitution",
-  int: "Intelligence",
-  cha: "Charisma",
+  int: "Intelligence"
 };
 
 SCENARIOSHIFT1E.attributeAbbreviations = {
 	str: "STR",
 	agi: "AGI",
 	con: "CON",
-	int: "INT",
-	cha: "CHA",
+	int: "INT"
 };

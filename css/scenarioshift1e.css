@@ -132,15 +132,31 @@ textarea {
   border: 0;
   color: #ffffff;
 }
+textarea:focus {
+  box-shadow: none;
+}
 .sheet-tabs.tabs {
   display: flex;
   position: absolute;
   left: 100%;
   flex-direction: column;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+.sheet-tabs.tabs:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .sheet-tabs .item {
   padding: 5px 10px;
   cursor: pointer;
+  text-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  border: none;
+  box-shadow: none;
+}
+.sheet-tabs .item:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .edit-mode-toggle {
   width: auto;
@@ -157,40 +173,40 @@ textarea {
 .edit-mode-toggle:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
-.ss1e.sheet.actor.character .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ss1e.sheet.actor.character .header.title {
+.ss1e.sheet.actor.character .sheet-title {
   font-size: 2.5rem;
   font-weight: bold;
   color: #ffffff;
   flex-grow: 0;
 }
-.ss1e.sheet.actor.character .header.info {
+.ss1e.sheet.actor.character .sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ss1e.sheet.actor.character .sheet-header.info {
   color: #ffffff;
   font-size: 1.5rem;
   align-items: flex-start;
   justify-content: space-between;
 }
-.ss1e.sheet.actor.character .header.info img.profile-img {
+.ss1e.sheet.actor.character .sheet-header.info img.profile-img {
   border: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   margin: 10px;
 }
-.ss1e.sheet.actor.character .header.info img.profile-img:hover {
+.ss1e.sheet.actor.character .sheet-header.info img.profile-img:hover {
   box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
 }
-.ss1e.sheet.actor.character .header.info div.info-container {
+.ss1e.sheet.actor.character .sheet-header.info div.info-container {
   flex: 1 1 50%;
 }
-.ss1e.sheet.actor.character .header.info div.info-container label {
+.ss1e.sheet.actor.character .sheet-header.info div.info-container label {
   font-weight: bold;
   font-size: 1.1rem;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container {
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
@@ -198,13 +214,13 @@ textarea {
   align-items: flex-end;
   font-weight: bold;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container {
   width: 100px;
   height: auto;
   background-color: #444;
@@ -214,23 +230,23 @@ textarea {
   overflow: hidden;
   align-self: flex-end;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container span {
   color: #ffffff;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container .hp-bar {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
   background-color: #53b8ca;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container .hp-label {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container .hp-label {
   font-size: 1.1rem;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block .hp-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block .hp-bar-container span {
   font-weight: normal;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block button {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
@@ -238,16 +254,16 @@ textarea {
   font-family: 'Teko';
   width: auto;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .hp-block button:hover {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .hp-block button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container {
   width: 100px;
   height: auto;
   background-color: #444;
@@ -256,24 +272,24 @@ textarea {
   border-radius: 0px 0px 50% 50%;
   overflow: hidden;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container span {
   color: #ffffff;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container .mana-bar {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container .mana-bar {
   height: 100%;
   background-color: #1807af;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container .mana-label {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container .mana-label {
   font-size: 1.1rem;
   justify-self: left;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block .mana-bar-container span {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block .mana-bar-container span {
   font-weight: normal;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block button {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
@@ -281,75 +297,75 @@ textarea {
   font-family: 'Teko';
   width: auto;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .mana-block button:hover {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .mana-block button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .armor-block {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .armor-block {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .evasion-block {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .evasion-block {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.ss1e.sheet.actor.character .header.info div.resource-container .accuracy-block {
+.ss1e.sheet.actor.character .sheet-header.info div.resource-container .accuracy-block {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.ss1e.sheet.actor.character .header input.input-text {
+.ss1e.sheet.actor.character .sheet-header input.input-text {
   border: none;
   box-shadow: none;
   color: #ffffff;
 }
-.ss1e.sheet.actor.character .header input.input-text::selection {
+.ss1e.sheet.actor.character .sheet-header input.input-text::selection {
   background-color: #1807af;
 }
-.body {
+.ss1e.sheet.actor.character .sheet-body {
   display: flex;
   flex-direction: column;
 }
-.body .resource-label {
+.ss1e.sheet.actor.character .sheet-body .resource-label {
   text-align: center;
 }
-.body .stat-related {
+.ss1e.sheet.actor.character .sheet-body .stat-related {
   display: flex;
   flex-direction: row;
 }
-.body .stat-related .attributes {
+.ss1e.sheet.actor.character .sheet-body .stat-related .attributes {
   flex: 1 1 50%;
 }
-.body .stat-related .stat-container {
+.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container {
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
 }
-.body .stat-related .stat-container .stat {
+.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container .stat {
   padding-bottom: 10px;
   align-items: center;
 }
-.body .stat-related .stat-container .stat .resource-label {
+.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container .stat .resource-label {
   flex: 1 1 10%;
 }
-.body .stat-related .stat-container .stat button {
+.ss1e.sheet.actor.character .sheet-body .stat-related .stat-container .stat button {
   margin-left: 5px;
 }
-.body .coin-container {
+.ss1e.sheet.actor.character .sheet-body .coin-container {
   flex-direction: row;
 }
-.body button {
+.ss1e.sheet.actor.character .sheet-body button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
 }
-.body button:hover {
+.ss1e.sheet.actor.character .sheet-body button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.constellation.header .header {

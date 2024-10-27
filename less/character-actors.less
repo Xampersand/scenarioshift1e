@@ -4,19 +4,20 @@
 // Targets anything with the ss1e sheet actor character classes (must have all of them)
 .ss1e.sheet.actor.character {
 	// Targets anything with the header class within the parent class
-	.header {
+
+	.sheet-title {
+		// target children with ONLY the title class
+		font-size: 2.5rem;
+		font-weight: bold;
+		color: @primary-text-color;
+		flex-grow: 0; // makes it shrink and take up as little space as possible
+	}
+
+	.sheet-header {
 		// center stuff
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
-		&.title {
-			// target children with ONLY the title class
-			font-size: 2.5rem;
-			font-weight: bold;
-			color: @primary-text-color;
-			flex-grow: 0; // makes it shrink and take up as little space as possible
-		}
 		&.info {
 			color: @primary-text-color;
 			font-size: 1.5rem;
@@ -141,44 +142,45 @@
 			}
 		}
 	}
-}
 
-.body {
-	display: flex;
-	flex-direction: column;
-	& .resource-label {
-		text-align: center;
-	}
-
-	& .stat-related {
+	.sheet-body {
 		display: flex;
-		flex-direction: row;
-		& .attributes {
-			flex: 1 1 50%;
+		flex-direction: column;
+		& .resource-label {
+			text-align: center;
 		}
-		& .stat-container {
-			flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
-			display: flex; // for moving around flexy children
-			flex-direction: column;
-			& .stat {
-				& .resource-label {
-					flex: 1 1 10%;
-				}
-				padding-bottom: 10px;
-				align-items: center;
-				& button {
-					margin-left: 5px;
+	
+		& .stat-related {
+			display: flex;
+			flex-direction: row;
+			& .attributes {
+				flex: 1 1 50%;
+			}
+			& .stat-container {
+				flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
+				display: flex; // for moving around flexy children
+				flex-direction: column;
+				& .stat {
+					& .resource-label {
+						flex: 1 1 10%;
+					}
+					padding-bottom: 10px;
+					align-items: center;
+					& button {
+						margin-left: 5px;
+					}
 				}
 			}
 		}
+	
+		& .coin-container {
+			flex-direction: row;
+		}
+		& button {
+			.remove-default-glow(); // call the mixin
+			.add-glow(@glow-color, 2px, 5px);
+			font-family: @font;
+		}
 	}
-
-	& .coin-container {
-		flex-direction: row;
-	}
-	& button {
-		.remove-default-glow(); // call the mixin
-		.add-glow(@glow-color, 2px, 5px);
-		font-family: @font;
-	}
+	
 }

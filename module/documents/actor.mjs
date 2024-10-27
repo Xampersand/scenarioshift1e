@@ -62,7 +62,7 @@ export class SS1EActor extends Actor {
 		systemData.accuracy.value = Math.round((stats.agi.value + stats.agi.bonus) * ACCURACY_INCREMENT);
 
 		// HEALTH, MANA
-		systemData.health.max = Math.round((stats.con.value + stats.con.bonus) * HEALTH_INCREMENT);
+		systemData.health.max = 5 + Math.round((stats.con.value + stats.con.bonus) * HEALTH_INCREMENT);
 		systemData.health.value = systemData.health.max;
 
 		systemData.mana.max = Math.round((stats.int.value + stats.int.bonus) * MANA_INCREMENT);

@@ -4,13 +4,12 @@
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function () {
-  return loadTemplates([
+  await loadTemplates([
     // Actor partials.
-    'systems/scenarioshift1e/templates/actor/parts/actor-features.hbs',
-    'systems/scenarioshift1e/templates/actor/parts/actor-items.hbs',
-    'systems/scenarioshift1e/templates/actor/parts/actor-spells.hbs',
-    'systems/scenarioshift1e/templates/actor/parts/actor-effects.hbs',
+	'systems/scenarioshift1e/templates/actor/parts/inventory.hbs',
     // Item partials
     'systems/scenarioshift1e/templates/item/parts/item-effects.hbs',
   ]);
+  const templatePath = await getTemplate('systems/scenarioshift1e/templates/actor/parts/inventory.hbs');
+  Handlebars.registerPartial('inventory', templatePath);
 };

@@ -1,0 +1,9 @@
+<div>
+	<button class="add-item" data-action="addItem">ADD ITEM</button>
+
+	<ul>
+		{{#each system.items}}
+			<li>{{name}} ({{quantity}})</li>
+		{{/each}}
+	</ul>
+</div>
