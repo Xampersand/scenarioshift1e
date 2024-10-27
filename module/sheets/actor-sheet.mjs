@@ -8,6 +8,10 @@ import {
  * @extends {ActorSheet}
  */
 export class SS1EActorSheet extends ActorSheet {
+	constructor(...args) {
+		super(...args);
+		this.isEditing = false; // Initialize edit mode state
+	}
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
@@ -41,6 +45,9 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Use a safe clone of the actor data for further operations.
 		const actorData = context.data;
+
+		//define editable context
+		context.isEditing = this.isEditing;
 
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
@@ -103,6 +110,11 @@ export class SS1EActorSheet extends ActorSheet {
 
 	/** @override */
 	activateListeners(html) {
+		// Toggle edit mode when the button is clicked
+		html.find('.edit-mode-toggle').click((ev) => {
+			this.isEditing = !this.isEditing;
+			this.render(); // Re-render the sheet with updated edit mode
+		});
 		super.activateListeners(html);
 		// Activate tabs
 		let tabs = new Tabs({
@@ -118,16 +130,6 @@ export class SS1EActorSheet extends ActorSheet {
 			const item = this.actor.items.get(li.data('itemId'));
 			item.sheet.render(true);
 		});
-		// Render the item sheet for viewing/editing prior to the editable check.
-		html.on('click', '.item-edit', (ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
-			item.sheet.render(true);
-		});
-
-		// -------------------------------------------------------------
-		// Everything below here is only needed if the sheet is editable
-		if (!this.isEditable) return;
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;

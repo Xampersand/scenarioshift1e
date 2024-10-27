@@ -4,6 +4,7 @@
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
+	<button class='edit-mode-toggle'>Edit</button>
 	<nav class='sheet-tabs tabs'>
 		<a class='item' data-tab='features'>Features</a>
 		<a class='item' data-tab='inventory'>Inventory</a>
@@ -25,24 +26,38 @@
 					/>
 					<div class='info-container'>
 						<label for='name' class='input-label'>NAME:</label>
-						<input
-							name='name'
-							id='name'
-							class='input-text'
-							type='text'
-							value='{{actor.name}}'
-							placeholder='Name'
-						/>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='name'
+								id='name'
+								class='input-text'
+								type='text'
+								value='{{actor.name}}'
+								placeholder='Name'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{actor.name}}</div>
+						{{/if}}
+
 						<label for='age' class='input-label'>AGE:</label>
-						<input
-							type='text'
-							id='age'
-							class='input-text'
-							name='system.age'
-							value='{{system.age}}'
-							data-dtype='Number'
-							placeholder='Age'
-						/>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								type='text'
+								id='age'
+								class='input-text'
+								name='system.age'
+								value='{{system.age}}'
+								data-dtype='Number'
+								placeholder='Age'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.age}}</div>
+						{{/if}}
+
 					</div>
 					<div class='resource-container'>
 						<div>

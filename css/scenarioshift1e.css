@@ -142,6 +142,13 @@ textarea {
   padding: 5px 10px;
   cursor: pointer;
 }
+.edit-mode-toggle {
+  width: auto;
+  height: auto;
+  top: 0%;
+  position: absolute;
+  left: 200px;
+}
 .ss1e.sheet.actor.character .header {
   display: flex;
   align-items: center;
