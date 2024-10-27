@@ -118,6 +118,9 @@ textarea {
 	background-image: none !important;
 	border: 0;
 	color: @primary-text-color;
+	&:focus {
+		box-shadow: none;
+	}
 }
 
 .sheet-tabs.tabs {
@@ -125,11 +128,15 @@ textarea {
 	position: absolute;
 	left: 100%;
 	flex-direction: column;
+	.add-glow(@glow-color, 2px, 5px);
 }
 
 .sheet-tabs .item {
 	padding: 5px 10px;
 	cursor: pointer;
+	text-shadow: none;
+	.add-glow(@glow-color, 2px, 5px);
+	.remove-default-glow();
 }
 .edit-mode-toggle {
 	width: auto;
