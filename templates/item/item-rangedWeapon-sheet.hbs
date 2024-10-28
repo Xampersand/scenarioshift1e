@@ -29,7 +29,7 @@
 				{{/if}}
 			</div>
 			<div class='weapon-rarity'>
-				<label for='system.rarity'>RARITY:</label>
+				<label for='system.rarity'>RARITY:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -51,7 +51,7 @@
 	<section class='weapon-bottom-section'>
 		<div class='stats'>
 			<div class='requirement'>
-				<label for='system.requirement'>REQUIRES:</label>
+				<label for='system.requirement'>REQUIRES:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -68,12 +68,12 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.requirement}}&nbsp;</div>
-					<div>{{system.requirement-type}}</div>
+					<span>{{system.requirement}}&nbsp;</span>
+					<span>{{system.requirement-type}}</span>
 				{{/if}}
 			</div>
 			<div class='damage'>
-				<label for='system.damageModifier'>DAMAGE MODIFIER:</label>
+				<label for='system.damageModifier'>DAMAGE MODIFIER:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -84,11 +84,11 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.damageModifier}}</div>
+					<span>{{system.damageModifier}}</span>
 				{{/if}}
 			</div>
 			<div class='accuracy'>
-				<label for='system.accuracy'>ACCURACY:</label>
+				<label for='system.accuracy'>ACCURACY:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -99,11 +99,11 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.accuracy}}</div>
+					<span>{{system.accuracy}}</span>
 				{{/if}}
 			</div>
 			<div class='range'>
-				<label for='system.range'>RANGE:</label>
+				<label for='system.range'>RANGE:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -114,7 +114,7 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.range}}</div>
+					<span>{{system.range}}</span>
 				{{/if}}
 			</div>
 		</div>

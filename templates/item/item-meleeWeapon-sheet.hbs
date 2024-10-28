@@ -29,7 +29,7 @@
 				{{/if}}
 			</div>
 			<div class='weapon-rarity'>
-				<label for='system.rarity'>RARITY:</label>
+				<label for='system.rarity'>RARITY:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -51,7 +51,7 @@
 	<section class='weapon-bottom-section'>
 		<div class='stats'>
 			<div class='requirement'>
-				<label for='system.requirement'>REQUIRES:</label>
+				<label for='system.requirement'>REQUIRES:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -68,12 +68,12 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.requirement}}&nbsp;</div>
-					<div>{{system.requirement-type}}</div>
+					<span>{{system.requirement}}&nbsp;</span>
+					<span>{{system.requirement-type}}</span>
 				{{/if}}
 			</div>
 			<div class='damage'>
-				<label for='system.damage'>DAMAGE:</label>
+				<label for='system.damage'>DAMAGE:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -102,16 +102,16 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.damageFormula.diceCount}}&nbsp;</div>
-					<div>{{system.damageFormula.diceType}}</div>
-					<div>+{{system.damageFormula.damageBonus}}&nbsp;</div>
-					<div>{{system.damageType.damageType}}</div>
+					<span>{{system.damageFormula.diceCount}}&nbsp;</span>
+					<span>{{system.damageFormula.diceType}}</span>
+					<span>+{{system.damageFormula.damageBonus}}&nbsp;</span>
+					<span>{{system.damageType.damageType}}</span>
 				{{/if}}
 
 			</div>
 			<div class='accuracy'>
 				<label for='system.accuracy'>
-					ACCURACY:
+					ACCURACY:&nbsp;
 				</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
@@ -123,12 +123,12 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.accuracy}}</div>
+					<span>{{system.accuracy}}</span>
 				{{/if}}
 			</div>
 			<div class='range'>
 				<label for='system.range'>
-					RANGE:
+					RANGE:&nbsp;
 				</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
@@ -140,7 +140,7 @@
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.range}}</div>
+					<span>{{system.range}}</span>
 				{{/if}}
 
 			</div>

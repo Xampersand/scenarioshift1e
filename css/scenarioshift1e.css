@@ -620,6 +620,7 @@ input.input-text::selection {
   display: flex;
   flex-direction: row;
   flex-grow: 1 1 50%;
+  justify-content: space-around;
 }
 .weapon-bottom-section .stats {
   display: flex;
@@ -655,8 +656,16 @@ input.input-text::selection {
 .weapon-bottom-section .stats .damage label,
 .weapon-bottom-section .stats .accuracy label,
 .weapon-bottom-section .stats .range label {
+  font-size: 1.2rem;
   font-weight: bold;
-  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+.weapon-bottom-section .stats .requirement span,
+.weapon-bottom-section .stats .damage span,
+.weapon-bottom-section .stats .accuracy span,
+.weapon-bottom-section .stats .range span {
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 .weapon-actions {
   display: flex;

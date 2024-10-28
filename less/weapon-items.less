@@ -39,7 +39,7 @@
 	font-family: @font;
 	.set-display-flex-row();
 	flex-grow: 1 1 50%;
-
+	justify-content: space-around;
 	.stats {
 		display: flex;
 		flex-direction: column;
@@ -62,8 +62,13 @@
 				}
 			}
 			label {
+				font-size: 1.2rem;
 				font-weight: bold;
-				font-size: 1.1rem;
+				text-transform: uppercase;
+			}
+			span {
+				font-size: 1.2rem;
+				text-transform: uppercase;
 			}
 		}
 	}
