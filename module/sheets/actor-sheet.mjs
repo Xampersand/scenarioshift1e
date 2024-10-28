@@ -121,14 +121,6 @@ export class SS1EActorSheet extends ActorSheet {
 			this.isEditing = !this.isEditing;
 			this.render(); // Re-render the sheet with updated edit mode
 		});
-		// Activate tabs
-		let tabs = new Tabs({
-			navSelector: '.sheet-tabs',
-			contentSelector: '.sheet-body',
-			initial: 'features',
-		});
-		tabs.bind(html[0]);
-		this._tabs = [tabs];
 
 		html.find('#drop-zone').on('drop', this._onDropItem.bind(this));
 
