@@ -2,13 +2,54 @@
 	.character-inventory {
 		.sheet-inventory {
 			.item-container {
-				> div {
-					display: grid;
-					gap: 10px 10px;
-					grid-auto-columns: 50px;
-					grid-auto-rows: 50px;
-					grid-template-columns: 5;
-					grid-template-rows: 2;
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				// column-gap: 5%;
+				place-items: center;
+
+				button {
+					aspect-ratio: 1/2;
+					height: 50%;
+					width: 50%;
+					position: relative;
+
+					img {
+						width: 100%; // Adjust to fit the button
+						height: auto; // Maintain aspect ratio
+						display: block;
+						margin: auto; // Center image inside button
+						border: 0;
+					}
+
+					&:hover::after {
+						content: attr(title); // Use the title attribute as content
+						position: absolute; // Adjust to position the tooltip above the button
+						left: 50%;
+						bottom: 50%;
+						transform: translate(-50%, 325%);
+						background-color: @background-color; // Dark background for the tooltip
+						color: @primary-text-color;
+						border-radius: 10%;
+						font-size: 0.75rem;
+						width: 100%;
+						height: 25%;
+						display: flex;
+						text-align: center;
+						justify-content: center;
+						align-items: center;
+						// white-space: nowrap;
+						pointer-events: none; // Prevent interference with hover
+						opacity: 1;
+						visibility: visible;
+						transition: opacity 0.3s ease;
+						.add-glow(@glow-color, 5px);
+					}
+
+					// Hide the tooltip by default
+					&::after {
+						opacity: 0;
+						visibility: hidden;
+					}
 				}
 			}
 		}
