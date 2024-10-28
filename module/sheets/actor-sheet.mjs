@@ -15,7 +15,7 @@ export class SS1EActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['scenarioshift1e', 'sheet', 'actor'],
+			classes: ['ss1e', 'sheet', 'actor'],
 			width: 600,
 			height: 800,
 			resizable: false,
@@ -31,7 +31,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 	/** @override */
 	get template() {
-		return `systems/scenarioshift1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+		return `systems/ss1e/templates/actor/actor-${this.actor.type}-sheet.hbs`;
 	}
 	/* -------------------------------------------- */
 

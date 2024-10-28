@@ -43,17 +43,17 @@ export function prepareActiveEffectCategories(effects) {
   const categories = {
     temporary: {
       type: 'temporary',
-      label: game.i18n.localize('SCENARIOSHIFT1E.Effect.Temporary'),
+      label: game.i18n.localize('SS1E.Effect.Temporary'),
       effects: [],
     },
     passive: {
       type: 'passive',
-      label: game.i18n.localize('SCENARIOSHIFT1E.Effect.Passive'),
+      label: game.i18n.localize('SS1E.Effect.Passive'),
       effects: [],
     },
     inactive: {
       type: 'inactive',
-      label: game.i18n.localize('SCENARIOSHIFT1E.Effect.Inactive'),
+      label: game.i18n.localize('SS1E.Effect.Inactive'),
       effects: [],
     },
   };
