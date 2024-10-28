@@ -30,7 +30,7 @@ export class SS1EActor extends Actor {
 	prepareDerivedData() {
 		const actorData = this;
 		const systemData = actorData.system;
-		const flags = actorData.flags.scenarioshift1e || {};
+		const flags = actorData.flags.ss1e || {};
 
 		// Make separate methods for each Actor type (character, npc, etc.) to keep
 		// things organized.

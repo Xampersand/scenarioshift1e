@@ -15,7 +15,7 @@ export class SS1EItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			classes: ['scenarioshift1e', 'sheet', 'item'],
+			classes: ['ss1e', 'sheet', 'item'],
 			width: 520,
 			height: 480,
 			resizable: false,
@@ -31,7 +31,7 @@ export class SS1EItemSheet extends ItemSheet {
 
 	/** @override */
 	get template() {
-		const path = 'systems/scenarioshift1e/templates/item';
+		const path = 'systems/ss1e/templates/item';
 		// Return a single sheet for all item types.
 		// return `${path}/item-sheet.hbs`;
 

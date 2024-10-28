@@ -6,10 +6,10 @@
 export const preloadHandlebarsTemplates = async function () {
   await loadTemplates([
     // Actor partials.
-	'systems/scenarioshift1e/templates/actor/parts/inventory.hbs',
+	'systems/ss1e/templates/actor/parts/inventory.hbs',
     // Item partials
-    'systems/scenarioshift1e/templates/item/parts/item-effects.hbs',
+    'systems/ss1e/templates/item/parts/item-effects.hbs',
   ]);
-  const templatePath = await getTemplate('systems/scenarioshift1e/templates/actor/parts/inventory.hbs');
+  const templatePath = await getTemplate('systems/ss1e/templates/actor/parts/inventory.hbs');
   Handlebars.registerPartial('inventory', templatePath);
 };

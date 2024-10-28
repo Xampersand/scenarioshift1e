@@ -25,8 +25,10 @@ Hooks.once('init', function () {
 
 	// Add custom constants for configuration.
 	CONFIG.SS1E = SS1E;
-
-	// CONFIG.Actor.dataModels.character = CharacterData;
+	
+	// Object.assign(CONFIG.Actor.dataModels, {
+	// 	character: CharacterData
+	// })
 
 	/**
 	 * Set an initiative formula for the system
