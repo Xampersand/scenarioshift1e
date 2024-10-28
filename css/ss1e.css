@@ -30,6 +30,9 @@ button {
   color: #ffffff;
   font-family: 'Teko';
 }
+input {
+  color: #ffffff;
+}
 ol,
 nav,
 div #chat-form {
