@@ -97,7 +97,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) {}
+	_prepareCharacterData(context) { }
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -128,6 +128,9 @@ export class SS1EActorSheet extends ActorSheet {
 			initial: 'features',
 		});
 		tabs.bind(html[0]);
+		this._tabs = [tabs];
+
+		html.find('#drop-zone').on('drop', this._onDropItem.bind(this));
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.on('click', '.item-edit', (ev) => {
@@ -219,6 +222,55 @@ export class SS1EActorSheet extends ActorSheet {
 
 		// Finally, create the item!
 		return await Item.create(itemData, { parent: this.actor });
+	}
+
+	async _onDropItem(event) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		if ($(event.target).is('#drop-zone')) {
+			let data;
+			try {
+				data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+			} catch (err) {
+				console.error('Error parsing drop data:', err);
+				return false;
+			}
+
+			let itemData;
+			// Handle different data sources
+			if (data.pack) {
+				// The item is coming from a compendium
+				const pack = game.packs.get(data.pack);
+				if (pack) {
+					const item = await pack.getDocument(data.id);
+					itemData = item.toObject();
+				}
+			} else if (data.type === "Item") {
+				// The item is coming from another actor or source
+				const item = game.items.get(data.id) || await fromUuid(data.uuid);
+				if (item) {
+					itemData = item.toObject();
+				}
+			}
+
+  			// If we have valid item data, add it to the actor (or the drop zone)
+			if (itemData) {
+				const itemSlots = this.actor.system.itemSlots;
+				const items = this.actor.system.items;
+
+				if (items.length + 1 > itemSlots) {
+					return ui.notifications.error(
+						'Not enough item slots!'
+					);
+				}
+
+				delete itemData._id;
+				const updatedItems = [...this.actor.system.items, itemData];  // Add the new item to the existing array
+				await this.actor.update({ 'system.items': updatedItems });
+				this._tabs[0].activate('inventory');
+			}
+		}
 	}
 
 	/**
@@ -461,11 +513,11 @@ export class SS1EActorSheet extends ActorSheet {
 					<label>Select Character:</label>
 					<select id="target-character">
 						${game.actors
-							.filter((actor) => actor.hasPlayerOwner)
-							.map(
-								(actor) => `<option value="${actor.id}">${actor.name}</option>`
-							)
-							.join('')}
+					.filter((actor) => actor.hasPlayerOwner)
+					.map(
+						(actor) => `<option value="${actor.id}">${actor.name}</option>`
+					)
+					.join('')}
 					</select>
 				</div>
 				<div class="form-group">
