@@ -42,7 +42,7 @@ export class SS1EActor extends Actor {
 	 * Prepare Character type specific data
 	 */
 	_prepareCharacterData(actorData) {
-		if (actorData.type !== "character") return;
+		if (actorData.type !== 'character') return;
 
 		// Make modifications to data here. For example:
 		const systemData = actorData.system;
@@ -55,30 +55,36 @@ export class SS1EActor extends Actor {
 		const MANA_INCREMENT = 5;
 		const HEALTH_INCREMENT = 2.5;
 
-
 		// ARMOR, EVASION, ACCURACY
-		systemData.armor.value = Math.round((stats.str.value + stats.str.bonus) * ARMOR_INCREMENT);
-		systemData.evasion.value = Math.round((stats.agi.value + stats.agi.bonus) * EVASION_INCREMENT);
-		systemData.accuracy.value = Math.round((stats.agi.value + stats.agi.bonus) * ACCURACY_INCREMENT);
+		systemData.armor.value = Math.round(
+			(stats.str.value + stats.str.bonus) * ARMOR_INCREMENT
+		);
+		systemData.evasion.value = Math.round(
+			(stats.agi.value + stats.agi.bonus) * EVASION_INCREMENT
+		);
+		systemData.accuracy.value = Math.round(
+			(stats.agi.value + stats.agi.bonus) * ACCURACY_INCREMENT
+		);
 
 		// HEALTH, MANA
-		systemData.health.max = 5 + Math.round((stats.con.value + stats.con.bonus) * HEALTH_INCREMENT);
-		systemData.health.value = systemData.health.max;
+		systemData.health.max =
+			5 + Math.round((stats.con.value + stats.con.bonus) * HEALTH_INCREMENT);
 
-		systemData.mana.max = Math.round((stats.int.value + stats.int.bonus) * MANA_INCREMENT);
-		systemData.mana.value = systemData.mana.max;
+		systemData.mana.max = Math.round(
+			(stats.int.value + stats.int.bonus) * MANA_INCREMENT
+		);
 	}
 
 	/**
 	 * Prepare NPC type specific data.
 	 */
 	_prepareNpcData(actorData) {
-		if (actorData.type !== "npc") return;
+		if (actorData.type !== 'npc') return;
 
-    // Make modifications to data here. For example:
-    // const systemData = actorData.system;
-    // systemData.xp = systemData.cr * systemData.cr * 100;
-  }
+		// Make modifications to data here. For example:
+		// const systemData = actorData.system;
+		// systemData.xp = systemData.cr * systemData.cr * 100;
+	}
 
 	/**
 	 * Override getRollData() that's supplied to rolls.
@@ -98,22 +104,22 @@ export class SS1EActor extends Actor {
 	 * Prepare character roll data.
 	 */
 	_getCharacterRollData(data) {
-		if (this.type !== "character") return;
+		if (this.type !== 'character') return;
 
-    // Copy the ability scores to the top level, so that rolls can use
-    // formulas like `@str.mod + 4`.
-    if (data.attributes) {
-      for (let [k, v] of Object.entries(data.attributes)) {
-        data[k] = foundry.utils.deepClone(v);
-      }
-    }
-  }
+		// Copy the ability scores to the top level, so that rolls can use
+		// formulas like `@str.mod + 4`.
+		if (data.attributes) {
+			for (let [k, v] of Object.entries(data.attributes)) {
+				data[k] = foundry.utils.deepClone(v);
+			}
+		}
+	}
 
 	/**
 	 * Prepare NPC roll data.
 	 */
 	_getNpcRollData(data) {
-		if (this.type !== "npc") return;
+		if (this.type !== 'npc') return;
 
 		// Process additional NPC data here.
 	}

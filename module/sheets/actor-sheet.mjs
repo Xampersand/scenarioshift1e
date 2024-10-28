@@ -192,6 +192,10 @@ export class SS1EActorSheet extends ActorSheet {
 		html
 			.find('button[data-action="sendCoins"]')
 			.click(this._onSendCoins.bind(this));
+		// Event listener for HP bar click
+		html.find('#hp-bar').click(() => this._openHealthDialog());
+		// Event listener for MAana bar click
+		html.find('#mana-bar').click(() => this._openManaDialog());
 	}
 
 	/**
@@ -583,5 +587,79 @@ export class SS1EActorSheet extends ActorSheet {
 		console.log(
 			`Updated coins for ${actor.name}: ${currentCoins} → ${newCoins}`
 		);
+	}
+	_openHealthDialog() {
+		// Retrieve current health values
+		const currentHealth = this.actor.system.health.value;
+		const maxHealth = this.actor.system.health.max;
+
+		// Create dialog
+		new Dialog({
+			title: 'Edit Health',
+			content: `
+				<form>
+					<div class="form-group">
+						<label>Current Health</label>
+						<input type="number" name="health" value="${currentHealth}" min="0" max="${maxHealth}">
+					</div>
+				</form>
+			`,
+			buttons: {
+				save: {
+					label: 'Save',
+					callback: (html) => {
+						const newHealth = parseInt(html.find('input[name="health"]').val());
+
+						// Ensure health is within the valid range
+						if (!isNaN(newHealth) && newHealth >= 0 && newHealth <= maxHealth) {
+							this.actor.update({ 'system.health.value': newHealth });
+						} else {
+							ui.notifications.warn('Please enter a valid health value.');
+						}
+					},
+				},
+				cancel: {
+					label: 'Cancel',
+				},
+			},
+			default: 'save',
+		}).render(true);
+	}
+	_openManaDialog() {
+		// Retrieve current health values
+		const currentMana = this.actor.system.mana.value;
+		const maxMana = this.actor.system.mana.max;
+
+		// Create dialog
+		new Dialog({
+			title: 'Edit Mana',
+			content: `
+				<form>
+					<div class="form-group">
+						<label>Current Mana</label>
+						<input type="number" name="mana" value="${currentMana}" min="0" max="${maxMana}">
+					</div>
+				</form>
+			`,
+			buttons: {
+				save: {
+					label: 'Save',
+					callback: (html) => {
+						const newMana = parseInt(html.find('input[name="mana"]').val());
+
+						// Ensure health is within the valid range
+						if (!isNaN(newMana) && newMana >= 0 && newMana <= maxMana) {
+							this.actor.update({ 'system.mana.value': newMana });
+						} else {
+							ui.notifications.warn('Please enter a valid mana value.');
+						}
+					},
+				},
+				cancel: {
+					label: 'Cancel',
+				},
+			},
+			default: 'save',
+		}).render(true);
 	}
 }

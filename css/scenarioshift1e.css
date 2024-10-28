@@ -217,7 +217,7 @@ textarea:focus {
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container {
   position: absolute;
-  top: 29.4%;
+  top: 31%;
   left: 3.6%;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block {
@@ -228,16 +228,14 @@ textarea:focus {
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container {
   width: 150px;
-  height: auto;
+  height: 30px;
   background-color: #ffffff00;
   border: 1px solid #4fc4fa;
   border-bottom: 0;
   border-radius: 35% 35% 0px 0px;
   overflow: hidden;
   align-self: flex-end;
-}
-.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container span {
-  color: #ffffff;
+  position: relative;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
@@ -248,6 +246,10 @@ textarea:focus {
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container span {
   font-weight: normal;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block {
   display: flex;
@@ -257,15 +259,13 @@ textarea:focus {
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container {
   width: 150px;
-  height: auto;
-  background-color: #444;
+  height: 30px;
+  background-color: #ffffff00;
   border: 1px solid #4fc4fa;
   border-top: 0;
   border-radius: 0px 0px 35% 35%;
   overflow: hidden;
-}
-.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container span {
-  color: #ffffff;
+  position: relative;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container .mana-bar {
   height: 100%;
@@ -274,42 +274,46 @@ textarea:focus {
   display: flex;
   justify-content: center;
 }
-.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block span {
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container span {
   font-weight: normal;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.ss1e.sheet.actor.character .sheet-header.info div.info-container {
+.ss1e.sheet.actor.character .sheet-header div.info-container {
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.info-container label {
+.ss1e.sheet.actor.character .sheet-header div.info-container label {
   font-weight: bold;
   font-size: 1.2rem;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.attribute-container {
+.ss1e.sheet.actor.character .sheet-header div.attribute-container {
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
   font-weight: bold;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.attribute-container .attributes {
+.ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes {
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.attribute-container .attributes label {
+.ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes label {
   font-weight: bold;
   font-size: 1.2rem;
 }
-.ss1e.sheet.actor.character .sheet-header.info div.attribute-container .attributes span {
+.ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes span {
   font-weight: normal;
 }
-.ss1e.sheet.actor.character input.input-text {
+input.input-text {
   border: none;
   box-shadow: none;
   color: #ffffff;
 }
-.ss1e.sheet.actor.character input.input-text::selection {
+input.input-text::selection {
   background-color: #1807af;
 }
 .sheet-body {

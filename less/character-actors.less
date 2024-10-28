@@ -41,7 +41,7 @@
 				.hp-mana-container {
 					//overlapping bars with picture, values are cringe nad will probably need ot be redone
 					position: absolute;
-					top: 29.4%;
+					top: 31%;
 					left: 3.6%;
 					.hp-block {
 						.set-display-flex-row();
@@ -50,17 +50,14 @@
 
 						.hp-bar-container {
 							width: 150px;
-							height: auto;
+							height: 30px;
 							background-color: @transparent;
 							border: 1px solid @accent-color;
 							border-bottom: 0;
 							border-radius: 35% 35% 0px 0px;
 							overflow: hidden;
 							align-self: flex-end;
-							& span {
-								color: @primary-text-color;
-							}
-
+							position: relative;
 							.hp-bar {
 								height: 100%;
 								background-color: @hp-color;
@@ -70,6 +67,10 @@
 							}
 							& span {
 								font-weight: normal;
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
 							}
 						}
 					}
@@ -79,15 +80,13 @@
 						align-items: center;
 						.mana-bar-container {
 							width: 150px;
-							height: auto;
-							background-color: #444;
+							height: 30px;
+							background-color: @transparent;
 							border: 1px solid @accent-color;
 							border-top: 0;
 							border-radius: 0px 0px 35% 35%;
 							overflow: hidden;
-							& span {
-								color: @primary-text-color;
-							}
+							position: relative;
 							.mana-bar {
 								height: 100%;
 								background-color: @mana-color;
@@ -95,50 +94,54 @@
 								display: flex;
 								justify-content: center;
 							}
-						}
-						& span {
-							font-weight: normal;
+							& span {
+								font-weight: normal;
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+							}
 						}
 					}
 				}
 			}
+		}
 
-			& div.info-container {
-				flex: 1 1 50%; // FUCK flexbox | this makes it grow & shrink & take up 50% of the available space
+		& div.info-container {
+			flex: 1 1 50%; // FUCK flexbox | this makes it grow & shrink & take up 50% of the available space
+			display: flex;
+			flex-direction: column;
+			& label {
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
+		}
+		& div.attribute-container {
+			flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
+			display: flex; // for moving around flexy children
+			flex-direction: column; // make it column (by default it's in a row)
+			font-weight: bold;
+			& .attributes {
+				flex: 1 1 50%;
 				display: flex;
 				flex-direction: column;
 				& label {
 					font-weight: bold;
 					font-size: 1.2rem;
 				}
-			}
-			& div.attribute-container {
-				flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
-				display: flex; // for moving around flexy children
-				flex-direction: column; // make it column (by default it's in a row)
-				font-weight: bold;
-				& .attributes {
-					flex: 1 1 50%;
-					display: flex;
-					flex-direction: column;
-					& label {
-						font-weight: bold;
-						font-size: 1.2rem;
-					}
-					& span {
-						font-weight: normal;
-					}
+				& span {
+					font-weight: normal;
 				}
 			}
 		}
 	}
+}
 
-	& input.input-text {
-		.remove-default-glow(); // call the mixin
-		color: @primary-text-color;
-		&::selection {
-			background-color: @subaccent-color; // change the color when you select text, was red lol
-		}
+& input.input-text {
+	.remove-default-glow(); // call the mixin
+	color: @primary-text-color;
+	&::selection {
+		background-color: @subaccent-color; // change the color when you select text, was red lol
 	}
 }
 

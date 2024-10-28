@@ -16,34 +16,37 @@
 		<div class='sheet-body'>
 			<div class='tab' data-tab='features'>
 				<div class='sheet-header info'>
-					<div class="pfp-hp-mana">
+					<div class='pfp-hp-mana'>
 						<img
-						class='profile-img'
-						src='{{actor.img}}'
-						data-edit='img'
-						title='{{actor.name}}'
-						height='175'
-						width='175'
+							class='profile-img'
+							src='{{actor.img}}'
+							data-edit='img'
+							title='{{actor.name}}'
+							height='175'
+							width='175'
 						/>
-						<div class="hp-mana-container">
-						<div class='hp-block'>
-							<div class='hp-bar-container'>
-								<div class='hp-bar' style='width: {{hpBarWidth}}%;'><span
-										class='health'
+						<div class='hp-mana-container'>
+							<div class='hp-block' id='hp-bar'>
+								<div class='hp-bar-container'>
+									<div
+										class='hp-bar'
+										style='width: {{hpBarWidth}}%;'
+									></div><span
+										class='hp-text'
 									>{{system.health.value}}/{{system.health.max}}</span>
+
 								</div>
 							</div>
-						</div>
-						<div class='mana-block'>
-							<div class='mana-bar-container'>
-								<div class='mana-bar' style='width: {{manaBarWidth}}%;'>
-									<span
+							<div class='mana-block' id='mana-bar'>
+								<div class='mana-bar-container'>
+									<div class='mana-bar' style='width: {{manaBarWidth}}%;'>
+
+									</div><span
 										class='mana'
 									>{{system.mana.value}}/{{system.mana.max}}</span>
 								</div>
 							</div>
 						</div>
-					</div>
 					</div>
 					<div class='info-container'>
 						<label for='name' class='input-label'>NAME:</label>
@@ -98,57 +101,57 @@
 					<div class='attribute-container'>
 						<div class='attributes'>
 
-							<label for="sponsor">SPONSOR:</label>
+							<label for='sponsor'>SPONSOR:</label>
 							{{#if isEditing}}
-							<!-- Editable fields here -->
-							<input
-								type='text'
-								id='sponsor'
-								class='input-text'
-								name='system.sponsor'
-								value='{{system.sponsor}}'
-								placeholder='Sponsor'
-							/>
-						{{else}}
-							<!-- Non-editable display here -->
-							<span>{{system.sponsor}}</span>
-						{{/if}}
-						<label>ATTRIBUTES:</label>
-						<label>STIGMAS:</label>
-					</div>
+								<!-- Editable fields here -->
+								<input
+									type='text'
+									id='sponsor'
+									class='input-text'
+									name='system.sponsor'
+									value='{{system.sponsor}}'
+									placeholder='Sponsor'
+								/>
+							{{else}}
+								<!-- Non-editable display here -->
+								<span>{{system.sponsor}}</span>
+							{{/if}}
+							<label>ATTRIBUTES:</label>
+							<label>STIGMAS:</label>
+						</div>
 					</div>
 				</div>
 				<div class='body'>
 					<div class='stat-related'>
-						<div class="combat-stat-container">
+						<div class='combat-stat-container'>
 							<div class='combat-stat-block'>
-							<label
-								class='armor-label'
-								for='armor-stat'
-							>{{system.armor.label}}:&nbsp;</label>
-							<span
-								class='armor-stat'
-							>{{system.armor.value}}+({{system.armor.bonus}})</span>
-						</div>
-						<div class='combat-stat-block'>
-							<label
-								class='evasion-label'
-								for='evasion-stat'
-							>{{system.evasion.label}}:&nbsp;</label>
-							<span
-								class='evasion-stat'
-							>{{system.evasion.value}}+({{system.evasion.bonus}})</span>
-						</div>
-						<div class='combat-stat-block'>
-							<label
-								class='accuracy-label'
-								for='accuracy-stat'
-							>{{system.accuracy.label}}:&nbsp;</label>
-							<span
-								class='accuracy-stat'
-							>{{system.accuracy.value}}+({{system.accuracy.bonus}})</span>
+								<label
+									class='armor-label'
+									for='armor-stat'
+								>{{system.armor.label}}:&nbsp;</label>
+								<span
+									class='armor-stat'
+								>{{system.armor.value}}+({{system.armor.bonus}})</span>
 							</div>
+							<div class='combat-stat-block'>
+								<label
+									class='evasion-label'
+									for='evasion-stat'
+								>{{system.evasion.label}}:&nbsp;</label>
+								<span
+									class='evasion-stat'
+								>{{system.evasion.value}}+({{system.evasion.bonus}})</span>
 							</div>
+							<div class='combat-stat-block'>
+								<label
+									class='accuracy-label'
+									for='accuracy-stat'
+								>{{system.accuracy.label}}:&nbsp;</label>
+								<span
+									class='accuracy-stat'
+								>{{system.accuracy.value}}+({{system.accuracy.bonus}})</span>
+							</div>
+						</div>
 						<div class='stat-container'>
 							{{#each system.stats as |stat key|}}
 								<div class='stat flexrow'>
@@ -177,7 +180,7 @@
 								</div>
 							{{/each}}
 						</div>
-						
+
 					</div>
 					<div class='coin-container flexrow'>
 						<label
