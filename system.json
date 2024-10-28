@@ -1,5 +1,5 @@
 {
-	"id": "scenarioshift1e",
+	"id": "ss1e",
 	"title": "Scenario Shift 1st Edition",
 	"description": "Scenarios! Systems! Sponsors!",
 	"authors": [
@@ -16,8 +16,8 @@
 	"media": [
 		{
 			"type": "setup",
-			"url": "systems/scenarioshift1e/assets/images/orv_logo.png",
-			"thumbnail": "systems/scenarioshift1e/assets/images/orv_logo.png"
+			"url": "systems/ss1e/assets/images/orv_logo.png",
+			"thumbnail": "systems/ss1e/assets/images/orv_logo.png"
 		}
 	],
 	"version": "1.0.0",
@@ -25,14 +25,18 @@
 		"minimum": 12,
 		"verified": "12.331"
 	},
-	"esmodules": ["module/scenarioshift1e.mjs"],
-	"styles": ["css/scenarioshift1e.css"],
+	"esmodules": ["module/ss1e.mjs"],
+	"styles": ["css/ss1e.css"],
 	"packs": [],
 	"socket": false,
-	"background": "systems/scenarioshift1e/assets/images/orv_logo.png",
+	"background": "systems/ss1e/assets/images/orv_logo.png",
 	"gridDistance": 5,
 	"gridUnits": "ft",
 	"primaryTokenAttribute": "name",
 	"secondaryTokenAttribute": "armor",
-	"initiative": "1d20"
+	"documentTypes": {
+		"Actor": {
+			"character": {}
+		}
+	}
 }

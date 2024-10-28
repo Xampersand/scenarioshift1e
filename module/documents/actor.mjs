@@ -42,10 +42,16 @@ export class SS1EActor extends Actor {
 	 * Prepare Character type specific data
 	 */
 	_prepareCharacterData(actorData) {
+		console.log('hi?')
+
 		if (actorData.type !== 'character') return;
 
 		// Make modifications to data here. For example:
 		const systemData = actorData.system;
+
+		console.log("hiii")
+
+		console.log(systemData);
 
 		const stats = systemData.stats;
 

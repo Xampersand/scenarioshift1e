@@ -1,17 +1,17 @@
-export const SCENARIOSHIFT1E = {};
+export const SS1E = {};
 
 /**
  * The set of Ability Scores used within the system.
  * @type {Object}
  */
-SCENARIOSHIFT1E.attributes = {
+SS1E.attributes = {
   str: "Strength",
   agi: "Agility",
   con: "Constitution",
   int: "Intelligence"
 };
 
-SCENARIOSHIFT1E.attributeAbbreviations = {
+SS1E.attributeAbbreviations = {
 	str: "STR",
 	agi: "AGI",
 	con: "CON",
