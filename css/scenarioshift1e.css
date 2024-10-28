@@ -177,6 +177,20 @@ textarea:focus {
 .edit-mode-toggle:hover {
   box-shadow: 0 0 0px rgba(37, 186, 255), 0 0 0px rgba(37, 186, 255);
 }
+#sidebar {
+  background-image: none;
+}
+#sidebar .directory-header {
+  background-color: rgba(37, 186, 255, 0.4);
+}
+.ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container > div {
+  display: grid;
+  gap: 10px 10px;
+  grid-auto-columns: 50px;
+  grid-auto-rows: 50px;
+  grid-template-columns: 5;
+  grid-template-rows: 2;
+}
 .ss1e.sheet.actor.character {
   font-family: 'Teko';
 }

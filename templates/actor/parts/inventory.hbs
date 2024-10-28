@@ -2,12 +2,13 @@
 	<div class='resource-label' id="drop-zone">ADD ITEM</div>
 
 	<div class='item-container'>
-		<ul>
+		<div>
 			{{#each system.items}}
-				<li class="inventory-item" data-item-id="{{this._id}}">
-					<span class="item-name">{{this.name}}</span> 
-				</li>
+				<div class="inventory-item" data-item-id="{{this._id}}">
+					<span class="item-name">{{this.name}}</span>
+					<button class="item-equip">EQUIP</button>
+				</div>
 			{{/each}}
-		</ul>
+		</div>
 	</div>
 </div>
