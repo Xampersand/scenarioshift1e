@@ -1,9 +1,13 @@
-<div>
-	<button class='add-item' data-action='addItem'>ADD ITEM</button>
+<div class='sheet-inventory'>
+	<div class='resource-label' id="drop-zone">ADD ITEM</div>
 
-	<ul>
-		{{#each system.items}}
-		<li>{{name}} ({{quantity}})</li>
-		{{/each}}
-	</ul>
+	<div class='item-container'>
+		<ul>
+			{{#each system.items}}
+				<li class="inventory-item" data-item-id="{{this._id}}">
+					<span class="item-name">{{this.name}}</span> 
+				</li>
+			{{/each}}
+		</ul>
+	</div>
 </div>
