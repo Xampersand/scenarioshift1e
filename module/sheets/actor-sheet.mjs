@@ -83,6 +83,7 @@ export class SS1EActorSheet extends ActorSheet {
 			// as well as any items
 			this.actor.allApplicableEffects()
 		);
+
 		const hpValue = this.actor.system.health.value;
 		const hpMax = this.actor.system.health.max;
 		const hpBarWidth = (hpValue / hpMax) * 100;

@@ -6,7 +6,9 @@ import { SS1EActorSheet } from './sheets/actor-sheet.mjs';
 import { SS1EItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { SCENARIOSHIFT1E } from './helpers/config.mjs';
+import { SS1E } from './helpers/config.mjs';
+
+// import CharacterData from './data/character.mjs';
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -15,21 +17,23 @@ import { SCENARIOSHIFT1E } from './helpers/config.mjs';
 Hooks.once('init', function () {
 	// Add utility classes to the global game object so that they're more easily
 	// accessible in global contexts.
-	game.scenarioshift1e = {
+	game.ss1e = {
 		SS1EActor,
 		SS1EItem,
 		rollItemMacro,
 	};
 
 	// Add custom constants for configuration.
-	CONFIG.SCENARIOSHIFT1E = SCENARIOSHIFT1E;
+	CONFIG.SS1E = SS1E;
+
+	// CONFIG.Actor.dataModels.character = CharacterData;
 
 	/**
 	 * Set an initiative formula for the system
 	 * @type {String}
 	 */
 	CONFIG.Combat.initiative = {
-		formula: '1d20 + @stats.agi.value / 2',
+		formula: '1d100 + @stats.agi.value / 2',
 		decimals: 2,
 	};
 
@@ -44,14 +48,14 @@ Hooks.once('init', function () {
 
 	// Register sheet application classes
 	Actors.unregisterSheet('core', ActorSheet);
-	Actors.registerSheet('scenarioshift1e', SS1EActorSheet, {
+	Actors.registerSheet('ss1e', SS1EActorSheet, {
 		makeDefault: true,
-		label: 'SCENARIOSHIFT1E.SheetLabels.Actor',
+		label: 'SS1E.SheetLabels.Actor',
 	});
 	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('scenarioshift1e', SS1EItemSheet, {
+	Items.registerSheet('ss1e', SS1EItemSheet, {
 		makeDefault: true,
-		label: 'SCENARIOSHIFT1E.SheetLabels.Item',
+		label: 'SS1E.SheetLabels.Item',
 	});
 
 	// Preload Handlebars templates.
@@ -110,7 +114,7 @@ async function createItemMacro(data, slot) {
 	const item = await Item.fromDropData(data);
 
 	// Create the macro command using the uuid.
-	const command = `game.scenarioshift1e.rollItemMacro("${data.uuid}");`;
+	const command = `game.ss1e.rollItemMacro("${data.uuid}");`;
 	let macro = game.macros.find(
 		(m) => m.name === item.name && m.command === command
 	);
@@ -120,7 +124,7 @@ async function createItemMacro(data, slot) {
 			type: 'script',
 			img: item.img,
 			command: command,
-			flags: { 'scenarioshift1e.itemMacro': true },
+			flags: { 'ss1e.itemMacro': true },
 		});
 	}
 	game.user.assignHotbarMacro(macro, slot);

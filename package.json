@@ -1,11 +1,11 @@
 {
-  "name": "scenarioshift1e",
-  "version": "2.0.0",
-  "description": "CSS compiler for the scenarioshift1e system",
+  "name": "ss1e",
+  "version": "1.0.0",
+  "description": "CSS compiler for the ss1e system",
   "scripts": {
-    "build": "sass src/scss/scenarioshift1e.scss css/scenarioshift1e.css --style=expanded --no-source-map",
-    "watch": "sass src/scss/scenarioshift1e.scss css/scenarioshift1e.css --style=expanded --source-map --watch",
-    "generate": "node src/generate-scenarioshift1e-system.mjs"
+    "build": "sass src/scss/ss1e.scss css/ss1e.css --style=expanded --no-source-map",
+    "watch": "sass src/scss/ss1e.scss css/ss1e.css --style=expanded --source-map --watch",
+    "generate": "node src/generate-ss1e-system.mjs"
   },
   "browserslist": [
     "last 3 versions"
