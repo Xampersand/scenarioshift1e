@@ -12,6 +12,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
+* {
+  scrollbar-color: #ffffff #ffffff00;
+}
 .app {
   background-image: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
@@ -20,6 +23,9 @@
 }
 .app:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+i {
+  color: #ffffff;
 }
 label {
   color: #ffffff;

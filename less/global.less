@@ -1,9 +1,15 @@
 @import './mixins.less';
 @import './config.less';
+* {
+	scrollbar-color: @primary-text-color @transparent;
+}
 .app {
 	background-image: none;
 	.add-glow(@glow-color, 5px, 10px);
 	border-radius: 10px;
+}
+i {
+	color: @primary-text-color;
 }
 
 label {
