@@ -1,11 +1,17 @@
 <div class='sheet-inventory'>
-	<div class='resource-label' id="drop-zone">ADD ITEM</div>
+	<div class='resource-label' id='drop-zone'>ADD ITEM</div>
 
 	<div class='item-container'>
 		{{#each items}}
-		<button title="{{this.name}}" class="item-equip" data-item-id="{{this._id}}">
+		<button title="{{this.name}}" class="item-view" data-item-id="{{this._id}}">
 			<img src="{{this.img}}"></img>
 		</button>
 		{{/each}}
+		{{!-- {{#repeat system.itemSlots}}
+			
+		{{/repeat}} --}}
 	</div>
+	<button class='resource-label'>
+		PURCHASE 5 SLOTS
+	</button>
 </div>
