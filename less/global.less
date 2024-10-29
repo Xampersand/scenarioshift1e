@@ -36,6 +36,7 @@ option {
 button {
 	background-color: @background-color;
 	color: @primary-text-color;
+	font-family: @font;
 	&:hover {
 		.add-glow(@glow-color, 5px);
 	}
@@ -171,6 +172,7 @@ textarea {
 	background-color: @transparent;
 	.remove-default-glow(); // call the mixin
 	.add-glow(@glow-color, 0px, 0px);
+	font-family: @font;
 	height: fit-content;
 	background-color: @transparent;
 }

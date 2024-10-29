@@ -83,6 +83,7 @@ option {
 button {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
+  font-family: 'Teko';
 }
 button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
@@ -223,6 +224,7 @@ textarea:focus {
   box-shadow: none;
   box-shadow: 0 0 0px rgba(37, 186, 255), 0 0 0px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
+  font-family: 'Teko';
   height: fit-content;
   background-color: #ffffff00;
 }
