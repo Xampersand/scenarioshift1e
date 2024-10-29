@@ -8,6 +8,8 @@ import { SS1EItemSheet } from './sheets/item-sheet.mjs';
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { SS1E } from './helpers/config.mjs';
 
+import * as models from './data/_module.mjs';
+
 // import CharacterData from './data/character.mjs';
 
 /* -------------------------------------------- */
@@ -26,10 +28,6 @@ Hooks.once('init', function () {
 	// Add custom constants for configuration.
 	CONFIG.SS1E = SS1E;
 	
-	// Object.assign(CONFIG.Actor.dataModels, {
-	// 	character: CharacterData
-	// })
-
 	/**
 	 * Set an initiative formula for the system
 	 * @type {String}
@@ -39,9 +37,27 @@ Hooks.once('init', function () {
 		decimals: 2,
 	};
 
+	console.log("bye template.json, hello data models");
+
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = SS1EActor;
+	CONFIG.Actor.dataModels = {
+		character: models.SS1ECharacter,
+		constellation: models.SS1EConstellation,
+		npc: models.SS1ENPC
+	}
+
 	CONFIG.Item.documentClass = SS1EItem;
+	CONFIG.Item.dataModels = {
+		item: models.SS1EItem,
+		consumable: models.SS1EConsumable,
+		meleeWeapon: models.SS1EMeleeWeapon,
+		rangedWeapon: models.SS1ERangedWeapon,
+		ammo: models.SS1EAmmo,
+
+		skill: models.SS1ESkill,
+	}
+
 
 	// Active Effects are never copied to the Actor,
 	// but will still apply to the Actor from within the Item

@@ -23,6 +23,10 @@ button {
 	font-family: @font;
 }
 
+input {
+	color: @primary-text-color;
+}
+
 ol,
 nav,
 div #chat-form {
@@ -110,8 +114,10 @@ li.chat-message.whisper {
 // dialog changes
 
 .window-content {
-	&.dialog-content {
-		background-color: @background-color;
+	& .dialog-content {
+		& input {
+			color: @primary-text-color;
+		}
 	}
 }
 textarea {

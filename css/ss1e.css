@@ -30,6 +30,9 @@ button {
   color: #ffffff;
   font-family: 'Teko';
 }
+input {
+  color: #ffffff;
+}
 ol,
 nav,
 div #chat-form {
@@ -124,8 +127,8 @@ li.chat-message.whisper {
 li.chat-message.whisper .whisper-to {
   color: #4fc4fa;
 }
-.window-content.dialog-content {
-  background-color: rgba(37, 186, 255, 0.4);
+.window-content .dialog-content input {
+  color: #ffffff;
 }
 textarea {
   background-image: none !important;

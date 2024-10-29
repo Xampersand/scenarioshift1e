@@ -33,17 +33,18 @@
 										style='width: {{hpBarWidth}}%;'
 									></div><span
 										class='hp-text'
-									>{{system.health.value}}/{{system.health.max}}</span>
+									>{{system.resources.health.value}}/{{system.resources.health.max}}</span>
 
 								</div>
 							</div>
 							<div class='mana-block' id='mana-bar'>
 								<div class='mana-bar-container'>
-									<div class='mana-bar' style='width: {{manaBarWidth}}%;'>
-
-									</div><span
-										class='mana'
-									>{{system.mana.value}}/{{system.mana.max}}</span>
+									<div 
+										class='mana-bar' 
+										style='width: {{manaBarWidth}}%;'
+									></div><span
+										class='mana-text'
+									>{{system.resources.mana.value}}/{{system.resources.mana.max}}</span>
 								</div>
 							</div>
 						</div>
@@ -124,54 +125,30 @@
 				<div class='body'>
 					<div class='stat-related'>
 						<div class='combat-stat-container'>
+							{{#each system.derived as |stat key|}}
 							<div class='combat-stat-block'>
 								<label
-									class='armor-label'
-									for='armor-stat'
-								>{{system.armor.label}}:&nbsp;</label>
+									class='{{key}}-label'
+									for='{{key}}-stat'
+								>{{stat.label}}:&nbsp;</label>
 								<span
-									class='armor-stat'
-								>{{system.armor.value}}+({{system.armor.bonus}})</span>
+									class='{{key}}-stat'
+								>{{stat.value}} (+{{stat.bonus}})</span>
 							</div>
-							<div class='combat-stat-block'>
-								<label
-									class='evasion-label'
-									for='evasion-stat'
-								>{{system.evasion.label}}:&nbsp;</label>
-								<span
-									class='evasion-stat'
-								>{{system.evasion.value}}+({{system.evasion.bonus}})</span>
-							</div>
-							<div class='combat-stat-block'>
-								<label
-									class='accuracy-label'
-									for='accuracy-stat'
-								>{{system.accuracy.label}}:&nbsp;</label>
-								<span
-									class='accuracy-stat'
-								>{{system.accuracy.value}}+({{system.accuracy.bonus}})</span>
-							</div>
+							{{/each}}
 						</div>
 						<div class='stat-container'>
 							{{#each system.stats as |stat key|}}
 								<div class='stat flexrow'>
-									<label
-										for='system.stats.{{key}}.value'
-										class='resource-label rollable'
-										data-roll='@stats.{{key}}.value'
-										data-label='{{stat.label}}'
-									>
-										{{stat.label}}:
-									</label>
-									<span class='resource-span'>Lv.</span>
-									<span
-										class='resource-span'
-										name='system.stats.{{key}}.value'
-									>{{stat.value}}</span>
-									<span
-										class='resource-span'
-										name='system.stats.{{key}}.value'
-									>(+{{stat.bonus}})</span>
+									<div class='combat-stat-block'>
+										<label
+											class='{{key}}-label'
+											for='{{key}}-stat'
+										>{{stat.label}}:&nbsp;</label>
+										<span
+											class='{{key}}-stat'
+										>{{stat.value}} (+{{stat.bonus}})</span>
+									</div>
 									<button
 										class='resource-span'
 										data-action='attributeLevelUp'
