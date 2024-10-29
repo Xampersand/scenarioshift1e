@@ -16,10 +16,39 @@ p,
 input {
 	color: @primary-text-color;
 }
-input[type='search']:focus {
-	box-shadow: 0 0 5px @accent-color;
-	::placeholder {
+a:hover {
+	text-shadow: 0 0 10px @accent-color;
+}
+i:hover {
+	text-shadow: 0 0 10px @accent-color;
+}
+input {
+	border-color: @accent-color;
+	.remove-default-glow();
+	&::placeholder {
 		color: @primary-text-color;
+	}
+	&:focus {
+		.remove-default-glow();
+		.add-glow(@glow-color, 5px, 10px);
+	}
+	&::selection {
+		.remove-default-glow();
+		.add-glow(@glow-color, 5px, 10px);
+	}
+	&[type='text']:focus {
+		border-color: @accent-color .remove-default-glow();
+		.add-glow(@glow-color, 5px, 10px);
+	}
+	&[type='search'] {
+		border-color: @accent-color;
+		&::placeholder {
+			color: @primary-text-color;
+		}
+		&:focus {
+			.remove-default-glow();
+			.add-glow(@glow-color, 5px, 10px);
+		}
 	}
 }
 
@@ -40,6 +69,7 @@ button {
 	&:hover {
 		.add-glow(@glow-color, 5px);
 	}
+	border-color: @accent-color;
 }
 
 ol,
@@ -136,6 +166,9 @@ li.chat-message.whisper {
 			color: @primary-text-color;
 		}
 	}
+	p.notes {
+		color: @primary-text-color;
+	}
 }
 textarea {
 	background-image: none !important;
@@ -143,6 +176,14 @@ textarea {
 	color: @primary-text-color;
 	&:focus {
 		box-shadow: none;
+	}
+}
+.dice-roll {
+	.dice-formula {
+		border: 1px solid @accent-color;
+	}
+	.dice-total {
+		border: 1px solid @accent-color;
 	}
 }
 
@@ -215,7 +256,14 @@ textarea {
 }
 #players {
 	border: 0;
+	background-color: @background-color;
 }
 #settings {
 	background-color: @background-color;
+}
+#hotbar {
+	.bar-controls {
+		background-color: @background-color;
+		border-color: @accent-color;
+	}
 }

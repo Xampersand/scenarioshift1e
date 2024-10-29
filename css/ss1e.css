@@ -66,11 +66,60 @@ p,
 input {
   color: #ffffff;
 }
-input[type='search']:focus {
-  box-shadow: 0 0 5px #4fc4fa;
+a:hover {
+  text-shadow: 0 0 10px #4fc4fa;
 }
-input[type='search']:focus ::placeholder {
+i:hover {
+  text-shadow: 0 0 10px #4fc4fa;
+}
+input {
+  border-color: #4fc4fa;
+  border: none;
+  box-shadow: none;
+}
+input::placeholder {
   color: #ffffff;
+}
+input:focus {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input:focus:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+input::selection {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input::selection:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+input[type='text']:focus {
+  border-color: #4fc4fa border: none; box-shadow: none;;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input[type='text']:focus:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+input[type='search'] {
+  border-color: #4fc4fa;
+}
+input[type='search']::placeholder {
+  color: #ffffff;
+}
+input[type='search']:focus {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input[type='search']:focus:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 label,
 select {
@@ -84,6 +133,7 @@ button {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
   font-family: 'Teko';
+  border-color: #4fc4fa;
 }
 button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
@@ -181,6 +231,9 @@ li.chat-message.whisper .whisper-to {
 .window-content .dialog-content input {
   color: #ffffff;
 }
+.window-content p.notes {
+  color: #ffffff;
+}
 textarea {
   background-image: none !important;
   border: 0;
@@ -188,6 +241,12 @@ textarea {
 }
 textarea:focus {
   box-shadow: none;
+}
+.dice-roll .dice-formula {
+  border: 1px solid #4fc4fa;
+}
+.dice-roll .dice-total {
+  border: 1px solid #4fc4fa;
 }
 .sheet-tabs.tabs {
   display: flex;
@@ -267,9 +326,14 @@ textarea:focus {
 }
 #players {
   border: 0;
+  background-color: rgba(37, 186, 255, 0.4);
 }
 #settings {
   background-color: rgba(37, 186, 255, 0.4);
+}
+#hotbar .bar-controls {
+  background-color: rgba(37, 186, 255, 0.4);
+  border-color: #4fc4fa;
 }
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
