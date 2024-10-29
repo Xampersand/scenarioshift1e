@@ -24,13 +24,18 @@
 .app:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
-i {
+i,
+p,
+input {
   color: #ffffff;
 }
-label {
-  color: #ffffff;
-  font-family: 'Teko';
+input[type='search']:focus {
+  box-shadow: 0 0 5px #4fc4fa;
 }
+input[type='search']:focus ::placeholder {
+  color: #ffffff;
+}
+label,
 select {
   color: #ffffff;
   font-family: 'Teko';
@@ -45,8 +50,12 @@ button {
   color: #ffffff;
   font-family: 'Teko';
 }
-input {
-  color: #ffffff;
+button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+button:hover:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 ol,
 nav,
@@ -115,6 +124,9 @@ li.chat-message.message {
 li.chat-message.message .message-sender {
   color: #ffffff;
 }
+li.chat-message.message .whipser-to {
+  color: #ffffff;
+}
 li.chat-message.message .message-content {
   color: #ffffff;
 }
@@ -122,7 +134,7 @@ li.chat-message.message .message-timestamp {
   color: #ffffff;
 }
 li.chat-message.message .flavor-text {
-  color: #4fc4fa;
+  color: #ffffff;
 }
 li.chat-message.whisper {
   background-color: rgba(37, 186, 255, 0.4);
@@ -194,6 +206,7 @@ textarea:focus {
 #sidebar #sidebar-tabs {
   box-shadow: 0 0 10px #4fc4fa;
   border-bottom: 1px solid #1807af;
+  margin-bottom: 0;
 }
 #sidebar #sidebar-tabs .item {
   border: 1px solid #4fc4fa;
@@ -205,6 +218,17 @@ textarea:focus {
   border: 1px solid #4fc4fa;
   text-shadow: 0 0 10px #4fc4fa;
   box-shadow: 0 0 6px inset #4fc4fa;
+}
+#sidebar #chat #chat-controls {
+  margin: 0;
+}
+#sidebar #chat #chat-form {
+  margin: 0;
+  padding-bottom: 0;
+}
+#sidebar #chat #chat-form #chat-message {
+  margin: 0;
+  padding: 0;
 }
 #players {
   border: 0;

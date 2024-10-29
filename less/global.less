@@ -8,15 +8,19 @@
 	.add-glow(@glow-color, 5px, 10px);
 	border-radius: 10px;
 }
-i {
+i,
+p,
+input {
 	color: @primary-text-color;
 }
-
-label {
-	color: @primary-text-color;
-	font-family: @font;
+input[type='search']:focus {
+	box-shadow: 0 0 5px @accent-color;
+	::placeholder {
+		color: @primary-text-color;
+	}
 }
 
+label,
 select {
 	color: @primary-text-color;
 	font-family: @font;
@@ -32,10 +36,9 @@ button {
 	background-color: @background-color;
 	color: @primary-text-color;
 	font-family: @font;
-}
-
-input {
-	color: @primary-text-color;
+	&:hover {
+		.add-glow(@glow-color, 5px);
+	}
 }
 
 ol,
@@ -103,6 +106,9 @@ li.chat-message.message {
 	.message-sender {
 		color: @primary-text-color;
 	}
+	.whipser-to {
+		color: @primary-text-color;
+	}
 	.message-content {
 		color: @primary-text-color;
 	}
@@ -110,7 +116,7 @@ li.chat-message.message {
 		color: @primary-text-color;
 	}
 	.flavor-text {
-		color: @accent-color;
+		color: @primary-text-color;
 	}
 }
 li.chat-message.whisper {
@@ -169,7 +175,7 @@ textarea {
 	height: fit-content;
 	background-color: @transparent;
 }
-
+//SIDEBAR STYLES, WIP
 #sidebar {
 	background-image: none;
 	.directory-header {
@@ -179,6 +185,7 @@ textarea {
 	#sidebar-tabs {
 		box-shadow: 0 0 10px @accent-color;
 		border-bottom: 1px solid @subaccent-color;
+		margin-bottom: 0;
 		.item {
 			border: 1px solid @accent-color;
 			&:hover {
@@ -189,6 +196,19 @@ textarea {
 			border: 1px solid @accent-color;
 			text-shadow: 0 0 10px @accent-color;
 			box-shadow: 0 0 6px inset @accent-color;
+		}
+	}
+	#chat {
+		#chat-controls {
+			margin: 0;
+		}
+		#chat-form {
+			margin: 0;
+			padding-bottom: 0;
+			#chat-message {
+				margin: 0;
+				padding: 0;
+			}
 		}
 	}
 }
