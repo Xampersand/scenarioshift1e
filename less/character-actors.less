@@ -143,9 +143,10 @@
 	}
 }
 
-.sheet-body {
+.body {
 	display: flex;
 	flex-direction: column;
+	padding-bottom: 10px; // spacing between sheet blocks
 	& .resource-label {
 		text-align: center;
 	}
@@ -220,5 +221,27 @@
 		.remove-default-glow(); // call the mixin
 		.add-glow(@glow-color, 2px, 5px);
 		font-size: 1.2rem;
+	}
+}
+.bottom {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	flex: 1;
+	.favorite-items {
+		display: flex;
+		flex-direction: column;
+	}
+	.quick-actions {
+		display: flex;
+		flex-direction: column;
+		& button {
+			.remove-default-glow(); // call the mixin
+			.add-glow(@glow-color, 2px, 5px);
+			font-size: 1.2rem;
+			margin: 5px;
+			width: 140px;
+			text-transform: uppercase;
+		}
 	}
 }

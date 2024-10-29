@@ -455,84 +455,112 @@ input.input-text {
 input.input-text::selection {
   background-color: #1807af;
 }
-.sheet-body {
+.body {
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 }
-.sheet-body .resource-label {
+.body .resource-label {
   text-align: center;
 }
-.sheet-body .stat-related {
+.body .stat-related {
   display: flex;
   flex-direction: row;
 }
-.sheet-body .stat-related .combat-stat-container {
+.body .stat-related .combat-stat-container {
   display: flex;
   flex-direction: column;
   flex: 1 1 10%;
   justify-content: space-evenly;
 }
-.sheet-body .stat-related .combat-stat-container .combat-stat-block {
+.body .stat-related .combat-stat-container .combat-stat-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   flex: 1 1 50%;
 }
-.sheet-body .stat-related .combat-stat-container .combat-stat-block label {
+.body .stat-related .combat-stat-container .combat-stat-block label {
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
   width: 100px;
 }
-.sheet-body .stat-related .combat-stat-container .combat-stat-block span {
+.body .stat-related .combat-stat-container .combat-stat-block span {
   font-size: 1.5rem;
   width: 60px;
   text-align: end;
 }
-.sheet-body .stat-related .stat-container {
+.body .stat-related .stat-container {
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
 }
-.sheet-body .stat-related .stat-container .stat-flexrow {
+.body .stat-related .stat-container .stat-flexrow {
   display: flex;
   flex-direction: row;
 }
-.sheet-body .stat-related .stat-container .stat-flexrow .combat-stat-block {
+.body .stat-related .stat-container .stat-flexrow .combat-stat-block {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   flex: 1 1 50%;
 }
-.sheet-body .stat-related .stat-container .stat-flexrow .combat-stat-block label {
+.body .stat-related .stat-container .stat-flexrow .combat-stat-block label {
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
   width: 115px;
 }
-.sheet-body .stat-related .stat-container .stat-flexrow .combat-stat-block span {
+.body .stat-related .stat-container .stat-flexrow .combat-stat-block span {
   font-size: 1.5rem;
   width: 60px;
   text-align: end;
 }
-.sheet-body .stat-related .stat-container .stat-flexrow button {
+.body .stat-related .stat-container .stat-flexrow button {
   margin: 5px;
   flex: 0 1 10%;
 }
-.sheet-body .coin-container {
+.body .coin-container {
   flex-direction: row;
   font-size: 1.5rem;
 }
-.sheet-body button {
+.body button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   font-size: 1.2rem;
 }
-.sheet-body button:hover {
+.body button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex: 1;
+}
+.bottom .favorite-items {
+  display: flex;
+  flex-direction: column;
+}
+.bottom .quick-actions {
+  display: flex;
+  flex-direction: column;
+}
+.bottom .quick-actions button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  font-size: 1.2rem;
+  margin: 5px;
+  width: 140px;
+  text-transform: uppercase;
+}
+.bottom .quick-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.constellation.header .header {
