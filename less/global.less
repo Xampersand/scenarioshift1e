@@ -176,6 +176,21 @@ textarea {
 		background-color: @background-color;
 	}
 	border: 0;
+	#sidebar-tabs {
+		box-shadow: 0 0 10px @accent-color;
+		border-bottom: 1px solid @subaccent-color;
+		.item {
+			border: 1px solid @accent-color;
+			&:hover {
+				text-shadow: 0 0 10px @accent-color;
+			}
+		}
+		.item.active {
+			border: 1px solid @accent-color;
+			text-shadow: 0 0 10px @accent-color;
+			box-shadow: 0 0 6px inset @accent-color;
+		}
+	}
 }
 #players {
 	border: 0;

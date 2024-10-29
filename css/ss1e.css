@@ -191,6 +191,21 @@ textarea:focus {
 #sidebar .directory-header {
   background-color: rgba(37, 186, 255, 0.4);
 }
+#sidebar #sidebar-tabs {
+  box-shadow: 0 0 10px #4fc4fa;
+  border-bottom: 1px solid #1807af;
+}
+#sidebar #sidebar-tabs .item {
+  border: 1px solid #4fc4fa;
+}
+#sidebar #sidebar-tabs .item:hover {
+  text-shadow: 0 0 10px #4fc4fa;
+}
+#sidebar #sidebar-tabs .item.active {
+  border: 1px solid #4fc4fa;
+  text-shadow: 0 0 10px #4fc4fa;
+  box-shadow: 0 0 6px inset #4fc4fa;
+}
 #players {
   border: 0;
 }
