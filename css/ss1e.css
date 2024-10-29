@@ -14,6 +14,12 @@
 }
 .app {
   background-image: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  border-radius: 20px;
+}
+.app:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 label {
   color: #ffffff;
@@ -70,27 +76,18 @@ div #chat-controls {
 .window-app .window-content {
   padding: 0;
   background-image: none;
-  border-radius: 10px;
+  border-radius: 0 0 20px 20px;
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
   overflow: visible;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-.window-app .window-content:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 .window-app .window-header {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
   padding: 0px;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
   overflow: visible;
-  border-radius: 10px 10px 0 0;
-}
-.window-app .window-header:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  border: none;
+  border-radius: 20px 20px 0 0;
 }
 .window-app .window-header a {
   background-color: none;
