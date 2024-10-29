@@ -335,15 +335,14 @@ textarea:focus {
 .ss1e.sheet.actor.character .sheet-header.info {
   color: #ffffff;
   font-size: 1.5rem;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: space-between;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1 1 50%;
-  padding-bottom: 25px;
+  width: 200px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img {
   border: none;
@@ -355,9 +354,8 @@ textarea:focus {
   box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container {
-  position: absolute;
-  top: 31%;
-  left: 3.6%;
+  position: relative;
+  bottom: 40px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block {
   display: flex;
@@ -421,19 +419,19 @@ textarea:focus {
   transform: translate(-50%, -50%);
 }
 .ss1e.sheet.actor.character .sheet-header div.info-container {
-  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
+  width: 200px;
 }
 .ss1e.sheet.actor.character .sheet-header div.info-container label {
   font-weight: bold;
   font-size: 1.2rem;
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container {
-  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
   font-weight: bold;
+  width: 200px;
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes {
   flex: 1 1 50%;
@@ -539,16 +537,17 @@ input.input-text::selection {
 .bottom {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  flex: 1;
 }
 .bottom .favorite-items {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 .bottom .quick-actions {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
 }
 .bottom .quick-actions button {
   border: none;

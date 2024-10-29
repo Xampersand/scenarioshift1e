@@ -12,7 +12,6 @@
 		flex-grow: 0; // makes it shrink and take up as little space as possible
 		text-align: center;
 	}
-
 	.sheet-header {
 		// center stuff
 		display: flex;
@@ -22,15 +21,15 @@
 		&.info {
 			color: @primary-text-color;
 			font-size: 1.5rem;
-			align-items: flex-start; // move the name and age (and img) to the very top
+			align-items: stretch; // move the name and age (and img) to the very top
 			justify-content: space-between;
 
 			.pfp-hp-mana {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				flex: 1 1 50%;
-				padding-bottom: 25px; // stops hp/mana bar from overlapping
+				// flex: 1 1 50%; sheet is always 600px wide, im just gonna manually set all to 200 for now
+				width: 200px;
 				& img.profile-img {
 					border: none;
 					.add-glow(@glow-color, 5px, 20px);
@@ -38,9 +37,8 @@
 				}
 				.hp-mana-container {
 					//overlapping bars with picture, values are cringe nad will probably need ot be redone
-					position: absolute;
-					top: 31%;
-					left: 3.6%;
+					position: relative;
+					bottom: 40px;
 					.hp-block {
 						.set-display-flex-row();
 						justify-content: space-evenly;
@@ -106,19 +104,21 @@
 		}
 
 		& div.info-container {
-			flex: 1 1 50%; // FUCK flexbox | this makes it grow & shrink & take up 50% of the available space
+			// flex: 1 1 50%; // FUCK flexbox | this makes it grow & shrink & take up 50% of the available space
 			display: flex;
 			flex-direction: column;
+			width: 200px;
 			& label {
 				font-weight: bold;
 				font-size: 1.2rem;
 			}
 		}
 		& div.attribute-container {
-			flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
+			// flex: 1 1 50%; // FUCK flexbox | this makes it share the space evenly with the info
 			display: flex; // for moving around flexy children
 			flex-direction: column; // make it column (by default it's in a row)
 			font-weight: bold;
+			width: 200px;
 			& .attributes {
 				flex: 1 1 50%;
 				display: flex;
@@ -226,15 +226,16 @@
 .bottom {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
-	flex: 1;
 	.favorite-items {
 		display: flex;
 		flex-direction: column;
+		flex-grow: 1;
 	}
 	.quick-actions {
 		display: flex;
 		flex-direction: column;
+		flex-grow: 1;
+		align-items: center;
 		& button {
 			.remove-default-glow(); // call the mixin
 			.add-glow(@glow-color, 2px, 5px);
