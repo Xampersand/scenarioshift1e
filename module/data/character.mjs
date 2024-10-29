@@ -26,6 +26,11 @@ export default class SS1ECharacter extends SS1EActorBase {
 		const MANA_INCREMENT = 5;
 		const HEALTH_INCREMENT = 2.5;
 
+		// How much stat do you need to get 1% inc damage
+		const STRENGTH_DAMAGE_SCALING = 1;
+		const AGILITY_DAMAGE_SCALING = 2;
+		const INTELLIGENCE_DAMAGE_SCALING = 1;
+
 		const [derived, stats] = [this.derived, this.stats];
 		const resources = this.resources;
 
@@ -40,6 +45,14 @@ export default class SS1ECharacter extends SS1EActorBase {
 			(stats.agi.value + stats.agi.bonus + stats.int.value + stats.int.bonus) *
 				ACCURACY_INCREMENT
 		);
+
+		// DAMAGE MULTIPLEIRS BASED ON STATS
+		derived.strStatDmgMulti.value =
+			1 + stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
+		derived.agiStatDmgMulti.value =
+			1 + stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
+		derived.intStatDmgMulti.value =
+			1 + stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
 
 		// HEALTH, MANA
 		this.resources.health.max =

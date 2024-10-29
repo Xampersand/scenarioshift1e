@@ -121,14 +121,19 @@
 					<div class='stat-related'>
 						<div class='combat-stat-container'>
 							{{#each system.derived as |stat key|}}
-								<div class='combat-stat-block'>
-									<label
-										class='{{key}}-label'
-										for='{{key}}-stat'
-									>{{stat.label}}:&nbsp;</label>
-									<span class='{{key}}-stat'>{{stat.value}}
-										(+{{stat.bonus}})</span>
-								</div>
+								{{#if
+									(or (eq key 'accuracy') (eq key 'armor') (eq key 'evasion'))
+								}}
+									<div class='combat-stat-block'>
+										<label
+											class='{{key}}-label'
+											for='{{key}}-stat'
+										>{{stat.label}}:&nbsp;</label>
+										<span class='{{key}}-stat'>{{stat.value}}
+											(+{{stat.bonus}})
+										</span>
+									</div>
+								{{/if}}
 							{{/each}}
 						</div>
 						<div class='stat-container'>
@@ -170,11 +175,11 @@
 						<button class='resource-label' data-action='sendCoins'>SEND COINS</button>
 					</div>
 				</div>
-				<div class="bottom">
-					<div class="favorite-items">Favorite items go here</div>
-					<div class="quick-actions">
-						<button id="roll-accuracy" class="rollable">Roll Accuracy</button>
-						<button id="roll-attack-damage" class="rollable">Roll Attack Damage</button>
+				<div class='bottom'>
+					<div class='favorite-items'>Favorite items go here</div>
+					<div class='quick-actions'>
+						<button id='roll-accuracy' class='rollable'>Roll Accuracy</button>
+						<button id='roll-attack-damage' class='rollable'>Roll Attack Damage</button>
 					</div>
 				</div>
 			</div>
