@@ -78,7 +78,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) {}
+	_prepareCharacterData(context) { }
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -207,51 +207,22 @@ export class SS1EActorSheet extends ActorSheet {
 		event.preventDefault();
 		event.stopPropagation();
 
-		console.log('dropp?');
-
 		if (!$(event.target).is('#drop-zone')) return;
 
-		console.log('drop!');
+		const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+		const item = await Item.implementation.fromDropData(data);
 
-		let data;
-		try {
-			data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
-		} catch (err) {
-			console.error('Error parsing drop data:', err);
-			return false;
+		const itemSlots = this.actor.system.itemSlots;
+		const items = this.actor.items;
+
+		if (items.size >= itemSlots) {
+			return ui.notifications.error('Not enough item slots!');
 		}
 
-		let itemData;
-		if (data.pack) {
-			const pack = game.packs.get(data.pack);
-			if (pack) {
-				const item = await pack.getDocument(data.id);
-				itemData = item.toObject();
-			}
-		} else if (data.type === 'Item') {
-			const item = game.items.get(data.id) || (await fromUuid(data.uuid));
-			if (item) {
-				itemData = item.toObject();
-			}
-		}
-
-		if (itemData) {
-			console.log(itemData);
-
-			const itemSlots = this.actor.system.itemSlots;
-			const items = this.actor.items;
-
-			if (items.size >= itemSlots) {
-				return ui.notifications.error('Not enough item slots!');
-			}
-
-			delete itemData._id;
-			const updatedItems = [...this.actor.system.items, itemData];
-			await this.actor.update({ 'system.items': updatedItems });
-
-			this._tabs[0].activate('inventory');
-		}
+		await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
+		this._tabs[0].activate('inventory');
 	}
+
 
 	/**
 	 * Handle clickable rolls.
@@ -523,11 +494,11 @@ export class SS1EActorSheet extends ActorSheet {
 					<label>Select Character:</label>
 					<select id="target-character">
 						${game.actors
-							.filter((actor) => actor.hasPlayerOwner)
-							.map(
-								(actor) => `<option value="${actor.id}">${actor.name}</option>`
-							)
-							.join('')}
+					.filter((actor) => actor.hasPlayerOwner)
+					.map(
+						(actor) => `<option value="${actor.id}">${actor.name}</option>`
+					)
+					.join('')}
 					</select>
 				</div>
 				<div class="form-group">

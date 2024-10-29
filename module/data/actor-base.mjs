@@ -47,7 +47,7 @@ export default class SS1EActorBase extends foundry.abstract.TypeDataModel {
 				return obj;
 			}, {})
 		);
-		
+
 		// Keep derived and stats using ValueData without max
 		schema.derived = new fields.SchemaField(
 			Object.keys(CONFIG.SS1E.derived).reduce((obj, stat) => {
@@ -55,7 +55,7 @@ export default class SS1EActorBase extends foundry.abstract.TypeDataModel {
 				return obj;
 			}, {})
 		);
-		
+
 		schema.stats = new fields.SchemaField(
 			Object.keys(CONFIG.SS1E.stats).reduce((obj, stat) => {
 				obj[stat] = new fields.EmbeddedDataField(ValueData, { initial: { baseValue: 0, bonus: 0, multi: 1, value: 0, label: CONFIG.SS1E.stats[stat] } });
@@ -64,11 +64,9 @@ export default class SS1EActorBase extends foundry.abstract.TypeDataModel {
 		);
 
 		schema.attributes = new fields.ArrayField(new fields.EmbeddedDataField(SS1EItemBase));
-		
-		schema.skills = new fields.ArrayField(new fields.EmbeddedDataField(SS1EItemBase));
 
-		schema.items = new fields.ArrayField(new fields.EmbeddedDataField(SS1EItemBase));
-		schema.itemSlots = new fields.NumberField({ ...requiredInteger, initial: 5});
+		schema.skills = new fields.ArrayField(new fields.EmbeddedDataField(SS1EItemBase));
+		schema.itemSlots = new fields.NumberField({ ...requiredInteger, initial: 5 });
 
 		return schema;
 	}
