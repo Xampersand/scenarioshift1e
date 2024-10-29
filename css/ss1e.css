@@ -87,7 +87,7 @@ div #chat-controls {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
   overflow: visible;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
 }
 .window-app .window-header:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
