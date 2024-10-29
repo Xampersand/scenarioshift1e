@@ -1,30 +1,70 @@
-import { NumberField, SchemaField, StringField, BooleanField } from "foundry.data.fields";
-import { HealthData, ValueData } from "./abstract.mjs";
+import SS1EActorBase from "./actor-base.mjs";
+export default class SS1ECharacter extends SS1EActorBase {
 
-export default class CharacterData extends foundry.abstract.TypeDataModel {
 	static defineSchema() {
-		return {
-			health: new SchemaField(HealthData),
-			mana: new SchemaField(ValueData),
-			stats: new SchemaField({
-				str: new SchemaField(ValueData, { initial: { label: "Strength" } }),
-				agi: new SchemaField(ValueData, { initial: { label: "Agility" } }),
-				con: new SchemaField(ValueData, { initial: { label: "Constitution" } }),
-				int: new SchemaField(ValueData, { initial: { label: "Intelligence" } })
-			}),
-			armor: new SchemaField(ValueData),
-			evasion: new SchemaField(ValueData),
-			accuracy: new SchemaField(ValueData),
+		const fields = foundry.data.fields;
+		const schema = super.defineSchema();
 
-			items: new ArrayField({initial: []}),
-			itemSlots: new NumberField({initial: 5}),
+		schema.sponsor = new fields.StringField({ initial: "None" });
+		schema.race = new fields.StringField({ initial: CONFIG.SS1E.races.human });
 
-			skills: new ArrayField({initial: []}),
-
-			age: new NumberField({ initial: 18 }),
-			race: new StringField({ initial: "Human" }),
-			sponsor: new StringField({ initial: "None" }),
-			coins: new NumberField({ initial: 0 })
-		};
+		return schema;
 	}
+
+	prepareData() {
+		// Prepare data for the actor. Calling the super version of this executes
+		// the following, in order: data reset (to clear active effects),
+		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
+		// prepareDerivedData().
+		super.prepareData();
+	}
+
+	prepareDerivedData() {
+		// console.log("hi initializing")
+		const ARMOR_INCREMENT = 0.5;
+		const EVASION_INCREMENT = 0.5;
+		const ACCURACY_INCREMENT = 2;
+		const MANA_INCREMENT = 5;
+		const HEALTH_INCREMENT = 2.5;
+
+		const [derived, stats] = [this.derived, this.stats];
+		const resources = this.resources;
+
+		// ARMOR, EVASION, ACCURACY
+		derived.armor.value = Math.round(
+			(stats.str.value + stats.str.bonus) * ARMOR_INCREMENT
+		);
+		derived.evasion.value = Math.round(
+			(stats.agi.value + stats.agi.bonus) * EVASION_INCREMENT
+		);
+		derived.accuracy.value = Math.round(
+			(stats.agi.value + stats.agi.bonus) * ACCURACY_INCREMENT
+		);
+
+		// HEALTH, MANA
+		this.resources.health.max =
+			5 + Math.round((stats.con.value + stats.con.bonus) * HEALTH_INCREMENT);
+
+		this.resources.mana.max = Math.round(
+			(stats.int.value + stats.int.bonus) * MANA_INCREMENT
+		);
+	}
+
+	getRollData() {
+		const data = {};
+
+	
+		// Check if stats is defined
+		if (this.stats) {
+			// Copy the ability scores to the top level
+			for (let [k, v] of Object.entries(this.stats)) {
+				data[k] = foundry.utils.deepClone(v);
+			}
+		} else {
+			console.warn("Stats not defined for this actor:", this);
+		}
+	
+		return data;
+	}
+	
 }

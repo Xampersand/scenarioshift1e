@@ -35,12 +35,12 @@
 					<input
 						name='system.rarity'
 						type='text'
-						value='{{system.rarity}}'
+						value='{{system.rating}}'
 						placeholder='COMMON'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.rarity}}</div>
+					<div>{{system.rating}}</div>
 				{{/if}}
 
 			</div>
@@ -57,19 +57,19 @@
 					<input
 						name='system.requirement'
 						type='text'
-						value='{{system.requirement}}'
+						value='{{system.requirement.value}}'
 						placeholder=''
 					/>
 					<input
 						name='system.requirement-type'
 						type='text'
-						value='{{system.requirement-type}}'
+						value='{{system.requirement.type}}'
 						placeholder='str'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.requirement}}&nbsp;</div>
-					<div>{{system.requirement-type}}</div>
+					<div>{{system.requirement.value}}&nbsp;</div>
+					<div>{{system.requirement.type}}</div>
 				{{/if}}
 			</div>
 			<div class='damage'>
@@ -77,35 +77,33 @@
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
-						name='system.damageFormula.diceCount'
+						name='system.damageRoll.diceNum'
 						type='text'
-						value='{{system.damageFormula.diceCount}}'
+						value='{{system.damageRoll.diceNum}}'
 						placeholder='1'
 					/>
 					<input
-						name='system.damageFormula.diceType'
+						name='system.damageRoll.diceSize'
 						type='text'
-						value='{{system.damageFormula.diceType}}'
+						value='{{system.damageRoll.diceSize}}'
 						placeholder='d4'
 					/>
 					<input
-						name='system.damageFormula.damageBonus'
+						name='system.damageRoll.diceBonus'
 						type='text'
-						value='{{system.damageFormula.damageBonus}}'
+						value='{{system.damageRoll.diceBonus}}'
 						placeholder='1'
 					/>
 					<input
-						name='system.damageType.damageType'
+						name='system.damageType'
 						type='text'
-						value='{{system.damageType.damageType}}'
+						value='{{system.damageType}}'
 						placeholder='piercing'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.damageFormula.diceCount}}&nbsp;</div>
-					<div>{{system.damageFormula.diceType}}</div>
-					<div>+{{system.damageFormula.damageBonus}}&nbsp;</div>
-					<div>{{system.damageType.damageType}}</div>
+					<div>{{system.damageFormula}}&nbsp;</div>
+					<div>{{system.damageType}}</div>
 				{{/if}}
 
 			</div>

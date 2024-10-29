@@ -53,43 +53,23 @@ export class SS1EActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 
-		// Prepare character data and items.
+		// // Prepare character data and items.
 		if (actorData.type == 'character') {
 			this._prepareItems(context);
 			this._prepareCharacterData(context);
 		}
 
-		// Get all player characters
-		context.players = game.actors
-			.filter((actor) => actor.hasPlayerOwner)
-			.map((actor) => ({
-				id: actor.id,
-				name: actor.name,
-			}));
-
-		context.system = actorData.system;
-		context.flags = actorData.flags;
 		// Prepare NPC data and items.
 		if (actorData.type == 'npc') {
 			this._prepareItems(context);
 		}
 
-		// Add roll data for TinyMCE editors.
-		context.rollData = context.actor.getRollData();
-
-		// Prepare active effects
-		context.effects = prepareActiveEffectCategories(
-			// A generator that returns all effects stored on the actor
-			// as well as any items
-			this.actor.allApplicableEffects()
-		);
-
-		const hpValue = this.actor.system.health.value;
-		const hpMax = this.actor.system.health.max;
+		const hpValue = context.system.resources.health.value;
+		const hpMax = context.system.resources.health.max;
 		const hpBarWidth = (hpValue / hpMax) * 100;
 
-		const manaValue = this.actor.system.mana.value;
-		const manaMax = this.actor.system.mana.max;
+		const manaValue = context.system.resources.mana.value;
+		const manaMax = context.system.resources.mana.max;
 		const manaBarWidth = (manaValue / manaMax) * 100;
 
 		// Assign this width to the template data
@@ -221,54 +201,57 @@ export class SS1EActorSheet extends ActorSheet {
 		return await Item.create(itemData, { parent: this.actor });
 	}
 
+
 	async _onDropItem(event) {
 		event.preventDefault();
 		event.stopPropagation();
+		
+		console.log("dropp?")
 
-		if ($(event.target).is('#drop-zone')) {
-			let data;
-			try {
-				data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
-			} catch (err) {
-				console.error('Error parsing drop data:', err);
-				return false;
+		if (!$(event.target).is('#drop-zone')) return;
+
+		console.log("drop!")
+	
+		let data;
+		try {
+			data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+		} catch (err) {
+			console.error('Error parsing drop data:', err);
+			return false;
+		}
+	
+		let itemData;
+		if (data.pack) {
+			const pack = game.packs.get(data.pack);
+			if (pack) {
+				const item = await pack.getDocument(data.id);
+				itemData = item.toObject();
 			}
-
-			let itemData;
-			// Handle different data sources
-			if (data.pack) {
-				// The item is coming from a compendium
-				const pack = game.packs.get(data.pack);
-				if (pack) {
-					const item = await pack.getDocument(data.id);
-					itemData = item.toObject();
-				}
-			} else if (data.type === "Item") {
-				// The item is coming from another actor or source
-				const item = game.items.get(data.id) || await fromUuid(data.uuid);
-				if (item) {
-					itemData = item.toObject();
-				}
-			}
-
-  			// If we have valid item data, add it to the actor (or the drop zone)
-			if (itemData) {
-				const itemSlots = this.actor.system.itemSlots;
-				const items = this.actor.system.items;
-
-				if (items.length + 1 > itemSlots) {
-					return ui.notifications.error(
-						'Not enough item slots!'
-					);
-				}
-
-				delete itemData._id;
-				const updatedItems = [...this.actor.system.items, itemData];  // Add the new item to the existing array
-				await this.actor.update({ 'system.items': updatedItems });
-				this._tabs[0].activate('inventory');
+		} else if (data.type === "Item") {
+			const item = game.items.get(data.id) || await fromUuid(data.uuid);
+			if (item) {
+				itemData = item.toObject();
 			}
 		}
+	
+		if (itemData) {
+			console.log(itemData);
+
+			const itemSlots = this.actor.system.itemSlots;
+			const items = this.actor.items;
+	
+			if (items.size >= itemSlots) {
+				return ui.notifications.error('Not enough item slots!');
+			}
+
+			delete itemData._id;
+			const updatedItems = [...this.actor.system.items, itemData];
+			await this.actor.update({ 'system.items': updatedItems });
+
+			this._tabs[0].activate('inventory');
+		}
 	}
+	
 
 	/**
 	 * Handle clickable rolls.
@@ -635,8 +618,8 @@ export class SS1EActorSheet extends ActorSheet {
 	}
 	_openHealthDialog() {
 		// Retrieve current health values
-		const currentHealth = this.actor.system.health.value;
-		const maxHealth = this.actor.system.health.max;
+		const currentHealth = this.actor.system.resources.health.value;
+		const maxHealth = this.actor.system.resources.health.max;
 
 		// Create dialog
 		new Dialog({
@@ -657,7 +640,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 						// Ensure health is within the valid range
 						if (!isNaN(newHealth) && newHealth >= 0 && newHealth <= maxHealth) {
-							this.actor.update({ 'system.health.value': newHealth });
+							this.actor.update({ 'system.resources.health.value': newHealth });
 						} else {
 							ui.notifications.warn('Please enter a valid health value.');
 						}
@@ -672,8 +655,8 @@ export class SS1EActorSheet extends ActorSheet {
 	}
 	_openManaDialog() {
 		// Retrieve current health values
-		const currentMana = this.actor.system.mana.value;
-		const maxMana = this.actor.system.mana.max;
+		const currentMana = this.actor.system.resources.mana.value;
+		const maxMana = this.actor.system.resources.mana.max;
 
 		// Create dialog
 		new Dialog({
@@ -694,7 +677,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 						// Ensure health is within the valid range
 						if (!isNaN(newMana) && newMana >= 0 && newMana <= maxMana) {
-							this.actor.update({ 'system.mana.value': newMana });
+							this.actor.update({ 'system.resources.mana.value': newMana });
 						} else {
 							ui.notifications.warn('Please enter a valid mana value.');
 						}
