@@ -76,18 +76,16 @@ div #chat-controls {
 .window-app .window-content {
   padding: 0;
   background-image: none;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 10px 10px;
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
-  overflow: visible;
 }
 .window-app .window-header {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
   padding: 0px;
-  overflow: visible;
   border: none;
-  border-radius: 20px 20px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 .window-app .window-header a {
   background-color: none;
@@ -166,7 +164,7 @@ textarea:focus {
 }
 .edit-mode-toggle {
   width: auto;
-  top: 0%;
+  top: -0.3%;
   position: absolute;
   left: 84%;
   border: none;
