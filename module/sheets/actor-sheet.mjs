@@ -78,7 +78,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) { }
+	_prepareCharacterData(context) {}
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -209,7 +209,9 @@ export class SS1EActorSheet extends ActorSheet {
 
 		if (!$(event.target).is('#drop-zone')) return;
 
-		const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+		const data = JSON.parse(
+			event.originalEvent.dataTransfer.getData('text/plain')
+		);
 		const item = await Item.implementation.fromDropData(data);
 
 		const itemSlots = this.actor.system.itemSlots;
@@ -219,10 +221,9 @@ export class SS1EActorSheet extends ActorSheet {
 			return ui.notifications.error('Not enough item slots!');
 		}
 
-		await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
+		await this.actor.createEmbeddedDocuments('Item', [item.toObject()]);
 		this._tabs[0].activate('inventory');
 	}
-
 
 	/**
 	 * Handle clickable rolls.
@@ -401,32 +402,45 @@ export class SS1EActorSheet extends ActorSheet {
 
 		const key = event.currentTarget.dataset.key;
 		const stat = this.actor.system.stats[key];
-
 		const cost = 300 + Math.floor(stat.value / 10) * 100;
 
 		new Dialog({
 			title: 'Level Up!',
 			content: `
-				<p>${stat.label} Lv. ${stat.value} → ${stat.label} Lv. ${stat.value + 1}</p>
-				<p>Cost: ${cost} Coins</p>
+			  <p>${stat.label} Lv. ${stat.value} → ${stat.label} Lv. ${stat.value + 1}</p>
+			  <p>Cost: ${cost} Coins</p>
 			`,
 			buttons: {
 				yes: {
 					icon: '<i class="fas fa-check"></i>',
 					label: 'Yes',
 					callback: () => {
-						// Check if the actor has enough coins
 						if (this.actor.system.coins >= cost) {
 							const updatedCoins = this.actor.system.coins - cost;
 							const newStatValue = stat.value + 1;
 
-							// Update the actor's coins and stat value
-							this.actor
-								.update({
-									[`system.coins`]: updatedCoins, // Dynamically update coins
-									[`system.stats.${key}.value`]: newStatValue, // Update the stat value
-								})
-								.then(() => this.render()); // Re-render the sheet after the update
+							// Prepare the data object for updating
+							let updateData = {
+								[`system.coins`]: updatedCoins,
+								[`system.stats.${key}.value`]: newStatValue,
+							};
+
+							// Add health if Constitution is leveled up
+							if (key === 'con') {
+								const healthGain = Math.round(2.5); // Rounding the 2.5 heal
+								updateData['system.resources.health.value'] =
+									(this.actor.system.resources.health.value || 0) + healthGain;
+							}
+
+							// Add mana if Intelligence is leveled up
+							if (key === 'int') {
+								const manaGain = 5;
+								updateData['system.resources.mana.value'] =
+									(this.actor.system.resources.mana.value || 0) + manaGain;
+							}
+
+							// Apply updates to actor
+							this.actor.update(updateData).then(() => this.render()); // Re-render the sheet
 						} else {
 							ui.notifications.error('Not enough coins to level up!');
 						}
@@ -494,11 +508,11 @@ export class SS1EActorSheet extends ActorSheet {
 					<label>Select Character:</label>
 					<select id="target-character">
 						${game.actors
-					.filter((actor) => actor.hasPlayerOwner)
-					.map(
-						(actor) => `<option value="${actor.id}">${actor.name}</option>`
-					)
-					.join('')}
+							.filter((actor) => actor.hasPlayerOwner)
+							.map(
+								(actor) => `<option value="${actor.id}">${actor.name}</option>`
+							)
+							.join('')}
 					</select>
 				</div>
 				<div class="form-group">

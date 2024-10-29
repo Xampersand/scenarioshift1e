@@ -48,11 +48,11 @@ export default class SS1ECharacter extends SS1EActorBase {
 
 		// DAMAGE MULTIPLEIRS BASED ON STATS
 		derived.strStatDmgMulti.value =
-			1 + stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
+			stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
 		derived.agiStatDmgMulti.value =
-			1 + stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
+			stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
 		derived.intStatDmgMulti.value =
-			1 + stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
+			stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
 
 		// HEALTH, MANA
 		this.resources.health.max =
