@@ -31,13 +31,7 @@ export class SS1EItemSheet extends ItemSheet {
 
 	/** @override */
 	get template() {
-		const path = 'systems/ss1e/templates/item';
-		// Return a single sheet for all item types.
-		// return `${path}/item-sheet.hbs`;
-
-		// Alternatively, you could use the following return statement to do a
-		// unique item sheet by type, like `weapon-sheet.hbs`.
-		return `${path}/item-${this.item.type}-sheet.hbs`;
+		return `systems/ss1e/templates/item/item-${this.item.type}-sheet.hbs`;
 	}
 
 	/* -------------------------------------------- */

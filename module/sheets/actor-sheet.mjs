@@ -205,53 +205,23 @@ export class SS1EActorSheet extends ActorSheet {
 	async _onDropItem(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		
-		console.log("dropp?")
 
 		if (!$(event.target).is('#drop-zone')) return;
 
-		console.log("drop!")
-	
-		let data;
-		try {
-			data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
-		} catch (err) {
-			console.error('Error parsing drop data:', err);
-			return false;
-		}
-	
-		let itemData;
-		if (data.pack) {
-			const pack = game.packs.get(data.pack);
-			if (pack) {
-				const item = await pack.getDocument(data.id);
-				itemData = item.toObject();
-			}
-		} else if (data.type === "Item") {
-			const item = game.items.get(data.id) || await fromUuid(data.uuid);
-			if (item) {
-				itemData = item.toObject();
-			}
-		}
-	
-		if (itemData) {
-			console.log(itemData);
+		const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+		const item = await Item.implementation.fromDropData(data);
 
-			const itemSlots = this.actor.system.itemSlots;
-			const items = this.actor.items;
-	
-			if (items.size >= itemSlots) {
-				return ui.notifications.error('Not enough item slots!');
-			}
+		const itemSlots = this.actor.system.itemSlots;
+		const items = this.actor.items;
 
-			delete itemData._id;
-			const updatedItems = [...this.actor.system.items, itemData];
-			await this.actor.update({ 'system.items': updatedItems });
-
-			this._tabs[0].activate('inventory');
+		if (items.size >= itemSlots) {
+			return ui.notifications.error('Not enough item slots!');
 		}
+
+		await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
+		this._tabs[0].activate('inventory');
 	}
-	
+
 
 	/**
 	 * Handle clickable rolls.
