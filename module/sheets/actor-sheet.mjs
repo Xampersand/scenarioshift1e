@@ -78,7 +78,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) { }
+	_prepareCharacterData(context) {}
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -155,6 +155,8 @@ export class SS1EActorSheet extends ActorSheet {
 				li.addEventListener('dragstart', handler, false);
 			});
 		}
+		//Roll acc button
+		html.find('#roll-accuracy').click((event) => this._onRollAccuracy(event));
 
 		// Send Preset Message
 		html
@@ -201,17 +203,16 @@ export class SS1EActorSheet extends ActorSheet {
 		return await Item.create(itemData, { parent: this.actor });
 	}
 
-
 	async _onDropItem(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		
-		console.log("dropp?")
+
+		console.log('dropp?');
 
 		if (!$(event.target).is('#drop-zone')) return;
 
-		console.log("drop!")
-	
+		console.log('drop!');
+
 		let data;
 		try {
 			data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
@@ -219,7 +220,7 @@ export class SS1EActorSheet extends ActorSheet {
 			console.error('Error parsing drop data:', err);
 			return false;
 		}
-	
+
 		let itemData;
 		if (data.pack) {
 			const pack = game.packs.get(data.pack);
@@ -227,19 +228,19 @@ export class SS1EActorSheet extends ActorSheet {
 				const item = await pack.getDocument(data.id);
 				itemData = item.toObject();
 			}
-		} else if (data.type === "Item") {
-			const item = game.items.get(data.id) || await fromUuid(data.uuid);
+		} else if (data.type === 'Item') {
+			const item = game.items.get(data.id) || (await fromUuid(data.uuid));
 			if (item) {
 				itemData = item.toObject();
 			}
 		}
-	
+
 		if (itemData) {
 			console.log(itemData);
 
 			const itemSlots = this.actor.system.itemSlots;
 			const items = this.actor.items;
-	
+
 			if (items.size >= itemSlots) {
 				return ui.notifications.error('Not enough item slots!');
 			}
@@ -251,7 +252,6 @@ export class SS1EActorSheet extends ActorSheet {
 			this._tabs[0].activate('inventory');
 		}
 	}
-	
 
 	/**
 	 * Handle clickable rolls.
@@ -285,7 +285,37 @@ export class SS1EActorSheet extends ActorSheet {
 			return roll;
 		}
 	}
+	// Function to handle the accuracy roll
+	_onRollAccuracy(event) {
+		event.preventDefault();
 
+		// Get the accuracy value from the actor's data
+		const accuracy = this.actor.system.derived.accuracy.value; // Adjust this path as necessary
+
+		// Check if accuracy is a number
+		if (typeof accuracy !== 'number') {
+			console.error('Accuracy value is not a number:', accuracy);
+			return;
+		}
+
+		// Define the roll formula
+		const rollFormula = `1d100 + ${accuracy}`; // Ensure this is a valid formula
+		console.log('Roll Formula:', rollFormula);
+		try {
+			// Create a new roll
+			const roll = new Roll(rollFormula, this.actor.getRollData());
+
+			// Roll and then send the result to chat
+			roll.roll().then((rolled) => {
+				rolled.toMessage({
+					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+					flavor: `Rolling Accuracy: ${rollFormula}`, // Optional flavor text
+				});
+			});
+		} catch (error) {
+			console.error('Error while rolling accuracy:', error);
+		}
+	}
 	/**
 	 * Handle sending a public message
 	 * Deduct 50 coins if successful.
@@ -493,11 +523,11 @@ export class SS1EActorSheet extends ActorSheet {
 					<label>Select Character:</label>
 					<select id="target-character">
 						${game.actors
-					.filter((actor) => actor.hasPlayerOwner)
-					.map(
-						(actor) => `<option value="${actor.id}">${actor.name}</option>`
-					)
-					.join('')}
+							.filter((actor) => actor.hasPlayerOwner)
+							.map(
+								(actor) => `<option value="${actor.id}">${actor.name}</option>`
+							)
+							.join('')}
 					</select>
 				</div>
 				<div class="form-group">
