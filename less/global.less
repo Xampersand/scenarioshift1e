@@ -5,6 +5,25 @@
 	scrollbar-color: @primary-text-color @transparent;
 	font-family: @font;
 }
+form button {
+	.remove-default-glow(); // call the mixin
+	.add-glow(@glow-color, 2px, 5px);
+	border: 0;
+	font-size: 1.2rem;
+}
+select {
+	color: @primary-text-color;
+	border: none;
+	&::selection {
+		background-color: @subaccent-color;
+	}
+}
+form select {
+	&:focus {
+		.remove-default-glow(); // call the mixin
+		.add-glow(@glow-color, 2px, 5px);
+	}
+}
 .app {
 	background-image: none;
 	.add-glow(@glow-color, 5px, 10px);
@@ -16,12 +35,14 @@ p,
 input {
 	color: @primary-text-color;
 }
+//fixing hovering elements being red
 a:hover {
 	text-shadow: 0 0 10px @accent-color;
 }
 i:hover {
 	text-shadow: 0 0 10px @accent-color;
 }
+// fixing every single input
 input {
 	border-color: @accent-color;
 	.remove-default-glow();
@@ -41,6 +62,7 @@ input {
 		.add-glow(@glow-color, 5px, 10px);
 	}
 	&[type='search'] {
+		background: none;
 		border-color: @accent-color;
 		&::placeholder {
 			color: @primary-text-color;
@@ -51,7 +73,14 @@ input {
 		}
 	}
 }
+//removes background from search inputs in side bar
+.directory .directory-header .header-search input {
+	background-color: @transparent;
+}
 
+.tabs > [data-tab].active {
+	text-shadow: 0 0 10px @glow-color;
+}
 label,
 select {
 	color: @primary-text-color;
@@ -185,6 +214,11 @@ textarea {
 	.dice-total {
 		border: 1px solid @accent-color;
 	}
+	.dice-results .dice-rolls li {
+		background-image: none;
+		background-color: @background-color;
+		color: @primary-text-color;
+	}
 }
 
 .sheet-tabs.tabs {
@@ -254,6 +288,7 @@ textarea {
 		}
 	}
 }
+//adding background to various things
 #players {
 	border: 0;
 	background-color: @background-color;
@@ -265,5 +300,15 @@ textarea {
 	.bar-controls {
 		background-color: @background-color;
 		border-color: @accent-color;
+	}
+}
+// settings font sizes
+#client-settings {
+	font-size: 1.2rem;
+	p.notes {
+		font-size: 1rem;
+	}
+	aside.sidebar.flexcol {
+		font-size: 1rem;
 	}
 }

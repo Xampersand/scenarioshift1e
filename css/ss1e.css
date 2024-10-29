@@ -51,6 +51,33 @@
   scrollbar-color: #ffffff #ffffff00;
   font-family: 'Teko';
 }
+form button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  border: 0;
+  font-size: 1.2rem;
+}
+form button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+select {
+  color: #ffffff;
+  border: none;
+}
+select::selection {
+  background-color: #1807af;
+}
+form select:focus {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+form select:focus:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
 .app {
   background-image: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
@@ -107,6 +134,7 @@ input[type='text']:focus:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 input[type='search'] {
+  background: none;
   border-color: #4fc4fa;
 }
 input[type='search']::placeholder {
@@ -120,6 +148,12 @@ input[type='search']:focus {
 }
 input[type='search']:focus:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+.directory .directory-header .header-search input {
+  background-color: #ffffff00;
+}
+.tabs > [data-tab].active {
+  text-shadow: 0 0 10px rgba(37, 186, 255);
 }
 label,
 select {
@@ -248,6 +282,11 @@ textarea:focus {
 .dice-roll .dice-total {
   border: 1px solid #4fc4fa;
 }
+.dice-roll .dice-results .dice-rolls li {
+  background-image: none;
+  background-color: rgba(17, 152, 243, 0.555);
+  color: #ffffff;
+}
 .sheet-tabs.tabs {
   display: flex;
   position: absolute;
@@ -334,6 +373,15 @@ textarea:focus {
 #hotbar .bar-controls {
   background-color: rgba(17, 152, 243, 0.555);
   border-color: #4fc4fa;
+}
+#client-settings {
+  font-size: 1.2rem;
+}
+#client-settings p.notes {
+  font-size: 1rem;
+}
+#client-settings aside.sidebar.flexcol {
+  font-size: 1rem;
 }
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
