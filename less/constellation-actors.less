@@ -3,7 +3,6 @@
 	// Sets the font for everything
 
 	.header {
-
 		// center stuff
 		display: flex;
 		align-items: center;
@@ -52,7 +51,6 @@
 	flex-direction: column;
 	flex: 1 1 50%;
 	.ss1e.sheet.actor.constellation.coins {
-		font-family: @font;
 		display: flex;
 		flex-direction: row;
 		flex: 0 1 auto; /* Prevents stretching */
@@ -169,12 +167,4 @@
 			.add-glow(@glow-color, 3px, 7px);
 		}
 	}
-}
-//overwriting font for certain buttons, was too lazy to do it by lcass above and it showed. will fix later maybe
-.constellation-sheet-button {
-	font-family: @font;
-}
-.actor-sheet-label,
-.actor-sheet-input {
-	font-family: @font;
 }

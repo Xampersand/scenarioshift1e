@@ -75,17 +75,14 @@ input[type='search']:focus ::placeholder {
 label,
 select {
   color: #ffffff;
-  font-family: 'Teko';
 }
 option {
   background-color: #1807af;
   color: #ffffff;
-  font-family: 'Teko';
 }
 button {
   background-color: rgba(37, 186, 255, 0.4);
   color: #ffffff;
-  font-family: 'Teko';
 }
 button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
@@ -226,7 +223,6 @@ textarea:focus {
   box-shadow: none;
   box-shadow: 0 0 0px rgba(37, 186, 255), 0 0 0px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
   height: fit-content;
   background-color: #ffffff00;
 }
@@ -320,9 +316,6 @@ textarea:focus {
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container button::after {
   opacity: 0;
   visibility: hidden;
-}
-.ss1e.sheet.actor.character {
-  font-family: 'Teko';
 }
 .ss1e.sheet.actor.character .sheet-title {
   font-size: 2.5rem;
@@ -461,7 +454,6 @@ input.input-text::selection {
   background-color: #1807af;
 }
 .sheet-body {
-  font-family: 'Teko';
   display: flex;
   flex-direction: column;
 }
@@ -536,7 +528,6 @@ input.input-text::selection {
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
   font-size: 1.2rem;
 }
 .sheet-body button:hover {
@@ -585,7 +576,6 @@ input.input-text::selection {
   flex: 1 1 50%;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex: 0 1 auto;
@@ -713,15 +703,7 @@ input.input-text::selection {
 .ss1e.sheet.actor.constellation.actions .message-bottom-section button:hover {
   box-shadow: 0 0 7px rgba(37, 186, 255), 0 0 14px rgba(37, 186, 255);
 }
-.constellation-sheet-button {
-  font-family: 'Teko';
-}
-.actor-sheet-label,
-.actor-sheet-input {
-  font-family: 'Teko';
-}
 .weapon-top-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
 }
@@ -760,7 +742,6 @@ input.input-text::selection {
   flex-direction: row;
 }
 .weapon-bottom-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex-grow: 1 1 50%;
@@ -822,14 +803,12 @@ input.input-text::selection {
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
   height: fit-content;
 }
 .weapon-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .equipment-top-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
 }
@@ -868,7 +847,6 @@ input.input-text::selection {
   flex-direction: row;
 }
 .equipment-bottom-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex-grow: 1 1 50%;
@@ -913,14 +891,12 @@ input.input-text::selection {
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
   height: fit-content;
 }
 .equipment-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ammo-top-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
 }
@@ -959,7 +935,6 @@ input.input-text::selection {
   flex-direction: row;
 }
 .ammo-bottom-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex-grow: 1 1 50%;
@@ -1014,14 +989,12 @@ input.input-text::selection {
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
   height: fit-content;
 }
 .ammo-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .accessory-top-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
 }
@@ -1060,7 +1033,6 @@ input.input-text::selection {
   flex-direction: row;
 }
 .accessory-bottom-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex-grow: 1 1 50%;
@@ -1103,14 +1075,12 @@ input.input-text::selection {
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
   height: fit-content;
 }
 .accessory-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .consumable-top-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
 }
@@ -1149,7 +1119,6 @@ input.input-text::selection {
   flex-direction: row;
 }
 .consumable-bottom-section {
-  font-family: 'Teko';
   display: flex;
   flex-direction: row;
   flex-grow: 1 1 50%;
@@ -1196,7 +1165,6 @@ input.input-text::selection {
   box-shadow: none;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  font-family: 'Teko';
   height: fit-content;
 }
 .consumable-actions button:hover {

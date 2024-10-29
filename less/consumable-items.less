@@ -1,5 +1,4 @@
 .consumable-top-section {
-	font-family: @font;
 	display: flex;
 	flex-direction: row;
 	.consumable-img {
@@ -33,7 +32,6 @@
 	}
 }
 .consumable-bottom-section {
-	font-family: @font;
 	.set-display-flex-row();
 	flex-grow: 1 1 50%;
 
@@ -74,7 +72,6 @@
 	button {
 		.remove-default-glow(); // call the mixin
 		.add-glow(@glow-color, 2px, 5px);
-		font-family: @font;
 		height: fit-content;
 	}
 }

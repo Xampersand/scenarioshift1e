@@ -2,7 +2,6 @@
 
 // Targets anything with the ss1e sheet actor character classes (must have all of them)
 .ss1e.sheet.actor.character {
-	font-family: @font;
 	// Targets anything with the header class within the parent class
 
 	.sheet-title {
@@ -145,7 +144,6 @@
 }
 
 .sheet-body {
-	font-family: @font;
 	display: flex;
 	flex-direction: column;
 	& .resource-label {
@@ -221,7 +219,6 @@
 	& button {
 		.remove-default-glow(); // call the mixin
 		.add-glow(@glow-color, 2px, 5px);
-		font-family: @font;
 		font-size: 1.2rem;
 	}
 }

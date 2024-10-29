@@ -1,5 +1,4 @@
 .weapon-top-section {
-	font-family: @font;
 	display: flex;
 	flex-direction: row;
 	.weapon-img {
@@ -33,7 +32,6 @@
 	}
 }
 .weapon-bottom-section {
-	font-family: @font;
 	.set-display-flex-row();
 	flex-grow: 1 1 50%;
 	justify-content: space-around;
@@ -80,7 +78,6 @@
 	button {
 		.remove-default-glow(); // call the mixin
 		.add-glow(@glow-color, 2px, 5px);
-		font-family: @font;
 		height: fit-content;
 	}
 }
