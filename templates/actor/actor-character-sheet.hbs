@@ -13,6 +13,7 @@
 			<div class='tab' data-tab='features'>
 				<div class='sheet-header info'>
 					<div class='pfp-hp-mana'>
+						{{#if isEditing}}
 						<img
 							class='profile-img'
 							src='{{actor.img}}'
@@ -21,6 +22,15 @@
 							height='175'
 							width='175'
 						/>
+						{{else}}
+						<img
+							class='profile-img'
+							src='{{actor.img}}'
+							title='{{actor.name}}'
+							height='175'
+							width='175'
+						/>
+						{{/if}}
 						<div class='hp-mana-container'>
 							<div class='hp-block' id='hp-bar'>
 								<div class='hp-bar-container'>
