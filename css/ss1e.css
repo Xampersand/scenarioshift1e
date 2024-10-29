@@ -130,7 +130,7 @@ option {
   color: #ffffff;
 }
 button {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   color: #ffffff;
   font-family: 'Teko';
   border-color: #4fc4fa;
@@ -145,7 +145,7 @@ button:hover:hover {
 ol,
 nav,
 div #chat-form {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
 }
@@ -167,7 +167,7 @@ li:active {
   border: 1px solid #4fc4fa !important;
 }
 div #chat-controls {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
 }
 #logo {
   content: url('../assets/images/orv_logo.png');
@@ -177,11 +177,11 @@ div #chat-controls {
   padding: 0;
   background-image: none;
   border-radius: 0 0 10px 10px;
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   color: #ffffff;
 }
 .window-app .window-header {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   color: #ffffff;
   padding: 0px;
   border: none;
@@ -195,14 +195,14 @@ div #chat-controls {
   background: none;
 }
 .window-header a i {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   font-size: 14px;
 }
 .window-header a span {
   font-size: 14px;
 }
 li.chat-message.message {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   background-image: none;
   border-color: #4fc4fa;
 }
@@ -222,7 +222,7 @@ li.chat-message.message .flavor-text {
   color: #ffffff;
 }
 li.chat-message.whisper {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   background-image: none;
 }
 li.chat-message.whisper .whisper-to {
@@ -295,7 +295,7 @@ textarea:focus {
   border: 0;
 }
 #sidebar .directory-header {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
 }
 #sidebar #sidebar-tabs {
   box-shadow: 0 0 10px #4fc4fa;
@@ -326,13 +326,13 @@ textarea:focus {
 }
 #players {
   border: 0;
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
 }
 #settings {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
 }
 #hotbar .bar-controls {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   border-color: #4fc4fa;
 }
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
@@ -359,7 +359,7 @@ textarea:focus {
   left: 50%;
   bottom: 50%;
   transform: translate(-50%, 325%);
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   color: #ffffff;
   border-radius: 10%;
   font-size: 0.75rem;
@@ -741,7 +741,7 @@ input.input-text::selection {
   padding: 0;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section .message-recipient-option {
-  background-color: rgba(37, 186, 255, 0.4);
+  background-color: rgba(17, 152, 243, 0.555);
   color: #ffffff;
 }
 .ss1e.sheet.actor.constellation.actions .preset-message-buttons {
