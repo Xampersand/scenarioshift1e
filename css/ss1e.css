@@ -16,7 +16,7 @@
   background-image: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .app:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
@@ -182,8 +182,15 @@ textarea:focus {
 }
 #sidebar {
   background-image: none;
+  border: 0;
 }
 #sidebar .directory-header {
+  background-color: rgba(37, 186, 255, 0.4);
+}
+#players {
+  border: 0;
+}
+#settings {
   background-color: rgba(37, 186, 255, 0.4);
 }
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {

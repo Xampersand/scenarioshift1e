@@ -4,129 +4,140 @@
 		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
 		rel='stylesheet'
 	/>
-	
-		<button class='edit-mode-toggle'>🛠️</button>
-		<nav class='sheet-tabs tabs'>
-			<a class='item' data-tab='features'>Features</a>
-			<a class='item' data-tab='inventory'>Inventory</a>
-			<a class='item' data-tab='abilities'>Abilities</a>
-			<!-- Add more tabs as necessary -->
-		</nav>
-		<section class='ss1e sheet actor character'>
-			<div class='sheet-title'>&lt;CHARACTER INFORMATION&gt;</div>
-			<div class='sheet-body'>
-				<div class='tab' data-tab='features'>
-					<div class='sheet-header info'>
-						<div class='pfp-hp-mana'>
-							<img
-								class='profile-img'
-								src='{{actor.img}}'
-								data-edit='img'
-								title='{{actor.name}}'
-								height='175'
-								width='175'
-							/>
-							<div class='hp-mana-container'>
-								<div class='hp-block' id='hp-bar'>
-									<div class='hp-bar-container'>
-										<div
-											class='hp-bar'
-											style='width: {{hpBarWidth}}%;'
-										></div><span
-											class='hp-text'
-										>{{system.resources.health.value}}/{{system.resources.health.max}}</span>
+	<button class='edit-mode-toggle'>🛠️</button>
+	<nav class='sheet-tabs tabs'>
+		<a class='item' data-tab='features'>Features</a>
+		<a class='item' data-tab='inventory'>Inventory</a>
+		<a class='item' data-tab='abilities'>Abilities</a>
+		<!-- Add more tabs as necessary -->
+	</nav>
+	<section class='ss1e sheet actor character'>
+		<div class='sheet-title'>&lt;CHARACTER INFORMATION&gt;</div>
+		<div class='sheet-body'>
+			<div class='tab' data-tab='features'>
+				<div class='sheet-header info'>
+					<div class='pfp-hp-mana'>
+						<img
+							class='profile-img'
+							src='{{actor.img}}'
+							data-edit='img'
+							title='{{actor.name}}'
+							height='175'
+							width='175'
+						/>
+						<div class='hp-mana-container'>
+							<div class='hp-block' id='hp-bar'>
+								<div class='hp-bar-container'>
+									<div
+										class='hp-bar'
+										style='width: {{hpBarWidth}}%;'
+									></div><span
+										class='hp-text'
+									>{{system.resources.health.value}}/{{system.resources.health.max}}</span>
 
-									</div>
-								</div>
-								<div class='mana-block' id='mana-bar'>
-									<div class='mana-bar-container'>
-										<div
-											class='mana-bar'
-											style='width: {{manaBarWidth}}%;'
-										></div><span
-											class='mana-text'
-										>{{system.resources.mana.value}}/{{system.resources.mana.max}}</span>
-									</div>
 								</div>
 							</div>
-						</div>
-						<div class='info-container'>
-							<label for='name' class='input-label'>NAME:</label>
-							{{#if isEditing}}
-								<!-- Editable fields here -->
-								<input
-									name='name'
-									id='name'
-									class='input-text'
-									type='text'
-									value='{{actor.name}}'
-									placeholder='Name'
-								/>
-							{{else}}
-								<!-- Non-editable display here -->
-								<span>{{actor.name}}</span>
-							{{/if}}
-
-							<label for='age' class='input-label'>AGE:</label>
-							{{#if isEditing}}
-								<!-- Editable fields here -->
-								<input
-									type='text'
-									id='age'
-									class='input-text'
-									name='system.age'
-									value='{{system.age}}'
-									data-dtype='Number'
-									placeholder='Age'
-								/>
-							{{else}}
-								<!-- Non-editable display here -->
-								<div>{{system.age}}</div>
-							{{/if}}
-							<label for='race' class='input-label'>RACE:</label>
-							{{#if isEditing}}
-								<!-- Editable fields here -->
-								<input
-									type='text'
-									id='age'
-									class='input-text'
-									name='system.race'
-									value='{{system.race}}'
-									placeholder='Race'
-								/>
-							{{else}}
-								<!-- Non-editable display here -->
-								<span>{{system.race}}</span>
-							{{/if}}
-
-						</div>
-						<div class='attribute-container'>
-							<div class='attributes'>
-
-								<label for='sponsor'>SPONSOR:</label>
-								{{#if isEditing}}
-									<!-- Editable fields here -->
-									<input
-										type='text'
-										id='sponsor'
-										class='input-text'
-										name='system.sponsor'
-										value='{{system.sponsor}}'
-										placeholder='Sponsor'
-									/>
-								{{else}}
-									<!-- Non-editable display here -->
-									<span>{{system.sponsor}}</span>
-								{{/if}}
-								<label>ATTRIBUTES:</label>
-								<label>STIGMAS:</label>
+							<div class='mana-block' id='mana-bar'>
+								<div class='mana-bar-container'>
+									<div
+										class='mana-bar'
+										style='width: {{manaBarWidth}}%;'
+									></div><span
+										class='mana-text'
+									>{{system.resources.mana.value}}/{{system.resources.mana.max}}</span>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class='body'>
-						<div class='stat-related'>
-							<div class='combat-stat-container'>
-								{{#each system.derived as |stat key|}}
+					<div class='info-container'>
+						<label for='name' class='input-label'>NAME:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='name'
+								id='name'
+								class='input-text'
+								type='text'
+								value='{{actor.name}}'
+								placeholder='Name'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<span>{{actor.name}}</span>
+						{{/if}}
+
+						<label for='age' class='input-label'>AGE:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								type='text'
+								id='age'
+								class='input-text'
+								name='system.age'
+								value='{{system.age}}'
+								data-dtype='Number'
+								placeholder='Age'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.age}}</div>
+						{{/if}}
+						<label for='race' class='input-label'>RACE:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								type='text'
+								id='age'
+								class='input-text'
+								name='system.race'
+								value='{{system.race}}'
+								placeholder='Race'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<span>{{system.race}}</span>
+						{{/if}}
+					</div>
+					<div class='attribute-container'>
+						<div class='attributes'>
+
+							<label for='sponsor'>SPONSOR:</label>
+							{{#if isEditing}}
+								<!-- Editable fields here -->
+								<input
+									type='text'
+									id='sponsor'
+									class='input-text'
+									name='system.sponsor'
+									value='{{system.sponsor}}'
+									placeholder='Sponsor'
+								/>
+							{{else}}
+								<!-- Non-editable display here -->
+								<span>{{system.sponsor}}</span>
+							{{/if}}
+							<label>ATTRIBUTES:</label>
+							<label>STIGMAS:</label>
+						</div>
+					</div>
+				</div>
+				<div class='body'>
+					<div class='stat-related'>
+						<div class='combat-stat-container'>
+							{{#each system.derived as |stat key|}}
+								<div class='combat-stat-block'>
+									<label
+										class='{{key}}-label'
+										for='{{key}}-stat'
+									>{{stat.label}}:&nbsp;</label>
+									<span class='{{key}}-stat'>{{stat.value}}
+										(+{{stat.bonus}})</span>
+								</div>
+							{{/each}}
+						</div>
+						<div class='stat-container'>
+							{{#each system.stats as |stat key|}}
+								<div class='stat-flexrow'>
 									<div class='combat-stat-block'>
 										<label
 											class='{{key}}-label'
@@ -135,62 +146,49 @@
 										<span class='{{key}}-stat'>{{stat.value}}
 											(+{{stat.bonus}})</span>
 									</div>
-								{{/each}}
-							</div>
-							<div class='stat-container'>
-								{{#each system.stats as |stat key|}}
-									<div class='stat-flexrow'>
-										<div class='combat-stat-block'>
-											<label
-												class='{{key}}-label'
-												for='{{key}}-stat'
-											>{{stat.label}}:&nbsp;</label>
-											<span class='{{key}}-stat'>{{stat.value}}
-												(+{{stat.bonus}})</span>
-										</div>
-										<button
-											class='resource-span'
-											data-action='attributeLevelUp'
-											data-key='{{key}}'
-										>+</button>
-									</div>
-								{{/each}}
-							</div>
-
-						</div>
-						<div class='coin-container flexrow'>
-							<label
-								for='system.coins'
-								class='resource-label'
-								data-label='Coins:'
-							>
-								Coins:
-							</label>
-							<span
-								class='resource-label'
-								name='system.coins'
-							>{{system.coins}}</span>
-							<button
-								class='resource-label'
-								data-action='openCurrencyPanel'
-							>MANAGE COINS</button>
-							<button class='resource-label' data-action='sendCoins'>SEND COINS</button>
+									<button
+										class='resource-span'
+										data-action='attributeLevelUp'
+										data-key='{{key}}'
+									>+</button>
+								</div>
+							{{/each}}
 						</div>
 					</div>
+					<div class='coin-container flexrow'>
+						<label
+							for='system.coins'
+							class='resource-label'
+							data-label='Coins:'
+						>
+							Coins:
+						</label>
+						<span
+							class='resource-label'
+							name='system.coins'
+						>{{system.coins}}</span>
+						<button
+							class='resource-label'
+							data-action='openCurrencyPanel'
+						>MANAGE COINS</button>
+						<button class='resource-label' data-action='sendCoins'>SEND COINS</button>
+					</div>
 				</div>
-				<div class='tab character-inventory' data-tab='inventory'>
-					<!-- Inventory content here -->
-					{{> inventory}}
+				<div class="bottom">
+					<button id="roll-accuracy" class="rollable">Roll Accuracy</button>
 				</div>
-				<div class='tab' data-tab='abilities'>
-					<!-- Abilities content here -->
-					<div>THIS IS THE ABILITIES PAGE</div>
-				</div>
-				<!-- Add more tab content as necessary -->
 			</div>
-
-			<div style='height: 50px;'></div>
-			<!-- Placeholder spacing -->
-		</section>
-
+			<div class='tab character-inventory' data-tab='inventory'>
+				<!-- Inventory content here -->
+				{{> inventory}}
+			</div>
+			<div class='tab' data-tab='abilities'>
+				<!-- Abilities content here -->
+				<div>THIS IS THE ABILITIES PAGE</div>
+			</div>
+			<!-- Add more tab content as necessary -->
+		</div>
+		<div style='height: 50px;'></div>
+		<!-- Placeholder spacing -->
+	</section>
 </form>

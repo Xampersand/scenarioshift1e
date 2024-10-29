@@ -1,11 +1,10 @@
-import SS1EActorBase from "./actor-base.mjs";
+import SS1EActorBase from './actor-base.mjs';
 export default class SS1ECharacter extends SS1EActorBase {
-
 	static defineSchema() {
 		const fields = foundry.data.fields;
 		const schema = super.defineSchema();
 
-		schema.sponsor = new fields.StringField({ initial: "None" });
+		schema.sponsor = new fields.StringField({ initial: 'None' });
 		schema.race = new fields.StringField({ initial: CONFIG.SS1E.races.human });
 
 		return schema;
@@ -38,7 +37,8 @@ export default class SS1ECharacter extends SS1EActorBase {
 			(stats.agi.value + stats.agi.bonus) * EVASION_INCREMENT
 		);
 		derived.accuracy.value = Math.round(
-			(stats.agi.value + stats.agi.bonus) * ACCURACY_INCREMENT
+			(stats.agi.value + stats.agi.bonus + stats.int.value + stats.int.bonus) *
+				ACCURACY_INCREMENT
 		);
 
 		// HEALTH, MANA
@@ -53,7 +53,6 @@ export default class SS1ECharacter extends SS1EActorBase {
 	getRollData() {
 		const data = {};
 
-	
 		// Check if stats is defined
 		if (this.stats) {
 			// Copy the ability scores to the top level
@@ -61,10 +60,9 @@ export default class SS1ECharacter extends SS1EActorBase {
 				data[k] = foundry.utils.deepClone(v);
 			}
 		} else {
-			console.warn("Stats not defined for this actor:", this);
+			console.warn('Stats not defined for this actor:', this);
 		}
-	
+
 		return data;
 	}
-	
 }
