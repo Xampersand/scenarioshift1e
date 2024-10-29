@@ -12,6 +12,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
+.app {
+  background-image: none;
+}
 label {
   color: #ffffff;
   font-family: 'Teko';
