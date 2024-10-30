@@ -103,7 +103,7 @@ export class SS1EActorSheet extends ActorSheet {
 			this.render(); // Re-render the sheet with updated edit mode
 		});
 
-		html.find('#drop-zone').on('drop', this._onDropItem.bind(this));
+		html.find('.drop-zone').on('drop', this._onDropItem.bind(this));
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.on('click', '.item-edit', (ev) => {
@@ -207,7 +207,7 @@ export class SS1EActorSheet extends ActorSheet {
 		event.preventDefault();
 		event.stopPropagation();
 
-		if (!$(event.target).is('#drop-zone')) return;
+		if (!$(event.target).hasClass('drop-zone')) return;
 
 		const data = JSON.parse(
 			event.originalEvent.dataTransfer.getData('text/plain')
