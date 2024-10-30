@@ -13,6 +13,7 @@
 		}
 	],
 	"url": "https://github.com/Xampersand/scenarioshift1e",
+	"manifest": "https://raw.githubusercontent.com/Xampersand/scenarioshift1e/master/system.json",
 	"license": "LICENSE.txt",
 	"readme": "README.md",
 	"bugs": "https://github.com/Xampersand/scenarioshift1e/issues",
