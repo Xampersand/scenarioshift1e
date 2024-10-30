@@ -38,9 +38,10 @@
 	"gridUnits": "ft",
 	"primaryTokenAttribute": "name",
 	"secondaryTokenAttribute": "armor",
-	"documentTypes": {
-		"Actor": {
-			"character": {}
+	"dependencies": [
+		{
+			"name": "socketlib",
+			"manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/develop/module.json"
 		}
-	}
+	]
 }
