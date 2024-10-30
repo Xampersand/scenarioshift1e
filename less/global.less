@@ -58,7 +58,8 @@ input {
 		.add-glow(@glow-color, 5px, 10px);
 	}
 	&[type='text']:focus {
-		border-color: @accent-color .remove-default-glow();
+		border-color: @accent-color;
+		.remove-default-glow();
 		.add-glow(@glow-color, 5px, 10px);
 	}
 	&[type='search'] {
@@ -136,7 +137,7 @@ div #chat-controls {
 	.window-header {
 		background-color: @background-color;
 		color: @primary-text-color;
-		padding: 0px;
+		padding-top: 5px;
 		// overflow: visible;
 		border: none;
 		border-radius: 10px 10px 0 0;
@@ -224,7 +225,8 @@ textarea {
 .sheet-tabs.tabs {
 	display: flex;
 	position: absolute;
-	left: 100%;
+	left: 99%;
+	top: 10%;
 	flex-direction: column;
 	.add-glow(@glow-color, 2px, 5px);
 	> [data-tab].active {
@@ -241,15 +243,16 @@ textarea {
 }
 .edit-mode-toggle {
 	width: auto;
-	top: -0.3%;
+	top: 2.9%;
 	position: absolute;
-	left: 84%;
+	left: 80%;
+	padding: 0;
+	margin: 0;
+	font-size: 1rem;
 	background-color: @transparent;
 	.remove-default-glow(); // call the mixin
-	.add-glow(@glow-color, 0px, 0px);
 	font-family: @font;
 	height: fit-content;
-	background-color: @transparent;
 }
 //SIDEBAR STYLES, WIP
 #sidebar {
@@ -311,4 +314,24 @@ textarea {
 	aside.sidebar.flexcol {
 		font-size: 1rem;
 	}
+}
+
+// GLOBAL REMAKE OF ACTOR SHEETS
+.app.window-app.ss1e.sheet.actor {
+	background-image: @actor-sheet-background-image-eighty;
+	background-position: center;
+	background-size: cover;
+	background-color: transparent;
+	padding: 20px 24px;
+	box-shadow: none;
+	.window-header {
+		background-color: transparent;
+	}
+	.window-content {
+		background-color: transparent;
+	}
+}
+h4.window-title {
+	text-align: start;
+	padding-left: 20px;
 }

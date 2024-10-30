@@ -67,7 +67,7 @@ select {
   border: none;
 }
 select::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 form select:focus {
   border: none;
@@ -94,13 +94,13 @@ input {
   color: #ffffff;
 }
 a:hover {
-  text-shadow: 0 0 10px #4fc4fa;
+  text-shadow: 0 0 10px #4f8cde;
 }
 i:hover {
-  text-shadow: 0 0 10px #4fc4fa;
+  text-shadow: 0 0 10px #4f8cde;
 }
 input {
-  border-color: #4fc4fa;
+  border-color: #4f8cde;
   border: none;
   box-shadow: none;
 }
@@ -126,7 +126,9 @@ input::selection:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
 input[type='text']:focus {
-  border-color: #4fc4fa border: none; box-shadow: none;;
+  border-color: #4f8cde;
+  border: none;
+  box-shadow: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
 }
@@ -135,7 +137,7 @@ input[type='text']:focus:hover {
 }
 input[type='search'] {
   background: none;
-  border-color: #4fc4fa;
+  border-color: #4f8cde;
 }
 input[type='search']::placeholder {
   color: #ffffff;
@@ -160,14 +162,14 @@ select {
   color: #ffffff;
 }
 option {
-  background-color: #1807af;
+  background-color: #6ed0fd;
   color: #ffffff;
 }
 button {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   color: #ffffff;
   font-family: 'Teko';
-  border-color: #4fc4fa;
+  border-color: #4f8cde;
 }
 button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
@@ -179,7 +181,7 @@ button:hover:hover {
 ol,
 nav,
 div #chat-form {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
 }
@@ -201,7 +203,7 @@ li:active {
   border: 1px solid #4fc4fa !important;
 }
 div #chat-controls {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
 }
 #logo {
   content: url('../assets/images/orv_logo.png');
@@ -211,13 +213,13 @@ div #chat-controls {
   padding: 0;
   background-image: none;
   border-radius: 0 0 10px 10px;
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   color: #ffffff;
 }
 .window-app .window-header {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   color: #ffffff;
-  padding: 0px;
+  padding-top: 5px;
   border: none;
   border-radius: 10px 10px 0 0;
 }
@@ -229,16 +231,16 @@ div #chat-controls {
   background: none;
 }
 .window-header a i {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   font-size: 14px;
 }
 .window-header a span {
   font-size: 14px;
 }
 li.chat-message.message {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   background-image: none;
-  border-color: #4fc4fa;
+  border-color: #4f8cde;
 }
 li.chat-message.message .message-sender {
   color: #ffffff;
@@ -256,11 +258,11 @@ li.chat-message.message .flavor-text {
   color: #ffffff;
 }
 li.chat-message.whisper {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   background-image: none;
 }
 li.chat-message.whisper .whisper-to {
-  color: #4fc4fa;
+  color: #4f8cde;
 }
 .window-content .dialog-content input {
   color: #ffffff;
@@ -277,20 +279,21 @@ textarea:focus {
   box-shadow: none;
 }
 .dice-roll .dice-formula {
-  border: 1px solid #4fc4fa;
+  border: 1px solid #4f8cde;
 }
 .dice-roll .dice-total {
-  border: 1px solid #4fc4fa;
+  border: 1px solid #4f8cde;
 }
 .dice-roll .dice-results .dice-rolls li {
   background-image: none;
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   color: #ffffff;
 }
 .sheet-tabs.tabs {
   display: flex;
   position: absolute;
-  left: 100%;
+  left: 99%;
+  top: 10%;
   flex-direction: column;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
@@ -299,7 +302,7 @@ textarea:focus {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .sheet-tabs.tabs > [data-tab].active {
-  text-shadow: 0 0 10px #4fc4fa;
+  text-shadow: 0 0 10px #4f8cde;
 }
 .sheet-tabs .item {
   padding: 5px 10px;
@@ -315,42 +318,40 @@ textarea:focus {
 }
 .edit-mode-toggle {
   width: auto;
-  top: -0.3%;
+  top: 2.9%;
   position: absolute;
-  left: 84%;
+  left: 80%;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  background-color: #ffffff00;
   border: none;
   box-shadow: none;
-  box-shadow: 0 0 0px rgba(37, 186, 255), 0 0 0px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
   font-family: 'Teko';
   height: fit-content;
-  background-color: #ffffff00;
-}
-.edit-mode-toggle:hover {
-  box-shadow: 0 0 0px rgba(37, 186, 255), 0 0 0px rgba(37, 186, 255);
 }
 #sidebar {
   background-image: none;
   border: 0;
 }
 #sidebar .directory-header {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
 }
 #sidebar #sidebar-tabs {
-  box-shadow: 0 0 10px #4fc4fa;
-  border-bottom: 1px solid #1807af;
+  box-shadow: 0 0 10px #4f8cde;
+  border-bottom: 1px solid #6ed0fd;
   margin-bottom: 0;
 }
 #sidebar #sidebar-tabs .item {
-  border: 1px solid #4fc4fa;
+  border: 1px solid #4f8cde;
 }
 #sidebar #sidebar-tabs .item:hover {
-  text-shadow: 0 0 10px #4fc4fa;
+  text-shadow: 0 0 10px #4f8cde;
 }
 #sidebar #sidebar-tabs .item.active {
-  border: 1px solid #4fc4fa;
-  text-shadow: 0 0 10px #4fc4fa;
-  box-shadow: 0 0 6px inset #4fc4fa;
+  border: 1px solid #4f8cde;
+  text-shadow: 0 0 10px #4f8cde;
+  box-shadow: 0 0 6px inset #4f8cde;
 }
 #sidebar #chat #chat-controls {
   margin: 0;
@@ -365,14 +366,14 @@ textarea:focus {
 }
 #players {
   border: 0;
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
 }
 #settings {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
 }
 #hotbar .bar-controls {
-  background-color: rgba(17, 152, 243, 0.555);
-  border-color: #4fc4fa;
+  background-color: rgba(83, 178, 241, 0.7);
+  border-color: #4f8cde;
 }
 #client-settings {
   font-size: 1.2rem;
@@ -382,6 +383,24 @@ textarea:focus {
 }
 #client-settings aside.sidebar.flexcol {
   font-size: 1rem;
+}
+.app.window-app.ss1e.sheet.actor {
+  background-image: url(../assets/images/ss1e-actor-sheet-background-eighty.png);
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  padding: 20px 24px;
+  box-shadow: none;
+}
+.app.window-app.ss1e.sheet.actor .window-header {
+  background-color: transparent;
+}
+.app.window-app.ss1e.sheet.actor .window-content {
+  background-color: transparent;
+}
+h4.window-title {
+  text-align: start;
+  padding-left: 20px;
 }
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
@@ -407,7 +426,7 @@ textarea:focus {
   left: 50%;
   bottom: 50%;
   transform: translate(-50%, 325%);
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   color: #ffffff;
   border-radius: 10%;
   font-size: 0.75rem;
@@ -454,20 +473,19 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 200px;
+  width: 180px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img {
   border: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
-  margin: 10px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img:hover {
   box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container {
   position: relative;
-  bottom: 40px;
+  bottom: 30px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block {
   display: flex;
@@ -479,7 +497,7 @@ textarea:focus {
   width: 150px;
   height: 30px;
   background-color: #ffffff00;
-  border: 1px solid #4fc4fa;
+  border: 1px solid #4f8cde;
   border-bottom: 0;
   border-radius: 35% 35% 0px 0px;
   overflow: hidden;
@@ -488,7 +506,7 @@ textarea:focus {
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
-  background-color: #53b8caa6;
+  background-color: #b84b4ba4;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
@@ -510,7 +528,7 @@ textarea:focus {
   width: 150px;
   height: 30px;
   background-color: #ffffff00;
-  border: 1px solid #4fc4fa;
+  border: 1px solid #4f8cde;
   border-top: 0;
   border-radius: 0px 0px 35% 35%;
   overflow: hidden;
@@ -518,7 +536,7 @@ textarea:focus {
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container .mana-bar {
   height: 100%;
-  background-color: #1807afa8;
+  background-color: #3a2db3a8;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
@@ -533,7 +551,8 @@ textarea:focus {
 .ss1e.sheet.actor.character .sheet-header div.info-container {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 180px;
+  padding-left: 5px;
 }
 .ss1e.sheet.actor.character .sheet-header div.info-container label {
   font-weight: bold;
@@ -543,7 +562,8 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  width: 200px;
+  width: 180px;
+  padding-left: 5px;
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes {
   flex: 1 1 50%;
@@ -563,7 +583,7 @@ input.input-text {
   color: #ffffff;
 }
 input.input-text::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .body {
   display: flex;
@@ -692,7 +712,7 @@ input.input-text::selection {
 }
 .ss1e.sheet.actor.constellation.header .header.info img.profile-img {
   border: none;
-  box-shadow: 0 0 10px #1807af;
+  box-shadow: 0 0 10px #6ed0fd;
   margin: 10px;
 }
 .ss1e.sheet.actor.constellation.header .header.info div.info-container {
@@ -709,7 +729,7 @@ input.input-text::selection {
   box-shadow: none;
 }
 .ss1e.sheet.actor.constellation.header .header.info div.info-container input.input-text::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .ss1e.sheet.actor.constellation.actions {
   display: flex;
@@ -741,7 +761,7 @@ input.input-text::selection {
   width: 50%;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-counter input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.coins div.coin-buttons {
   display: flex;
@@ -783,13 +803,13 @@ input.input-text::selection {
   border: none;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section select::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section .message-recipient-dropdown {
   padding: 0;
 }
 .ss1e.sheet.actor.constellation.actions .ss1e.sheet.actor.constellation.messages .message-top-section .message-recipient-option {
-  background-color: rgba(17, 152, 243, 0.555);
+  background-color: rgba(83, 178, 241, 0.7);
   color: #ffffff;
 }
 .ss1e.sheet.actor.constellation.actions .preset-message-buttons {
@@ -830,7 +850,7 @@ input.input-text::selection {
   margin: 10px;
 }
 .ss1e.sheet.actor.constellation.actions .message-bottom-section input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .ss1e.sheet.actor.constellation.actions .message-bottom-section button {
   font-size: 1.3rem;
@@ -872,7 +892,7 @@ input.input-text::selection {
   box-shadow: none;
 }
 .weapon-top-section .weapon-title input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .weapon-top-section .weapon-title .weapon-name {
   font-size: 2rem;
@@ -916,7 +936,7 @@ input.input-text::selection {
 .weapon-bottom-section .stats .damage input::selection,
 .weapon-bottom-section .stats .accuracy input::selection,
 .weapon-bottom-section .stats .range input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .weapon-bottom-section .stats .requirement label,
 .weapon-bottom-section .stats .damage label,
@@ -977,7 +997,7 @@ input.input-text::selection {
   box-shadow: none;
 }
 .equipment-top-section .equipment-title input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .equipment-top-section .equipment-title .equipment-name {
   font-size: 2rem;
@@ -1014,7 +1034,7 @@ input.input-text::selection {
 }
 .equipment-bottom-section .stats .requirement input::selection,
 .equipment-bottom-section .stats .defense input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .equipment-bottom-section .stats .requirement label,
 .equipment-bottom-section .stats .defense label {
@@ -1065,7 +1085,7 @@ input.input-text::selection {
   box-shadow: none;
 }
 .ammo-top-section .ammo-title input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .ammo-top-section .ammo-title .ammo-name {
   font-size: 2rem;
@@ -1110,7 +1130,7 @@ input.input-text::selection {
 .ammo-bottom-section .stats .damage input::selection,
 .ammo-bottom-section .stats .accuracy input::selection,
 .ammo-bottom-section .stats .range input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .ammo-bottom-section .stats .requirement label,
 .ammo-bottom-section .stats .damage label,
@@ -1163,7 +1183,7 @@ input.input-text::selection {
   box-shadow: none;
 }
 .accessory-top-section .accessory-title input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .accessory-top-section .accessory-title .accessory-name {
   font-size: 2rem;
@@ -1199,7 +1219,7 @@ input.input-text::selection {
   box-shadow: none;
 }
 .accessory-bottom-section .stats .bonus input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .accessory-bottom-section .stats .bonus label {
   font-weight: bold;
@@ -1249,7 +1269,7 @@ input.input-text::selection {
   box-shadow: none;
 }
 .consumable-top-section .consumable-title input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .consumable-top-section .consumable-title .consumable-name {
   font-size: 2rem;
@@ -1288,7 +1308,7 @@ input.input-text::selection {
 }
 .consumable-bottom-section .stats .quantity input::selection,
 .consumable-bottom-section .stats .effect input::selection {
-  background-color: #1807af;
+  background-color: #6ed0fd;
 }
 .consumable-bottom-section .stats .quantity label,
 .consumable-bottom-section .stats .effect label {

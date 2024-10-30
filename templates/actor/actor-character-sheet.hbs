@@ -8,9 +8,10 @@
 		<!-- Add more tabs as necessary -->
 	</nav>
 	<section class='ss1e sheet actor character'>
-		<div class='sheet-title'>&lt;CHARACTER INFORMATION&gt;</div>
+		
 		<div class='sheet-body'>
 			<div class='tab' data-tab='features'>
+				<div class='sheet-title'>&lt;CHARACTER INFORMATION&gt;</div>
 				<div class='sheet-header info'>
 					<div class='pfp-hp-mana'>
 						{{#if isEditing}}
@@ -19,16 +20,16 @@
 							src='{{actor.img}}'
 							data-edit='img'
 							title='{{actor.name}}'
-							height='175'
-							width='175'
+							height='180'
+							width='180'
 						/>
 						{{else}}
 						<img
 							class='profile-img'
 							src='{{actor.img}}'
 							title='{{actor.name}}'
-							height='175'
-							width='175'
+							height='180'
+							width='180'
 						/>
 						{{/if}}
 						<div class='hp-mana-container'>
@@ -194,10 +195,12 @@
 				</div>
 			</div>
 			<div class='tab character-inventory' data-tab='inventory'>
+				<div class='sheet-title'>&lt;INVENTORY&gt;</div>
 				<!-- Inventory content here -->
 				{{> inventory}}
 			</div>
 			<div class='tab' data-tab='abilities'>
+				<div class='sheet-title'>&lt;SKILLS&gt;</div>
 				<!-- Abilities content here -->
 				<div>THIS IS THE ABILITIES PAGE</div>
 			</div>
