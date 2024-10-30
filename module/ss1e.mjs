@@ -96,6 +96,28 @@ Hooks.on('renderCompendium', async (compendium) => {
 /* -------------------------------------------- */
 
 // If you need to add Handlebars helpers, here is a useful example:
+Handlebars.registerHelper("diff", (a, b) => a - b)
+Handlebars.registerHelper("repeat", function (times, opts) {
+	var out = "";
+	var i;
+	var data = {};
+
+	if (times) {
+		for (i = 0; i < times; i += 1) {
+			data.index = i;
+			out += opts.fn(this, {
+				data: data
+			});
+		}
+	} else {
+
+		out = opts.inverse(this);
+	}
+
+	return out;
+});
+
+
 Handlebars.registerHelper('toLowerCase', function (str) {
 	return str.toLowerCase();
 });
