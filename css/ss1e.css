@@ -384,24 +384,6 @@ textarea:focus {
 #client-settings aside.sidebar.flexcol {
   font-size: 1rem;
 }
-.app.window-app.ss1e.sheet.actor {
-  background-image: url(../assets/images/ss1e-actor-sheet-background-eighty.png);
-  background-position: center;
-  background-size: cover;
-  background-color: transparent;
-  padding: 20px 24px;
-  box-shadow: none;
-}
-.app.window-app.ss1e.sheet.actor .window-header {
-  background-color: transparent;
-}
-.app.window-app.ss1e.sheet.actor .window-content {
-  background-color: transparent;
-}
-h4.window-title {
-  text-align: start;
-  padding-left: 20px;
-}
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1329,5 +1311,52 @@ input.input-text::selection {
   height: fit-content;
 }
 .consumable-actions button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+.app.window-app.ss1e.sheet.actor {
+  background-image: url(../assets/images/ss1e-actor-sheet-background-eighty.png);
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  padding: 20px 24px;
+  box-shadow: none;
+}
+.app.window-app.ss1e.sheet.actor .window-header {
+  background-color: transparent;
+}
+.app.window-app.ss1e.sheet.actor .window-content {
+  background-color: transparent;
+}
+h4.window-title {
+  text-align: start;
+  padding-left: 20px;
+}
+.app.window-app.dialog {
+  background-image: url(../assets/images/ss1e-dialog-background-eighty.png);
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-shadow: none;
+  font-size: 1rem;
+}
+.app.window-app.dialog .window-header {
+  background-color: transparent;
+}
+.app.window-app.dialog .window-content {
+  background-color: transparent;
+}
+.app.window-app.dialog .window-content .dialog-buttons button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  font-size: 1.2rem;
+  margin: 5px;
+  text-transform: uppercase;
+  height: fit-content;
+  width: 100px;
+}
+.app.window-app.dialog .window-content .dialog-buttons button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }

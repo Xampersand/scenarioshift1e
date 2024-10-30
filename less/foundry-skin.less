@@ -1,0 +1,46 @@
+// GLOBAL REMAKE OF ACTOR SHEETS
+.app.window-app.ss1e.sheet.actor {
+	background-image: @actor-sheet-background-image-eighty;
+	background-position: center;
+	background-size: cover;
+	background-color: transparent;
+	padding: 20px 24px;
+	box-shadow: none;
+	.window-header {
+		background-color: transparent;
+	}
+	.window-content {
+		background-color: transparent;
+	}
+}
+h4.window-title {
+	text-align: start;
+	padding-left: 20px;
+}
+// GLOBAL DIALOG BOXES
+.app.window-app.dialog {
+	background-image: @dialog-background-image-eighty;
+	background-color: transparent;
+	background-size: cover;
+	background-position: center;
+	padding: 20px;
+	box-shadow: none;
+	font-size: 1rem;
+	.window-header {
+		background-color: transparent;
+	}
+	.window-content {
+		background-color: transparent;
+		.dialog-buttons {
+			& button {
+				.remove-default-glow(); // call the mixin
+				.add-glow(@glow-color, 2px, 5px);
+				font-size: 1.2rem;
+				margin: 5px;
+				text-transform: uppercase;
+				height: fit-content;
+				width: 100px;
+			}
+		}
+	}
+}
