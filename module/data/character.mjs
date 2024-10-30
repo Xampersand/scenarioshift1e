@@ -19,7 +19,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 	}
 
 	prepareDerivedData() {
-		// console.log("hi initializing")
+		// console.log()
 		const ARMOR_INCREMENT = 0.5;
 		const EVASION_INCREMENT = 0.5;
 		const ACCURACY_INCREMENT = 2;
@@ -43,7 +43,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		);
 		derived.accuracy.value = Math.round(
 			(stats.agi.value + stats.agi.bonus + stats.int.value + stats.int.bonus) *
-				ACCURACY_INCREMENT
+			ACCURACY_INCREMENT
 		);
 
 		// DAMAGE MULTIPLEIRS BASED ON STATS

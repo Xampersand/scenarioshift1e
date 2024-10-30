@@ -4,6 +4,7 @@
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function () {
+	Handlebars.registerHelper("diff", (a, b) => a - b)
 	Handlebars.registerHelper("repeat", function (times, opts) {
 		var out = "";
 		var i;

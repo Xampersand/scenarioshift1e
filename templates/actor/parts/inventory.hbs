@@ -3,13 +3,15 @@
 
 	<div class='item-container'>
 		{{#each items}}
-		<button title="{{this.name}}" class="item-view" data-item-id="{{this._id}}">
-			<img src="{{this.img}}"></img>
-		</button>
+			<button title="{{this.name}}" class="item-view" data-item-id="{{this._id}}">
+				<img src="{{this.img}}"></img>
+			</button>
 		{{/each}}
-		{{!-- {{#repeat system.itemSlots}}
-			
-		{{/repeat}} --}}
+		{{#repeat (diff system.itemSlots actor.items.size) }}
+			<button title="Add Item" class="drop-zone">
+				<img src="">+</img>
+			</button>
+		{{/repeat}}
 	</div>
 	<button class='resource-label'>
 		PURCHASE 5 SLOTS

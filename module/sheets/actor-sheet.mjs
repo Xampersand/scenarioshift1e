@@ -78,7 +78,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) {}
+	_prepareCharacterData(context) { }
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -223,6 +223,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		await this.actor.createEmbeddedDocuments('Item', [item.toObject()]);
 		this._tabs[0].activate('inventory');
+
 	}
 
 	/**
@@ -508,11 +509,11 @@ export class SS1EActorSheet extends ActorSheet {
 					<label>Select Character:</label>
 					<select id="target-character">
 						${game.actors
-							.filter((actor) => actor.hasPlayerOwner)
-							.map(
-								(actor) => `<option value="${actor.id}">${actor.name}</option>`
-							)
-							.join('')}
+					.filter((actor) => actor.hasPlayerOwner)
+					.map(
+						(actor) => `<option value="${actor.id}">${actor.name}</option>`
+					)
+					.join('')}
 					</select>
 				</div>
 				<div class="form-group">
