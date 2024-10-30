@@ -145,6 +145,9 @@ export class SS1EActorSheet extends ActorSheet {
 		html
 			.find('button[data-action="openCurrencyPanel"]')
 			.click(this._openCurrencyPanel.bind(this));
+		html
+			.find('button[data-action="purchase-slots"]')
+			.click(this._openPurchaseSlots.bind(this));
 
 		// Drag events for macros.
 		if (this.actor.isOwner) {
@@ -224,6 +227,51 @@ export class SS1EActorSheet extends ActorSheet {
 		await this.actor.createEmbeddedDocuments('Item', [item.toObject()]);
 		this._tabs[0].activate('inventory');
 
+	}
+
+	_openPurchaseSlots(event) {
+		event.preventDefault();
+
+		const data = this.actor.system;
+		const cost = 100 * Math.pow(3, data.itemSlots / 5);
+
+		new Dialog({
+			title: 'Expand Inventory!',
+			content: `
+			  <p>${data.itemSlots} slots → ${data.itemSlots + 5} slots</p>
+			  <p>Cost: ${cost} Coins</p>
+			`,
+			buttons: {
+				yes: {
+					icon: '<i class="fas fa-check"></i>',
+					label: 'Yes',
+					callback: () => {
+						if (data.coins >= cost) {
+							const updatedCoins = data.coins - cost;
+							const newSlots = data.itemSlots + 5;
+
+							// Prepare the data object for updating
+							let updateData = {
+								[`system.coins`]: updatedCoins,
+								[`system.itemSlots`]: newSlots,
+							};
+
+							// Apply updates to actor
+							this.actor.update(updateData).then(() => this.render()); // Re-render the sheet
+						} else {
+							ui.notifications.error('Not enough coins to expand inventory!');
+						}
+					},
+				},
+				no: {
+					icon: '<i class="fas fa-times"></i>',
+					label: 'No',
+					callback: () => console.log('Expand inventory canceled'),
+				},
+			},
+			default: 'no',
+			close: () => console.log('Expand inventory closed without choosing.'),
+		}).render(true);
 	}
 
 	/**
