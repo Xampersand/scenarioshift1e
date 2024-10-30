@@ -27,7 +27,7 @@ Hooks.once('init', function () {
 
 	// Add custom constants for configuration.
 	CONFIG.SS1E = SS1E;
-	
+
 	/**
 	 * Set an initiative formula for the system
 	 * @type {String}
@@ -177,11 +177,11 @@ function rollItemMacro(itemUuid) {
 
 async function syncInventoryImages(inventory) {
 	for (let item of inventory) {
-	  let compendium = game.packs.get(item.compendium); // Get the compendium
-	  let originalItem = await compendium.getDocument(item.id); // Get the original item
-	  if (originalItem && originalItem.img !== item.img) {
-		item.img = originalItem.img; // Update inventory item image
-		// Trigger a UI update for the inventory, if necessary
-	  }
+		let compendium = game.packs.get(item.compendium); // Get the compendium
+		let originalItem = await compendium.getDocument(item.id); // Get the original item
+		if (originalItem && originalItem.img !== item.img) {
+			item.img = originalItem.img; // Update inventory item image
+			// Trigger a UI update for the inventory, if necessary
+		}
 	}
-  }
+}
