@@ -126,9 +126,21 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
 
+Hooks.once('socketlib.ready', () => {
+	SS1E.socket = socketlib.registerSystem("ss1e");
+	SS1E.socket.register("hello", showHelloMessage);
+})
+
+function showHelloMessage(userName) {
+	console.log(`User ${userName} says hello!`);
+}
+
+
 Hooks.once('ready', function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
+
+	SS1E.socket.executeForEveryone(showHelloMessage, game.user.name);
 });
 
 /* -------------------------------------------- */
