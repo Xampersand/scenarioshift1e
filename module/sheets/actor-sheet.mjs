@@ -177,6 +177,9 @@ export class SS1EActorSheet extends ActorSheet {
 		html.find('#hp-bar').click(() => this._openHealthDialog());
 		// Event listener for MAana bar click
 		html.find('#mana-bar').click(() => this._openManaDialog());
+
+
+		html.find('button[data-action="item-view"]').click(this._openItemDialog.bind(this));
 	}
 
 	/**
@@ -228,8 +231,41 @@ export class SS1EActorSheet extends ActorSheet {
 		this._tabs[0].activate('inventory');
 	}
 
+	_openItemDialog(event) {
+		event.preventDefault();
+
+		const dialogOptions = {
+			width: 300,
+			height: 150,
+		}
+
+		new Dialog({
+			title: "-------------ITEM PANEL-------------",
+			buttons: {
+				equip: {
+					label: 'EQUIP',
+					callback: () => { }
+				},
+				inspect: {
+					label: 'INSPECT',
+					callback: () => { },
+				},
+				cancel: {
+					label: 'CANCEL',
+					callback: () => { }
+				}
+			},
+			default: 'cancel'
+		}, dialogOptions).render(true);
+	}
+
 	_openPurchaseSlots(event) {
 		event.preventDefault();
+
+		const dialogOptions = {
+			width: 300,
+			height: 150,
+		}
 
 		const data = this.actor.system;
 		const cost = 100 * Math.pow(3, data.itemSlots / 5);
@@ -270,7 +306,7 @@ export class SS1EActorSheet extends ActorSheet {
 			},
 			default: 'no',
 			close: () => console.log('Expand inventory closed without choosing.'),
-		}).render(true);
+		}, dialogOptions).render(true);
 	}
 
 	/**
@@ -409,7 +445,7 @@ export class SS1EActorSheet extends ActorSheet {
 				if (selectedCharacterId === 'public') {
 					// Send a public message
 					CONFIG.SS1E.socket.executeForEveryone("constellationMessage", {
-						content: "says " + message,
+						content: message,
 						constellation: this.actor.name,
 					});
 				} else {

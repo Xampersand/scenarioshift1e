@@ -1,7 +1,7 @@
 <div class='sheet-inventory'>
 	<div class='item-container'>
 		{{#each items}}
-			<button title='{{this.name}}' class='item-view' data-item-id='{{this._id}}'>
+			<button title='{{this.name}}' class='item-view' data-action='item-view' data-item-id='{{this._id}}'>
 				<img src='{{this.img}}'></img>
 			</button>
 		{{/each}}

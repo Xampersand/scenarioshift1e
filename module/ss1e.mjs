@@ -133,8 +133,8 @@ Hooks.once('socketlib.ready', () => {
 
 function showConstellationMessage(message) {
 	const dialogOptions = {
-		width: 400,
-		height: 200,
+		width: 300,
+		height: 150,
 		top: -1000,
 		left: Math.floor(Math.random() * 800) * Math.round(Math.random()) * 2 - 1
 	};
@@ -143,18 +143,25 @@ function showConstellationMessage(message) {
 		<style>
 			.centered-constellation-message {
 				text-align: center;
-				font-size: 1.5rem;
+				font-size: 1rem;
 				transition: opacity 3s;
 				opacity: 1;
 			}
+			.dark-blue {
+				color: #0320ad;
+			}
 		</style>
-		<p class="centered-constellation-message">
-			THE CONSTELLATION <br>'${message.constellation.toUpperCase()}'</br> ${message.content.toUpperCase()}
-		</p>
+		<div class="centered-constellation-message">
+			THE CONSTELLATION 
+			<div class="dark-blue">
+			'${message.constellation.toUpperCase()}'
+			</div> 
+			${message.content.toUpperCase()}
+		</div>
 	`
 
 	const dialog = new Dialog({
-		title: `------------------------[NOTIFICATION]------------------------`,
+		title: `-------------[NOTIFICATION]-------------`,
 		content: dialogContent,
 		buttons: {},
 		close: () => console.log('Closed without choosing.'),
