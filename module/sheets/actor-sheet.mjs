@@ -405,7 +405,7 @@ export class SS1EActorSheet extends ActorSheet {
 							(user) => user.character?.id === selectedActor.id
 						);
 						if (ownerUser) {
-							SS1E.socket.executeAsUser("constellationMessage", ownerUser._id, {
+							CONFIG.SS1E.socket.executeAsUser("constellationMessage", ownerUser._id, {
 								content: message,
 								constellation: this.actor.name,
 							});
