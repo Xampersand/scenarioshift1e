@@ -111,7 +111,6 @@ div #chat-form {
 
 li {
 	.add-glow(@glow-color, 5px) !important;
-	.add-border(1px) !important;
 }
 
 div #chat-controls {
@@ -163,7 +162,8 @@ div #chat-controls {
 li.chat-message.message {
 	background-color: @background-color;
 	background-image: none;
-	border-color: @accent-color;
+	border: 3px double white;
+
 	.message-sender {
 		color: @primary-text-color;
 	}
@@ -183,6 +183,7 @@ li.chat-message.message {
 li.chat-message.whisper {
 	background-color: @background-color;
 	background-image: none;
+	border: 3px double white;
 	.whisper-to {
 		color: @accent-color;
 	}

@@ -44,3 +44,57 @@ h4.window-title {
 		}
 	}
 }
+
+//  even better, SPECIFIC DIALOG BOXES!!
+.app.window-app.dialog {
+	&:has(.constellation-message) {
+		background-image: @dialog-background-image-eighty;
+		background-color: transparent;
+		background-size: cover;
+		background-position: center;
+		padding: 20px;
+		box-shadow: none;
+		font-size: 1rem;
+		.window-header {
+			background-color: transparent;
+			.window-title {
+				display: none;
+			}
+		}
+		.window-content {
+			background-color: transparent;
+			.dialog-buttons {
+				display: none;
+			}
+
+			.constellation-message {
+				text-align: center;
+				font-size: 1.3rem;
+			}
+		}
+	}
+}
+nav#controls {
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double white;
+	border-radius: 8px;
+}
+aside#players {
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double white;
+	border-radius: 8px;
+}
+div#sidebar {
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double white;
+	border-radius: 8px;
+}
+nav#navigation {
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double white;
+	border-radius: 8px;
+}

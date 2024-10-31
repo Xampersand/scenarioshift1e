@@ -193,14 +193,9 @@ div #chat-form:hover {
 li {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255) !important;
   transition: box-shadow 0.3s ease-in-out !important;
-  border: 1px solid rgba(79, 196, 250, 0.5) !important;
 }
 li:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255) !important;
-}
-li:hover,
-li:active {
-  border: 1px solid #4fc4fa !important;
 }
 div #chat-controls {
   background-color: rgba(83, 178, 241, 0.7);
@@ -240,7 +235,7 @@ div #chat-controls {
 li.chat-message.message {
   background-color: rgba(83, 178, 241, 0.7);
   background-image: none;
-  border-color: #4f8cde;
+  border: 3px double white;
 }
 li.chat-message.message .message-sender {
   color: #ffffff;
@@ -260,6 +255,7 @@ li.chat-message.message .flavor-text {
 li.chat-message.whisper {
   background-color: rgba(83, 178, 241, 0.7);
   background-image: none;
+  border: 3px double white;
 }
 li.chat-message.whisper .whisper-to {
   color: #4f8cde;
@@ -1362,4 +1358,53 @@ h4.window-title {
 }
 .app.window-app.dialog .window-content .dialog-buttons button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+.app.window-app.dialog:has(.constellation-message) {
+  background-image: url(../assets/images/ss1e-dialog-background-eighty.png);
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-shadow: none;
+  font-size: 1rem;
+}
+.app.window-app.dialog:has(.constellation-message) .window-header {
+  background-color: transparent;
+}
+.app.window-app.dialog:has(.constellation-message) .window-header .window-title {
+  display: none;
+}
+.app.window-app.dialog:has(.constellation-message) .window-content {
+  background-color: transparent;
+}
+.app.window-app.dialog:has(.constellation-message) .window-content .dialog-buttons {
+  display: none;
+}
+.app.window-app.dialog:has(.constellation-message) .window-content .constellation-message {
+  text-align: center;
+  font-size: 1.3rem;
+}
+nav#controls {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
+}
+aside#players {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
+}
+div#sidebar {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
+}
+nav#navigation {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
 }

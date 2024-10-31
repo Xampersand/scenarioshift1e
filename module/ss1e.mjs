@@ -37,15 +37,15 @@ Hooks.once('init', function () {
 		decimals: 2,
 	};
 
-	console.log("bye template.json, hello data models");
+	console.log('bye template.json, hello data models');
 
 	// Define custom Document classes
 	CONFIG.Actor.documentClass = SS1EActor;
 	CONFIG.Actor.dataModels = {
 		character: models.SS1ECharacter,
 		constellation: models.SS1EConstellation,
-		npc: models.SS1ENPC
-	}
+		npc: models.SS1ENPC,
+	};
 
 	CONFIG.Item.documentClass = SS1EItem;
 	CONFIG.Item.dataModels = {
@@ -56,8 +56,7 @@ Hooks.once('init', function () {
 		ammo: models.SS1EAmmo,
 
 		skill: models.SS1ESkill,
-	}
-
+	};
 
 	// Active Effects are never copied to the Actor,
 	// but will still apply to the Actor from within the Item
@@ -81,8 +80,8 @@ Hooks.once('init', function () {
 });
 
 Hooks.on('manageCurrency', function () {
-	console.log("clicked currency");
-})
+	console.log('clicked currency');
+});
 
 Hooks.on('renderCompendium', async (compendium) => {
 	if (compendium.collection === 'your-compendium-name') {
@@ -96,9 +95,9 @@ Hooks.on('renderCompendium', async (compendium) => {
 /* -------------------------------------------- */
 
 // If you need to add Handlebars helpers, here is a useful example:
-Handlebars.registerHelper("diff", (a, b) => a - b)
-Handlebars.registerHelper("repeat", function (times, opts) {
-	var out = "";
+Handlebars.registerHelper('diff', (a, b) => a - b);
+Handlebars.registerHelper('repeat', function (times, opts) {
+	var out = '';
 	var i;
 	var data = {};
 
@@ -106,17 +105,15 @@ Handlebars.registerHelper("repeat", function (times, opts) {
 		for (i = 0; i < times; i += 1) {
 			data.index = i;
 			out += opts.fn(this, {
-				data: data
+				data: data,
 			});
 		}
 	} else {
-
 		out = opts.inverse(this);
 	}
 
 	return out;
 });
-
 
 Handlebars.registerHelper('toLowerCase', function (str) {
 	return str.toLowerCase();
@@ -127,49 +124,35 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 /* -------------------------------------------- */
 
 Hooks.once('socketlib.ready', () => {
-	SS1E.socket = socketlib.registerSystem("ss1e");
-	SS1E.socket.register("constellationMessage", showConstellationMessage);
-})
+	SS1E.socket = socketlib.registerSystem('ss1e');
+	SS1E.socket.register('constellationMessage', showConstellationMessage);
+});
 
 function showConstellationMessage(message) {
 	const dialogOptions = {
 		width: 300,
 		height: 150,
 		top: -1000,
-		left: Math.floor(Math.random() * 800) * Math.round(Math.random()) * 2 - 1
+		left: Math.floor(Math.random() * 800) * Math.round(Math.random()) * 2 - 1,
 	};
 
 	const dialogContent = `
-		<style>
-			.centered-constellation-message {
-				text-align: center;
-				font-size: 1rem;
-				transition: opacity 3s;
-				opacity: 1;
-			}
-			.dark-blue {
-				color: #0320ad;
-			}
-		</style>
-		<div class="centered-constellation-message">
-			THE CONSTELLATION 
-			<div class="dark-blue">
-			'${message.constellation.toUpperCase()}'
-			</div> 
-			${message.content.toUpperCase()}
+		<div class="constellation-message">
+			THE CONSTELLATION '${message.constellation.toUpperCase()}' ${message.content.toUpperCase()}
 		</div>
-	`
+	`;
 
-	const dialog = new Dialog({
-		title: `-------------[NOTIFICATION]-------------`,
-		content: dialogContent,
-		buttons: {},
-		close: () => console.log('Closed without choosing.'),
-	}, dialogOptions).render(true);
+	const dialog = new Dialog(
+		{
+			content: dialogContent,
+			buttons: {},
+			close: () => console.log('Closed without choosing.'),
+		},
+		dialogOptions
+	).render(true);
 
-	setTimeout(() => dialog.close(), 3000);
+	// setTimeout(() => dialog.close(), 3000);
 }
-
 
 Hooks.once('ready', function () {
 	// Wait to register hotbar drop hook on ready so that modules csould register earlier if they want to
