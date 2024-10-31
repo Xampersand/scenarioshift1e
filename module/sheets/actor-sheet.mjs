@@ -49,6 +49,14 @@ export class SS1EActorSheet extends ActorSheet {
 		//define editable context
 		context.isEditing = this.isEditing;
 
+		// Get all player characters
+		context.players = game.actors
+			.filter((actor) => actor.hasPlayerOwner)
+			.map((actor) => ({
+				id: actor.id,
+				name: actor.name,
+			}));
+
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
 		context.flags = actorData.flags;
@@ -78,7 +86,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) { }
+	_prepareCharacterData(context) {}
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -178,8 +186,9 @@ export class SS1EActorSheet extends ActorSheet {
 		// Event listener for MAana bar click
 		html.find('#mana-bar').click(() => this._openManaDialog());
 
-
-		html.find('button[data-action="item-view"]').click(this._openItemDialog.bind(this));
+		html
+			.find('button[data-action="item-view"]')
+			.click(this._openItemDialog.bind(this));
 	}
 
 	/**
@@ -237,26 +246,29 @@ export class SS1EActorSheet extends ActorSheet {
 		const dialogOptions = {
 			width: 300,
 			height: 150,
-		}
+		};
 
-		new Dialog({
-			title: "-------------ITEM PANEL-------------",
-			buttons: {
-				equip: {
-					label: 'EQUIP',
-					callback: () => { }
+		new Dialog(
+			{
+				title: '-------------ITEM PANEL-------------',
+				buttons: {
+					equip: {
+						label: 'EQUIP',
+						callback: () => {},
+					},
+					inspect: {
+						label: 'INSPECT',
+						callback: () => {},
+					},
+					cancel: {
+						label: 'CANCEL',
+						callback: () => {},
+					},
 				},
-				inspect: {
-					label: 'INSPECT',
-					callback: () => { },
-				},
-				cancel: {
-					label: 'CANCEL',
-					callback: () => { }
-				}
+				default: 'cancel',
 			},
-			default: 'cancel'
-		}, dialogOptions).render(true);
+			dialogOptions
+		).render(true);
 	}
 
 	_openPurchaseSlots(event) {
@@ -265,48 +277,51 @@ export class SS1EActorSheet extends ActorSheet {
 		const dialogOptions = {
 			width: 300,
 			height: 150,
-		}
+		};
 
 		const data = this.actor.system;
 		const cost = 100 * Math.pow(3, data.itemSlots / 5);
 
-		new Dialog({
-			title: 'Expand Inventory!',
-			content: `
+		new Dialog(
+			{
+				title: 'Expand Inventory!',
+				content: `
 			  <p>${data.itemSlots} slots → ${data.itemSlots + 5} slots</p>
 			  <p>Cost: ${cost} Coins</p>
 			`,
-			buttons: {
-				yes: {
-					icon: '<i class="fas fa-check"></i>',
-					label: 'Yes',
-					callback: () => {
-						if (data.coins >= cost) {
-							const updatedCoins = data.coins - cost;
-							const newSlots = data.itemSlots + 5;
+				buttons: {
+					yes: {
+						icon: '<i class="fas fa-check"></i>',
+						label: 'Yes',
+						callback: () => {
+							if (data.coins >= cost) {
+								const updatedCoins = data.coins - cost;
+								const newSlots = data.itemSlots + 5;
 
-							// Prepare the data object for updating
-							let updateData = {
-								[`system.coins`]: updatedCoins,
-								[`system.itemSlots`]: newSlots,
-							};
+								// Prepare the data object for updating
+								let updateData = {
+									[`system.coins`]: updatedCoins,
+									[`system.itemSlots`]: newSlots,
+								};
 
-							// Apply updates to actor
-							this.actor.update(updateData).then(() => this.render()); // Re-render the sheet
-						} else {
-							ui.notifications.error('Not enough coins to expand inventory!');
-						}
+								// Apply updates to actor
+								this.actor.update(updateData).then(() => this.render()); // Re-render the sheet
+							} else {
+								ui.notifications.error('Not enough coins to expand inventory!');
+							}
+						},
+					},
+					no: {
+						icon: '<i class="fas fa-times"></i>',
+						label: 'No',
+						callback: () => console.log('Expand inventory canceled'),
 					},
 				},
-				no: {
-					icon: '<i class="fas fa-times"></i>',
-					label: 'No',
-					callback: () => console.log('Expand inventory canceled'),
-				},
+				default: 'no',
+				close: () => console.log('Expand inventory closed without choosing.'),
 			},
-			default: 'no',
-			close: () => console.log('Expand inventory closed without choosing.'),
-		}, dialogOptions).render(true);
+			dialogOptions
+		).render(true);
 	}
 
 	/**
@@ -392,7 +407,7 @@ export class SS1EActorSheet extends ActorSheet {
 				// Check if the selectedCharacterId is 'public'
 				if (selectedCharacterId === 'public') {
 					// Send a public message
-					CONFIG.SS1E.socket.executeForEveryone("constellationMessage", {
+					CONFIG.SS1E.socket.executeForEveryone('constellationMessage', {
 						content: message,
 						constellation: this.actor.name,
 					});
@@ -405,10 +420,14 @@ export class SS1EActorSheet extends ActorSheet {
 							(user) => user.character?.id === selectedActor.id
 						);
 						if (ownerUser) {
-							CONFIG.SS1E.socket.executeAsUser("constellationMessage", ownerUser._id, {
-								content: message,
-								constellation: this.actor.name,
-							});
+							CONFIG.SS1E.socket.executeAsUser(
+								'constellationMessage',
+								ownerUser._id,
+								{
+									content: message,
+									constellation: this.actor.name,
+								}
+							);
 						} else {
 							console.warn('The selected character has no associated user.');
 						}
@@ -444,7 +463,7 @@ export class SS1EActorSheet extends ActorSheet {
 				// Check if the selectedCharacterId is 'public'
 				if (selectedCharacterId === 'public') {
 					// Send a public message
-					CONFIG.SS1E.socket.executeForEveryone("constellationMessage", {
+					CONFIG.SS1E.socket.executeForEveryone('constellationMessage', {
 						content: message,
 						constellation: this.actor.name,
 					});
@@ -458,7 +477,7 @@ export class SS1EActorSheet extends ActorSheet {
 						);
 						if (ownerUser) {
 							// Create a whisper message
-							SS1E.socket.executeAsUser("constellationMessage", ownerUser._id, {
+							SS1E.socket.executeAsUser('constellationMessage', ownerUser._id, {
 								content: message,
 								constellation: this.actor.name,
 							});
@@ -589,11 +608,11 @@ export class SS1EActorSheet extends ActorSheet {
 					<label>Select Character:</label>
 					<select id="target-character">
 						${game.actors
-					.filter((actor) => actor.hasPlayerOwner)
-					.map(
-						(actor) => `<option value="${actor.id}">${actor.name}</option>`
-					)
-					.join('')}
+							.filter((actor) => actor.hasPlayerOwner)
+							.map(
+								(actor) => `<option value="${actor.id}">${actor.name}</option>`
+							)
+							.join('')}
 					</select>
 				</div>
 				<div class="form-group">
