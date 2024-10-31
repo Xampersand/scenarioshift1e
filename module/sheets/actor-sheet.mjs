@@ -437,7 +437,7 @@ export class SS1EActorSheet extends ActorSheet {
 		} else {
 			// Show error notification
 			ui.notifications.error(
-				'Not enough coins to send the message! (50 coins required)'
+				'Not enough coins to send the message! (200 coins required)'
 			);
 		}
 	}

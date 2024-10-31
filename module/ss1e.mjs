@@ -144,10 +144,12 @@ function showConstellationMessage(message) {
 			.centered-constellation-message {
 				text-align: center;
 				font-size: 1.5rem;
+				transition: opacity 3s;
+				opacity: 1;
 			}
 		</style>
 		<p class="centered-constellation-message">
-			[THE CONSTELLATION <br>'${message.constellation.toUpperCase()}'</br> ${message.content.toUpperCase()}]
+			THE CONSTELLATION <br>'${message.constellation.toUpperCase()}'</br> ${message.content.toUpperCase()}
 		</p>
 	`
 
@@ -157,7 +159,6 @@ function showConstellationMessage(message) {
 		buttons: {},
 		close: () => console.log('Closed without choosing.'),
 	}, dialogOptions).render(true);
-
 
 	setTimeout(() => dialog.close(), 3000);
 }
