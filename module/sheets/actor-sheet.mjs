@@ -78,7 +78,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) {}
+	_prepareCharacterData(context) { }
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -356,9 +356,9 @@ export class SS1EActorSheet extends ActorSheet {
 				// Check if the selectedCharacterId is 'public'
 				if (selectedCharacterId === 'public') {
 					// Send a public message
-					ChatMessage.create({
+					CONFIG.SS1E.socket.executeForEveryone("constellationMessage", {
 						content: message,
-						speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+						constellation: this.actor.name,
 					});
 				} else {
 					// Get the selected actor and check if it's defined
@@ -369,11 +369,9 @@ export class SS1EActorSheet extends ActorSheet {
 							(user) => user.character?.id === selectedActor.id
 						);
 						if (ownerUser) {
-							// Create a whisper message
-							ChatMessage.create({
+							SS1E.socket.executeAsUser("constellationMessage", ownerUser._id, {
 								content: message,
-								whisper: [ownerUser._id], // Whisper to the user ID
-								speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+								constellation: this.actor.name,
 							});
 						} else {
 							console.warn('The selected character has no associated user.');
@@ -403,16 +401,16 @@ export class SS1EActorSheet extends ActorSheet {
 		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
 		if (!message) return;
 		// Check if actor has enough coins (50 coins needed)
-		if (this.actor.system.coins >= 50) {
+		if (this.actor.system.coins >= 1000) {
 			// Deduct 50 coins
-			const updatedCoins = this.actor.system.coins - 50;
+			const updatedCoins = this.actor.system.coins - 1000;
 			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
 				// Check if the selectedCharacterId is 'public'
 				if (selectedCharacterId === 'public') {
 					// Send a public message
-					ChatMessage.create({
-						content: message,
-						speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+					CONFIG.SS1E.socket.executeForEveryone("constellationMessage", {
+						content: "says " + message,
+						constellation: this.actor.name,
 					});
 				} else {
 					// Get the selected actor and check if it's defined
@@ -424,10 +422,9 @@ export class SS1EActorSheet extends ActorSheet {
 						);
 						if (ownerUser) {
 							// Create a whisper message
-							ChatMessage.create({
+							SS1E.socket.executeAsUser("constellationMessage", ownerUser._id, {
 								content: message,
-								whisper: [ownerUser._id], // Whisper to the user ID
-								speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+								constellation: this.actor.name,
 							});
 						} else {
 							console.warn('The selected character has no associated user.');
@@ -556,11 +553,11 @@ export class SS1EActorSheet extends ActorSheet {
 					<label>Select Character:</label>
 					<select id="target-character">
 						${game.actors
-							.filter((actor) => actor.hasPlayerOwner)
-							.map(
-								(actor) => `<option value="${actor.id}">${actor.name}</option>`
-							)
-							.join('')}
+					.filter((actor) => actor.hasPlayerOwner)
+					.map(
+						(actor) => `<option value="${actor.id}">${actor.name}</option>`
+					)
+					.join('')}
 					</select>
 				</div>
 				<div class="form-group">

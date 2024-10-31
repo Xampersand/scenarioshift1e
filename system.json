@@ -1,60 +1,56 @@
 {
-  "id": "ss1e",
-  "title": "Scenario Shift 1st Edition",
-  "description": "Scenarios! Systems! Sponsors!",
-  "authors": [
-    {
-      "name": "xand",
-      "discord": "xamperxand",
-      "flags": {}
-    },
-    {
-      "name": "Vankell",
-      "discord": "vankell",
-      "flags": {}
-    }
-  ],
-  "url": "https://github.com/Xampersand/scenarioshift1e",
-  "license": "LICENSE.txt",
-  "readme": "README.md",
-  "bugs": "https://github.com/Xampersand/scenarioshift1e/issues",
-  "changelog": "CHANGELOG.md",
-  "media": [
-    {
-      "type": "setup",
-      "url": "systems/ss1e/assets/images/orv_logo.png",
-      "thumbnail": "systems/ss1e/assets/images/orv_logo.png",
-      "loop": false,
-      "flags": {}
-    }
-  ],
-  "version": "1.0.0",
-  "compatibility": {
-    "minimum": "12",
-    "verified": "12.331"
-  },
-  "esmodules": [
-    "module/ss1e.mjs"
-  ],
-  "styles": [
-    "css/ss1e.css"
-  ],
-  "socket": true,
-  "background": "systems/ss1e/assets/images/orv_logo.png",
-  "primaryTokenAttribute": "name",
-  "secondaryTokenAttribute": "armor",
-  "grid": {
-    "distance": 5,
-    "units": "ft"
-  },
-  "relationships": {
-    "requires": [
-      {
-        "id": "socketlib",
-        "type": "module",
-        "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/develop/module.json",
-        "compatibility": {}
-      }
-    ]
-  }
+	"id": "ss1e",
+	"title": "Scenario Shift 1st Edition",
+	"description": "Scenarios! Systems! Sponsors!",
+	"authors": [
+		{
+			"name": "xand",
+			"discord": "xamperxand",
+			"flags": {}
+		},
+		{
+			"name": "Vankell",
+			"discord": "vankell",
+			"flags": {}
+		}
+	],
+	"url": "https://github.com/Xampersand/scenarioshift1e",
+	"license": "LICENSE.txt",
+	"readme": "README.md",
+	"bugs": "https://github.com/Xampersand/scenarioshift1e/issues",
+	"changelog": "CHANGELOG.md",
+	"media": [
+		{
+			"type": "setup",
+			"url": "systems/ss1e/assets/images/orv_logo.png",
+			"thumbnail": "systems/ss1e/assets/images/orv_logo.png",
+			"loop": false,
+			"flags": {}
+		}
+	],
+	"version": "1.0.0",
+	"compatibility": {
+		"minimum": "12",
+		"verified": "12.331"
+	},
+	"esmodules": ["module/ss1e.mjs"],
+	"styles": ["css/ss1e.css"],
+	"socket": true,
+	"background": "systems/ss1e/assets/images/orv_logo.png",
+	"primaryTokenAttribute": "name",
+	"secondaryTokenAttribute": "armor",
+	"grid": {
+		"distance": 5,
+		"units": "ft"
+	},
+	"relationships": {
+		"requires": [
+			{
+				"id": "socketlib",
+				"type": "module",
+				"manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/v1.1.0/module.json",
+				"compatibility": {}
+			}
+		]
+	}
 }

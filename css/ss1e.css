@@ -264,6 +264,9 @@ li.chat-message.whisper {
 li.chat-message.whisper .whisper-to {
   color: #4f8cde;
 }
+.dialog .window-header .header-button.control.close {
+  display: none;
+}
 .window-content .dialog-content input {
   color: #ffffff;
 }

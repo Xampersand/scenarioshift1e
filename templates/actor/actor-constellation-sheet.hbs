@@ -62,7 +62,10 @@
 					<!-- Non-editable display here -->
 					<div>{{system.grade}}</div>
 				{{/if}}
-				<label for='incarnation' class='input-label'>INCARNATION:</label>
+				<label
+					for='incarnation'
+					class='input-label'
+				>INCARNATION:</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
@@ -102,14 +105,17 @@
 					class='constellation-sheet-button'
 					data-action='openCurrencyPanel'
 				>Manage Coins</button>
-				<button class='constellation-sheet-button' data-action='sendCoins'>Send
-					Coins</button>
+				<button
+					class='constellation-sheet-button'
+					data-action='sendCoins'
+				>Send Coins</button>
 			</div>
 		</div>
 		<div class='ss1e sheet actor constellation messages'>
 			<div class='message-top-section'>
 				<div class='message-recipient'>
-					<label for='messageRecipient' class=''>Select Message Recipient:</label>
+					<label for='messageRecipient' class=''>Select Message
+						Recipient:</label>
 					<select
 						id='messageRecipient'
 						name='messageRecipient'
@@ -149,13 +155,13 @@
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='is angered by the choices made!'
+						data-message='sighs in boredom.'
 						data-cost='200'
 					>BORED</button>
 					<button
 						class='constellation-sheet-button'
 						data-action='sendPreset'
-						data-message='sighs in boredom.'
+						data-message='is angered by the choices made!'
 						data-cost='200'
 					>ANGER</button>
 					<button

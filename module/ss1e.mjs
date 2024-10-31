@@ -128,19 +128,44 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 
 Hooks.once('socketlib.ready', () => {
 	SS1E.socket = socketlib.registerSystem("ss1e");
-	SS1E.socket.register("hello", showHelloMessage);
+	SS1E.socket.register("constellationMessage", showConstellationMessage);
 })
 
-function showHelloMessage(userName) {
-	console.log(`User ${userName} says hello!`);
+function showConstellationMessage(message) {
+	const dialogOptions = {
+		width: 400,
+		height: 200,
+		top: -1000,
+		left: Math.floor(Math.random() * 800) * Math.round(Math.random()) * 2 - 1
+	};
+
+	const dialogContent = `
+		<style>
+			.centered-constellation-message {
+				text-align: center;
+				font-size: 1.5rem;
+			}
+		</style>
+		<p class="centered-constellation-message">
+			[THE CONSTELLATION <br>'${message.constellation.toUpperCase()}'</br> ${message.content.toUpperCase()}]
+		</p>
+	`
+
+	const dialog = new Dialog({
+		title: `------------------------[NOTIFICATION]------------------------`,
+		content: dialogContent,
+		buttons: {},
+		close: () => console.log('Closed without choosing.'),
+	}, dialogOptions).render(true);
+
+
+	setTimeout(() => dialog.close(), 3000);
 }
 
 
 Hooks.once('ready', function () {
-	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+	// Wait to register hotbar drop hook on ready so that modules csould register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
-
-	SS1E.socket.executeForEveryone(showHelloMessage, game.user.name);
 });
 
 /* -------------------------------------------- */
