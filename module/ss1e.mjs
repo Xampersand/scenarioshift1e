@@ -151,7 +151,7 @@ function showConstellationMessage(message) {
 		dialogOptions
 	).render(true);
 
-	// setTimeout(() => dialog.close(), 3000);
+	setTimeout(() => dialog.close(), 3000);
 }
 
 Hooks.once('ready', function () {

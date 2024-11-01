@@ -3,6 +3,11 @@ import {
 	prepareActiveEffectCategories,
 } from '../helpers/effects.mjs';
 
+import * as Constellation from '../services/ConstellationService.mjs'
+import * as Inventory from '../services/InventoryService.mjs';
+import * as Coin from '../services/CoinService.mjs';
+import * as Stat from '../services/StatService.mjs';
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -86,7 +91,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) {}
+	_prepareCharacterData(context) { }
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -111,7 +116,7 @@ export class SS1EActorSheet extends ActorSheet {
 			this.render(); // Re-render the sheet with updated edit mode
 		});
 
-		html.find('.drop-zone').on('drop', this._onDropItem.bind(this));
+		html.find('.drop-zone').on('drop', Inventory.onDropItem.bind(this));
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.on('click', '.item-edit', (ev) => {
@@ -123,16 +128,16 @@ export class SS1EActorSheet extends ActorSheet {
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
-		// Add Inventory Item
-		html.on('click', '.item-create', this._onItemCreate.bind(this));
+		// // Add Inventory Item
+		// html.on('click', '.item-create', this._onItemCreate.bind(this));
 
-		// Delete Inventory Item
-		html.on('click', '.item-delete', (ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
-			item.delete();
-			li.slideUp(200, () => this.render(false));
-		});
+		// // Delete Inventory Item
+		// html.on('click', '.item-delete', (ev) => {
+		// 	const li = $(ev.currentTarget).parents('.item');
+		// 	const item = this.actor.items.get(li.data('itemId'));
+		// 	item.delete();
+		// 	li.slideUp(200, () => this.render(false));
+		// });
 
 		// Active Effect management
 		html.on('click', '.effect-control', (ev) => {
@@ -149,13 +154,13 @@ export class SS1EActorSheet extends ActorSheet {
 
 		html
 			.find('button[data-action="attributeLevelUp"]')
-			.click(this._onStatLevelUp.bind(this));
+			.click(Stat.onStatLevelUp.bind(this));
 		html
 			.find('button[data-action="openCurrencyPanel"]')
-			.click(this._openCurrencyPanel.bind(this));
+			.click(Coin.openCurrencyPanel.bind(this));
 		html
 			.find('button[data-action="purchase-slots"]')
-			.click(this._openPurchaseSlots.bind(this));
+			.click(Inventory.openPurchaseSlots.bind(this));
 
 		// Drag events for macros.
 		if (this.actor.isOwner) {
@@ -172,15 +177,15 @@ export class SS1EActorSheet extends ActorSheet {
 		// Send Preset Message
 		html
 			.find('button[data-action="sendPreset"]')
-			.click(this._onSendPublicPresetMessage.bind(this));
+			.click(Constellation.onSendPresetMessage.bind(this));
 		// Send Custom Message
 		html
 			.find('button[data-action="sendCustom"]')
-			.click(this._onSendCustomMessage.bind(this));
+			.click(Constellation.onSendCustomMessage.bind(this));
 		// Handle sending coins to another character
 		html
 			.find('button[data-action="sendCoins"]')
-			.click(this._onSendCoins.bind(this));
+			.click(Coin.onSendCoins.bind(this));
 		// Event listener for HP bar click
 		html.find('#hp-bar').click(() => this._openHealthDialog());
 		// Event listener for MAana bar click
@@ -188,140 +193,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		html
 			.find('button[data-action="item-view"]')
-			.click(this._openItemDialog.bind(this));
-	}
-
-	/**
-	 * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-	 * @param {Event} event   The originating click event
-	 * @private
-	 */
-	async _onItemCreate(event) {
-		event.preventDefault();
-		const header = event.currentTarget;
-		// Get the type of item to create.
-		const type = header.dataset.type;
-		// Grab any data associated with this control.
-		const data = duplicate(header.dataset);
-		// Initialize a default name.
-		const name = `New ${type.capitalize()}`;
-		// Prepare the item object.
-		const itemData = {
-			name: name,
-			type: type,
-			system: data,
-		};
-		// Remove the type from the dataset since it's in the itemData.type prop.
-		delete itemData.system['type'];
-
-		// Finally, create the item!
-		return await Item.create(itemData, { parent: this.actor });
-	}
-
-	async _onDropItem(event) {
-		event.preventDefault();
-		event.stopPropagation();
-
-		if (!$(event.target).hasClass('drop-zone')) return;
-
-		const data = JSON.parse(
-			event.originalEvent.dataTransfer.getData('text/plain')
-		);
-		const item = await Item.implementation.fromDropData(data);
-
-		const itemSlots = this.actor.system.itemSlots;
-		const items = this.actor.items;
-
-		if (items.size >= itemSlots) {
-			return ui.notifications.error('Not enough item slots!');
-		}
-
-		await this.actor.createEmbeddedDocuments('Item', [item.toObject()]);
-		this._tabs[0].activate('inventory');
-	}
-
-	_openItemDialog(event) {
-		event.preventDefault();
-
-		const dialogOptions = {
-			width: 300,
-			height: 150,
-		};
-
-		new Dialog(
-			{
-				title: '-------------ITEM PANEL-------------',
-				buttons: {
-					equip: {
-						label: 'EQUIP',
-						callback: () => {},
-					},
-					inspect: {
-						label: 'INSPECT',
-						callback: () => {},
-					},
-					cancel: {
-						label: 'CANCEL',
-						callback: () => {},
-					},
-				},
-				default: 'cancel',
-			},
-			dialogOptions
-		).render(true);
-	}
-
-	_openPurchaseSlots(event) {
-		event.preventDefault();
-
-		const dialogOptions = {
-			width: 300,
-			height: 150,
-		};
-
-		const data = this.actor.system;
-		const cost = 100 * Math.pow(3, data.itemSlots / 5);
-
-		new Dialog(
-			{
-				title: 'Expand Inventory!',
-				content: `
-			  <p>${data.itemSlots} slots → ${data.itemSlots + 5} slots</p>
-			  <p>Cost: ${cost} Coins</p>
-			`,
-				buttons: {
-					yes: {
-						icon: '<i class="fas fa-check"></i>',
-						label: 'Yes',
-						callback: () => {
-							if (data.coins >= cost) {
-								const updatedCoins = data.coins - cost;
-								const newSlots = data.itemSlots + 5;
-
-								// Prepare the data object for updating
-								let updateData = {
-									[`system.coins`]: updatedCoins,
-									[`system.itemSlots`]: newSlots,
-								};
-
-								// Apply updates to actor
-								this.actor.update(updateData).then(() => this.render()); // Re-render the sheet
-							} else {
-								ui.notifications.error('Not enough coins to expand inventory!');
-							}
-						},
-					},
-					no: {
-						icon: '<i class="fas fa-times"></i>',
-						label: 'No',
-						callback: () => console.log('Expand inventory canceled'),
-					},
-				},
-				default: 'no',
-				close: () => console.log('Expand inventory closed without choosing.'),
-			},
-			dialogOptions
-		).render(true);
+			.click(Inventory.openItemDialog.bind(this));
 	}
 
 	/**
@@ -387,316 +259,7 @@ export class SS1EActorSheet extends ActorSheet {
 			console.error('Error while rolling accuracy:', error);
 		}
 	}
-	/**
-	 * Handle sending a public message
-	 * Deduct 50 coins if successful.
-	 * Show error if not enough coins.
-	 * @private
-	 */
-	_onSendPublicPresetMessage(event) {
-		event.preventDefault();
-		const message = event.currentTarget.dataset.message; // Get message from the button's data attribute
-		const cost = Number(event.currentTarget.dataset.cost); // Get message cost
-		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
-		if (!message) return;
-		// Check if actor has enough coins (50 coins needed)
-		if (this.actor.system.coins >= cost) {
-			// Deduct 50 coins
-			const updatedCoins = this.actor.system.coins - cost;
-			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
-				// Check if the selectedCharacterId is 'public'
-				if (selectedCharacterId === 'public') {
-					// Send a public message
-					CONFIG.SS1E.socket.executeForEveryone('constellationMessage', {
-						content: message,
-						constellation: this.actor.name,
-					});
-				} else {
-					// Get the selected actor and check if it's defined
-					const selectedActor = game.actors.get(selectedCharacterId);
-					if (selectedActor) {
-						// Get the user associated with the selected actor
-						const ownerUser = game.users.find(
-							(user) => user.character?.id === selectedActor.id
-						);
-						if (ownerUser) {
-							CONFIG.SS1E.socket.executeAsUser(
-								'constellationMessage',
-								ownerUser._id,
-								{
-									content: message,
-									constellation: this.actor.name,
-								}
-							);
-						} else {
-							console.warn('The selected character has no associated user.');
-						}
-					} else {
-						console.warn('Selected character not found.');
-					}
-				}
-			});
-		} else {
-			// Show error notification
-			ui.notifications.error(
-				'Not enough coins to send the message! (50 coins required)'
-			);
-		}
-	}
 
-	/**
-	 * Handle sending a custom message to the selected character
-	 * Deduct 50 coins if successful.
-	 * Show error if not enough coins.
-	 * @private
-	 */
-	_onSendCustomMessage(event) {
-		event.preventDefault();
-		const message = this._getMessage(); // Ensure this retrieves the correct message
-		const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
-		if (!message) return;
-		// Check if actor has enough coins (50 coins needed)
-		if (this.actor.system.coins >= 1000) {
-			// Deduct 50 coins
-			const updatedCoins = this.actor.system.coins - 1000;
-			this.actor.update({ 'system.coins': updatedCoins }).then(() => {
-				// Check if the selectedCharacterId is 'public'
-				if (selectedCharacterId === 'public') {
-					// Send a public message
-					CONFIG.SS1E.socket.executeForEveryone('constellationMessage', {
-						content: message,
-						constellation: this.actor.name,
-					});
-				} else {
-					// Get the selected actor and check if it's defined
-					const selectedActor = game.actors.get(selectedCharacterId);
-					if (selectedActor) {
-						// Get the user associated with the selected actor
-						const ownerUser = game.users.find(
-							(user) => user.character?.id === selectedActor.id
-						);
-						if (ownerUser) {
-							// Create a whisper message
-							SS1E.socket.executeAsUser('constellationMessage', ownerUser._id, {
-								content: message,
-								constellation: this.actor.name,
-							});
-						} else {
-							console.warn('The selected character has no associated user.');
-						}
-					} else {
-						console.warn('Selected character not found.');
-					}
-				}
-			});
-		} else {
-			// Show error notification
-			ui.notifications.error(
-				'Not enough coins to send the message! (200 coins required)'
-			);
-		}
-	}
-
-	_onStatLevelUp(event) {
-		event.preventDefault();
-
-		const key = event.currentTarget.dataset.key;
-		const stat = this.actor.system.stats[key];
-		const cost = 300 + Math.floor(stat.value / 10) * 100;
-
-		new Dialog({
-			title: 'Level Up!',
-			content: `
-			  <p>${stat.label} Lv. ${stat.value} → ${stat.label} Lv. ${stat.value + 1}</p>
-			  <p>Cost: ${cost} Coins</p>
-			`,
-			buttons: {
-				yes: {
-					icon: '<i class="fas fa-check"></i>',
-					label: 'Yes',
-					callback: () => {
-						if (this.actor.system.coins >= cost) {
-							const updatedCoins = this.actor.system.coins - cost;
-							const newStatValue = stat.value + 1;
-
-							// Prepare the data object for updating
-							let updateData = {
-								[`system.coins`]: updatedCoins,
-								[`system.stats.${key}.value`]: newStatValue,
-							};
-
-							// Add health if Constitution is leveled up
-							if (key === 'con') {
-								const healthGain = Math.round(2.5); // Rounding the 2.5 heal
-								updateData['system.resources.health.value'] =
-									(this.actor.system.resources.health.value || 0) + healthGain;
-							}
-
-							// Add mana if Intelligence is leveled up
-							if (key === 'int') {
-								const manaGain = 5;
-								updateData['system.resources.mana.value'] =
-									(this.actor.system.resources.mana.value || 0) + manaGain;
-							}
-
-							// Apply updates to actor
-							this.actor.update(updateData).then(() => this.render()); // Re-render the sheet
-						} else {
-							ui.notifications.error('Not enough coins to level up!');
-						}
-					},
-				},
-				no: {
-					icon: '<i class="fas fa-times"></i>',
-					label: 'No',
-					callback: () => console.log('Level up canceled'),
-				},
-			},
-			default: 'no',
-			close: () => console.log('Dialog closed without choosing.'),
-		}).render(true, { width: 400, height: 200 });
-	}
-
-	_openCurrencyPanel(event) {
-		event.preventDefault();
-
-		new Dialog({
-			title: 'Adjust Coins',
-			content: `
-				<p>Enter the number of coins to add or remove:</p>
-				<input type="number" id="coin-input" value="0" />
-			`,
-			buttons: {
-				add: {
-					label: 'Add',
-					callback: (html) => {
-						const input = html.find('#coin-input').val();
-						const amount = parseInt(input, 10) || 0;
-						this._adjustCoins(this.actor, amount); // Add coins
-					},
-				},
-				remove: {
-					label: 'Remove',
-					callback: (html) => {
-						const input = html.find('#coin-input').val();
-						const amount = parseInt(input, 10) || 0;
-						this._adjustCoins(this.actor, -amount); // Remove coins
-					},
-				},
-				cancel: {
-					label: 'Cancel',
-				},
-			},
-			default: 'cancel',
-		}).render(true, { width: 400, height: 200 });
-	}
-
-	/**
-	 * Handle sending coins to another character
-	 * @param {Event} event   The originating click event
-	 * @private
-	 */
-	_onSendCoins(event) {
-		event.preventDefault();
-
-		// Open a dialog to choose a recipient and amount of coins to send
-		new Dialog({
-			title: 'Send Coins',
-			content: `
-			<form>
-				<div class="form-group">
-					<label>Select Character:</label>
-					<select id="target-character">
-						${game.actors
-							.filter((actor) => actor.hasPlayerOwner)
-							.map(
-								(actor) => `<option value="${actor.id}">${actor.name}</option>`
-							)
-							.join('')}
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Amount:</label>
-					<input type="number" id="coin-amount" value="0" min="1"/>
-				</div>
-			</form>
-		`,
-			buttons: {
-				send: {
-					label: 'Send',
-					callback: (html) => {
-						const targetCharacterId = html.find('#target-character').val();
-						const amount = parseInt(html.find('#coin-amount').val(), 10);
-
-						if (amount > 0) {
-							this._transferCoins(this.actor, targetCharacterId, amount);
-						} else {
-							ui.notifications.error('You must send at least 1 coin!');
-						}
-					},
-				},
-				cancel: {
-					label: 'Cancel',
-				},
-			},
-		}).render(true, { width: 400, height: 200 });
-	}
-
-	/**
-	 * Transfer coins from the current actor to the target actor
-	 * @param {Actor} sender     The actor sending the coins
-	 * @param {String} targetId  The ID of the target actor
-	 * @param {Number} amount    The amount of coins to send
-	 * @private
-	 */
-	_transferCoins(sender, targetId, amount) {
-		const targetActor = game.actors.get(targetId);
-
-		// Check if the sender has enough coins
-		if (sender.system.coins >= amount) {
-			// Deduct coins from sender
-			const updatedSenderCoins = sender.system.coins - amount;
-
-			// Add coins to target
-			const updatedTargetCoins = (targetActor.system.coins || 0) + amount;
-
-			// Update both actors' coins and re-render sheets
-			sender.update({ 'system.coins': updatedSenderCoins });
-			targetActor.update({ 'system.coins': updatedTargetCoins });
-
-			// Get the user associated with the target actor
-			const ownerUser = game.users.find(
-				(user) => user.character?.id === targetActor.id
-			);
-
-			// Prepare a custom message based on the sender's type
-			let customMessage = `${sender.name} sent you ${amount} coins.`;
-			if (sender.type === 'constellation') {
-				customMessage = `${sender.name} has sponsored you with ${amount} coins!`;
-			} else if (sender.type === 'character') {
-				customMessage = `${sender.name} sent you ${amount} coins.`;
-			}
-			// You can add more conditions based on your actor types
-
-			// Send a whisper message to the target user if foundc
-			if (ownerUser) {
-				ChatMessage.create({
-					content: customMessage,
-					whisper: [ownerUser._id], // Whisper to the user ID
-					speaker: ChatMessage.getSpeaker({ actor: sender }),
-				});
-			} else {
-				console.warn('The selected character has no associated user.');
-			}
-
-			// Notification to confirm success
-			ui.notifications.info(
-				`${amount} coins sent to ${targetActor.name} successfully!`
-			);
-		} else {
-			ui.notifications.error('Not enough coins to send!');
-		}
-	}
 	/**
 	 * Get the message from the input box
 	 * @private
@@ -713,23 +276,6 @@ export class SS1EActorSheet extends ActorSheet {
 	_getmessageRecipient() {
 		const selectElement = document.getElementById('messageRecipient');
 		return selectElement.value;
-	}
-
-	_adjustCoins(actor, amount) {
-		const currentCoins = actor.system.coins || 0;
-		const newCoins = Math.max(currentCoins + amount, 0); // Ensure it doesn't go below 0
-
-		// Update the actor's currency
-		actor
-			.update({
-				'system.coins': newCoins,
-			})
-			.then(() => this.render()); // Re-render the sheet after the update
-
-		// Log the result or give feedback
-		console.log(
-			`Updated coins for ${actor.name}: ${currentCoins} → ${newCoins}`
-		);
 	}
 	_openHealthDialog() {
 		// Retrieve current health values
