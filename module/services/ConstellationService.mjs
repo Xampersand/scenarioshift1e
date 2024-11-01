@@ -51,8 +51,8 @@ export function onSendPresetMessage(event) {
 
 export function onSendCustomMessage(event) {
 	event.preventDefault();
-	const message = this._getMessage(); // Ensure this retrieves the correct message
-	const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
+	const message = getMessage(); // Ensure this retrieves the correct message
+	const selectedCharacterId = getMessageRecipient(); // Ensure this gets the selected character ID
 	if (!message) return;
 	// Check if actor has enough coins (50 coins needed)
 	if (this.actor.system.coins >= 1000) {
@@ -98,4 +98,22 @@ export function onSendCustomMessage(event) {
 			'Not enough coins to send the message! (200 coins required)'
 		);
 	}
+}
+
+/**
+ * Get the message from the input box
+ * @private
+ */
+function getMessage() {
+	const input = document.getElementById('messageInput');
+	return input.value.trim(); // Return the trimmed input value directly
+}
+
+/**
+ * Get the selected character ID from the dropdown
+ * @private
+ */
+function getMessageRecipient() {
+	const selectElement = document.getElementById('messageRecipient');
+	return selectElement.value;
 }

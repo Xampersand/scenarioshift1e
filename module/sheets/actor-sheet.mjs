@@ -259,24 +259,6 @@ export class SS1EActorSheet extends ActorSheet {
 			console.error('Error while rolling accuracy:', error);
 		}
 	}
-
-	/**
-	 * Get the message from the input box
-	 * @private
-	 */
-	_getMessage() {
-		const input = document.getElementById('messageInput');
-		return input.value.trim(); // Return the trimmed input value directly
-	}
-
-	/**
-	 * Get the selected character ID from the dropdown
-	 * @private
-	 */
-	_getmessageRecipient() {
-		const selectElement = document.getElementById('messageRecipient');
-		return selectElement.value;
-	}
 	_openHealthDialog() {
 		// Retrieve current health values
 		const currentHealth = this.actor.system.resources.health.value;
