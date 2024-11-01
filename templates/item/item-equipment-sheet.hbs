@@ -29,18 +29,18 @@
 				{{/if}}
 			</div>
 			<div class='equipment-rarity'>
-				<label for='system.rarity'>RARITY:</label>
+				<label for='system.rating'>RATING:</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
-						name='system.rarity'
+						name='system.rating'
 						type='text'
-						value='{{system.rarity}}'
+						value='{{system.rating}}'
 						placeholder='COMMON'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.rarity}}</div>
+					<div>{{system.rating}}</div>
 				{{/if}}
 			</div>
 		</div>
@@ -54,21 +54,21 @@
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
-						name='system.requirement'
+						name='system.requirement.value'
 						type='text'
-						value='{{system.requirement}}'
+						value='{{system.requirement.value}}'
 						placeholder=''
 					/>
 					<input
-						name='system.requirement-type'
+						name='system.requirement.type'
 						type='text'
-						value='{{system.requirement-type}}'
+						value='{{system.requirement.type}}'
 						placeholder='str'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.requirement}}</div>
-					<div>{{system.requirement-type}}</div>
+					<div>{{system.requirement.value}}
+						{{system.requirement.type}}</div>
 				{{/if}}
 
 			</div>
@@ -83,15 +83,14 @@
 						placeholder='10'
 					/>
 					<input
-						name='system.type'
+						name='system.defenseType'
 						type='text'
-						value='{{system.type}}'
+						value='{{system.defenseType}}'
 						placeholder='armor'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.defense}}</div>
-					<div>{{system.type}}</div>
+					<div>{{system.defense}} {{system.defenseType}}</div>
 				{{/if}}
 
 			</div>

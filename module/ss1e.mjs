@@ -54,6 +54,7 @@ Hooks.once('init', function () {
 		meleeWeapon: models.SS1EMeleeWeapon,
 		rangedWeapon: models.SS1ERangedWeapon,
 		ammo: models.SS1EAmmo,
+		equipment: models.SS1EEquipment,
 
 		skill: models.SS1ESkill,
 	};

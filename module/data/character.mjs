@@ -18,8 +18,14 @@ export default class SS1ECharacter extends SS1EActorBase {
 		super.prepareData();
 	}
 
+	prepareBaseData() {
+		this.calculateStats(this.stats);
+	}
+
 	prepareDerivedData() {
-		// console.log()
+		// ITEMS;
+		this.addItemModifiers();
+
 		const ARMOR_INCREMENT = 0.5;
 		const EVASION_INCREMENT = 0.5;
 		const ACCURACY_INCREMENT = 2;
@@ -35,18 +41,13 @@ export default class SS1ECharacter extends SS1EActorBase {
 		const resources = this.resources;
 
 		// ARMOR, EVASION, ACCURACY
-		derived.armor.value = Math.round(
-			(stats.str.value + stats.str.bonus) * ARMOR_INCREMENT
-		);
-		derived.evasion.value = Math.round(
-			(stats.agi.value + stats.agi.bonus) * EVASION_INCREMENT
-		);
-		derived.accuracy.value = Math.round(
-			(stats.agi.value + stats.agi.bonus + stats.int.value + stats.int.bonus) *
-			ACCURACY_INCREMENT
-		);
+		derived.armor.baseValue = Math.round(stats.str.value * ARMOR_INCREMENT);
+		derived.evasion.baseValue = Math.round(stats.agi.value * EVASION_INCREMENT);
+		derived.accuracy.baseValue = Math.round((stats.agi.value + stats.int.value) * ACCURACY_INCREMENT);
 
-		// DAMAGE MULTIPLEIRS BASED ON STATS
+		this.calculateStats(derived);
+
+		// DAMAGE MULTIPLIERS BASED ON STATS
 		derived.strStatDmgMulti.value =
 			stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
 		derived.agiStatDmgMulti.value =
@@ -55,12 +56,29 @@ export default class SS1ECharacter extends SS1EActorBase {
 			stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
 
 		// HEALTH, MANA
-		this.resources.health.max =
-			5 + Math.round((stats.con.value + stats.con.bonus) * HEALTH_INCREMENT);
+		resources.health.max =
+			5 + Math.round((stats.con.value) * HEALTH_INCREMENT);
 
-		this.resources.mana.max = Math.round(
-			(stats.int.value + stats.int.bonus) * MANA_INCREMENT
-		);
+		resources.mana.max = Math.round((stats.int.value) * MANA_INCREMENT);
+	}
+
+	calculateStats(path) {
+		for (const key of Object.keys(path)) {
+			path[key].value = (path[key].baseValue + path[key].bonus) * path[key].multi;
+		}
+	}
+
+	addItemModifiers() {
+		const items = this.parent.items;
+
+		// for (const item of items) {
+		// 	const itemData = item.system;
+		// 	if (!itemData.equipped) continue;
+
+		// 	if (itemData.defense !== undefined) {
+		// 		this.stats[itemData.defenseType].bonus = itemData.defense;
+		// 	}
+		// }
 	}
 
 	getRollData() {

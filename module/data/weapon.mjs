@@ -1,14 +1,13 @@
-import SS1EItemBase from "./item-base.mjs";
-
-export default class SS1EWeapon extends SS1EItemBase {
+import SS1EEquippableItem from "./equippable-item.mjs";
+export default class SS1EWeapon extends SS1EEquippableItem {
 
 	static defineSchema() {
 		const fields = foundry.data.fields;
 		const requiredInteger = { required: true, nullable: false, integer: true };
 		const schema = super.defineSchema();
 
-		schema.range = new fields.NumberField({ ...requiredInteger, initial: 0});
-		schema.accuracy = new fields.NumberField({ ...requiredInteger, initial: 0});
+		schema.range = new fields.NumberField({ ...requiredInteger, initial: 0 });
+		schema.accuracy = new fields.NumberField({ ...requiredInteger, initial: 0 });
 
 		// Break down roll formula into three independent fields
 		schema.hitRoll = new fields.SchemaField({
@@ -25,7 +24,7 @@ export default class SS1EWeapon extends SS1EItemBase {
 	prepareDerivedData() {
 		// Build the formula dynamically using string interpolation
 		const roll = this.hitRoll;
-	
+
 		this.formula = `${roll.diceNum}${roll.diceSize}${roll.diceBonus}`
-	  }
+	}
 }

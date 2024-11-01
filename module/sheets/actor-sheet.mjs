@@ -193,7 +193,10 @@ export class SS1EActorSheet extends ActorSheet {
 
 		html
 			.find('button[data-action="item-view"]')
-			.click(Inventory.openItemDialog.bind(this));
+			.click((event) => {
+				const itemId = $(event.currentTarget).data("item-id");
+				Inventory.openItemDialog(event, itemId, this.actor);
+			});
 	}
 
 	/**

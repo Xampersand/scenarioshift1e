@@ -18,13 +18,13 @@ export function onStatLevelUp(event) {
 				callback: () => {
 					if (this.actor.system.coins >= cost) {
 						const updatedCoins = this.actor.system.coins - cost;
-						const newStatValue = stat.value + 1;
+						const newStatValue = stat.baseValue + 1;
 
 						// Prepare the data object for updating
 						let updateData = {
 							[`system.coins`]: updatedCoins,
-							[`system.stats.${key}.value`]: newStatValue,
-						};
+							[`system.stats.${key}.baseValue`]: newStatValue,
+						}
 
 						// Add health if Constitution is leveled up
 						if (key === 'con') {

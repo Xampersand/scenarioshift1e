@@ -29,18 +29,18 @@
 				{{/if}}
 			</div>
 			<div class='consumable-rarity'>
-				<label for='system.rarity'>RARITY:</label>
+				<label for='system.rating'>RATING:</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
-						name='system.rarity'
+						name='system.rating'
 						type='text'
-						value='{{system.rarity}}'
+						value='{{system.rating}}'
 						placeholder='COMMON'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<div>{{system.rarity}}</div>
+					<div>{{system.rating}}</div>
 				{{/if}}
 			</div>
 		</div>

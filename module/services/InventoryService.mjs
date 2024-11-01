@@ -20,7 +20,7 @@ export async function onDropItem(event) {
 	this._tabs[0].activate('inventory');
 }
 
-export function openItemDialog(event) {
+export function openItemDialog(event, itemId, actor) {
 	event.preventDefault();
 
 	const dialogOptions = {
@@ -28,17 +28,57 @@ export function openItemDialog(event) {
 		height: 150,
 	};
 
+	const item = actor.items.get(itemId);
+	if (!item) {
+		console.error("Item not found with specified ID.");
+		return;
+	}
+
 	new Dialog(
 		{
 			title: '-------------ITEM PANEL-------------',
 			buttons: {
 				equip: {
-					label: 'EQUIP',
-					callback: () => { },
+					label: item.system.equipped ? 'UNEQUIP' : 'EQUIP',
+					callback: async () => {
+						const requirement = item.system.requirement;
+
+						if (actor.system.stats[requirement.type].baseValue >= requirement.value) {
+							await item.update({ "system.equipped": !item.system.equipped });
+							actor.prepareDerivedData();
+						} else {
+							ui.notifications.error("You do not meet the requirements to equip this item!");
+						}
+
+					},
 				},
 				inspect: {
 					label: 'INSPECT',
-					callback: () => { },
+					callback: () => {
+						item.sheet.render(true);
+					},
+				},
+				delete: {
+					label: 'DELETE',
+					callback: () => {
+						new Dialog({
+							title: 'DELETE ITEM',
+							content: `<p>Are you sure you want to delete '${item.name}'?</p>`,
+							buttons: {
+								yes: {
+									label: 'YES',
+									callback: async () => {
+										await item.delete();
+										ui.notifications.info(`${item.name} has been deleted.`);
+									},
+								},
+								no: {
+									label: 'NO',
+								},
+							},
+							default: "no",
+						}, dialogOptions).render(true);
+					},
 				},
 				cancel: {
 					label: 'CANCEL',

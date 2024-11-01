@@ -21,7 +21,12 @@ export default class SS1EMeleeWeapon extends SS1EWeapon {
 	prepareDerivedData() {
 		// Build the formula dynamically using string interpolation
 		const roll = this.damageRoll;
-	
+
 		this.damageFormula = `${roll.diceNum}${roll.diceSize}${roll.diceBonus}`
-	  }
+	}
+
+	equip() {
+		console.log("equipped");
+		console.log(this);
+	}
 }

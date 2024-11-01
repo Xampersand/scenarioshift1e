@@ -1,10 +1,6 @@
 {
 	"Actor": {
-		"types": [
-			"character",
-			"npc",
-			"constellation"
-		]
+		"types": ["character", "npc", "constellation"]
 	},
 	"Item": {
 		"types": [

@@ -29,11 +29,11 @@
 				{{/if}}
 			</div>
 			<div class='weapon-rarity'>
-				<label for='system.rarity'>RARITY:&nbsp;</label>
+				<label for='system.rating'>RATING:&nbsp;</label>
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
-						name='system.rarity'
+						name='system.rating'
 						type='text'
 						value='{{system.rating}}'
 						placeholder='COMMON'
@@ -55,21 +55,21 @@
 				{{#if isEditing}}
 					<!-- Editable fields here -->
 					<input
-						name='system.requirement'
+						name='system.requirement.value'
 						type='text'
 						value='{{system.requirement.value}}'
 						placeholder=''
 					/>
 					<input
-						name='system.requirement-type'
+						name='system.requirement.type'
 						type='text'
 						value='{{system.requirement.type}}'
 						placeholder='str'
 					/>
 				{{else}}
 					<!-- Non-editable display here -->
-					<span>{{system.requirement.value}}&nbsp;</span>
-					<span>{{system.requirement.type}}</span>
+					<div>{{system.requirement.value}}
+						{{system.requirement.type}}</div>
 				{{/if}}
 			</div>
 			<div class='damage'>
