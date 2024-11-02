@@ -1100,11 +1100,15 @@ input[type='search']:focus {
 input[type='search']:focus:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
 }
+select {
+  border: 1px solid white;
+}
 select:focus {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
+  border: 1px solid white;
 }
 select:focus:hover {
   box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
@@ -1122,13 +1126,25 @@ option {
 button {
   background-color: rgba(83, 178, 241, 0.7);
   font-family: 'Teko';
-  border-color: #4f8cde;
+  border-color: white;
 }
 button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
 }
 button:hover:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+form button {
+  background-color: rgba(0 0 0 1);
+  font-family: 'Teko';
+  border: 2px groove white;
+}
+form button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+form button:hover:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .app.window-app.ss1e.sheet.actor {
@@ -1222,6 +1238,9 @@ aside#players {
   border: 3px double white;
   border-radius: 8px;
   box-shadow: 0 0 3px #102531 inset;
+}
+aside#players h3 {
+  border-bottom: 2px groove white;
 }
 div#sidebar {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
@@ -1325,9 +1344,6 @@ nav.sheet-tabs.tabs .item:hover {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
 }
-#client-settings {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-}
 #settings-game button {
   border: 1px solid white;
 }
@@ -1337,9 +1353,62 @@ nav.sheet-tabs.tabs .item:hover {
 #settings-access button {
   border: 1px solid white;
 }
+#keybindings,
+#client-settings,
+#module-management,
+#world-config,
+#tours-management,
+#support-details,
+#documentation,
+#invitation-links {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 3px double white;
+}
 #hotbar .bar-controls {
   background-color: transparent;
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 1px solid white;
   box-shadow: 0 0 5px #102531 inset;
+}
+#hotbar .macro {
+  background-color: transparent;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 1px solid white;
+  box-shadow: 0 0 5px #102531 inset;
+}
+#controls .scene-control {
+  background: none !important;
+  box-shadow: none;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+}
+#controls .scene-control.active {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+#controls .scene-control.active:hover {
+  box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
+}
+#controls ol.control-tools > li {
+  border: 1px solid white;
+  box-shadow: 0 0 5px #6ed0fd, 0 0 10px #6ed0fd;
+  transition: box-shadow 0.3s ease-in-out;
+}
+#controls ol.control-tools > li:hover {
+  box-shadow: 0 0 20px #6ed0fd, 0 0 40px #6ed0fd;
+}
+#controls ol.control-tools > li.active {
+  border: 1px solid white;
+  border-bottom: 1px solid #6ed0fd;
+  box-shadow: 0 0 10px #003c8b;
+}
+#controls ol.control-tools > li:hover {
+  border: 1px solid #6ed0fd;
+}
+a#nav-toggle {
+  background-color: transparent !important;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
+}
+#navigation .nav-item {
+  border: 1px solid white;
+  margin: 4px;
 }

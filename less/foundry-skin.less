@@ -126,7 +126,9 @@ select {
 	&:focus {
 		.remove-default-glow();
 		.add-glow(@glow-color, 5px, 10px);
+		border: 1px solid white;
 	}
+	border: 1px solid white;
 }
 //removes background from search inputs in side bar
 .directory .directory-header .header-search input {
@@ -148,9 +150,17 @@ button {
 	&:hover {
 		.add-glow(@glow-color, 5px);
 	}
-	border-color: @accent-color;
+	border-color: white;
 }
-//actor sheet changes
+form button {
+	background-color: rgba(0 0 0 1);
+	font-family: @font;
+	&:hover {
+		.add-glow(@glow-color, 5px);
+	}
+	border: 2px groove white;
+}
+// //actor sheet changes
 .app.window-app.ss1e.sheet.actor {
 	background-image: @actor-sheet-background-image-eighty;
 	background-position: center;
@@ -257,6 +267,9 @@ aside#players {
 	border: 3px double white;
 	border-radius: 8px;
 	box-shadow: 0 0 3px @inset-color inset;
+	& h3 {
+		border-bottom: 2px groove white;
+	}
 }
 div#sidebar {
 	background-image: @background-tile;
@@ -357,9 +370,6 @@ nav.sheet-tabs.tabs {
 	border-top: 1px solid white;
 	border-bottom: 1px solid white;
 }
-#client-settings {
-	background-image: @background-tile;
-}
 #settings-game {
 	& button {
 		border: 1px solid white;
@@ -375,12 +385,64 @@ nav.sheet-tabs.tabs {
 		border: 1px solid white;
 	}
 }
-// hotbar
+// different windows global setup
+#keybindings,
+#client-settings,
+#module-management,
+#world-config,
+#tours-management,
+#support-details,
+#documentation,
+#invitation-links {
+	background-image: @background-tile;
+	border: 3px double white;
+}
+// hotbars and menus
 #hotbar {
 	.bar-controls {
 		background-color: transparent;
 		background-image: @background-tile;
 		border: 1px solid white;
 		box-shadow: 0 0 5px @inset-color inset;
+	}
+	.macro {
+		background-color: transparent;
+		background-image: @background-tile;
+		border: 1px solid white;
+		box-shadow: 0 0 5px @inset-color inset;
+	}
+}
+#controls {
+	.scene-control {
+		background: none !important;
+		box-shadow: none;
+		background-image: @background-tile;
+		&.active {
+			.add-glow(@glow-color, 5px, 20px);
+		}
+	}
+	ol.control-tools {
+		& > li {
+			border: 1px solid white;
+			.add-glow(@subaccent-color, 5px, 20px);
+			&.active {
+				border: 1px solid white;
+				border-bottom: 1px solid @subaccent-color;
+				box-shadow: 0 0 10px rgb(0, 60, 139);
+			}
+			&:hover {
+				border: 1px solid @subaccent-color;
+			}
+		}
+	}
+}
+a#nav-toggle {
+	background-color: transparent !important;
+	background-image: @background-tile !important;
+}
+#navigation {
+	& .nav-item {
+		border: 1px solid white;
+		margin: 4px;
 	}
 }
