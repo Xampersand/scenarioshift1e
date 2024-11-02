@@ -47,6 +47,586 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/teko/v20/LYjYdG7kmE0gV69VVPPdFl06VN_wHLSy.ttf) format('truetype');
 }
+* {
+  scrollbar-color: #ffffff #ffffff00;
+  font-family: 'Teko';
+  color: #ffffff !important;
+}
+#logo {
+  content: url('../assets/images/orv_logo.png');
+  height: 100px;
+}
+.app {
+  background-image: none;
+  box-shadow: none;
+}
+.window-app .window-header {
+  background-color: transparent;
+  color: #ffffff;
+  padding-top: 5px;
+  border: none;
+}
+.window-app .window-header a {
+  background-color: transparent;
+  font-size: 0px;
+  padding-top: 8px;
+}
+.window-app .window-header a i {
+  background: none;
+  font-size: 14px;
+}
+.window-app .window-header a span {
+  font-size: 14px;
+}
+.window-app .window-header .window-title {
+  padding-top: 5px;
+}
+.window-app .window-content {
+  padding: 0;
+  background-image: none;
+  border-radius: 0 0 10px 10px;
+  background-color: transparent;
+}
+p.notes {
+  color: #ffffff;
+}
+li.chat-message.message {
+  background-color: transparent;
+  background-image: none;
+  border: 2px solid #6ed0fd;
+  box-shadow: 0 0 3px #102531 inset;
+}
+textarea {
+  background-image: none !important;
+  border: 2px double white;
+}
+textarea:focus {
+  box-shadow: none;
+}
+#chat-controls .roll-type-select {
+  background-color: transparent;
+  border: 1px solid white;
+}
+.dice-roll .dice-formula {
+  border: 1px solid white;
+}
+.dice-roll .dice-total {
+  border: 1px solid white;
+}
+.dice-tooltip .dice-rolls .roll {
+  color: #ffffff !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: 0 0 3px #102531 inset !important;
+}
+.dice-tooltip .dice-rolls .roll.min {
+  color: red !important;
+}
+.dice-tooltip .dice-rolls .roll.max {
+  color: green !important;
+}
+a:hover {
+  text-shadow: 0 0 10px #4f8cde;
+}
+i:hover {
+  text-shadow: 0 0 10px #4f8cde;
+}
+input {
+  border-color: #4f8cde;
+  border: none;
+  box-shadow: none;
+}
+input::placeholder {
+  color: #ffffff;
+}
+input:focus {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input:focus:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+input::selection {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input::selection:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+input[type='text']:focus {
+  border-color: #4f8cde;
+  border: 1px solid white;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input[type='text']:focus:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+input[type='search'] {
+  background: none;
+  border-color: #ffffff;
+}
+input[type='search']::placeholder {
+  color: #ffffff;
+}
+input[type='search']:focus {
+  border: 1px solid white;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+input[type='search']:focus:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+select {
+  border: 1px solid white;
+}
+select:focus {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  border: 1px solid white;
+}
+select:focus:hover {
+  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
+}
+.directory .directory-header .header-search input {
+  background-color: #ffffff00;
+}
+.tabs > [data-tab].active {
+  text-shadow: 0 0 10px rgba(37, 186, 255);
+}
+option {
+  background-color: #6ed0fd;
+  color: #ffffff;
+}
+button {
+  background-color: rgba(83, 178, 241, 0.7);
+  font-family: 'Teko';
+  border-color: white;
+}
+button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+button:hover:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+form button {
+  background-color: rgba(0 0 0 1);
+  font-family: 'Teko';
+  border: 2px groove white;
+}
+form button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+form button:hover:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+.app.window-app.ss1e.sheet.actor {
+  background-image: url(../assets/images/ss1e-actor-sheet-background-eighty.png);
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  padding: 20px 24px;
+  box-shadow: none;
+}
+.app.window-app.ss1e.sheet.actor .window-header {
+  background-color: transparent;
+}
+.app.window-app.ss1e.sheet.actor .window-content {
+  background-color: transparent;
+}
+.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs {
+  display: flex;
+  position: absolute;
+  left: 98.6%;
+  top: 10%;
+  flex-direction: column;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border-top: 2px double white;
+  border-bottom: 2px double white;
+  border-right: 2px double white;
+  border-radius: 0px 5px 5px 0px;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs > [data-tab] {
+  padding: 8px 12px;
+}
+.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs > [data-tab].active {
+  text-shadow: 0 0 10px #6ed0fd;
+}
+.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs .item {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  text-shadow: none;
+  box-shadow: 0 0 2px #6ed0fd, 0 0 4px #6ed0fd;
+  transition: box-shadow 0.3s ease-in-out;
+  border: none;
+  box-shadow: none;
+}
+.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs .item:hover {
+  box-shadow: 0 0 5px #6ed0fd, 0 0 10px #6ed0fd;
+}
+.app.window-app.ss1e.sheet.actor.minimized {
+  background-image: none;
+  background-color: rgba(83, 178, 241, 0.7);
+  padding-top: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 46px;
+  border: 2px double white;
+}
+.app.window-app.ss1e.sheet.item {
+  background-image: url(../assets/images/ss1e-item-sheet-background-eighty.png);
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  padding: 20px 24px;
+  box-shadow: none;
+}
+.app.window-app.ss1e.sheet.item .window-header {
+  background-color: transparent;
+}
+.app.window-app.ss1e.sheet.item .window-content {
+  background-color: transparent;
+}
+.app.window-app.ss1e.sheet.item.minimized {
+  background-image: none;
+  background-color: rgba(83, 178, 241, 0.7);
+  padding-top: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 46px;
+  border: 2px double white;
+}
+h4.window-title {
+  text-align: start;
+  padding-left: 20px;
+}
+.dialog .window-header .header-button.control.close {
+  display: none;
+}
+.dialog input {
+  color: #ffffff;
+}
+.app.window-app.dialog {
+  background-image: url(../assets/images/ss1e-dialog-background-eighty.png);
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-shadow: none;
+  font-size: 1rem;
+}
+.app.window-app.dialog .window-header {
+  background-color: transparent;
+}
+.app.window-app.dialog .window-content {
+  background-color: transparent;
+}
+.app.window-app.dialog .window-content .dialog-buttons button {
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+  font-size: 1.2rem;
+  margin: 5px;
+  text-transform: uppercase;
+  height: fit-content;
+  width: 100px;
+}
+.app.window-app.dialog .window-content .dialog-buttons button:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+.app.window-app.dialog:has(.constellation-message) {
+  background-image: url(../assets/images/ss1e-dialog-background-eighty.png);
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-shadow: none;
+  font-size: 1rem;
+}
+.app.window-app.dialog:has(.constellation-message) .window-header {
+  background-color: transparent;
+}
+.app.window-app.dialog:has(.constellation-message) .window-header .window-title {
+  display: none;
+}
+.app.window-app.dialog:has(.constellation-message) .window-content {
+  background-color: transparent;
+}
+.app.window-app.dialog:has(.constellation-message) .window-content .dialog-buttons {
+  display: none;
+}
+.app.window-app.dialog:has(.constellation-message) .window-content .constellation-message {
+  text-align: center;
+  font-size: 1.3rem;
+}
+nav#controls {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
+  box-shadow: 0 0 3px #102531 inset;
+}
+nav#controls .scene-control {
+  background: none !important;
+  box-shadow: none;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+}
+nav#controls .scene-control.active {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+nav#controls .scene-control.active:hover {
+  box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
+}
+nav#controls ol.control-tools > li {
+  border: 1px solid white;
+  box-shadow: 0 0 5px #6ed0fd, 0 0 10px #6ed0fd;
+  transition: box-shadow 0.3s ease-in-out;
+}
+nav#controls ol.control-tools > li:hover {
+  box-shadow: 0 0 20px #6ed0fd, 0 0 40px #6ed0fd;
+}
+nav#controls ol.control-tools > li.active {
+  border: 1px solid white;
+  border-bottom: 1px solid #6ed0fd;
+  box-shadow: 0 0 10px #003c8b;
+}
+nav#controls ol.control-tools > li:hover {
+  border: 1px solid #6ed0fd;
+}
+aside#players {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
+  box-shadow: 0 0 3px #102531 inset;
+  margin: 0;
+  margin-top: 1px;
+}
+aside#players h3 {
+  border-bottom: 2px groove white;
+}
+div#sidebar {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
+  box-shadow: 0 0 3px #102531 inset;
+}
+nav#navigation {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  background-color: transparent;
+  border: 3px double white;
+  border-radius: 8px;
+  box-shadow: 0 0 3px #102531 inset;
+}
+nav#navigation .nav-item {
+  border: 1px solid white;
+  margin: 4px;
+}
+nav#navigation #scene-list li {
+  background-color: transparent !important;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
+  border: 1px solid white !important;
+  box-shadow: 0 0 10px rgba(37, 186, 255) !important;
+}
+.edit-mode-toggle {
+  width: auto;
+  top: 3.8%;
+  position: absolute;
+  left: 80%;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  background-color: #ffffff00;
+  border: none;
+  box-shadow: none;
+  font-family: 'Teko';
+  height: fit-content;
+}
+#sidebar {
+  background-image: none;
+  border: 0;
+}
+#sidebar .directory-header {
+  background-color: rgba(83, 178, 241, 0.7);
+}
+#sidebar #sidebar-tabs {
+  box-shadow: 0 0 10px #6ed0fd;
+  border-bottom: 1px solid #6ed0fd;
+  margin-bottom: 1px;
+}
+#sidebar #sidebar-tabs .item {
+  border: 1px solid #6ed0fd;
+}
+#sidebar #sidebar-tabs .item:hover {
+  text-shadow: 0 0 10px #4f8cde;
+}
+#sidebar #sidebar-tabs .item.active {
+  border: 1px solid #6ed0fd;
+  text-shadow: 0 0 10px #4f8cde;
+  box-shadow: 0 0 6px inset #4f8cde;
+}
+#sidebar #chat #chat-controls {
+  margin: 0;
+}
+#sidebar #chat #chat-form {
+  padding-bottom: 0;
+}
+#sidebar #chat #chat-form #chat-message {
+  font-family: 'Teko';
+  margin: 0;
+  box-shadow: 0 0 4px #102531 inset;
+}
+.settings-sidebar h2 {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+#settings-game button {
+  border: 1px solid white;
+}
+#settings-documentation button {
+  border: 1px solid white;
+}
+#settings-access button {
+  border: 1px solid white;
+}
+#keybindings,
+#client-settings,
+#module-management,
+#world-config,
+#tours-management,
+#support-details,
+#documentation,
+#invitation-links,
+#combat-config,
+#folder-create,
+#chat-popout,
+#combat-popout,
+#scenes-popout,
+#actors-popout,
+#items-popout,
+#journal-popout,
+#tables-popout,
+#cards-popout,
+#playlists-popout,
+#compendium-popout,
+#settings-popout,
+#dice-config,
+#av-config,
+#font-config,
+#default-sheets-config,
+.app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar,
+.macro-sheet,
+.roll-table-config,
+.sheet-config,
+.token-sheet,
+.scene-sheet {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 3px double white;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+#keybindings:hover,
+#client-settings:hover,
+#module-management:hover,
+#world-config:hover,
+#tours-management:hover,
+#support-details:hover,
+#documentation:hover,
+#invitation-links:hover,
+#combat-config:hover,
+#folder-create:hover,
+#chat-popout:hover,
+#combat-popout:hover,
+#scenes-popout:hover,
+#actors-popout:hover,
+#items-popout:hover,
+#journal-popout:hover,
+#tables-popout:hover,
+#cards-popout:hover,
+#playlists-popout:hover,
+#compendium-popout:hover,
+#settings-popout:hover,
+#dice-config:hover,
+#av-config:hover,
+#font-config:hover,
+#default-sheets-config:hover,
+.app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar:hover,
+.macro-sheet:hover,
+.roll-table-config:hover,
+.sheet-config:hover,
+.token-sheet:hover,
+.scene-sheet:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+#hotbar .bar-controls {
+  background-color: transparent;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 1px solid white;
+  box-shadow: 0 0 5px #102531 inset;
+}
+#hotbar #macro-list {
+  border: 1px solid transparent;
+}
+#hotbar .macro {
+  background-color: transparent;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 1px solid white;
+  box-shadow: 0 0 5px #102531 inset;
+}
+#hotbar .macro:hover {
+  border: 1px solid #6ed0fd;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+#hotbar .macro:hover:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+#hotbar .macro.active:hover {
+  border: 1px solid #6ed0fd;
+}
+a#nav-toggle {
+  background-color: transparent !important;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
+}
+.directory .directory-item {
+  border-top: 1px solid white;
+}
+.directory .directory-list > .directory-item:last-child,
+h2.border,
+h2.category-title,
+.package-configuration aside.sidebar nav.tabs .category-tab.active,
+.package-configuration aside.sidebar nav.tabs .category-tab {
+  border-bottom: 1px solid white;
+}
+.combat-sidebar .combat-tracker-header {
+  border-bottom: 2px groove white;
+}
+.package-configuration aside.sidebar {
+  border-right: 1px solid white;
+}
+#keybindings .action {
+  border-bottom: 1px dotted white;
+}
+#sidebar.collapsed #sidebar-tabs > .item.active {
+  border-bottom: 1px solid #4f8cde;
+}
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -975,584 +1555,4 @@ input.input-text::selection {
 }
 .consumable-actions button:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-* {
-  scrollbar-color: #ffffff #ffffff00;
-  font-family: 'Teko';
-  color: #ffffff !important;
-}
-#logo {
-  content: url('../assets/images/orv_logo.png');
-  height: 100px;
-}
-.app {
-  background-image: none;
-  box-shadow: none;
-}
-.window-app .window-header {
-  background-color: transparent;
-  color: #ffffff;
-  padding-top: 5px;
-  border: none;
-}
-.window-app .window-header a {
-  background-color: transparent;
-  font-size: 0px;
-  padding-top: 8px;
-}
-.window-app .window-header a i {
-  background: none;
-  font-size: 14px;
-}
-.window-app .window-header a span {
-  font-size: 14px;
-}
-.window-app .window-header .window-title {
-  padding-top: 5px;
-}
-.window-app .window-content {
-  padding: 0;
-  background-image: none;
-  border-radius: 0 0 10px 10px;
-  background-color: transparent;
-}
-p.notes {
-  color: #ffffff;
-}
-li.chat-message.message {
-  background-color: transparent;
-  background-image: none;
-  border: 2px solid #6ed0fd;
-  box-shadow: 0 0 3px #102531 inset;
-}
-textarea {
-  background-image: none !important;
-  border: 2px double white;
-}
-textarea:focus {
-  box-shadow: none;
-}
-#chat-controls .roll-type-select {
-  background-color: transparent;
-  border: 1px solid white;
-}
-.dice-roll .dice-formula {
-  border: 1px solid white;
-}
-.dice-roll .dice-total {
-  border: 1px solid white;
-}
-.dice-tooltip .dice-rolls .roll {
-  color: #ffffff !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  box-shadow: 0 0 3px #102531 inset !important;
-}
-.dice-tooltip .dice-rolls .roll.min {
-  color: red !important;
-}
-.dice-tooltip .dice-rolls .roll.max {
-  color: green !important;
-}
-a:hover {
-  text-shadow: 0 0 10px #4f8cde;
-}
-i:hover {
-  text-shadow: 0 0 10px #4f8cde;
-}
-input {
-  border-color: #4f8cde;
-  border: none;
-  box-shadow: none;
-}
-input::placeholder {
-  color: #ffffff;
-}
-input:focus {
-  border: none;
-  box-shadow: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-input:focus:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
-}
-input::selection {
-  border: none;
-  box-shadow: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-input::selection:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
-}
-input[type='text']:focus {
-  border-color: #4f8cde;
-  border: 1px solid white;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-input[type='text']:focus:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
-}
-input[type='search'] {
-  background: none;
-  border-color: #ffffff;
-}
-input[type='search']::placeholder {
-  color: #ffffff;
-}
-input[type='search']:focus {
-  border: 1px solid white;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-input[type='search']:focus:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
-}
-select {
-  border: 1px solid white;
-}
-select:focus {
-  border: none;
-  box-shadow: none;
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-  border: 1px solid white;
-}
-select:focus:hover {
-  box-shadow: 0 0 10px rgba(37, 186, 255), 0 0 20px rgba(37, 186, 255);
-}
-.directory .directory-header .header-search input {
-  background-color: #ffffff00;
-}
-.tabs > [data-tab].active {
-  text-shadow: 0 0 10px rgba(37, 186, 255);
-}
-option {
-  background-color: #6ed0fd;
-  color: #ffffff;
-}
-button {
-  background-color: rgba(83, 178, 241, 0.7);
-  font-family: 'Teko';
-  border-color: white;
-}
-button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-button:hover:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-form button {
-  background-color: rgba(0 0 0 1);
-  font-family: 'Teko';
-  border: 2px groove white;
-}
-form button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-form button:hover:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-.app.window-app.ss1e.sheet.actor {
-  background-image: url(../assets/images/ss1e-actor-sheet-background-eighty.png);
-  background-position: center;
-  background-size: cover;
-  background-color: transparent;
-  padding: 20px 24px;
-  box-shadow: none;
-}
-.app.window-app.ss1e.sheet.actor .window-header {
-  background-color: transparent;
-}
-.app.window-app.ss1e.sheet.actor .window-content {
-  background-color: transparent;
-}
-.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs {
-  display: flex;
-  position: absolute;
-  left: 98.6%;
-  top: 10%;
-  flex-direction: column;
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  border-top: 2px double white;
-  border-bottom: 2px double white;
-  border-right: 2px double white;
-  border-radius: 0px 5px 5px 0px;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs > [data-tab] {
-  padding: 8px 12px;
-}
-.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs > [data-tab].active {
-  text-shadow: 0 0 10px #6ed0fd;
-}
-.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs .item {
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-  text-shadow: none;
-  box-shadow: 0 0 2px #6ed0fd, 0 0 4px #6ed0fd;
-  transition: box-shadow 0.3s ease-in-out;
-  border: none;
-  box-shadow: none;
-}
-.app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs .item:hover {
-  box-shadow: 0 0 5px #6ed0fd, 0 0 10px #6ed0fd;
-}
-.app.window-app.ss1e.sheet.actor.minimized {
-  background-image: none;
-  background-color: rgba(83, 178, 241, 0.7);
-  padding-top: 0;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 46px;
-  border: 2px double white;
-}
-.app.window-app.ss1e.sheet.item {
-  background-image: url(../assets/images/ss1e-item-sheet-background-eighty.png);
-  background-position: center;
-  background-size: cover;
-  background-color: transparent;
-  padding: 20px 24px;
-  box-shadow: none;
-}
-.app.window-app.ss1e.sheet.item .window-header {
-  background-color: transparent;
-}
-.app.window-app.ss1e.sheet.item .window-content {
-  background-color: transparent;
-}
-.app.window-app.ss1e.sheet.item.minimized {
-  background-image: none;
-  background-color: rgba(83, 178, 241, 0.7);
-  padding-top: 0;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 46px;
-  border: 2px double white;
-}
-h4.window-title {
-  text-align: start;
-  padding-left: 20px;
-}
-.dialog .window-header .header-button.control.close {
-  display: none;
-}
-.dialog input {
-  color: #ffffff;
-}
-.app.window-app.dialog {
-  background-image: url(../assets/images/ss1e-dialog-background-eighty.png);
-  background-color: transparent;
-  background-size: cover;
-  background-position: center;
-  padding: 20px;
-  box-shadow: none;
-  font-size: 1rem;
-}
-.app.window-app.dialog .window-header {
-  background-color: transparent;
-}
-.app.window-app.dialog .window-content {
-  background-color: transparent;
-}
-.app.window-app.dialog .window-content .dialog-buttons button {
-  border: none;
-  box-shadow: none;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-  font-size: 1.2rem;
-  margin: 5px;
-  text-transform: uppercase;
-  height: fit-content;
-  width: 100px;
-}
-.app.window-app.dialog .window-content .dialog-buttons button:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-.app.window-app.dialog:has(.constellation-message) {
-  background-image: url(../assets/images/ss1e-dialog-background-eighty.png);
-  background-color: transparent;
-  background-size: cover;
-  background-position: center;
-  padding: 20px;
-  box-shadow: none;
-  font-size: 1rem;
-}
-.app.window-app.dialog:has(.constellation-message) .window-header {
-  background-color: transparent;
-}
-.app.window-app.dialog:has(.constellation-message) .window-header .window-title {
-  display: none;
-}
-.app.window-app.dialog:has(.constellation-message) .window-content {
-  background-color: transparent;
-}
-.app.window-app.dialog:has(.constellation-message) .window-content .dialog-buttons {
-  display: none;
-}
-.app.window-app.dialog:has(.constellation-message) .window-content .constellation-message {
-  text-align: center;
-  font-size: 1.3rem;
-}
-nav#controls {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  background-color: transparent;
-  border: 3px double white;
-  border-radius: 8px;
-  box-shadow: 0 0 3px #102531 inset;
-}
-nav#controls .scene-control {
-  background: none !important;
-  box-shadow: none;
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-}
-nav#controls .scene-control.active {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-nav#controls .scene-control.active:hover {
-  box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
-}
-nav#controls ol.control-tools > li {
-  border: 1px solid white;
-  box-shadow: 0 0 5px #6ed0fd, 0 0 10px #6ed0fd;
-  transition: box-shadow 0.3s ease-in-out;
-}
-nav#controls ol.control-tools > li:hover {
-  box-shadow: 0 0 20px #6ed0fd, 0 0 40px #6ed0fd;
-}
-nav#controls ol.control-tools > li.active {
-  border: 1px solid white;
-  border-bottom: 1px solid #6ed0fd;
-  box-shadow: 0 0 10px #003c8b;
-}
-nav#controls ol.control-tools > li:hover {
-  border: 1px solid #6ed0fd;
-}
-aside#players {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  background-color: transparent;
-  border: 3px double white;
-  border-radius: 8px;
-  box-shadow: 0 0 3px #102531 inset;
-  margin: 0;
-  margin-top: 1px;
-}
-aside#players h3 {
-  border-bottom: 2px groove white;
-}
-div#sidebar {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  background-color: transparent;
-  border: 3px double white;
-  border-radius: 8px;
-  box-shadow: 0 0 3px #102531 inset;
-}
-nav#navigation {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  background-color: transparent;
-  border: 3px double white;
-  border-radius: 8px;
-  box-shadow: 0 0 3px #102531 inset;
-}
-nav#navigation .nav-item {
-  border: 1px solid white;
-  margin: 4px;
-}
-nav#navigation #scene-list li {
-  background-color: transparent !important;
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
-  border: 1px solid white !important;
-  box-shadow: 0 0 10px rgba(37, 186, 255) !important;
-}
-.edit-mode-toggle {
-  width: auto;
-  top: 3.8%;
-  position: absolute;
-  left: 80%;
-  padding: 0;
-  margin: 0;
-  font-size: 1rem;
-  background-color: #ffffff00;
-  border: none;
-  box-shadow: none;
-  font-family: 'Teko';
-  height: fit-content;
-}
-#sidebar {
-  background-image: none;
-  border: 0;
-}
-#sidebar .directory-header {
-  background-color: rgba(83, 178, 241, 0.7);
-}
-#sidebar #sidebar-tabs {
-  box-shadow: 0 0 10px #6ed0fd;
-  border-bottom: 1px solid #6ed0fd;
-  margin-bottom: 1px;
-}
-#sidebar #sidebar-tabs .item {
-  border: 1px solid #6ed0fd;
-}
-#sidebar #sidebar-tabs .item:hover {
-  text-shadow: 0 0 10px #4f8cde;
-}
-#sidebar #sidebar-tabs .item.active {
-  border: 1px solid #6ed0fd;
-  text-shadow: 0 0 10px #4f8cde;
-  box-shadow: 0 0 6px inset #4f8cde;
-}
-#sidebar #chat #chat-controls {
-  margin: 0;
-}
-#sidebar #chat #chat-form {
-  padding-bottom: 0;
-}
-#sidebar #chat #chat-form #chat-message {
-  font-family: 'Teko';
-  margin: 0;
-  box-shadow: 0 0 4px #102531 inset;
-}
-.settings-sidebar h2 {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-}
-#settings-game button {
-  border: 1px solid white;
-}
-#settings-documentation button {
-  border: 1px solid white;
-}
-#settings-access button {
-  border: 1px solid white;
-}
-#keybindings,
-#client-settings,
-#module-management,
-#world-config,
-#tours-management,
-#support-details,
-#documentation,
-#invitation-links,
-#combat-config,
-#folder-create,
-#chat-popout,
-#combat-popout,
-#scenes-popout,
-#actors-popout,
-#items-popout,
-#journal-popout,
-#tables-popout,
-#cards-popout,
-#playlists-popout,
-#compendium-popout,
-#settings-popout,
-#dice-config,
-#av-config,
-#font-config,
-#default-sheets-config,
-.app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar,
-.macro-sheet,
-.roll-table-config,
-.sheet-config,
-.token-sheet,
-.scene-sheet {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  border: 3px double white;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-#keybindings:hover,
-#client-settings:hover,
-#module-management:hover,
-#world-config:hover,
-#tours-management:hover,
-#support-details:hover,
-#documentation:hover,
-#invitation-links:hover,
-#combat-config:hover,
-#folder-create:hover,
-#chat-popout:hover,
-#combat-popout:hover,
-#scenes-popout:hover,
-#actors-popout:hover,
-#items-popout:hover,
-#journal-popout:hover,
-#tables-popout:hover,
-#cards-popout:hover,
-#playlists-popout:hover,
-#compendium-popout:hover,
-#settings-popout:hover,
-#dice-config:hover,
-#av-config:hover,
-#font-config:hover,
-#default-sheets-config:hover,
-.app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar:hover,
-.macro-sheet:hover,
-.roll-table-config:hover,
-.sheet-config:hover,
-.token-sheet:hover,
-.scene-sheet:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-#hotbar .bar-controls {
-  background-color: transparent;
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  border: 1px solid white;
-  box-shadow: 0 0 5px #102531 inset;
-}
-#hotbar #macro-list {
-  border: 1px solid transparent;
-}
-#hotbar .macro {
-  background-color: transparent;
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  border: 1px solid white;
-  box-shadow: 0 0 5px #102531 inset;
-}
-#hotbar .macro:hover {
-  border: 1px solid #6ed0fd;
-  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-#hotbar .macro:hover:hover {
-  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
-}
-#hotbar .macro.active:hover {
-  border: 1px solid #6ed0fd;
-}
-a#nav-toggle {
-  background-color: transparent !important;
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
-}
-.directory .directory-item {
-  border-top: 1px solid white;
-}
-.directory .directory-list > .directory-item:last-child,
-h2.border,
-h2.category-title,
-.package-configuration aside.sidebar nav.tabs .category-tab.active,
-.package-configuration aside.sidebar nav.tabs .category-tab {
-  border-bottom: 1px solid white;
-}
-.combat-sidebar .combat-tracker-header {
-  border-bottom: 2px groove white;
-}
-.package-configuration aside.sidebar {
-  border-right: 1px solid white;
-}
-#keybindings .action {
-  border-bottom: 1px dotted white;
-}
-#sidebar.collapsed #sidebar-tabs > .item.active {
-  border-bottom: 1px solid #4f8cde;
 }
