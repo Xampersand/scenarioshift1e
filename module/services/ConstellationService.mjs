@@ -2,7 +2,7 @@ export function onSendPresetMessage(event) {
 	event.preventDefault();
 	const message = event.currentTarget.dataset.message; // Get message from the button's data attribute
 	const cost = Number(event.currentTarget.dataset.cost); // Get message cost
-	const selectedCharacterId = this._getmessageRecipient(); // Ensure this gets the selected character ID
+	const selectedCharacterId = getMessageRecipient(); // Ensure this gets the selected character ID
 	if (!message) return;
 	// Check if actor has enough coins (50 coins needed)
 	if (this.actor.system.coins >= cost) {
