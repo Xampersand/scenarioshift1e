@@ -1446,7 +1446,6 @@ nav#navigation #scene-list li {
 #combat-config,
 #folder-create,
 #chat-popout,
-.scene-sheet,
 #combat-popout,
 #scenes-popout,
 #actors-popout,
@@ -1457,10 +1456,16 @@ nav#navigation #scene-list li {
 #playlists-popout,
 #compendium-popout,
 #settings-popout,
+#dice-config,
+#av-config,
+#font-config,
+#default-sheets-config,
+.app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar,
 .macro-sheet,
 .roll-table-config,
 .sheet-config,
-.token-sheet {
+.token-sheet,
+.scene-sheet {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 3px double white;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
@@ -1477,7 +1482,6 @@ nav#navigation #scene-list li {
 #combat-config:hover,
 #folder-create:hover,
 #chat-popout:hover,
-.scene-sheet:hover,
 #combat-popout:hover,
 #scenes-popout:hover,
 #actors-popout:hover,
@@ -1488,10 +1492,16 @@ nav#navigation #scene-list li {
 #playlists-popout:hover,
 #compendium-popout:hover,
 #settings-popout:hover,
+#dice-config:hover,
+#av-config:hover,
+#font-config:hover,
+#default-sheets-config:hover,
+.app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar:hover,
 .macro-sheet:hover,
 .roll-table-config:hover,
 .sheet-config:hover,
-.token-sheet:hover {
+.token-sheet:hover,
+.scene-sheet:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 #hotbar .bar-controls {
