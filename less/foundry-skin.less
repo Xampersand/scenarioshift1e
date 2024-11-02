@@ -4,7 +4,7 @@
 * {
 	scrollbar-color: @primary-text-color @transparent;
 	font-family: @font;
-	color: @primary-text-color;
+	color: @primary-text-color !important;
 }
 //changing logo in top left
 #logo {
@@ -81,6 +81,20 @@ textarea {
 	}
 	.dice-total {
 		border: 1px solid white;
+	}
+}
+.dice-tooltip .dice-rolls {
+	& .roll {
+		color: white !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		box-shadow: 0 0 3px @inset-color inset !important;
+	}
+	& .roll.min {
+		color: red !important;
+	}
+	& .roll.max {
+		color: green !important;
 	}
 }
 
@@ -260,6 +274,28 @@ nav#controls {
 	border: 3px double white;
 	border-radius: 8px;
 	box-shadow: 0 0 3px @inset-color inset;
+	.scene-control {
+		background: none !important;
+		box-shadow: none;
+		background-image: @background-tile;
+		&.active {
+			.add-glow(@glow-color, 5px, 20px);
+		}
+	}
+	ol.control-tools {
+		& > li {
+			border: 1px solid white;
+			.add-glow(@subaccent-color, 5px, 20px);
+			&.active {
+				border: 1px solid white;
+				border-bottom: 1px solid @subaccent-color;
+				box-shadow: 0 0 10px rgb(0, 60, 139);
+			}
+			&:hover {
+				border: 1px solid @subaccent-color;
+			}
+		}
+	}
 }
 aside#players {
 	background-image: @background-tile;
@@ -338,7 +374,7 @@ nav.sheet-tabs.tabs {
 	#sidebar-tabs {
 		box-shadow: 0 0 10px @subaccent-color;
 		border-bottom: 1px solid @subaccent-color;
-		margin-bottom: 0;
+		margin-bottom: 1px;
 		.item {
 			border: 1px solid @subaccent-color;
 			&:hover {
@@ -393,9 +429,11 @@ nav.sheet-tabs.tabs {
 #tours-management,
 #support-details,
 #documentation,
-#invitation-links {
+#invitation-links,
+#combat-config {
 	background-image: @background-tile;
 	border: 3px double white;
+	.add-glow(@glow-color, 2px, 5px);
 }
 // hotbars and menus
 #hotbar {
@@ -410,30 +448,6 @@ nav.sheet-tabs.tabs {
 		background-image: @background-tile;
 		border: 1px solid white;
 		box-shadow: 0 0 5px @inset-color inset;
-	}
-}
-#controls {
-	.scene-control {
-		background: none !important;
-		box-shadow: none;
-		background-image: @background-tile;
-		&.active {
-			.add-glow(@glow-color, 5px, 20px);
-		}
-	}
-	ol.control-tools {
-		& > li {
-			border: 1px solid white;
-			.add-glow(@subaccent-color, 5px, 20px);
-			&.active {
-				border: 1px solid white;
-				border-bottom: 1px solid @subaccent-color;
-				box-shadow: 0 0 10px rgb(0, 60, 139);
-			}
-			&:hover {
-				border: 1px solid @subaccent-color;
-			}
-		}
 	}
 }
 a#nav-toggle {
