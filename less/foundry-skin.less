@@ -215,6 +215,15 @@ form button {
 			.remove-default-glow();
 		}
 	}
+	&.minimized {
+		background-image: none;
+		background-color: @background-color;
+		padding-top: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 46px;
+		border: 2px double @main-border-color;
+	}
 }
 // item sheet changes
 .app.window-app.ss1e.sheet.item {
@@ -229,6 +238,15 @@ form button {
 	}
 	.window-content {
 		background-color: transparent;
+	}
+	&.minimized {
+		background-image: none;
+		background-color: @background-color;
+		padding-top: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 46px;
+		border: 2px double @main-border-color;
 	}
 }
 // window title on sheets moved a bit
@@ -471,7 +489,11 @@ nav#navigation {
 #cards-popout,
 #playlists-popout,
 #compendium-popout,
-#settings-popout {
+#settings-popout,
+.macro-sheet,
+.roll-table-config,
+.sheet-config,
+.token-sheet {
 	background-image: @background-tile;
 	border: 3px double @main-border-color;
 	.add-glow(@glow-color, 2px, 5px);
@@ -492,6 +514,15 @@ nav#navigation {
 		background-image: @background-tile;
 		border: 1px solid @main-border-color;
 		box-shadow: 0 0 5px @inset-color inset;
+		&:hover {
+			border: 1px solid @subaccent-color;
+			.add-glow(@glow-color, 2px, 5px);
+		}
+		&.active {
+			&:hover {
+				border: 1px solid @subaccent-color;
+			}
+		}
 	}
 }
 a#nav-toggle {
@@ -517,4 +548,7 @@ h2.category-title,
 }
 #keybindings .action {
 	border-bottom: 1px dotted @main-border-color;
+}
+#sidebar.collapsed #sidebar-tabs > .item.active {
+	border-bottom: 1px solid @accent-color;
 }

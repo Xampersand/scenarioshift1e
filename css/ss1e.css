@@ -1207,6 +1207,15 @@ form button:hover:hover {
 .app.window-app.ss1e.sheet.actor nav.sheet-tabs.tabs .item:hover {
   box-shadow: 0 0 5px #6ed0fd, 0 0 10px #6ed0fd;
 }
+.app.window-app.ss1e.sheet.actor.minimized {
+  background-image: none;
+  background-color: rgba(83, 178, 241, 0.7);
+  padding-top: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 46px;
+  border: 2px double white;
+}
 .app.window-app.ss1e.sheet.item {
   background-image: url(../assets/images/ss1e-item-sheet-background-eighty.png);
   background-position: center;
@@ -1220,6 +1229,15 @@ form button:hover:hover {
 }
 .app.window-app.ss1e.sheet.item .window-content {
   background-color: transparent;
+}
+.app.window-app.ss1e.sheet.item.minimized {
+  background-image: none;
+  background-color: rgba(83, 178, 241, 0.7);
+  padding-top: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 46px;
+  border: 2px double white;
 }
 h4.window-title {
   text-align: start;
@@ -1438,7 +1456,11 @@ nav#navigation #scene-list li {
 #cards-popout,
 #playlists-popout,
 #compendium-popout,
-#settings-popout {
+#settings-popout,
+.macro-sheet,
+.roll-table-config,
+.sheet-config,
+.token-sheet {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 3px double white;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
@@ -1465,7 +1487,11 @@ nav#navigation #scene-list li {
 #cards-popout:hover,
 #playlists-popout:hover,
 #compendium-popout:hover,
-#settings-popout:hover {
+#settings-popout:hover,
+.macro-sheet:hover,
+.roll-table-config:hover,
+.sheet-config:hover,
+.token-sheet:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 #hotbar .bar-controls {
@@ -1482,6 +1508,17 @@ nav#navigation #scene-list li {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 1px solid white;
   box-shadow: 0 0 5px #102531 inset;
+}
+#hotbar .macro:hover {
+  border: 1px solid #6ed0fd;
+  box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
+  transition: box-shadow 0.3s ease-in-out;
+}
+#hotbar .macro:hover:hover {
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
+}
+#hotbar .macro.active:hover {
+  border: 1px solid #6ed0fd;
 }
 a#nav-toggle {
   background-color: transparent !important;
@@ -1505,4 +1542,7 @@ h2.category-title,
 }
 #keybindings .action {
   border-bottom: 1px dotted white;
+}
+#sidebar.collapsed #sidebar-tabs > .item.active {
+  border-bottom: 1px solid #4f8cde;
 }
