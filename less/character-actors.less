@@ -48,17 +48,17 @@
 					//overlapping bars with picture, values are cringe nad will probably need ot be redone
 					position: relative;
 					bottom: 25px;
+
 					.hp-block {
 						.set-display-flex-row();
 						justify-content: space-evenly;
 						align-items: center;
-
 						.hp-bar-container {
 							width: 125px;
 							height: 25px;
-							background-color: @transparent;
+							background-color: @resource-container-color;
 							border: 1px solid @subaccent-color;
-							border-radius: 35% 35% 0px 0px;
+							border-radius: 20% 20% 0px 0px;
 							overflow: hidden;
 							align-self: flex-end;
 							position: relative;
@@ -85,10 +85,10 @@
 						.mana-bar-container {
 							width: 125px;
 							height: 25px;
-							background-color: @transparent;
+							background-color: @resource-container-color;
 							border: 1px solid @subaccent-color;
 							border-top: 0;
-							border-radius: 0px 0px 35% 35%;
+							border-radius: 0px 0px 20% 20%;
 							overflow: hidden;
 							position: relative;
 							.mana-bar {

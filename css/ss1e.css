@@ -197,6 +197,9 @@ select:focus:hover {
 .directory .directory-header .header-search input {
   background-color: #ffffff00;
 }
+input[type='text'] {
+  border: 1px solid white;
+}
 .tabs > [data-tab].active {
   text-shadow: 0 0 10px #25e6ff;
 }
@@ -729,16 +732,16 @@ h2.category-title,
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container {
   width: 125px;
   height: 25px;
-  background-color: #ffffff00;
+  background-color: #3f3f3f86;
   border: 1px solid #52c8ff;
-  border-radius: 35% 35% 0px 0px;
+  border-radius: 20% 20% 0px 0px;
   overflow: hidden;
   align-self: flex-end;
   position: relative;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
-  background-color: #b84b4ba4;
+  background-color: #b84b4bc7;
   transition: width 0.3s ease;
   display: flex;
   justify-content: center;
@@ -759,10 +762,10 @@ h2.category-title,
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container {
   width: 125px;
   height: 25px;
-  background-color: #ffffff00;
+  background-color: #3f3f3f86;
   border: 1px solid #52c8ff;
   border-top: 0;
-  border-radius: 0px 0px 35% 35%;
+  border-radius: 0px 0px 20% 20%;
   overflow: hidden;
   position: relative;
 }
