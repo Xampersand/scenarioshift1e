@@ -286,7 +286,8 @@ h4.window-title {
 		background-color: transparent;
 		.dialog-buttons {
 			& button {
-				.remove-default-glow(); // call the mixin
+				border: 1px solid white;
+				border-radius: 5px;
 				.add-glow(@glow-color, 2px, 5px);
 				font-size: 1.2rem;
 				margin: 5px;
@@ -325,6 +326,11 @@ h4.window-title {
 				font-size: 1.3rem;
 			}
 		}
+	}
+	&:has(.stat-dialog) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 }
 // styling for big ui elements (side elements, top bars etc.)

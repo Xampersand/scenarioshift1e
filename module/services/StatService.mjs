@@ -8,9 +8,10 @@ export function onStatLevelUp(event) {
 	new Dialog({
 		title: 'Level Up!',
 		content: `
+			<div class='stat-dialog'>
 			  <p>${stat.label} Lv. ${stat.value} → ${stat.label} Lv. ${stat.value + 1}</p>
 			  <p>Cost: ${cost} Coins</p>
-			`,
+			</div>`,
 		buttons: {
 			yes: {
 				icon: '<i class="fas fa-check"></i>',
@@ -24,7 +25,7 @@ export function onStatLevelUp(event) {
 						let updateData = {
 							[`system.coins`]: updatedCoins,
 							[`system.stats.${key}.baseValue`]: newStatValue,
-						}
+						};
 
 						// Add health if Constitution is leveled up
 						if (key === 'con') {
