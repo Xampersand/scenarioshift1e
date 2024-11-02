@@ -536,7 +536,8 @@ nav#navigation #scene-list li {
 .roll-table-config,
 .sheet-config,
 .token-sheet,
-.scene-sheet {
+.scene-sheet,
+.app.window-app.filepicker {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 3px double white;
   box-shadow: 0 0 2px rgba(37, 186, 255), 0 0 4px rgba(37, 186, 255);
@@ -572,7 +573,8 @@ nav#navigation #scene-list li {
 .roll-table-config:hover,
 .sheet-config:hover,
 .token-sheet:hover,
-.scene-sheet:hover {
+.scene-sheet:hover,
+.app.window-app.filepicker:hover {
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 #hotbar .bar-controls {
@@ -701,16 +703,17 @@ h2.category-title,
   width: 180px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img {
+  clip-path: polygon(15% 0, 95% 0, 100% 5%, 100% 85%, 85% 100%, 5% 100%, 0 95%, 0 15%);
   border: none;
   box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
   transition: box-shadow 0.3s ease-in-out;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img:hover {
-  box-shadow: 0 0 20px rgba(37, 186, 255), 0 0 40px rgba(37, 186, 255);
+  box-shadow: 0 0 5px rgba(37, 186, 255), 0 0 10px rgba(37, 186, 255);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container {
   position: relative;
-  bottom: 30px;
+  bottom: 25px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block {
   display: flex;
@@ -719,11 +722,10 @@ h2.category-title,
   align-items: center;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container {
-  width: 150px;
-  height: 30px;
+  width: 125px;
+  height: 25px;
   background-color: #ffffff00;
-  border: 1px solid #4f8cde;
-  border-bottom: 0;
+  border: 1px solid #6ed0fd;
   border-radius: 35% 35% 0px 0px;
   overflow: hidden;
   align-self: flex-end;
@@ -750,10 +752,10 @@ h2.category-title,
   align-items: center;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container {
-  width: 150px;
-  height: 30px;
+  width: 125px;
+  height: 25px;
   background-color: #ffffff00;
-  border: 1px solid #4f8cde;
+  border: 1px solid #6ed0fd;
   border-top: 0;
   border-radius: 0px 0px 35% 35%;
   overflow: hidden;

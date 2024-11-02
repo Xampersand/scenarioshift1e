@@ -31,24 +31,33 @@
 				// flex: 1 1 50%; sheet is always 600px wide, im just gonna manually set all to 200 for now
 				width: 180px;
 				& img.profile-img {
+					clip-path: polygon(
+						15% 0,
+						95% 0,
+						100% 5%,
+						100% 85%,
+						85% 100%,
+						5% 100%,
+						0 95%,
+						0 15%
+					);
 					border: none;
-					.add-glow(@glow-color, 5px, 20px);
+					.add-glow(@glow-color, 5px, 5px);
 				}
 				.hp-mana-container {
 					//overlapping bars with picture, values are cringe nad will probably need ot be redone
 					position: relative;
-					bottom: 30px;
+					bottom: 25px;
 					.hp-block {
 						.set-display-flex-row();
 						justify-content: space-evenly;
 						align-items: center;
 
 						.hp-bar-container {
-							width: 150px;
-							height: 30px;
+							width: 125px;
+							height: 25px;
 							background-color: @transparent;
-							border: 1px solid @accent-color;
-							border-bottom: 0;
+							border: 1px solid @subaccent-color;
 							border-radius: 35% 35% 0px 0px;
 							overflow: hidden;
 							align-self: flex-end;
@@ -74,10 +83,10 @@
 						justify-content: space-evenly;
 						align-items: center;
 						.mana-bar-container {
-							width: 150px;
-							height: 30px;
+							width: 125px;
+							height: 25px;
 							background-color: @transparent;
-							border: 1px solid @accent-color;
+							border: 1px solid @subaccent-color;
 							border-top: 0;
 							border-radius: 0px 0px 35% 35%;
 							overflow: hidden;
