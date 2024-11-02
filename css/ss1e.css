@@ -1173,6 +1173,20 @@ form button:hover:hover {
 .app.window-app.ss1e.sheet.actor .window-content {
   background-color: transparent;
 }
+.app.window-app.ss1e.sheet.item {
+  background-image: url(../assets/images/ss1e-item-sheet-background-eighty.png);
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  padding: 20px 24px;
+  box-shadow: none;
+}
+.app.window-app.ss1e.sheet.item .window-header {
+  background-color: transparent;
+}
+.app.window-app.ss1e.sheet.item .window-content {
+  background-color: transparent;
+}
 h4.window-title {
   text-align: start;
   padding-left: 20px;
