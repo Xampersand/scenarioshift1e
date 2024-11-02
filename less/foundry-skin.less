@@ -62,7 +62,7 @@ li.chat-message.message {
 // chat box
 textarea {
 	background-image: none !important;
-	border: 2px double white;
+	border: 2px double @main-border-color;
 	&:focus {
 		box-shadow: none;
 	}
@@ -71,21 +71,21 @@ textarea {
 #chat-controls {
 	.roll-type-select {
 		background-color: transparent;
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 	}
 }
 //dice
 .dice-roll {
 	.dice-formula {
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 	}
 	.dice-total {
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 	}
 }
 .dice-tooltip .dice-rolls {
 	& .roll {
-		color: white !important;
+		color: @primary-text-color !important;
 		background-color: transparent !important;
 		background-image: none !important;
 		box-shadow: 0 0 3px @inset-color inset !important;
@@ -121,17 +121,17 @@ input {
 	}
 	&[type='text']:focus {
 		border-color: @accent-color;
-		.remove-default-glow();
+		border: 1px solid @main-border-color;
 		.add-glow(@glow-color, 5px, 10px);
 	}
 	&[type='search'] {
 		background: none;
-		border-color: @accent-color;
+		border-color: @primary-text-color;
 		&::placeholder {
 			color: @primary-text-color;
 		}
 		&:focus {
-			.remove-default-glow();
+			border: 1px solid @main-border-color;
 			.add-glow(@glow-color, 5px, 10px);
 		}
 	}
@@ -140,9 +140,9 @@ select {
 	&:focus {
 		.remove-default-glow();
 		.add-glow(@glow-color, 5px, 10px);
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 	}
-	border: 1px solid white;
+	border: 1px solid @main-border-color;
 }
 //removes background from search inputs in side bar
 .directory .directory-header .header-search input {
@@ -164,7 +164,7 @@ button {
 	&:hover {
 		.add-glow(@glow-color, 5px);
 	}
-	border-color: white;
+	border-color: @main-border-color;
 }
 form button {
 	background-color: rgba(0 0 0 1);
@@ -172,7 +172,7 @@ form button {
 	&:hover {
 		.add-glow(@glow-color, 5px);
 	}
-	border: 2px groove white;
+	border: 2px groove @main-border-color;
 }
 // //actor sheet changes
 .app.window-app.ss1e.sheet.actor {
@@ -187,6 +187,33 @@ form button {
 	}
 	.window-content {
 		background-color: transparent;
+	}
+	nav.sheet-tabs.tabs {
+		display: flex;
+		position: absolute;
+		left: 98.6%;
+		top: 10%;
+		flex-direction: column;
+		background-image: @background-tile;
+		border-top: 2px double @main-border-color;
+		border-bottom: 2px double @main-border-color;
+		border-right: 2px double @main-border-color;
+		border-radius: 0px 5px 5px 0px;
+		.add-glow(@glow-color, 2px, 5px);
+		> [data-tab] {
+			padding: 8px 12px;
+			&.active {
+				text-shadow: 0 0 10px @subaccent-color;
+			}
+		}
+		.item {
+			width: 100%;
+			text-align: center;
+			cursor: pointer;
+			text-shadow: none;
+			.add-glow(@subaccent-color, 2px, 5px);
+			.remove-default-glow();
+		}
 	}
 }
 // item sheet changes
@@ -286,7 +313,7 @@ h4.window-title {
 nav#controls {
 	background-image: @background-tile;
 	background-color: transparent;
-	border: 3px double white;
+	border: 3px double @main-border-color;
 	border-radius: 8px;
 	box-shadow: 0 0 3px @inset-color inset;
 	.scene-control {
@@ -299,10 +326,10 @@ nav#controls {
 	}
 	ol.control-tools {
 		& > li {
-			border: 1px solid white;
+			border: 1px solid @main-border-color;
 			.add-glow(@subaccent-color, 5px, 20px);
 			&.active {
-				border: 1px solid white;
+				border: 1px solid @main-border-color;
 				border-bottom: 1px solid @subaccent-color;
 				box-shadow: 0 0 10px rgb(0, 60, 139);
 			}
@@ -315,56 +342,42 @@ nav#controls {
 aside#players {
 	background-image: @background-tile;
 	background-color: transparent;
-	border: 3px double white;
+	border: 3px double @main-border-color;
 	border-radius: 8px;
 	box-shadow: 0 0 3px @inset-color inset;
+	margin: 0;
+	margin-top: 1px;
 	& h3 {
-		border-bottom: 2px groove white;
+		border-bottom: 2px groove @main-border-color;
 	}
 }
 div#sidebar {
 	background-image: @background-tile;
 	background-color: transparent;
-	border: 3px double white;
+	border: 3px double @main-border-color;
 	border-radius: 8px;
 	box-shadow: 0 0 3px @inset-color inset;
 }
 nav#navigation {
 	background-image: @background-tile;
 	background-color: transparent;
-	border: 3px double white;
+	border: 3px double @main-border-color;
 	border-radius: 8px;
 	box-shadow: 0 0 3px @inset-color inset;
-}
-
-// moving tabs on sheets
-nav.sheet-tabs.tabs {
-	display: flex;
-	position: absolute;
-	left: 98.6%;
-	top: 10%;
-	flex-direction: column;
-	background-image: @background-tile;
-	border-top: 2px double white;
-	border-bottom: 2px double white;
-	border-right: 2px double white;
-	border-radius: 0px 5px 5px 0px;
-	.add-glow(@glow-color, 2px, 5px);
-	> [data-tab] {
-		padding: 8px 12px;
-		&.active {
-			text-shadow: 0 0 10px @subaccent-color;
+	& .nav-item {
+		border: 1px solid @main-border-color;
+		margin: 4px;
+	}
+	#scene-list {
+		& li {
+			background-color: transparent !important;
+			background-image: @background-tile !important;
+			border: 1px solid @main-border-color !important;
+			box-shadow: 0 0 10px @glow-color !important;
 		}
 	}
-	.item {
-		width: 100%;
-		text-align: center;
-		cursor: pointer;
-		text-shadow: none;
-		.add-glow(@subaccent-color, 2px, 5px);
-		.remove-default-glow();
-	}
 }
+
 // edit mode button
 .edit-mode-toggle {
 	width: auto;
@@ -418,22 +431,22 @@ nav.sheet-tabs.tabs {
 }
 //settigns menu
 .settings-sidebar h2 {
-	border-top: 1px solid white;
-	border-bottom: 1px solid white;
+	border-top: 1px solid @main-border-color;
+	border-bottom: 1px solid @main-border-color;
 }
 #settings-game {
 	& button {
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 	}
 }
 #settings-documentation {
 	& button {
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 	}
 }
 #settings-access {
 	& button {
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 	}
 }
 // different windows global setup
@@ -445,9 +458,22 @@ nav.sheet-tabs.tabs {
 #support-details,
 #documentation,
 #invitation-links,
-#combat-config {
+#combat-config,
+#folder-create,
+#chat-popout,
+.scene-sheet,
+#combat-popout,
+#scenes-popout,
+#actors-popout,
+#items-popout,
+#journal-popout,
+#tables-popout,
+#cards-popout,
+#playlists-popout,
+#compendium-popout,
+#settings-popout {
 	background-image: @background-tile;
-	border: 3px double white;
+	border: 3px double @main-border-color;
 	.add-glow(@glow-color, 2px, 5px);
 }
 // hotbars and menus
@@ -455,13 +481,16 @@ nav.sheet-tabs.tabs {
 	.bar-controls {
 		background-color: transparent;
 		background-image: @background-tile;
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 		box-shadow: 0 0 5px @inset-color inset;
+	}
+	#macro-list {
+		border: 1px solid transparent;
 	}
 	.macro {
 		background-color: transparent;
 		background-image: @background-tile;
-		border: 1px solid white;
+		border: 1px solid @main-border-color;
 		box-shadow: 0 0 5px @inset-color inset;
 	}
 }
@@ -469,9 +498,23 @@ a#nav-toggle {
 	background-color: transparent !important;
 	background-image: @background-tile !important;
 }
-#navigation {
-	& .nav-item {
-		border: 1px solid white;
-		margin: 4px;
-	}
+// fixing some heading borders
+.directory .directory-item {
+	border-top: 1px solid @main-border-color;
+}
+.directory .directory-list > .directory-item:last-child,
+h2.border,
+h2.category-title,
+.package-configuration aside.sidebar nav.tabs .category-tab.active,
+.package-configuration aside.sidebar nav.tabs .category-tab {
+	border-bottom: 1px solid @main-border-color;
+}
+.combat-sidebar .combat-tracker-header {
+	border-bottom: 2px groove @main-border-color;
+}
+.package-configuration aside.sidebar {
+	border-right: 1px solid @main-border-color;
+}
+#keybindings .action {
+	border-bottom: 1px dotted @main-border-color;
 }
