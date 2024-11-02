@@ -11,21 +11,17 @@ export default class SS1ECharacter extends SS1EActorBase {
 	}
 
 	prepareData() {
-		// Prepare data for the actor. Calling the super version of this executes
-		// the following, in order: data reset (to clear active effects),
-		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
-		// prepareDerivedData().
 		super.prepareData();
 	}
 
 	prepareBaseData() {
+		this.addItemModifiers();
 		this.calculateStats(this.stats);
 	}
 
-	prepareDerivedData() {
-		// ITEMS;
-		this.addItemModifiers();
+	prepareEmbeddedDocuments() { }
 
+	prepareDerivedData() {
 		const ARMOR_INCREMENT = 0.5;
 		const EVASION_INCREMENT = 0.5;
 		const ACCURACY_INCREMENT = 2;
@@ -45,15 +41,12 @@ export default class SS1ECharacter extends SS1EActorBase {
 		derived.evasion.baseValue = Math.round(stats.agi.value * EVASION_INCREMENT);
 		derived.accuracy.baseValue = Math.round((stats.agi.value + stats.int.value) * ACCURACY_INCREMENT);
 
-		this.calculateStats(derived);
-
 		// DAMAGE MULTIPLIERS BASED ON STATS
-		derived.strStatDmgMulti.value =
-			stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
-		derived.agiStatDmgMulti.value =
-			stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
-		derived.intStatDmgMulti.value =
-			stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
+		derived.strStatDmgMulti.baseValue = stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
+		derived.agiStatDmgMulti.baseValue = stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
+		derived.intStatDmgMulti.baseValue = stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
+
+		this.calculateStats(derived);
 
 		// HEALTH, MANA
 		resources.health.max =
@@ -70,15 +63,9 @@ export default class SS1ECharacter extends SS1EActorBase {
 
 	addItemModifiers() {
 		const items = this.parent.items;
-
-		// for (const item of items) {
-		// 	const itemData = item.system;
-		// 	if (!itemData.equipped) continue;
-
-		// 	if (itemData.defense !== undefined) {
-		// 		this.stats[itemData.defenseType].bonus = itemData.defense;
-		// 	}
-		// }
+		for (const item of items) {
+			// console.log(item);
+		}
 	}
 
 	getRollData() {

@@ -46,7 +46,6 @@ Hooks.once('init', function () {
 		constellation: models.SS1EConstellation,
 		npc: models.SS1ENPC,
 	};
-
 	CONFIG.Item.documentClass = SS1EItem;
 	CONFIG.Item.dataModels = {
 		item: models.SS1EItem,
@@ -55,7 +54,6 @@ Hooks.once('init', function () {
 		rangedWeapon: models.SS1ERangedWeapon,
 		ammo: models.SS1EAmmo,
 		equipment: models.SS1EEquipment,
-
 		skill: models.SS1ESkill,
 	};
 

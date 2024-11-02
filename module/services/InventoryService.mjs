@@ -34,18 +34,19 @@ export function openItemDialog(event, itemId, actor) {
 		return;
 	}
 
+	const equippables = ["meleeWeapon", "rangedWeapon", "equipment", "ammo"];
+	const consumables = ["item", "consumable"];
+
 	new Dialog(
 		{
 			title: '-------------ITEM PANEL-------------',
 			buttons: {
 				equip: {
-					label: item.system.equipped ? 'UNEQUIP' : 'EQUIP',
+					label: (equippables.includes(item.type) ? (item.system.equipped ? 'UNEQUIP' : 'EQUIP') : 'USE'),
 					callback: async () => {
 						const requirement = item.system.requirement;
-
 						if (actor.system.stats[requirement.type].baseValue >= requirement.value) {
-							await item.update({ "system.equipped": !item.system.equipped });
-							actor.prepareDerivedData();
+							item.use();
 						} else {
 							ui.notifications.error("You do not meet the requirements to equip this item!");
 						}

@@ -24,9 +24,4 @@ export default class SS1EMeleeWeapon extends SS1EWeapon {
 
 		this.damageFormula = `${roll.diceNum}${roll.diceSize}${roll.diceBonus}`
 	}
-
-	equip() {
-		console.log("equipped");
-		console.log(this);
-	}
 }
