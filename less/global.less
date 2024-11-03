@@ -336,6 +336,14 @@ h4.window-title {
 		flex-direction: column;
 		align-items: center;
 	}
+	&:has(.scenario-message) {
+		background-image: @scenario-background-image-eighty;
+		.window-header {
+			.window-title {
+				display: none;
+			}
+		}
+	}
 }
 // styling for big ui elements (side elements, top bars etc.)
 nav#controls {

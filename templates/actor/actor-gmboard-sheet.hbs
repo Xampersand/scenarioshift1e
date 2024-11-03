@@ -1,211 +1,53 @@
 <form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
-
-	<!-- Character Information Section moved to the very top below the controls -->
-	<button class='edit-mode-toggle'>📝</button>
-	<section class='ss1e sheet actor constellation header'>
-		<div class='header title'>&lt;CONSTELLATION INFORMATION&gt;</div>
-		<div class='header info'>
-			<!-- First Column: Profile Image -->
-			<img
-				class='profile-img'
-				src='{{actor.img}}'
-				data-edit='img'
-				title='{{actor.name}}'
-				height='250'
-				width='250'
-			/>
-			<!-- Second Column: Modifier, True Name, Grade, Incarnation -->
-			<div class='info-container'>
-				<label for='name' class='input-label'>MODIFIER:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
+	<nav class='sheet-tabs tabs'>
+		<a class='item' data-tab='features'>Features</a>
+		<a class='item' data-tab='inventory'>Inventory</a>
+		<a class='item' data-tab='abilities'>Abilities</a>
+		<!-- Add more tabs as necessary -->
+	</nav>
+	<section class='ss1e sheet actor gmboard'>
+		<div class='sheet-body'>
+			<div class='tab' data-tab='features'> main page</div>
+			<div class='tab' data-tab='inventory'>
+				<div id='scenario-form'>
+					<label for='scenario-name'>Scenario Name:</label><br />
+					<input type='text' id='scenario-name' name='scenario-name' /><br />
+					<label for='scenario-category'>Scenario Category</label><br />
+					<input type='text' id='scenario-category' name='scenario-category' />
+					<label for='scenario-difficulty'>Difficulty</label><br />
 					<input
-						name='name'
-						id='name'
-						class='input-text'
 						type='text'
-						value='{{actor.name}}'
-						placeholder='name'
+						id='scenario-difficulty'
+						name='scenario-difficulty'
 					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{actor.name}}</div>
-				{{/if}}
-
-				<label for='trueName' class='input-label'>TRUE NAME:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
+					<label for='scenario-conditions'>Clear conditions:</label><br />
+					<textarea
+						id='scenario-conditions'
+						name='scenario-conditions'
+						rows='10'
+						cols='30'
+					>1. Condition 1</textarea>
+					<label for='scenario-time-limit'>Time Limit:</label><br />
 					<input
-						name='system.trueName'
-						id='trueName'
-						class='input-text'
 						type='text'
-						value='{{system.trueName}}'
-						placeholder='true_name'
+						id='scenario-time-limit'
+						name='scenario-time-limit'
 					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{system.trueName}}</div>
-				{{/if}}
-				<label for='grade' class='input-label'>GRADE:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='system.grade'
-						id='grade'
-						class='input-text'
-						type='text'
-						value='{{system.grade}}'
-						placeholder='grade'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{system.grade}}</div>
-				{{/if}}
-				<label
-					for='incarnation'
-					class='input-label'
-				>INCARNATION:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='system.incarnation'
-						id='incarnation'
-						class='input-text'
-						type='text'
-						value='{{system.incarnation}}'
-						placeholder='incarnation'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{system.incarnation}}</div>
-				{{/if}}
-
-			</div>
-		</div>
-	</section>
-	{{! second part of the sheet, contains coins and chat messages }}
-	<section class='ss1e sheet actor constellation actions'>
-		<div class='ss1e sheet actor constellation coins'>
-			<div class='coin-counter'>
-				<label
-					for='system.coins'
-					class='actor-sheet-label'
-					data-label='Coins:'
-				>Coins:</label>
-				<input
-					type='text'
-					class='actor-sheet-input'
-					name='system.coins'
-					value='{{system.coins}}'
-					data-dtype='Number'
-				/></div>
-			<div class='coin-buttons'>
-				<button
-					class='constellation-sheet-button'
-					data-action='openCurrencyPanel'
-				>Manage Coins</button>
-				<button
-					class='constellation-sheet-button'
-					data-action='sendCoins'
-				>Send Coins</button>
-			</div>
-		</div>
-		<div class='ss1e sheet actor constellation messages'>
-			<div class='message-top-section'>
-				<div class='message-recipient'>
-					<label for='messageRecipient' class=''>Select Message
-						Recipient:</label>
-					<select
-						id='messageRecipient'
-						name='messageRecipient'
-						class='message-recipient-dropdown'
-					>
-						<option
-							value='public'
-							class='message-recipient-option'
-						>Public</option>
-						{{#each players}}
-							<option
-								value='{{this.id}}'
-								class='message-recipient-option'
-							>{{this.name}}</option>
-						{{/each}}
-					</select>
-				</div>
-				<div class='preset-message-buttons'>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='is saddened by the situation.'
-						data-cost='200'
-					>SADNESS</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='is disgusted by what transpired.'
-						data-cost='200'
-					>DISGUST</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='rejoices at the sight!'
-						data-cost='200'
-					>JOY</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='sighs in boredom.'
-						data-cost='200'
-					>BORED</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='is angered by the choices made!'
-						data-cost='200'
-					>ANGER</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='jumps up and down with excitement!'
-						data-cost='200'
-					>EXCITED</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='is covering their eyes!'
-						data-cost='200'
-					>CANT LOOK</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='has tears streaming down their face!'
-						data-cost='200'
-					>CRY</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='has joined channel EN-305.'
-						data-cost='0'
-					>JOIN</button>
-					<button
-						class='constellation-sheet-button'
-						data-action='sendPreset'
-						data-message='has left channel EN-305.'
-						data-cost='0'
-					>LEAVE</button>
-					<!-- Add more buttons as needed -->
+					<label for='scenario-reward'>Reward:</label><br />
+					<input type='text' id='scenario-reward' name='scenario-reward' />
+					<label for='scenario-fail'>Failure Penalty:</label><br />
+					<input type='text' id='scenario-fail' name='scenario-fail' />
+					<label for='scenario-notes'>Notes:</label><br />
+					<textarea
+						id='scenario-notes'
+						name='scenario-notes'
+						rows='10'
+						cols='30'
+					>Scenario notes here</textarea>
+					<button type='submit' id='scenario-submit'>INITIATE SCENARIO</button>
 				</div>
 			</div>
-			<div class='message-bottom-section'>
-				<label for='messageInput' class=''>Type a custom message:</label>
-				<input type='text' id='messageInput' class='' placeholder='' />
-				<button
-					class='constellation-sheet-button'
-					data-action='sendCustom'
-					data-cost='1000'
-				>Send Custom Message</button>
-			</div>
+			<div class='tab' data-tab='abilities'> last page</div>
 		</div>
 	</section>
 </form>

@@ -122,6 +122,40 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
+Hooks.once('socketlib.ready', () => {
+	SS1E.socket = socketlib.registerSystem('ss1e');
+	SS1E.socket.register('scenarioMessage', showScenarioMessage);
+});
+
+function showScenarioMessage(message) {
+	const dialogOptions = {
+		width: 400, // Adjust width as needed
+		height: 800, // Adjust height as needed
+		top: -1000,
+		left: Math.floor(Math.random() * 800) * Math.round(Math.random()) * 2 - 1,
+	};
+	console.log('nigger');
+
+	const dialogContent = `
+        <div class="scenario-message">
+            <strong>NEW SCENARIO:</strong><br>
+            ${message.content}
+        </div>
+    `;
+
+	const dialog = new Dialog(
+		{
+			title: 'New Scenario Notification', // Optional title
+			content: dialogContent,
+			buttons: {},
+			close: () => console.log('Dialog closed.'),
+		},
+		dialogOptions
+	).render(true);
+
+	// Optional: Automatically close the dialog after 3 seconds
+	// setTimeout(() => dialog.close(), 3000);
+}
 
 Hooks.once('socketlib.ready', () => {
 	SS1E.socket = socketlib.registerSystem('ss1e');

@@ -3,10 +3,11 @@ import {
 	prepareActiveEffectCategories,
 } from '../helpers/effects.mjs';
 
-import * as Constellation from '../services/ConstellationService.mjs'
+import * as Constellation from '../services/ConstellationService.mjs';
 import * as Inventory from '../services/InventoryService.mjs';
 import * as Coin from '../services/CoinService.mjs';
 import * as Stat from '../services/StatService.mjs';
+import * as Scenario from '../services/ScenarioService.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -91,7 +92,7 @@ export class SS1EActorSheet extends ActorSheet {
 
 		return context;
 	}
-	_prepareCharacterData(context) { }
+	_prepareCharacterData(context) {}
 
 	/**
 	 * Organize and classify Items for Character sheets.
@@ -191,12 +192,14 @@ export class SS1EActorSheet extends ActorSheet {
 		// Event listener for MAana bar click
 		html.find('#mana-bar').click(() => this._openManaDialog());
 
-		html
-			.find('button[data-action="item-view"]')
-			.click((event) => {
-				const itemId = $(event.currentTarget).data("item-id");
-				Inventory.openItemDialog(event, itemId, this.actor);
-			});
+		html.find('#scenario-submit').on('click', (event) => {
+			Scenario.onScenarioSubmit(event); // Call your submission handler
+		});
+
+		html.find('button[data-action="item-view"]').click((event) => {
+			const itemId = $(event.currentTarget).data('item-id');
+			Inventory.openItemDialog(event, itemId, this.actor);
+		});
 	}
 
 	/**

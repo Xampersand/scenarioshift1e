@@ -382,6 +382,12 @@ h4.window-title {
   flex-direction: column;
   align-items: center;
 }
+.app.window-app.dialog:has(.scenario-message) {
+  background-image: url(../assets/images/ss1e-scenario-background-eighty.png);
+}
+.app.window-app.dialog:has(.scenario-message) .window-header .window-title {
+  display: none;
+}
 nav#controls {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   background-color: transparent;
