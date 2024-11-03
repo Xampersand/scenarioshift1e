@@ -1,6 +1,6 @@
 {
 	"Actor": {
-		"types": ["character", "npc", "constellation"]
+		"types": ["character", "npc", "constellation", "gmboard"]
 	},
 	"Item": {
 		"types": [

@@ -45,6 +45,7 @@ Hooks.once('init', function () {
 		character: models.SS1ECharacter,
 		constellation: models.SS1EConstellation,
 		npc: models.SS1ENPC,
+		gmboard: models.SS1EConstellation,
 	};
 	CONFIG.Item.documentClass = SS1EItem;
 	CONFIG.Item.dataModels = {

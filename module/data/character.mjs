@@ -29,9 +29,9 @@ export default class SS1ECharacter extends SS1EActorBase {
 		const HEALTH_INCREMENT = 2.5;
 
 		// How much stat do you need to get 1% inc damage
-		const STRENGTH_DAMAGE_SCALING = 1;
-		const AGILITY_DAMAGE_SCALING = 2;
-		const INTELLIGENCE_DAMAGE_SCALING = 1;
+		// const STRENGTH_DAMAGE_SCALING = 1;
+		// const AGILITY_DAMAGE_SCALING = 2;
+		// const INTELLIGENCE_DAMAGE_SCALING = 1;
 
 		const [derived, stats] = [this.derived, this.stats];
 		const resources = this.resources;
@@ -42,9 +42,9 @@ export default class SS1ECharacter extends SS1EActorBase {
 		derived.accuracy.baseValue = Math.round((stats.agi.value + stats.int.value) * ACCURACY_INCREMENT);
 
 		// DAMAGE MULTIPLIERS BASED ON STATS
-		derived.strStatDmgMulti.baseValue = stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
-		derived.agiStatDmgMulti.baseValue = stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
-		derived.intStatDmgMulti.baseValue = stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
+		// derived.strStatDmgMulti.baseValue = stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
+		// derived.agiStatDmgMulti.baseValue = stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
+		// derived.intStatDmgMulti.baseValue = stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
 
 		this.calculateStats(derived);
 

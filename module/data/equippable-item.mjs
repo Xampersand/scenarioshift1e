@@ -9,6 +9,11 @@ export default class SS1EEquippableItem extends SS1EItemBase {
 
 		schema.equipped = new fields.BooleanField({ required: true });
 
+		schema.bonus = new fields.SchemaField({
+			key: new fields.StringField({ initial: 'str' }),
+			value: new fields.NumberField({ ...requiredInteger, initial: 0 })
+		})
+
 		return schema;
 	}
 
