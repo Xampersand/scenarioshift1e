@@ -143,7 +143,7 @@ function showScenarioMessage(message) {
 
 	const dialog = new Dialog(
 		{
-			title: 'New Scenario Notification', // Optional title
+			title: '', // Optional title
 			content: dialogContent,
 			buttons: {},
 			close: () => console.log('Dialog closed.'),
