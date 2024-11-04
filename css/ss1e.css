@@ -520,6 +520,14 @@ nav#navigation #scene-list li {
 #settings-access button {
   border: 1px solid white;
 }
+.minimized {
+  background-image: none !important;
+  background-color: rgba(83, 178, 241, 0.7) !important;
+  padding-top: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-bottom: 46px !important;
+}
 #keybindings,
 #client-settings,
 #module-management,
@@ -551,7 +559,8 @@ nav#navigation #scene-list li {
 .sheet-config,
 .token-sheet,
 .scene-sheet,
-.app.window-app.filepicker {
+.app.window-app.filepicker,
+.journal-sheet {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 3px double white;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
@@ -588,7 +597,17 @@ nav#navigation #scene-list li {
 .sheet-config:hover,
 .token-sheet:hover,
 .scene-sheet:hover,
-.app.window-app.filepicker:hover {
+.app.window-app.filepicker:hover,
+.journal-sheet:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.sheet.journal-entry .journal-entry-content {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 3px double white;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.sheet.journal-entry .journal-entry-content:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 #hotbar .bar-controls {

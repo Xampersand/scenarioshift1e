@@ -485,6 +485,14 @@ nav#navigation {
 		border: 1px solid @main-border-color;
 	}
 }
+.minimized {
+	background-image: none !important;
+	background-color: @background-color !important;
+	padding-top: 0 !important;
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+	padding-bottom: 46px !important;
+}
 // different windows global setup
 #keybindings,
 #client-settings,
@@ -517,7 +525,14 @@ nav#navigation {
 .sheet-config,
 .token-sheet,
 .scene-sheet,
-.app.window-app.filepicker {
+.app.window-app.filepicker,
+.journal-sheet {
+	background-image: @background-tile;
+	border: 3px double @main-border-color;
+	.add-glow(@glow-color, 2px, 5px);
+}
+// Journal
+.sheet.journal-entry .journal-entry-content {
 	background-image: @background-tile;
 	border: 3px double @main-border-color;
 	.add-glow(@glow-color, 2px, 5px);
