@@ -305,6 +305,7 @@ h4.window-title {
 
 //  even better, SPECIFIC DIALOG BOXES!!
 .app.window-app.dialog {
+	// constellation messaging dialog
 	&:has(.constellation-message) {
 		background-image: @dialog-background-image-eighty;
 		background-color: transparent;
@@ -331,15 +332,38 @@ h4.window-title {
 			}
 		}
 	}
+	// stat level up dialog
 	&:has(.stat-dialog) {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
+	// scenario dialog
 	&:has(.scenario-message) {
 		background-image: @scenario-background-image-eighty;
 		.window-header {
 			.window-title {
+				display: none;
+			}
+		}
+		.window-content {
+			background-color: transparent;
+			.dialog-content {
+				display: flex;
+				flex-direction: column;
+				.scenario-message {
+					display: flex;
+					flex-direction: column;
+					font-size: 1.2rem;
+					.scenario-announce {
+						font-size: 1.3rem;
+						font-weight: bold;
+						align-self: center;
+						text-align: center;
+					}
+				}
+			}
+			.dialog-buttons {
 				display: none;
 			}
 		}
@@ -576,10 +600,12 @@ a#nav-toggle {
 h2.border,
 h2.category-title,
 .package-configuration aside.sidebar nav.tabs .category-tab.active,
-.package-configuration aside.sidebar nav.tabs .category-tab {
+.package-configuration aside.sidebar nav.tabs .category-tab,
+.journal-page-content h2 {
 	border-bottom: 1px solid @main-border-color;
 }
-.combat-sidebar .combat-tracker-header {
+.combat-sidebar .combat-tracker-header,
+.journal-page-header h1 {
 	border-bottom: 2px groove @main-border-color;
 }
 .package-configuration aside.sidebar {

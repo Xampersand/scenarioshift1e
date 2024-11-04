@@ -8,16 +8,17 @@ export function onScenarioSubmit(event) {
 	const penalty = $('#scenario-fail').val();
 	const notesText = $('#scenario-notes').val();
 
-	// Create the message content based on form data
+	// Create the message contentt
 	const messageContent = `
-        <strong>Scenario Name:</strong> ${name}<br>
-        <strong>Category:</strong> ${category}<br>
-        <strong>Difficulty:</strong> ${difficulty}<br>
-        <strong>Conditions:</strong> ${conditionText}<br>
-        <strong>Time Limit:</strong> ${timeLimit}<br>
-        <strong>Reward:</strong> ${reward}<br>
-        <strong>Failure Penalty:</strong> ${penalty}<br>
-        <strong>Notes:</strong> ${notesText}
+	<div class="scenario-announce">&lt;${category} SCENARIO - ${name}&gt;</div><br>
+        <div>Scenario&nbsp;Name:&nbsp;${name}</div>
+        <div>Category:&nbsp;${category}</div>
+        <div>Difficulty:&nbsp;${difficulty}</div>
+        <div>Clear&nbsp;conditions:<br>${conditionText}</div>
+        <div>Time&nbsp;Limit:&nbsp;${timeLimit}</div>
+        <div>Reward:&nbsp;${reward}</div>
+        <div>Failure&nbsp;Penalty:&nbsp;${penalty}</div>
+        <div>Notes:&nbsp;${notesText}</div>
     `;
 	// Send message to all users
 	CONFIG.SS1E.socket.executeForEveryone('scenarioMessage', {
@@ -32,13 +33,13 @@ export function onScenarioSubmit(event) {
 		text: {
 			content: `
 			<h2>${name}</h2>
-			<p><strong>Category:</strong> ${category}</p>
-			<p><strong>Difficulty:</strong> ${difficulty}</p>
-			<p><strong>Conditions:</strong> ${conditionText}</p>
-			<p><strong>Time Limit:</strong> ${timeLimit}</p>
-			<p><strong>Reward:</strong> ${reward}</p>
-			<p><strong>Failure Penalty:</strong> ${penalty}</p>
-			<p><strong>Notes:</strong> ${notesText}</p>
+			<p><strong>Category:</strong>&nbsp;${category}</p>
+			<p><strong>Difficulty:</strong>&nbsp;${difficulty}</p>
+			<p><strong>Conditions:</strong><br>${conditionText}</p>
+			<p><strong>Time Limit:</strong>&nbsp;${timeLimit}</p>
+			<p><strong>Reward:</strong>&nbsp;${reward}</p>
+			<p><strong>Failure Penalty:</strong>&nbsp;${penalty}</p>
+			<p><strong>Notes:</strong>&nbsp;${notesText}</p>
 		`, // The content of the page
 			format: 1, // Format (1 for HTML, 2 for Markdown)
 		},

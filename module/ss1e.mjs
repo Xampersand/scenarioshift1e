@@ -130,15 +130,13 @@ Hooks.once('socketlib.ready', () => {
 function showScenarioMessage(message) {
 	const dialogOptions = {
 		width: 400, // Adjust width as needed
-		height: 800, // Adjust height as needed
+		height: 600, // Adjust height as needed
 		top: -1000,
 		left: Math.floor(Math.random() * 800) * Math.round(Math.random()) * 2 - 1,
 	};
-	console.log('nigger');
 
 	const dialogContent = `
         <div class="scenario-message">
-            <strong>NEW SCENARIO:</strong><br>
             ${message.content}
         </div>
     `;
