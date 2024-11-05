@@ -304,6 +304,42 @@ form button:hover:hover {
 .app.window-app.ss1e.sheet.item .window-content {
   background-color: transparent;
 }
+.app.window-app.ss1e.sheet.item nav.sheet-tabs.tabs {
+  display: flex;
+  position: absolute;
+  left: 96.5%;
+  top: 10%;
+  flex-direction: column;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border-top: 2px double white;
+  border-bottom: 2px double white;
+  border-right: 2px double white;
+  border-radius: 0px 5px 5px 0px;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.app.window-app.ss1e.sheet.item nav.sheet-tabs.tabs:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.app.window-app.ss1e.sheet.item nav.sheet-tabs.tabs > [data-tab] {
+  padding: 8px 12px;
+}
+.app.window-app.ss1e.sheet.item nav.sheet-tabs.tabs > [data-tab].active {
+  text-shadow: 0 0 10px #52c8ff;
+}
+.app.window-app.ss1e.sheet.item nav.sheet-tabs.tabs .item {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  text-shadow: none;
+  box-shadow: 0 0 2px #52c8ff, 0 0 4px #52c8ff;
+  transition: box-shadow 0.3s ease-in-out;
+  border: none;
+  box-shadow: none;
+}
+.app.window-app.ss1e.sheet.item nav.sheet-tabs.tabs .item:hover {
+  box-shadow: 0 0 5px #52c8ff, 0 0 10px #52c8ff;
+}
 .app.window-app.ss1e.sheet.item.minimized {
   background-image: none;
   background-color: rgba(83, 178, 241, 0.7);

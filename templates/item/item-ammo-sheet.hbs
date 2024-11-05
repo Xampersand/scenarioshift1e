@@ -1,95 +1,101 @@
 <form class='{{cssClass}} flexcol' autocomplete='off'>
-	<link
-		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
-		rel='stylesheet'
-	/>
+
 	<button class='edit-mode-toggle'>📝</button>
-	<section class='ammo-top-section'>
-		<img
-			class='ammo-img'
-			src='{{item.img}}'
-			data-edit='img'
-			title='{{item.name}}'
-			height='200px'
-			width='200px'
-		/>
-		<div class='ammo-title'>
-			<div class='ammo-name'>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='name'
-						type='text'
-						value='{{item.name}}'
-						placeholder='NAME'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{item.name}}</div>
-				{{/if}}
-			</div>
-			<div class='ammo-rarity'>
-				<label for='system.rating'>RATING:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='system.rating'
-						type='text'
-						value='{{system.rating}}'
-						placeholder='COMMON'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{system.rating}}</div>
-				{{/if}}
-			</div>
+	{{! Sheet Tab Navigation }}
+	<nav class='sheet-tabs tabs' data-group='primary'>
+		<a class='item' data-tab='description'>Item Description</a>
+		<a class='item' data-tab='attributes'>Edit effects</a>
+	</nav>
+	<div class='sheet-body'>
+		<div class='tab' data-tab='description'>
+			<section class='ammo-top-section'>
+				<img
+					class='ammo-img'
+					src='{{item.img}}'
+					data-edit='img'
+					title='{{item.name}}'
+					height='200px'
+					width='200px'
+				/>
+				<div class='ammo-title'>
+					<div class='ammo-name'>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='name'
+								type='text'
+								value='{{item.name}}'
+								placeholder='NAME'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{item.name}}</div>
+						{{/if}}
+					</div>
+					<div class='ammo-rarity'>
+						<label for='system.rating'>RATING:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.rating'
+								type='text'
+								value='{{system.rating}}'
+								placeholder='COMMON'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.rating}}</div>
+						{{/if}}
+					</div>
+				</div>
+			</section>
+			{{! Sheet Body }}
+			<section class='ammo-bottom-section'>
+				<div class='stats'>
+					<div class='damage'>
+						<label for='system.damage'>DAMAGE:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.damageFormula.diceCount'
+								type='text'
+								value='{{system.damageFormula.diceCount}}'
+								placeholder='1'
+							/>
+							<input
+								name='system.damageFormula.diceType'
+								type='text'
+								value='{{system.damageFormula.diceType}}'
+								placeholder='d4'
+							/>
+							<input
+								name='system.damageFormula.damageBonus'
+								type='text'
+								value='{{system.damageFormula.damageBonus}}'
+								placeholder='1'
+							/>
+							<input
+								name='system.damageType.damageType'
+								type='text'
+								value='{{system.damageType.damageType}}'
+								placeholder='piercing'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.damageFormula.diceCount}}&nbsp;</div>
+							<div>{{system.damageFormula.diceType}}</div>
+							<div>+{{system.damageFormula.damageBonus}}&nbsp;</div>
+							<div>{{system.damageType.damageType}}</div>
+						{{/if}}
+					</div>
+					{{! add another div here for each stat/bonus }}
+				</div>
+				<div class='ammo-actions'>
+					<button>SEND TO SOMEONE</button>
+				</div>
+			</section>
 		</div>
-	</section>
-
-	{{! Sheet Body }}
-	<section class='ammo-bottom-section'>
-		<div class='stats'>
-			<div class='damage'>
-				<label for='system.damage'>DAMAGE:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='system.damageFormula.diceCount'
-						type='text'
-						value='{{system.damageFormula.diceCount}}'
-						placeholder='1'
-					/>
-					<input
-						name='system.damageFormula.diceType'
-						type='text'
-						value='{{system.damageFormula.diceType}}'
-						placeholder='d4'
-					/>
-					<input
-						name='system.damageFormula.damageBonus'
-						type='text'
-						value='{{system.damageFormula.damageBonus}}'
-						placeholder='1'
-					/>
-					<input
-						name='system.damageType.damageType'
-						type='text'
-						value='{{system.damageType.damageType}}'
-						placeholder='piercing'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{system.damageFormula.diceCount}}&nbsp;</div>
-					<div>{{system.damageFormula.diceType}}</div>
-					<div>+{{system.damageFormula.damageBonus}}&nbsp;</div>
-					<div>{{system.damageType.damageType}}</div>
-				{{/if}}
-			</div>
-			{{! add another div here for each stat/bonus }}
-		</div>
-		<div class='ammo-actions'>
-			<button>SEND TO SOMEONE</button>
-		</div>
-
-	</section>
+		<div class='tab' data-tab='attributes'>
+			<ol><li>effect 1</li> <li>effect 2</li></ol></div>
+	</div>
 </form>

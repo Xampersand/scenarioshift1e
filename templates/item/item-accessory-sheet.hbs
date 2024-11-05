@@ -1,74 +1,80 @@
 <form class='{{cssClass}} flexcol' autocomplete='off'>
-	<link
-		href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap'
-		rel='stylesheet'
-	/>
 	<button class='edit-mode-toggle'>📝</button>
-	<section class='accessory-top-section'>
-		<img
-			class='accessory-img'
-			src='{{item.img}}'
-			data-edit='img'
-			title='{{item.name}}'
-			height='200px'
-			width='200px'
-		/>
-		<div class='accessory-title'>
-			<div class='accessory-name'>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='name'
-						type='text'
-						value='{{item.name}}'
-						placeholder='NAME'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{item.name}}</div>
-				{{/if}}
-			</div>
-			<div class='accessory-rarity'>
-				<label for='system.rating'>RATING:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='system.rating'
-						type='text'
-						value='{{system.rating}}'
-						placeholder='COMMON'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{system.rating}}</div>
-				{{/if}}
-			</div>
-		</div>
-	</section>
+	{{! Sheet Tab Navigation }}
+	<nav class='sheet-tabs tabs' data-group='primary'>
+		<a class='item' data-tab='description'>Item Description</a>
+		<a class='item' data-tab='attributes'>Edit effects</a>
+	</nav>
+	<div class='sheet-body'>
+		<div class='tab' data-tab='description'>
+			<section class='accessory-top-section'>
+				<img
+					class='accessory-img'
+					src='{{item.img}}'
+					data-edit='img'
+					title='{{item.name}}'
+					height='200px'
+					width='200px'
+				/>
+				<div class='accessory-title'>
+					<div class='accessory-name'>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='name'
+								type='text'
+								value='{{item.name}}'
+								placeholder='NAME'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{item.name}}</div>
+						{{/if}}
+					</div>
+					<div class='accessory-rarity'>
+						<label for='system.rating'>RATING:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.rating'
+								type='text'
+								value='{{system.rating}}'
+								placeholder='COMMON'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.rating}}</div>
+						{{/if}}
+					</div>
+				</div>
+			</section>
 
-	{{! Sheet Body }}
-	<section class='accessory-bottom-section'>
-		<div class='stats'>
-			<div class='bonus'>
-				<label for='system.bonus'>BONUS:</label>
-				{{#if isEditing}}
-					<!-- Editable fields here -->
-					<input
-						name='system.bonus'
-						type='text'
-						value='{{system.bonus}}'
-						placeholder='+1 Agility'
-					/>
-				{{else}}
-					<!-- Non-editable display here -->
-					<div>{{system.bonus}}</div>
-				{{/if}}
-			</div>
-			{{! add another div here for each stat/bonus }}
+			{{! Sheet Body }}
+			<section class='accessory-bottom-section'>
+				<div class='stats'>
+					<div class='bonus'>
+						<label for='system.bonus'>BONUS:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.bonus'
+								type='text'
+								value='{{system.bonus}}'
+								placeholder='+1 Agility'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.bonus}}</div>
+						{{/if}}
+					</div>
+					{{! add another div here for each stat/bonus }}
+				</div>
+				<div class='accessory-actions'>
+					<button>SEND TO SOMEONE</button>
+				</div>
+			</section>
 		</div>
-		<div class='accessory-actions'>
-			<button>SEND TO SOMEONE</button>
-		</div>
-
-	</section>
+		<div class='tab' data-tab='attributes'>
+			<ol><li>effect 1</li> <li>effect 2</li></ol></div>
+	</div>
 </form>

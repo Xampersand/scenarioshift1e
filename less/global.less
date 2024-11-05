@@ -243,6 +243,33 @@ form button {
 	.window-content {
 		background-color: transparent;
 	}
+	nav.sheet-tabs.tabs {
+		display: flex;
+		position: absolute;
+		left: 96.5%;
+		top: 10%;
+		flex-direction: column;
+		background-image: @background-tile;
+		border-top: 2px double @main-border-color;
+		border-bottom: 2px double @main-border-color;
+		border-right: 2px double @main-border-color;
+		border-radius: 0px 5px 5px 0px;
+		.add-glow(@glow-color, 2px, 5px);
+		> [data-tab] {
+			padding: 8px 12px;
+			&.active {
+				text-shadow: 0 0 10px @subaccent-color;
+			}
+		}
+		.item {
+			width: 100%;
+			text-align: center;
+			cursor: pointer;
+			text-shadow: none;
+			.add-glow(@subaccent-color, 2px, 5px);
+			.remove-default-glow();
+		}
+	}
 	&.minimized {
 		background-image: none;
 		background-color: @background-color;
