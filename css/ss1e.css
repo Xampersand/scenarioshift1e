@@ -1294,6 +1294,29 @@ input.input-text::selection {
 .weapon-actions button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
+.effects-header {
+  font-size: 2rem;
+  text-align: center;
+}
+.effects-body .effects-list {
+  display: flex;
+  flex-direction: column;
+}
+.effects-body .effects-list .effect-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.effects-body .effects-list .effect-item label {
+  font-size: 1.5rem;
+}
+.effects-body .effects-list .effect-item select {
+  width: 150px;
+}
+.effects-body .effects-list .effect-item select option {
+  text-align: center;
+}
 .equipment-top-section {
   display: flex;
   flex-direction: row;

@@ -81,3 +81,28 @@
 		height: fit-content;
 	}
 }
+.effects-header {
+	font-size: 2rem;
+	text-align: center;
+}
+.effects-body {
+	.effects-list {
+		display: flex;
+		flex-direction: column;
+		.effect-item {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-evenly;
+			& label {
+				font-size: 1.5rem;
+			}
+			& select {
+				width: 150px;
+				& option {
+					text-align: center;
+				}
+			}
+		}
+	}
+}
