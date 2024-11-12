@@ -35,7 +35,7 @@ export function onScenarioSubmit(event) {
 			<h2>${name}</h2>
 			<p><strong>Category:</strong>&nbsp;${category}</p>
 			<p><strong>Difficulty:</strong>&nbsp;${difficulty}</p>
-			<p><strong>Conditions:</strong><br>${conditionText}</p>
+			<p><strong>Clear&nbsp;conditions:</strong><br>${conditionText}</p>
 			<p><strong>Time Limit:</strong>&nbsp;${timeLimit}</p>
 			<p><strong>Reward:</strong>&nbsp;${reward}</p>
 			<p><strong>Failure Penalty:</strong>&nbsp;${penalty}</p>

@@ -8,6 +8,7 @@ import * as Inventory from '../services/InventoryService.mjs';
 import * as Coin from '../services/CoinService.mjs';
 import * as Stat from '../services/StatService.mjs';
 import * as Scenario from '../services/ScenarioService.mjs';
+import * as Gmboard from '../services/GmboardService.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -183,6 +184,11 @@ export class SS1EActorSheet extends ActorSheet {
 		html
 			.find('button[data-action="sendCustom"]')
 			.click(Constellation.onSendCustomMessage.bind(this));
+
+		// Send GMBoard Message
+		html
+			.find('button[data-action="sendGmboardCustom"]')
+			.click(Gmboard.onSendGmboardMessage.bind(this));
 		// Handle sending coins to another character
 		html
 			.find('button[data-action="sendCoins"]')

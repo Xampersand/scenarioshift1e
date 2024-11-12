@@ -152,7 +152,42 @@ function showScenarioMessage(message) {
 	).render(true);
 
 	// Optional: Automatically close the dialog after 3 seconds
-	// setTimeout(() => dialog.close(), 3000);
+	setTimeout(() => dialog.close(), 5000);
+}
+/* -------------------------------------------- */
+/*  Ready Hook                                  */
+/* -------------------------------------------- */
+Hooks.once('socketlib.ready', () => {
+	SS1E.socket = socketlib.registerSystem('ss1e');
+	SS1E.socket.register('starstreamMessage', showStarstreamMessage);
+});
+
+function showStarstreamMessage(message) {
+	const dialogOptions = {
+		width: 300,
+		height: 150,
+		top: -1000,
+		left: Math.floor(Math.random() * 800) * Math.round(Math.random()) * 2 - 1,
+	};
+
+	const dialogContent = `
+        <div class="constellation-message">
+            ${message.content}
+        </div>
+    `;
+
+	const dialog = new Dialog(
+		{
+			title: '', // Optional title
+			content: dialogContent,
+			buttons: {},
+			close: () => console.log('Dialog closed.'),
+		},
+		dialogOptions
+	).render(true);
+
+	// Optional: Automatically close the dialog after 3 seconds
+	setTimeout(() => dialog.close(), 3000);
 }
 
 Hooks.once('socketlib.ready', () => {

@@ -7,7 +7,41 @@
 	</nav>
 	<section class='ss1e sheet actor gmboard'>
 		<div class='sheet-body'>
-			<div class='tab' data-tab='features'> main page</div>
+			<div class='tab' data-tab='features'>
+				<div class='message-recipient'>
+					<label for='gmboardMessageRecipient' class=''>Select Message
+						Recipient:</label>
+					<select
+						id='gmboardMessageRecipient'
+						name='gmboardMessageRecipient'
+						class='message-recipient-dropdown'
+					>
+						<option
+							value='public'
+							class='message-recipient-option'
+						>Public</option>
+						{{#each players}}
+							<option
+								value='{{this.id}}'
+								class='message-recipient-option'
+							>{{this.name}}</option>
+						{{/each}}
+					</select>
+					<div class='message-bottom-section'>
+						<label for='gmboardMessageInput' class=''>Type a custom message:</label>
+						<input
+							type='text'
+							id='gmboardMessageInput'
+							class=''
+							placeholder=''
+						/>
+						<button
+							class='constellation-sheet-button'
+							data-action='sendGmboardCustom'
+						>Send Custom Message</button>
+					</div>
+				</div>
+			</div>
 			<div class='tab' data-tab='inventory'>
 				<div id='scenario-form'>
 					<label for='scenario-name'>Scenario Name:</label><br />
