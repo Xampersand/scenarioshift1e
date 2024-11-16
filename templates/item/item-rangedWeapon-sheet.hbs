@@ -74,7 +74,7 @@
 						{{/if}}
 					</div>
 					<div class='damage'>
-						<label for='system.damageModifier'>DAMAGE MODIFIER:&nbsp;</label>
+						<label for='system.damageModifier'>DAMAGE Increase:&nbsp;</label>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
 							<input
@@ -85,7 +85,7 @@
 							/>
 						{{else}}
 							<!-- Non-editable display here -->
-							<span>{{system.damageModifier}}</span>
+							<span>{{system.damageModifier}}%</span>
 						{{/if}}
 					</div>
 					<div class='accuracy'>

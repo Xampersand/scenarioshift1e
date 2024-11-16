@@ -184,6 +184,10 @@ export class SS1EActorSheet extends ActorSheet {
 		html.find('#roll-ranged-weapon').click((event) => {
 			WeaponRoll.onRollRangedWeapon(event, this.actor);
 		});
+		// Roll Unmarmed damage button
+		html.find('#roll-unarmed-damage').click((event) => {
+			WeaponRoll.onRollUnarmedDamage(event, this.actor);
+		});
 		// Send Preset Message
 		html
 			.find('button[data-action="sendPreset"]')

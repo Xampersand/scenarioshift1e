@@ -58,7 +58,7 @@
 							<!-- Editable fields here -->
 							<input
 								name='system.damageFormula.diceCount'
-								type='text'
+								type='number'
 								value='{{system.damageFormula.diceCount}}'
 								placeholder='1'
 							/>
@@ -70,7 +70,7 @@
 							/>
 							<input
 								name='system.damageFormula.damageBonus'
-								type='text'
+								type='number'
 								value='{{system.damageFormula.damageBonus}}'
 								placeholder='1'
 							/>
@@ -82,10 +82,7 @@
 							/>
 						{{else}}
 							<!-- Non-editable display here -->
-							<div>{{system.damageFormula.diceCount}}&nbsp;</div>
-							<div>{{system.damageFormula.diceType}}</div>
-							<div>+{{system.damageFormula.damageBonus}}&nbsp;</div>
-							<div>{{system.damageType.damageType}}</div>
+							<div>{{system.damageFormula}}</div>
 						{{/if}}
 					</div>
 					{{! add another div here for each stat/bonus }}

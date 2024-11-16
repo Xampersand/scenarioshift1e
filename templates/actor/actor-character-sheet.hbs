@@ -194,7 +194,7 @@
 						<button id='roll-accuracy-advantage' class='rollable'>Roll Accuracy with Advantage</button>
 					</div>
 					<div class='quick-actions'>
-						
+						<button id="roll-unarmed-damage">Roll Unarmed Damage</button>
 						{{#each actor.items as |item|}}
 							{{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
 								<button class='rollable' data-item-id='{{item._id}}'

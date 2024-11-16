@@ -26,15 +26,9 @@ export default class SS1EAmmo extends SS1EEquippableItem {
 	}
 
 	prepareDerivedData() {
-		super.prepareDerivedData();
-		// Ensure the damageRoll property is defined
-		const roll = this.system.damageRoll || {
-			diceNum: 1,
-			diceSize: 'd4',
-			diceBonus: 0,
-		};
-
 		// Build the formula dynamically using string interpolation
-		this.system.damageFormula = `${roll.diceNum}${roll.diceSize}+${roll.diceBonus}`;
+		const roll = this.damageRoll;
+
+		this.damageFormula = `${roll.diceNum}${roll.diceSize}+${roll.diceBonus}`;
 	}
 }
