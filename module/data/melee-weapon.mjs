@@ -13,13 +13,14 @@ export default class SS1EMeleeWeapon extends SS1EWeapon {
 				min: 1,
 			}),
 			diceSize: new fields.StringField({ initial: 'd4' }),
-			diceBonus: new fields.StringField({ initial: '+0' }),
+			diceBonus: new fields.NumberField({
+				...requiredInteger,
+				initial: 0,
+				min: 0,
+			}),
 		});
 		schema.damageType = new fields.StringField({ initial: 'bludgeoning' });
-		schema.damageFormula = new fields.StringField({
-			required: false,
-			blank: true,
-		});
+		schema.damageFormula = new fields.StringField({ initial: '' });
 
 		return schema;
 	}
@@ -28,6 +29,6 @@ export default class SS1EMeleeWeapon extends SS1EWeapon {
 		// Build the formula dynamically using string interpolation
 		const roll = this.damageRoll;
 
-		this.damageFormula = `${roll.diceNum}${roll.diceSize}${roll.diceBonus}`;
+		this.damageFormula = `${roll.diceNum}${roll.diceSize}+${roll.diceBonus}`;
 	}
 }

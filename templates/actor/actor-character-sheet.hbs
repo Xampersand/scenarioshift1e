@@ -8,29 +8,29 @@
 		<!-- Add more tabs as necessary -->
 	</nav>
 	<section class='ss1e sheet actor character'>
-		
+
 		<div class='sheet-body'>
 			<div class='tab' data-tab='features'>
 				<div class='sheet-title'>&lt;CHARACTER INFORMATION&gt;</div>
 				<div class='sheet-header info'>
 					<div class='pfp-hp-mana'>
 						{{#if isEditing}}
-						<img
-							class='profile-img'
-							src='{{actor.img}}'
-							data-edit='img'
-							title='{{actor.name}}'
-							height='180'
-							width='180'
-						/>
+							<img
+								class='profile-img'
+								src='{{actor.img}}'
+								data-edit='img'
+								title='{{actor.name}}'
+								height='180'
+								width='180'
+							/>
 						{{else}}
-						<img
-							class='profile-img'
-							src='{{actor.img}}'
-							title='{{actor.name}}'
-							height='180'
-							width='180'
-						/>
+							<img
+								class='profile-img'
+								src='{{actor.img}}'
+								title='{{actor.name}}'
+								height='180'
+								width='180'
+							/>
 						{{/if}}
 						<div class='hp-mana-container'>
 							<div class='hp-block' id='hp-bar'>
@@ -187,10 +187,43 @@
 					</div>
 				</div>
 				<div class='bottom'>
-					<div class='favorite-items'>Favorite items go here</div>
-					<div class='quick-actions'>
+					<div class='favorite-items'>
+						<div class="roll-rp-container">
+						<button id="roll-rp" class="rollable">Roll&nbsp;d100&nbsp;</button>&nbsp;Custom&nbsp;Bonus:&nbsp;<input id="roll-rp-custom-bonus" type="text"></div>
 						<button id='roll-accuracy' class='rollable'>Roll Accuracy</button>
-						<button id='roll-damage' class='rollable'>Roll Attack Damage</button>
+						<button id='roll-accuracy-advantage' class='rollable'>Roll Accuracy with Advantage</button>
+					</div>
+					<div class='quick-actions'>
+						
+						{{#each actor.items as |item|}}
+							{{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
+								<button class='rollable' data-item-id='{{item._id}}'
+								id="roll-melee-weapon">Roll
+									{{item.name}}
+									Damage</button>
+							{{/if}}
+						{{/each}}
+						{{#each actor.items as |weapon|}}
+							{{#if
+								(and (eq weapon.type 'rangedWeapon') weapon.system.equipped)
+							}}
+								{{#each actor.items as |ammo|}}
+									{{#if (and (eq ammo.type 'ammo') ammo.system.equipped)}}
+										<button
+											class='rollable'
+											data-weapon-id='{{weapon._id}}'
+											data-ammo-id='{{ammo._id}}'
+											id="roll-ranged-weapon"
+										>
+											Roll
+											{{weapon.name}}
+											with
+											{{ammo.name}}
+										</button>
+									{{/if}}
+								{{/each}}
+							{{/if}}
+						{{/each}}
 					</div>
 				</div>
 			</div>

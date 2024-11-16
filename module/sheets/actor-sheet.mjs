@@ -9,6 +9,7 @@ import * as Coin from '../services/CoinService.mjs';
 import * as Stat from '../services/StatService.mjs';
 import * as Scenario from '../services/ScenarioService.mjs';
 import * as Gmboard from '../services/GmboardService.mjs';
+import * as WeaponRoll from '../services/WeaponRollService.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -175,8 +176,14 @@ export class SS1EActorSheet extends ActorSheet {
 		}
 		//Roll acc button
 		html.find('#roll-accuracy').click((event) => this._onRollAccuracy(event));
-		//Roll damage button
-		html.find('#roll-damage').click((event) => this._onRollDamage(event));
+		// Roll Melee weapon button
+		html.find('#roll-melee-weapon').click((event) => {
+			WeaponRoll.onRollMeleeWeapon(event, this.actor);
+		});
+		// Roll Ranged weapon button
+		html.find('#roll-ranged-weapon').click((event) => {
+			WeaponRoll.onRollRangedWeapon(event, this.actor);
+		});
 		// Send Preset Message
 		html
 			.find('button[data-action="sendPreset"]')
@@ -271,25 +278,7 @@ export class SS1EActorSheet extends ActorSheet {
 			console.error('Error while rolling accuracy:', error);
 		}
 	}
-	_onRollDamage(event) {
-		event.preventDefault();
-		// Get the damage value from the actor's data
-		const weaponBaseRoll = '1d10+5';
-		const totalDamageBonus = 5; // Adjust this path as necessary
-		const totalDamageMulti = 1.5; // Adjust this path as necessary
-		const rollFormula = `(${weaponBaseRoll}+${totalDamageBonus})*${totalDamageMulti}`; // Ensure this is a valid formula
-		try {
-			const roll = new Roll(rollFormula, this.actor.getRollData());
-			roll.roll().then((rolled) => {
-				rolled.toMessage({
-					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-					flavor: `Rolling Damage: ${rollFormula}`, // Optional flavor text
-				});
-			});
-		} catch (error) {
-			console.error('Error while rolling damage:', error);
-		}
-	}
+
 	_openHealthDialog() {
 		// Retrieve current health values
 		const currentHealth = this.actor.system.resources.health.value;

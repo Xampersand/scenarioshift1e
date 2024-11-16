@@ -1000,6 +1000,24 @@ input.input-text::selection {
   flex-direction: column;
   flex-grow: 1;
 }
+.bottom .favorite-items .roll-rp-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.bottom .favorite-items button {
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+  font-size: 1.2rem;
+  margin: 5px;
+  width: 140px;
+  text-transform: uppercase;
+}
+.bottom .favorite-items button:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
 .bottom .quick-actions {
   display: flex;
   flex-direction: column;
