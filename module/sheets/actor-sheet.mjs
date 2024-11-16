@@ -176,11 +176,16 @@ export class SS1EActorSheet extends ActorSheet {
 		}
 		//Roll acc button
 		html.find('#roll-accuracy').click((event) => this._onRollAccuracy(event));
-		// Roll Melee weapon button
+		// Roll weapon accuracy button
+		// Event listener for rolling weapon accuracy
+		html
+			.find('button[data-action="rollWeaponAccuracy"]')
+			.click((event) => WeaponRoll.onRollWeaponAccuracy(event, this.actor));
+		// Roll Melee weapon damage button
 		html.find('#roll-melee-weapon').click((event) => {
 			WeaponRoll.onRollMeleeWeapon(event, this.actor);
 		});
-		// Roll Ranged weapon button
+		// Roll Ranged weapon damage button
 		html.find('#roll-ranged-weapon').click((event) => {
 			WeaponRoll.onRollRangedWeapon(event, this.actor);
 		});

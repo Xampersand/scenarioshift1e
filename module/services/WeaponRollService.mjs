@@ -138,3 +138,36 @@ export function onRollUnarmedDamage(event, actor) {
 		console.error('Error while rolling unarmed damage:', error);
 	}
 }
+// Function to handle the weapon accuracy roll
+export function onRollWeaponAccuracy(event, actor) {
+	event.preventDefault();
+	const itemId = event.currentTarget.dataset.itemId;
+	const weapon = actor.items.get(itemId);
+	if (!weapon) {
+		ui.notifications.warn('No equipped weapon found!');
+		return;
+	}
+
+	// Define the roll formula for weapon accuracy
+	const playerAccuracy = actor.system.derived.accuracy.value;
+	const weaponAccuracy = weapon.system.accuracy || 0;
+	const totalAccuracy = playerAccuracy + weaponAccuracy;
+	const rollFormula = `1d100 + ${totalAccuracy}`;
+	if (!rollFormula) {
+		ui.notifications.warn('No accuracy formula found for the equipped weapon!');
+		return;
+	}
+
+	try {
+		const roll = new Roll(rollFormula, actor.getRollData());
+		roll.roll().then((rolled) => {
+			rolled.toMessage({
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+				flavor: `Rolling Accuracy for ${weapon.name}`, // Optional flavor text
+			});
+		});
+	} catch (error) {
+		console.error('Error while rolling weapon accuracy:', error);
+	}
+	console.log(weaponAccuracy);
+}

@@ -188,17 +188,43 @@
 				</div>
 				<div class='bottom'>
 					<div class='favorite-items'>
-						<div class="roll-rp-container">
-						<button id="roll-rp" class="rollable">Roll&nbsp;d100&nbsp;</button>&nbsp;Custom&nbsp;Bonus:&nbsp;<input id="roll-rp-custom-bonus" type="text"></div>
 						<button id='roll-accuracy' class='rollable'>Roll Accuracy</button>
-						<button id='roll-accuracy-advantage' class='rollable'>Roll Accuracy with Advantage</button>
-					</div>
-					<div class='quick-actions'>
-						<button id="roll-unarmed-damage">Roll Unarmed Damage</button>
 						{{#each actor.items as |item|}}
 							{{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
-								<button class='rollable' data-item-id='{{item._id}}'
-								id="roll-melee-weapon">Roll
+								<button
+									class='rollable'
+									data-item-id='{{item._id}}'
+									data-action='rollWeaponAccuracy'
+								>
+									Roll
+									{{item.name}}
+									Accuracy
+								</button>
+							{{/if}}
+						{{/each}}
+						{{#each actor.items as |item|}}
+							{{#if (and (eq item.type 'rangedWeapon') item.system.equipped)}}
+								<button
+									class='rollable'
+									data-item-id='{{item._id}}'
+									data-action='rollWeaponAccuracy'
+								>
+									Roll
+									{{item.name}}
+									Accuracy
+								</button>
+							{{/if}}
+						{{/each}}
+					</div>
+					<div class='quick-actions'>
+						<button id='roll-unarmed-damage'>Roll Unarmed Damage</button>
+						{{#each actor.items as |item|}}
+							{{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
+								<button
+									class='rollable'
+									data-item-id='{{item._id}}'
+									id='roll-melee-weapon'
+								>Roll
 									{{item.name}}
 									Damage</button>
 							{{/if}}
@@ -213,7 +239,7 @@
 											class='rollable'
 											data-weapon-id='{{weapon._id}}'
 											data-ammo-id='{{ammo._id}}'
-											id="roll-ranged-weapon"
+											id='roll-ranged-weapon'
 										>
 											Roll
 											{{weapon.name}}
