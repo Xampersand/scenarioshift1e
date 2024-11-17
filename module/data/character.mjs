@@ -19,7 +19,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		this.calculateStats(this.stats);
 	}
 
-	prepareEmbeddedDocuments() { }
+	prepareEmbeddedDocuments() {}
 
 	prepareDerivedData() {
 		const ARMOR_INCREMENT = 0.5;
@@ -28,36 +28,28 @@ export default class SS1ECharacter extends SS1EActorBase {
 		const MANA_INCREMENT = 5;
 		const HEALTH_INCREMENT = 2.5;
 
-		// How much stat do you need to get 1% inc damage
-		// const STRENGTH_DAMAGE_SCALING = 1;
-		// const AGILITY_DAMAGE_SCALING = 2;
-		// const INTELLIGENCE_DAMAGE_SCALING = 1;
-
 		const [derived, stats] = [this.derived, this.stats];
 		const resources = this.resources;
 
 		// ARMOR, EVASION, ACCURACY
 		derived.armor.baseValue = Math.round(stats.str.value * ARMOR_INCREMENT);
 		derived.evasion.baseValue = Math.round(stats.agi.value * EVASION_INCREMENT);
-		derived.accuracy.baseValue = Math.round((stats.agi.value + stats.int.value) * ACCURACY_INCREMENT);
-
-		// DAMAGE MULTIPLIERS BASED ON STATS
-		// derived.strStatDmgMulti.baseValue = stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
-		// derived.agiStatDmgMulti.baseValue = stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
-		// derived.intStatDmgMulti.baseValue = stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
+		derived.accuracy.baseValue = Math.round(
+			(stats.agi.value + stats.int.value) * ACCURACY_INCREMENT
+		);
 
 		this.calculateStats(derived);
 
 		// HEALTH, MANA
-		resources.health.max =
-			5 + Math.round((stats.con.value) * HEALTH_INCREMENT);
+		resources.health.max = 5 + Math.round(stats.con.value * HEALTH_INCREMENT);
 
-		resources.mana.max = Math.round((stats.int.value) * MANA_INCREMENT);
+		resources.mana.max = Math.round(stats.int.value * MANA_INCREMENT);
 	}
 
 	calculateStats(path) {
 		for (const key of Object.keys(path)) {
-			path[key].value = (path[key].baseValue + path[key].bonus) * path[key].multi;
+			path[key].value =
+				(path[key].baseValue + path[key].bonus) * path[key].multi;
 		}
 	}
 

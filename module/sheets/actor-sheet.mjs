@@ -175,7 +175,9 @@ export class SS1EActorSheet extends ActorSheet {
 			});
 		}
 		//Roll acc button
-		html.find('#roll-accuracy').click((event) => this._onRollAccuracy(event));
+		html
+			.find('#roll-accuracy')
+			.click((event) => WeaponRoll.onRollAccuracy(event, this.actor));
 		// Roll weapon accuracy button
 		// Event listener for rolling weapon accuracy
 		html
@@ -255,36 +257,6 @@ export class SS1EActorSheet extends ActorSheet {
 				rollMode: game.settings.get('core', 'rollMode'),
 			});
 			return roll;
-		}
-	}
-	// Function to handle the accuracy roll
-	_onRollAccuracy(event) {
-		event.preventDefault();
-
-		// Get the accuracy value from the actor's data
-		const accuracy = this.actor.system.derived.accuracy.value; // Adjust this path as necessary
-
-		// Check if accuracy is a number
-		if (typeof accuracy !== 'number') {
-			console.error('Accuracy value is not a number:', accuracy);
-			return;
-		}
-
-		// Define the roll formula
-		const rollFormula = `1d100 + ${accuracy}`; // Ensure this is a valid formula
-		try {
-			// Create a new roll
-			const roll = new Roll(rollFormula, this.actor.getRollData());
-
-			// Roll and then send the result to chat
-			roll.roll().then((rolled) => {
-				rolled.toMessage({
-					speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-					flavor: `Rolling Accuracy: ${rollFormula}`, // Optional flavor text
-				});
-			});
-		} catch (error) {
-			console.error('Error while rolling accuracy:', error);
 		}
 	}
 

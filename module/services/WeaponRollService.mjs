@@ -120,7 +120,7 @@ export function onRollUnarmedDamage(event, actor) {
 	const unarmedStrengthDamage = actor.system.stats.str.value / 2;
 	const playerStatUnarmedDamageIncrease = actor.system.stats.str.value / 100;
 	const totalDamageIncrease = 1 + playerStatUnarmedDamageIncrease;
-	const rollFormula = `round((1d4+${unarmedStrengthDamage})*${totalDamageIncrease})`;
+	const rollFormula = `round((1+${unarmedStrengthDamage})*${totalDamageIncrease})`;
 	if (!rollFormula) {
 		ui.notifications.warn('No unarmed damage formula found!');
 		return;
@@ -136,6 +136,36 @@ export function onRollUnarmedDamage(event, actor) {
 		});
 	} catch (error) {
 		console.error('Error while rolling unarmed damage:', error);
+	}
+}
+// Function to handle the accuracy roll
+export function onRollAccuracy(event, actor) {
+	event.preventDefault();
+
+	// Get the accuracy value from the actor's data
+	const accuracy = actor.system.derived.accuracy.value; // Adjust this path as necessary
+
+	// Check if accuracy is a number
+	if (typeof accuracy !== 'number') {
+		console.error('Accuracy value is not a number:', accuracy);
+		return;
+	}
+
+	// Define the roll formula
+	const rollFormula = `1d100 + ${accuracy}`; // Ensure this is a valid formula
+	try {
+		// Create a new roll
+		const roll = new Roll(rollFormula, actor.getRollData());
+
+		// Roll and then send the result to chat
+		roll.roll().then((rolled) => {
+			rolled.toMessage({
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+				flavor: `Rolling Accuracy: ${rollFormula}`, // Optional flavor text
+			});
+		});
+	} catch (error) {
+		console.error('Error while rolling accuracy:', error);
 	}
 }
 // Function to handle the weapon accuracy roll
