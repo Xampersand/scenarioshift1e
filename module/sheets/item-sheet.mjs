@@ -76,9 +76,55 @@ export class SS1EItemSheet extends ItemSheet {
 
 		// Roll handlers, click handlers, etc. would go here.
 
+		// Add effect
+		html.find('.add-effect').click(this._onAddEffect.bind(this));
+
+		// Delete effect
+		html.find('.delete-effect').click(this._onDeleteEffect.bind(this));
+
 		// Active Effect management
 		html.on('click', '.effect-control', (ev) =>
 			onManageActiveEffect(ev, this.item)
 		);
+	}
+	/**
+	 * Handle adding a new effect.
+	 * @param {Event} event   The originating click event
+	 * @private
+	 */
+	_onAddEffect(event) {
+		event.preventDefault();
+		const activeEffects = this.item.system.activeEffects || [];
+		activeEffects.push({
+			label: '',
+			changes: [{ key: '', value: 0, mode: 2, priority: 20 }],
+			duration: {
+				startTime: null,
+				seconds: null,
+				combat: null,
+				rounds: null,
+				turns: null,
+				startRound: null,
+				startTurn: null,
+			},
+			disabled: false,
+			origin: this.item.uuid,
+			tint: '',
+			transfer: true,
+		});
+		this.item.update({ 'system.activeEffects': activeEffects });
+	}
+
+	/**
+	 * Handle deleting an effect.
+	 * @param {Event} event   The originating click event
+	 * @private
+	 */
+	_onDeleteEffect(event) {
+		event.preventDefault();
+		const index = event.currentTarget.dataset.index;
+		const activeEffects = this.item.system.activeEffects || [];
+		activeEffects.splice(index, 1);
+		this.item.update({ 'system.activeEffects': activeEffects });
 	}
 }
