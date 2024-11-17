@@ -1311,24 +1311,25 @@ input.input-text::selection {
   font-size: 2rem;
   text-align: center;
 }
-.effects-body .effects-list {
+.effects-body {
   display: flex;
   flex-direction: column;
 }
-.effects-body .effects-list .effect-item {
+.effects-body .active-effect-container .active-effect {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
 }
-.effects-body .effects-list .effect-item label {
-  font-size: 1.5rem;
+.effects-body .active-effect-container .active-effect .effect-value {
+  width: 50px;
 }
-.effects-body .effects-list .effect-item select {
-  width: 150px;
+.effects-body .active-effect-container .active-effect .delete-effect {
+  width: 50px;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
 }
-.effects-body .effects-list .effect-item select option {
-  text-align: center;
+.effects-body .active-effect-container .active-effect .delete-effect:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .equipment-top-section {
   display: flex;

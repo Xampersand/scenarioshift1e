@@ -50,12 +50,21 @@ export class SS1EItemSheet extends ItemSheet {
 		// Retrieve the roll data for TinyMCE editors.
 		context.rollData = this.item.getRollData();
 
+		// Include actor data if available
+		context.actor = this.actor || null;
+
 		// Add the item's data to context.data for easier access, as well as flags.
 		context.system = itemData.system;
 		context.flags = itemData.flags;
 
 		// Prepare active effects for easier access
 		context.effects = prepareActiveEffectCategories(this.item.effects);
+
+		// Add choices for the key field
+		context.effectChoices = SS1EEquippableItem.effectChoices;
+
+		// Debugging: Log the context to ensure actor data is available
+		console.log('Item Sheet Context:', context);
 
 		return context;
 	}

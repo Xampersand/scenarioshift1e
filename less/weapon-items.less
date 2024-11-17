@@ -86,22 +86,19 @@
 	text-align: center;
 }
 .effects-body {
-	.effects-list {
-		display: flex;
-		flex-direction: column;
-		.effect-item {
+	display: flex;
+	flex-direction: column;
+	.active-effect-container {
+		.active-effect {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
-			justify-content: space-evenly;
-			& label {
-				font-size: 1.5rem;
+			.effect-value {
+				width: 50px;
 			}
-			& select {
-				width: 150px;
-				& option {
-					text-align: center;
-				}
+			.delete-effect {
+				width: 50px;
+				.add-glow(@glow-color, 2px, 5px);
 			}
 		}
 	}

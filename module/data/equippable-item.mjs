@@ -1,4 +1,5 @@
 import SS1EItemBase from './item-base.mjs';
+
 export default class SS1EEquippableItem extends SS1EItemBase {
 	static defineSchema() {
 		const fields = foundry.data.fields;
@@ -6,7 +7,7 @@ export default class SS1EEquippableItem extends SS1EItemBase {
 		const schema = super.defineSchema();
 
 		schema.equipped = new fields.BooleanField({ required: true });
-		// importing item effects from foundry breaks all the css (dont ask me why), so we're going to define it here
+
 		schema.activeEffects = new fields.ArrayField(
 			new fields.SchemaField({
 				_id: new fields.StringField(),
@@ -16,7 +17,9 @@ export default class SS1EEquippableItem extends SS1EItemBase {
 				}),
 				changes: new fields.ArrayField(
 					new fields.SchemaField({
-						key: new fields.StringField(),
+						key: new fields.StringField({
+							choices: SS1EEquippableItem.effectChoices,
+						}),
 						value: new fields.StringField(),
 						mode: new fields.NumberField(),
 						priority: new fields.NumberField(),
@@ -42,6 +45,20 @@ export default class SS1EEquippableItem extends SS1EItemBase {
 		);
 
 		return schema;
+	}
+
+	static get effectChoices() {
+		return {
+			'data.stats.str.value': 'Strength',
+			'data.stats.agi.value': 'Agility',
+			'data.stats.con.value': 'Constitution',
+			'data.stats.int.value': 'Intelligence',
+			'data.derived.armor.value': 'Armor',
+			'data.derived.evasion.value': 'Evasion',
+			'data.derived.accuracy.value': 'Accuracy',
+			'data.derived.maxMana.value': 'Max Mana',
+			'data.derived.maxHp.value': 'Max HP',
+		};
 	}
 
 	prepareDerivedData() {}
