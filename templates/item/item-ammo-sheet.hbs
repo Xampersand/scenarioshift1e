@@ -93,6 +93,13 @@
 			</section>
 		</div>
 		<div class='tab' data-tab='attributes'>
-			<ol><li>effect 1</li> <li>effect 2</li></ol></div>
+			<div class='effects-header'>
+				<span>Edit Item effects:</span>
+			</div>
+			<div class='effects-body'>
+				{{> "item-effects" effects=effects}}
+				<button class="effect-control" data-action="create">Add Effect</button>
+			</div>
+		</div>
 	</div>
 </form>
