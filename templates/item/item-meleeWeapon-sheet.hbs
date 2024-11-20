@@ -156,21 +156,8 @@
 				<span>Edit Item effects:</span>
 			</div>
 			<div class='effects-body'>
-				<div class='active-effect-container'>
-					{{#each system.activeEffects as |effect|}}
-       			 		<div class="active-effect">
-          					<input type="text" name="system.activeEffects.{{@index}}.label" value="{{effect.label}}" placeholder="Effect Label">
-          					<select name="system.activeEffects.{{@index}}.changes.0.key">
-            					{{#each system.activeEffects.0.changes.0.key.choices as |label key|}}
-              						<option value="{{key}}" {{#if (eq key effect.changes.0.key)}}selected{{/if}}>{{label}}</option>
-            					{{/each}}
-          					</select>
-          					<input type="number" name="system.activeEffects.{{@index}}.changes.0.value" value="{{effect.changes.[0].value}}" placeholder="Effect Value">
-          					<button type="button" class="delete-effect" data-index="{{@index}}">Delete</button>
-        				</div>
-      				{{/each}}
-				</div>
-				<button type='button' class='add-effect'>Add Effect</button>
+				{{> "item-effects" effects=effects}}
+				<button class="effect-control" data-action="create">Add Effect</button>
 			</div>
 		</div>
 	</div>

@@ -623,7 +623,8 @@ nav#navigation #scene-list li {
 .token-sheet,
 .scene-sheet,
 .app.window-app.filepicker,
-.journal-sheet {
+.journal-sheet,
+.active-effect-sheet {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 3px double white;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
@@ -661,7 +662,8 @@ nav#navigation #scene-list li {
 .token-sheet:hover,
 .scene-sheet:hover,
 .app.window-app.filepicker:hover,
-.journal-sheet:hover {
+.journal-sheet:hover,
+.active-effect-sheet:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .sheet.journal-entry .journal-entry-content {

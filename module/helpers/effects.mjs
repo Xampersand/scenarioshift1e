@@ -7,29 +7,31 @@ export function onManageActiveEffect(event, owner) {
   event.preventDefault();
   const a = event.currentTarget;
   const li = a.closest('li');
-  const effect = li.dataset.effectId
-    ? owner.effects.get(li.dataset.effectId)
-    : null;
+  const effect = li ? owner.effects.get(li.dataset.effectId) : null;
+
   switch (a.dataset.action) {
     case 'create':
-      return owner.createEmbeddedDocuments('ActiveEffect', [
+      // Handle creating a new effect
+      owner.createEmbeddedDocuments('ActiveEffect', [
         {
-          name: game.i18n.format('DOCUMENT.New', {
-            type: game.i18n.localize('DOCUMENT.ActiveEffect'),
-          }),
+          label: 'New Effect',
           icon: 'icons/svg/aura.svg',
           origin: owner.uuid,
-          'duration.rounds':
-            li.dataset.effectType === 'temporary' ? 1 : undefined,
-          disabled: li.dataset.effectType === 'inactive',
+          disabled: false,
+          duration: { rounds: 1 },
+          changes: [],
         },
       ]);
+      break;
     case 'edit':
-      return effect.sheet.render(true);
+      if (effect) effect.sheet.render(true);
+      break;
     case 'delete':
-      return effect.delete();
+      if (effect) effect.delete();
+      break;
     case 'toggle':
-      return effect.update({ disabled: !effect.disabled });
+      if (effect) effect.update({ disabled: !effect.disabled });
+      break;
   }
 }
 
@@ -58,11 +60,17 @@ export function prepareActiveEffectCategories(effects) {
     },
   };
 
-  // Iterate over active effects, classifying them into categories
-  for (let e of effects) {
-    if (e.disabled) categories.inactive.effects.push(e);
-    else if (e.isTemporary) categories.temporary.effects.push(e);
-    else categories.passive.effects.push(e);
+  // Iterate over effects, classifying them into categories
+  for (let effect of effects) {
+    if (effect.disabled) {
+      categories.inactive.effects.push(effect);
+    } else if (effect.isTemporary) {
+      categories.temporary.effects.push(effect);
+    } else {
+      categories.passive.effects.push(effect);
+    }
   }
+
+  console.log('Prepared effect categories:', categories);
   return categories;
 }
