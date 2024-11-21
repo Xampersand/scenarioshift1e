@@ -280,6 +280,30 @@ form button {
     border: 2px double @main-border-color;
   }
 }
+.effects-list {
+  .items-header {
+    text-align: center;
+    h3 {
+      font-size: 1rem;
+      border: none;
+      margin: 0px !important;
+    }
+  }
+  .effect-name {
+    flex: none;
+    .item-image {
+      width: 38px;
+      height: 38px;
+      border: 1px solid @main-border-color;
+    }
+  }
+}
+.active-effect-sheet .effects-header {
+  height: auto;
+  background: none;
+  border: 1px solid @main-border-color;
+  font-weight: normal;
+}
 // window title on sheets moved a bit
 h4.window-title {
   text-align: start;

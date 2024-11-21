@@ -349,6 +349,28 @@ form button:hover:hover {
   padding-bottom: 46px;
   border: 2px double white;
 }
+.effects-list .items-header {
+  text-align: center;
+}
+.effects-list .items-header h3 {
+  font-size: 1rem;
+  border: none;
+  margin: 0px !important;
+}
+.effects-list .effect-name {
+  flex: none;
+}
+.effects-list .effect-name .item-image {
+  width: 38px;
+  height: 38px;
+  border: 1px solid white;
+}
+.active-effect-sheet .effects-header {
+  height: auto;
+  background: none;
+  border: 1px solid white;
+  font-weight: normal;
+}
 h4.window-title {
   text-align: start;
   padding-left: 20px;
