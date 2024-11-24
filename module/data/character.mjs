@@ -1,78 +1,80 @@
 import SS1EActorBase from './actor-base.mjs';
 export default class SS1ECharacter extends SS1EActorBase {
-	static defineSchema() {
-		const fields = foundry.data.fields;
-		const schema = super.defineSchema();
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    const schema = super.defineSchema();
 
-		schema.sponsor = new fields.StringField({ initial: 'None' });
-		schema.race = new fields.StringField({ initial: CONFIG.SS1E.races.human });
+    schema.sponsor = new fields.StringField({ initial: 'None' });
+    schema.race = new fields.StringField({ initial: CONFIG.SS1E.races.human });
+    schema.attributes = new fields.StringField({ initial: 'None' });
+    schema.stigmas = new fields.StringField({ initial: 'None' });
 
-		return schema;
-	}
+    return schema;
+  }
 
-	prepareData() {
-		super.prepareData();
-	}
+  prepareData() {
+    super.prepareData();
+  }
 
-	prepareBaseData() {
-		this.addItemModifiers();
-		this.calculateStats(this.stats);
-	}
+  prepareBaseData() {
+    this.addItemModifiers();
+    this.calculateStats(this.stats);
+  }
 
-	prepareEmbeddedDocuments() {}
+  prepareEmbeddedDocuments() {}
 
-	prepareDerivedData() {
-		const ARMOR_INCREMENT = 0.5;
-		const EVASION_INCREMENT = 0.5;
-		const ACCURACY_INCREMENT = 2;
-		const MANA_INCREMENT = 5;
-		const HEALTH_INCREMENT = 2.5;
+  prepareDerivedData() {
+    const ARMOR_INCREMENT = 0.5;
+    const EVASION_INCREMENT = 0.5;
+    const ACCURACY_INCREMENT = 2;
+    const MANA_INCREMENT = 5;
+    const HEALTH_INCREMENT = 2.5;
 
-		const [derived, stats] = [this.derived, this.stats];
-		const resources = this.resources;
+    const [derived, stats] = [this.derived, this.stats];
+    const resources = this.resources;
 
-		// ARMOR, EVASION, ACCURACY
-		derived.armor.baseValue = Math.round(stats.str.value * ARMOR_INCREMENT);
-		derived.evasion.baseValue = Math.round(stats.agi.value * EVASION_INCREMENT);
-		derived.accuracy.baseValue = Math.round(
-			(stats.agi.value + stats.int.value) * ACCURACY_INCREMENT
-		);
+    // ARMOR, EVASION, ACCURACY
+    derived.armor.baseValue = Math.round(stats.str.value * ARMOR_INCREMENT);
+    derived.evasion.baseValue = Math.round(stats.agi.value * EVASION_INCREMENT);
+    derived.accuracy.baseValue = Math.round(
+      (stats.agi.value + stats.int.value) * ACCURACY_INCREMENT
+    );
 
-		this.calculateStats(derived);
+    this.calculateStats(derived);
 
-		// HEALTH, MANA
-		resources.health.max = 5 + Math.round(stats.con.value * HEALTH_INCREMENT);
+    // HEALTH, MANA
+    resources.health.max = 5 + Math.round(stats.con.value * HEALTH_INCREMENT);
 
-		resources.mana.max = Math.round(stats.int.value * MANA_INCREMENT);
-	}
+    resources.mana.max = Math.round(stats.int.value * MANA_INCREMENT);
+  }
 
-	calculateStats(path) {
-		for (const key of Object.keys(path)) {
-			path[key].value =
-				(path[key].baseValue + path[key].bonus) * path[key].multi;
-		}
-	}
+  calculateStats(path) {
+    for (const key of Object.keys(path)) {
+      path[key].value =
+        (path[key].baseValue + path[key].bonus) * path[key].multi;
+    }
+  }
 
-	addItemModifiers() {
-		const items = this.parent.items;
-		for (const item of items) {
-			// console.log(item);
-		}
-	}
+  addItemModifiers() {
+    const items = this.parent.items;
+    for (const item of items) {
+      // console.log(item);
+    }
+  }
 
-	getRollData() {
-		const data = {};
+  getRollData() {
+    const data = {};
 
-		// Check if stats is defined
-		if (this.stats) {
-			// Copy the ability scores to the top level
-			for (let [k, v] of Object.entries(this.stats)) {
-				data[k] = foundry.utils.deepClone(v);
-			}
-		} else {
-			console.warn('Stats not defined for this actor:', this);
-		}
+    // Check if stats is defined
+    if (this.stats) {
+      // Copy the ability scores to the top level
+      for (let [k, v] of Object.entries(this.stats)) {
+        data[k] = foundry.utils.deepClone(v);
+      }
+    } else {
+      console.warn('Stats not defined for this actor:', this);
+    }
 
-		return data;
-	}
+    return data;
+  }
 }

@@ -107,7 +107,6 @@
           </div>
           <div class='attribute-container'>
             <div class='attributes'>
-
               <label for='sponsor'>SPONSOR:</label>
               {{#if isEditing}}
                 <!-- Editable fields here -->
@@ -124,7 +123,30 @@
                 <span>{{system.sponsor}}</span>
               {{/if}}
               <label>ATTRIBUTES:</label>
+              {{#if isEditing}}
+                <input
+                  type='text'
+                  id='attributes'
+                  class='input-text'
+                  name='system.attributes'
+                  value='{{system.attributes}}'
+                  placeholder='Attributes'
+              {{else}}
+                <span>{{system.attributes}}</span>
+              {{/if}}
               <label>STIGMAS:</label>
+              {{#if isEditing}}
+                <input
+                  type='text'
+                  id='stigmas'
+                  class='input-text'
+                  name='system.stigmas'
+                  value='{{system.stigmas}}'
+                  placeholder='Stigmas'
+                />
+              {{else}}
+                <span>{{system.stigmas}}</span>
+              {{/if}}
             </div>
           </div>
         </div>

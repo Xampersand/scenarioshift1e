@@ -832,7 +832,7 @@ h2.category-title,
 }
 .ss1e.sheet.actor.character .sheet-header.info {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1rem;
   align-items: stretch;
   justify-content: space-between;
 }
@@ -854,6 +854,7 @@ h2.category-title,
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container {
   position: relative;
   bottom: 25px;
+  margin-bottom: -25px;
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block {
   display: flex;
@@ -923,6 +924,9 @@ h2.category-title,
 }
 .ss1e.sheet.actor.character .sheet-header div.info-container label {
   font-weight: bold;
+  font-size: 1rem;
+}
+.ss1e.sheet.actor.character .sheet-header div.info-container span {
   font-size: 1.2rem;
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container {
@@ -939,10 +943,11 @@ h2.category-title,
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes label {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes span {
   font-weight: normal;
+  font-size: 1.2rem;
 }
 input.input-text {
   border: none;
@@ -967,7 +972,7 @@ input.input-text::selection {
 .body .stat-related .combat-stat-container {
   display: flex;
   flex-direction: column;
-  flex: 1 1 10%;
+  flex: 1;
   justify-content: space-evenly;
 }
 .body .stat-related .combat-stat-container .combat-stat-block {
@@ -978,18 +983,18 @@ input.input-text::selection {
   flex: 1 1 50%;
 }
 .body .stat-related .combat-stat-container .combat-stat-block label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   width: 100px;
 }
 .body .stat-related .combat-stat-container .combat-stat-block span {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 60px;
-  text-align: end;
+  text-align: center;
 }
 .body .stat-related .stat-container {
-  flex: 1 1 50%;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -1005,30 +1010,39 @@ input.input-text::selection {
   flex: 1 1 50%;
 }
 .body .stat-related .stat-container .stat-flexrow .combat-stat-block label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   width: 115px;
 }
 .body .stat-related .stat-container .stat-flexrow .combat-stat-block span {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 60px;
-  text-align: end;
+  text-align: center;
 }
 .body .stat-related .stat-container .stat-flexrow button {
   margin: 5px;
-  flex: 0 1 10%;
+  height: 30px;
+  width: 30px;
 }
 .body .coin-container {
   flex-direction: row;
-  font-size: 1.5rem;
+  font-size: 1rem;
+}
+.body .coin-container label {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.body .coin-container span {
+  font-size: 1.2rem;
 }
 .body button {
   border: 1px solid white;
   border-radius: 5px;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
   transition: box-shadow 0.3s ease-in-out;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .body button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
@@ -1047,7 +1061,7 @@ input.input-text::selection {
   border-radius: 5px;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
   transition: box-shadow 0.3s ease-in-out;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 5px;
   width: 200px;
   text-transform: uppercase;
@@ -1066,7 +1080,7 @@ input.input-text::selection {
   border-radius: 5px;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
   transition: box-shadow 0.3s ease-in-out;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 5px;
   width: 200px;
   text-transform: uppercase;
