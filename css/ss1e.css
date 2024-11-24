@@ -927,7 +927,7 @@ h2.category-title,
   font-size: 1rem;
 }
 .ss1e.sheet.actor.character .sheet-header div.info-container span {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container {
   display: flex;
@@ -947,7 +947,7 @@ h2.category-title,
 }
 .ss1e.sheet.actor.character .sheet-header div.attribute-container .attributes span {
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 input.input-text {
   border: none;
@@ -989,7 +989,7 @@ input.input-text::selection {
   width: 100px;
 }
 .body .stat-related .combat-stat-container .combat-stat-block span {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   width: 60px;
   text-align: center;
 }
@@ -1016,7 +1016,7 @@ input.input-text::selection {
   width: 115px;
 }
 .body .stat-related .stat-container .stat-flexrow .combat-stat-block span {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   width: 60px;
   text-align: center;
 }
@@ -1035,7 +1035,7 @@ input.input-text::selection {
   text-transform: uppercase;
 }
 .body .coin-container span {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .body button {
   border: 1px solid white;
