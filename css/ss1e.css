@@ -688,6 +688,24 @@ nav#navigation #scene-list li {
 .active-effect-sheet:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
+.app.window-app.sheet:has(.sound-volume) {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 3px double white;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.app.window-app.sheet:has(.sound-volume):hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.app.window-app.sheet:has([value='music']) {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 3px double white;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.app.window-app.sheet:has([value='music']):hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
 .sheet.journal-entry .journal-entry-content {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 3px double white;
@@ -1716,4 +1734,55 @@ input.input-text::selection {
 }
 .consumable-actions button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 3px double white;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+  padding: 2px;
+  height: 800px !important;
+  width: 1000px !important;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid):hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .window-header {
+  padding-bottom: 8px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .window-header h4 {
+  padding: 0px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .window-header a {
+  padding: 0px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid white;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section {
+  flex: 1;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section .checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section .checkbox-grid .checkbox-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid white;
+  width: 200px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .preset-message-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex: 1;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .preset-message-buttons .constellation-sheet-button {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 150px;
 }

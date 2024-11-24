@@ -93,6 +93,9 @@ export class SS1EActorSheet extends ActorSheet {
     context.hpBarWidth = hpBarWidth;
     context.manaBarWidth = manaBarWidth;
 
+    context.constellations = game.actors.filter(
+      (actor) => actor.type === 'constellation'
+    );
     return context;
   }
   _prepareCharacterData(context) {}
@@ -132,16 +135,31 @@ export class SS1EActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
-    // // Add Inventory Item
-    // html.on('click', '.item-create', this._onItemCreate.bind(this));
+    //gmboard messaging, checkboxing and stuff,
+    html.on('click', 'button[data-action="sendPresetGmboard"]', async (ev) => {
+      const message = ev.currentTarget.dataset.message;
+      const cost = Number(ev.currentTarget.dataset.cost);
+      const selectedCheckboxes = html.find('.message-speaker-checkbox:checked');
+      const selectedConstellations = selectedCheckboxes
+        .map((i, checkbox) => checkbox.value)
+        .get();
+      const recipientId = html.find('#gmboardMessageRecipient').val();
 
-    // // Delete Inventory Item
-    // html.on('click', '.item-delete', (ev) => {
-    // 	const li = $(ev.currentTarget).parents('.item');
-    // 	const item = this.actor.items.get(li.data('itemId'));
-    // 	item.delete();
-    // 	li.slideUp(200, () => this.render(false));
-    // });
+      for (const constellationId of selectedConstellations) {
+        const constellation = game.actors.get(constellationId);
+        if (constellation) {
+          await Gmboard.onSendPresetGmboardMessage.call(
+            { actor: constellation },
+            ev,
+            message,
+            cost,
+            recipientId
+          );
+          const delayTime = Math.random() * 400; // Random delay time to prevent spamming
+          await new Promise((resolve) => setTimeout(resolve, delayTime)); // Wait for x seconds between messages
+        }
+      }
+    });
 
     // Active Effect management
     html.on('click', '.effect-control', (ev) => {
@@ -210,10 +228,6 @@ export class SS1EActorSheet extends ActorSheet {
       .find('button[data-action="sendCustom"]')
       .click(Constellation.onSendCustomMessage.bind(this));
 
-    // Send GMBoard Message
-    html
-      .find('button[data-action="sendGmboardCustom"]')
-      .click(Gmboard.onSendGmboardMessage.bind(this));
     // Handle sending coins to another character
     html
       .find('button[data-action="sendCoins"]')

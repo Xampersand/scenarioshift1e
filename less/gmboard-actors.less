@@ -1,0 +1,47 @@
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) {
+  background-image: @background-tile;
+  border: 3px double @main-border-color;
+  .add-glow(@glow-color, 2px, 5px);
+  padding: 2px;
+  height: 800px !important;
+  width: 1000px !important;
+  .window-header {
+    padding-bottom: 8px;
+    h4 {
+      padding: 0px;
+    }
+    a {
+      padding: 0px;
+    }
+  }
+  .multi-constellation-dialog {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid @main-border-color;
+    .message-bottom-section {
+      flex: 1;
+      .checkbox-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        .checkbox-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          border: 1px solid @main-border-color;
+          width: 200px;
+        }
+      }
+    }
+    .preset-message-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      flex: 1;
+      .constellation-sheet-button {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        width: 150px;
+      }
+    }
+  }
+}

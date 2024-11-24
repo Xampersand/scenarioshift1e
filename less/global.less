@@ -609,6 +609,18 @@ nav#navigation {
   border: 3px double @main-border-color;
   .add-glow(@glow-color, 2px, 5px);
 }
+.app.window-app.sheet {
+  &:has(.sound-volume) {
+    background-image: @background-tile;
+    border: 3px double @main-border-color;
+    .add-glow(@glow-color, 2px, 5px);
+  }
+  &:has([value='music']) {
+    background-image: @background-tile;
+    border: 3px double @main-border-color;
+    .add-glow(@glow-color, 2px, 5px);
+  }
+}
 // Journal
 .sheet.journal-entry .journal-entry-content {
   background-image: @background-tile;
