@@ -11,6 +11,7 @@ import * as Scenario from '../services/ScenarioService.mjs';
 import * as Gmboard from '../services/GmboardService.mjs';
 import * as WeaponRoll from '../services/WeaponRollService.mjs';
 import * as RpRollService from '../services/RpRollService.mjs';
+import * as ActionPoints from '../services/ActionPointService.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications

@@ -1,3 +1,5 @@
+import { consumeActionPoints } from './ActionPointService.mjs';
+
 // Function to handle the melee weapon roll
 export function onRollMeleeWeapon(event, actor) {
   event.preventDefault();
@@ -167,6 +169,7 @@ export function onRollAccuracy(event, actor) {
   } catch (error) {
     console.error('Error while rolling accuracy:', error);
   }
+  consumeActionPoints(actor, 2);
 }
 // Function to handle the weapon accuracy roll
 export function onRollWeaponAccuracy(event, actor) {
@@ -199,5 +202,5 @@ export function onRollWeaponAccuracy(event, actor) {
   } catch (error) {
     console.error('Error while rolling weapon accuracy:', error);
   }
-  console.log(weaponAccuracy);
+  consumeActionPoints(actor, 2);
 }
