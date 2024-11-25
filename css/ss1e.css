@@ -876,7 +876,7 @@ h2.category-title,
   overflow: hidden;
   align-self: flex-end;
   position: relative;
-  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+  clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
@@ -905,7 +905,7 @@ h2.category-title,
   border-top: 0;
   overflow: hidden;
   position: relative;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container .mana-bar {
   height: 100%;
@@ -990,18 +990,19 @@ input.input-text::selection {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  flex: 1 1 50%;
+  flex: 1;
 }
 .body .stat-related .combat-stat-container .combat-stat-block label {
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-  width: 100px;
+  flex: 1;
+  text-align: center;
 }
 .body .stat-related .combat-stat-container .combat-stat-block span {
   font-size: 1.1rem;
-  width: 60px;
   text-align: center;
+  flex: 1;
 }
 .body .stat-related .stat-container {
   flex: 1;
@@ -1077,41 +1078,80 @@ input.input-text::selection {
   display: flex;
   flex-direction: row;
 }
-.bottom .favorite-items {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-.bottom .favorite-items button {
-  border: 1px solid white;
-  border-radius: 5px;
-  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
-  transition: box-shadow 0.3s ease-in-out;
-  font-size: 1rem;
-  margin: 5px;
-  width: 200px;
-  text-transform: uppercase;
-}
-.bottom .favorite-items button:hover {
-  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
-}
-.bottom .quick-actions {
+.bottom .accuracy-rolls {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
 }
-.bottom .quick-actions button {
+.bottom .accuracy-rolls .accuracy-roll-container {
+  display: flex;
+  align-items: center;
+}
+.bottom .accuracy-rolls .accuracy-roll-container img {
+  width: 40px;
+  /* Adjust width proportionally */
+  height: 40px;
+  /* Match the height of the container */
+  aspect-ratio: 1;
+  /* Ensure the image remains square */
   border: 1px solid white;
-  border-radius: 5px;
+  border-right: none;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.bottom .accuracy-rolls .accuracy-roll-container img:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.bottom .accuracy-rolls .accuracy-roll-container button {
+  border: 1px solid white;
+  border-radius: 0px 5px 5px 0px;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
   transition: box-shadow 0.3s ease-in-out;
   font-size: 1rem;
-  margin: 5px;
+  margin: 5px 5px 5px 0px;
   width: 200px;
+  padding: 0;
+  height: 40px;
   text-transform: uppercase;
 }
-.bottom .quick-actions button:hover {
+.bottom .accuracy-rolls .accuracy-roll-container button:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.bottom .damage-rolls {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+}
+.bottom .damage-rolls .damage-roll-container {
+  display: flex;
+  align-items: center;
+}
+.bottom .damage-rolls .damage-roll-container img {
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  border-right: none;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.bottom .damage-rolls .damage-roll-container img:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.bottom .damage-rolls .damage-roll-container button {
+  border: 1px solid white;
+  border-radius: 0px 5px 5px 0px;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+  font-size: 1rem;
+  margin: 5px 5px 5px 0px;
+  width: 200px;
+  padding: 0;
+  height: 40px;
+  text-transform: uppercase;
+}
+.bottom .damage-rolls .damage-roll-container button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .ss1e.sheet.actor.constellation.header .header {

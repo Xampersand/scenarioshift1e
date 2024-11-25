@@ -220,19 +220,17 @@
           
         </div>
         <div class='bottom'>
-          <div class='favorite-items'>
-            <button id='roll-accuracy' class='rollable'>Roll Accuracy</button>
+          <div class='accuracy-rolls'>
+            <div class="accuracy-roll-container"><img src="systems/ss1e/assets/images/target-icon.png"><button id='roll-accuracy' class='rollable'>Roll Accuracy</button></div>
             {{#each actor.items as |item|}}
               {{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
-                <button
+                <div class="accuracy-roll-container"><img src={{item.img}} class="item-roll-icon"><button
                   class='rollable'
                   data-item-id='{{item._id}}'
                   data-action='rollWeaponAccuracy'
-                >
-                  Roll
-                  {{item.name}}
+                >{{item.name}}
                   Accuracy
-                </button>
+                </button></div>
               {{/if}}
             {{/each}}
             {{#each actor.items as |item|}}
@@ -241,25 +239,22 @@
                   class='rollable'
                   data-item-id='{{item._id}}'
                   data-action='rollWeaponAccuracy'
-                >
-                  Roll
-                  {{item.name}}
+                >{{item.name}}
                   Accuracy
                 </button>
               {{/if}}
             {{/each}}
           </div>
-          <div class='quick-actions'>
-            <button id='roll-unarmed-damage'>Roll Unarmed Damage</button>
+          <div class='damage-rolls'>
+            <div class="damage-roll-container"><img src="systems/ss1e/assets/images/punch-icon.png" alt=""><button id='roll-unarmed-damage'>Roll Unarmed Damage</button></div>
             {{#each actor.items as |item|}}
               {{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
-                <button
+                <div class="damage-roll-container"><img src={{item.img}} alt=""><button
                   class='rollable'
                   data-item-id='{{item._id}}'
                   id='roll-melee-weapon'
-                >Roll
-                  {{item.name}}
-                  Damage</button>
+                >{{item.name}}
+                  Damage</button></div>
               {{/if}}
             {{/each}}
             {{#each actor.items as |weapon|}}
@@ -273,9 +268,7 @@
                       data-weapon-id='{{weapon._id}}'
                       data-ammo-id='{{ammo._id}}'
                       id='roll-ranged-weapon'
-                    >
-                      Roll
-                      {{weapon.name}}
+                    >{{weapon.name}}
                       with
                       {{ammo.name}}
                     </button>
