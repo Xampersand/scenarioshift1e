@@ -32,6 +32,7 @@
                 width='180'
               />
             {{/if}}
+            {{!-- <img src="systems/ss1e/assets/images/picture-frame-four.png" class="picture-frame"alt=""> --}}
             <div class='hp-mana-container'>
               <div class='hp-block' id='hp-bar'>
                 <div class='hp-bar-container'>
@@ -153,6 +154,12 @@
         <div class='body'>
           <div class='stat-related'>
             <div class='combat-stat-container'>
+              <div class="action-point-container">
+                <input type="checkbox" id="action-point-one">
+                <input type="checkbox" id="action-point-two">
+                <input type="checkbox" id="action-point-three">
+                <input type="checkbox" id="action-point-four">
+              </div>
               {{#each system.derived as |stat key|}}
                 {{#if
                   (or (eq key 'accuracy') (eq key 'armor') (eq key 'evasion'))
@@ -190,9 +197,8 @@
                 </div>
               {{/each}}
             </div>
-          </div>
-          <div class='coin-container flexrow'>
-            <label
+            <div class='coin-container flexrow'>
+              <div class="coin-text-container"><label
               for='system.coins'
               class='resource-label'
               data-label='Coins:'
@@ -202,13 +208,16 @@
             <span
               class='resource-label'
               name='system.coins'
-            >{{system.coins}}</span>
+            >{{system.coins}}</span></div>
+            
             <button
               class='resource-label'
               data-action='openCurrencyPanel'
             >MANAGE COINS</button>
             <button class='resource-label' data-action='sendCoins'>SEND COINS</button>
           </div>
+          </div>
+          
         </div>
         <div class='bottom'>
           <div class='favorite-items'>

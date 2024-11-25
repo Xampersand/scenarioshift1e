@@ -44,6 +44,12 @@
           border: none;
           .add-glow(@glow-color, 5px, 5px);
         }
+        .picture-frame {
+          border: none;
+          position: absolute;
+          top: 10.1%;
+          left: -0.5%;
+        }
         .hp-mana-container {
           //overlapping bars with picture, values are cringe nad will probably need ot be redone
           position: relative;
@@ -54,15 +60,18 @@
             .set-display-flex-row();
             justify-content: space-evenly;
             align-items: center;
+
             .hp-bar-container {
               width: 125px;
               height: 25px;
               background-color: @resource-container-color;
-              border: 1px solid @subaccent-color;
-              border-radius: 20% 20% 0px 0px;
+              border-bottom: 1px solid @subaccent-color;
+              //   border-radius: 20% 20% 0px 0px;
               overflow: hidden;
               align-self: flex-end;
               position: relative;
+              clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+
               .hp-bar {
                 height: 100%;
                 background-color: @hp-color;
@@ -87,11 +96,12 @@
               width: 125px;
               height: 25px;
               background-color: @resource-container-color;
-              border: 1px solid @subaccent-color;
               border-top: 0;
-              border-radius: 0px 0px 20% 20%;
+              //   border-radius: 0px 0px 20% 20%;
               overflow: hidden;
               position: relative;
+              clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+
               .mana-bar {
                 height: 100%;
                 background-color: @mana-color;
@@ -175,6 +185,12 @@
       flex: 1; // 1 10%;
       justify-content: space-evenly;
 
+      & .action-point-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
       & .combat-stat-block {
         display: flex;
         flex-direction: row;
@@ -230,15 +246,31 @@
   }
 
   & .coin-container {
-    flex-direction: row;
+    flex-direction: column;
     font-size: 1rem;
+    flex: 1;
+    justify-content: space-evenly;
+    align-content: center;
+    .coin-text-container {
+      flex: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: baseline;
+    }
     & label {
       font-size: 1rem;
       font-weight: bold;
       text-transform: uppercase;
+      flex: 0;
     }
     & span {
       font-size: 1.1rem;
+      flex: 0;
+    }
+    & button {
+      flex: 0;
+      width: 140px;
     }
   }
   & button {

@@ -851,6 +851,12 @@ h2.category-title,
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana img.profile-img:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
+.ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .picture-frame {
+  border: none;
+  position: absolute;
+  top: 10.1%;
+  left: -0.5%;
+}
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container {
   position: relative;
   bottom: 25px;
@@ -866,11 +872,11 @@ h2.category-title,
   width: 125px;
   height: 25px;
   background-color: #3f3f3f86;
-  border: 1px solid #52c8ff;
-  border-radius: 20% 20% 0px 0px;
+  border-bottom: 1px solid #52c8ff;
   overflow: hidden;
   align-self: flex-end;
   position: relative;
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .hp-block .hp-bar-container .hp-bar {
   height: 100%;
@@ -896,11 +902,10 @@ h2.category-title,
   width: 125px;
   height: 25px;
   background-color: #3f3f3f86;
-  border: 1px solid #52c8ff;
   border-top: 0;
-  border-radius: 0px 0px 20% 20%;
   overflow: hidden;
   position: relative;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
 }
 .ss1e.sheet.actor.character .sheet-header.info .pfp-hp-mana .hp-mana-container .mana-block .mana-bar-container .mana-bar {
   height: 100%;
@@ -975,6 +980,11 @@ input.input-text::selection {
   flex: 1;
   justify-content: space-evenly;
 }
+.body .stat-related .combat-stat-container .action-point-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .body .stat-related .combat-stat-container .combat-stat-block {
   display: flex;
   flex-direction: row;
@@ -1026,16 +1036,32 @@ input.input-text::selection {
   width: 30px;
 }
 .body .coin-container {
-  flex-direction: row;
+  flex-direction: column;
   font-size: 1rem;
+  flex: 1;
+  justify-content: space-evenly;
+  align-content: center;
+}
+.body .coin-container .coin-text-container {
+  flex: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
 }
 .body .coin-container label {
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
+  flex: 0;
 }
 .body .coin-container span {
   font-size: 1.1rem;
+  flex: 0;
+}
+.body .coin-container button {
+  flex: 0;
+  width: 140px;
 }
 .body button {
   border: 1px solid white;
