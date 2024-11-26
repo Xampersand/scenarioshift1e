@@ -1,17 +1,17 @@
 {
-	"Actor": {
-		"types": ["character", "npc", "constellation", "gmboard"]
-	},
-	"Item": {
-		"types": [
-			"item",
-			"spell",
-			"meleeWeapon",
-			"rangedWeapon",
-			"ammo",
-			"accessory",
-			"equipment",
-			"consumable"
-		]
-	}
+  "Actor": {
+    "types": ["character", "npc", "constellation", "gmboard"]
+  },
+  "Item": {
+    "types": [
+      "item",
+      "skill",
+      "meleeWeapon",
+      "rangedWeapon",
+      "ammo",
+      "accessory",
+      "equipment",
+      "consumable"
+    ]
+  }
 }

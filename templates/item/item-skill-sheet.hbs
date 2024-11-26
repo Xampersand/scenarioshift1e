@@ -1,0 +1,161 @@
+<form class='{{cssClass}} flexcol' autocomplete='off'>
+	<button class='edit-mode-toggle'>📝</button>
+	{{! Sheet Tab Navigation }}
+	<nav class='sheet-tabs tabs' data-group='primary'>
+		<a class='item' data-tab='description'>Item Description</a>
+		<a class='item' data-tab='attributes'>Edit effects</a>
+	</nav>
+	<div class='sheet-body'>
+		<div class='tab' data-tab='description'>
+			<section class='weapon-top-section'>
+				<img
+					class='weapon-img'
+					src='{{item.img}}'
+					data-edit='img'
+					title='{{item.name}}'
+					height='200px'
+					width='200px'
+				/>
+				<div class='weapon-title'>
+					<div class='weapon-name'>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='name'
+								type='text'
+								value='{{item.name}}'
+								placeholder='NAME'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{item.name}}</div>
+						{{/if}}
+					</div>
+					<div class='weapon-rarity'>
+						<label for='system.rating'>RATING:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.rating'
+								type='text'
+								value='{{system.rating}}'
+								placeholder='COMMON'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.rating}}</div>
+						{{/if}}
+
+					</div>
+				</div>
+			</section>
+			{{! Sheet Body }}
+			<section class='weapon-bottom-section'>
+				<div class='stats'>
+					<div class='requirement'>
+						<label for='system.requirement'>REQUIRES:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.requirement.value'
+								type='text'
+								value='{{system.requirement.value}}'
+								placeholder=''
+							/>
+							<input
+								name='system.requirement.type'
+								type='text'
+								value='{{system.requirement.type}}'
+								placeholder='str'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.requirement.value}}
+								{{system.requirement.type}}</div>
+						{{/if}}
+					</div>
+					<div class='damage'>
+						<label for='system.damage'>DAMAGE:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.damageRoll.diceNum'
+								type='text'
+								value='{{system.damageRoll.diceNum}}'
+								placeholder='dice count'
+							/>
+							<input
+								name='system.damageRoll.diceSize'
+								type='text'
+								value='{{system.damageRoll.diceSize}}'
+								placeholder='dice size'
+							/>
+							<input
+								name='system.damageRoll.diceBonus'
+								type='text'
+								value='{{system.damageRoll.diceBonus}}'
+								placeholder='bonus'
+							/>
+							<input
+								name='system.damageType'
+								type='text'
+								value='{{system.damageType}}'
+								placeholder='piercing'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<span>{{system.damageFormula}}&nbsp;</span>
+							<span>{{system.damageType}}</span>
+						{{/if}}
+					</div>
+					<div class='accuracy'>
+						<label for='system.accuracy'>
+							ACCURACY:&nbsp;
+						</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.accuracy'
+								type='text'
+								value='{{system.accuracy}}'
+								placeholder='1'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<span>{{system.accuracy}}</span>
+						{{/if}}
+					</div>
+					<div class='range'>
+						<label for='system.range'>
+							RANGE:&nbsp;
+						</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.range'
+								type='text'
+								value='{{system.range}}'
+								placeholder='1'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<span>{{system.range}}</span>
+						{{/if}}
+					</div>
+					{{! add another div here for each stat/bonus }}
+				</div>
+				<div class='weapon-actions'>
+					<button>ROLL ACCURACY</button>
+					<button>ROLL DAMAGE</button>
+					<button>SEND TO SOMEONE</button>
+				</div>
+			</section>
+		</div>
+		<div class='tab' data-tab='attributes'>
+			<div class='effects-body'>
+				{{> "item-effects" effects=effects}}
+				<button class="effect-control" data-action="create">Add Effect</button>
+			</div>
+		</div>
+	</div>
+</form>
