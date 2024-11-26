@@ -1,3 +1,4 @@
+// function to handle stat leveling
 export function onStatLevelUp(event) {
 	event.preventDefault();
 

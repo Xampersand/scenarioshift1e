@@ -1,3 +1,4 @@
+// service to handle the GM board functionality
 export async function onSendPresetGmboardMessage(
   event,
   message,

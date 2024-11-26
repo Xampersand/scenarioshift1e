@@ -1,3 +1,4 @@
+// function to handle scenario builder
 export function onScenarioSubmit(event) {
 	const name = $('#scenario-name').val(); // Get the input values
 	const category = $('#scenario-category').val();

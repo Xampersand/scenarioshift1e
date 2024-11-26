@@ -1,3 +1,4 @@
+// function to handle constellation messages
 export function onSendPresetMessage(event) {
 	event.preventDefault();
 	const message = event.currentTarget.dataset.message; // Get message from the button's data attribute

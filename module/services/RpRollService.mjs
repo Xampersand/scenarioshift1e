@@ -1,3 +1,4 @@
+// function to handle rollable attributes
 export function onRollRP(event, actor, key) {
   event.preventDefault();
   const strRollBonus = Math.round(actor.system.stats.str.value / 5);

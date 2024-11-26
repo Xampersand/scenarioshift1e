@@ -1,3 +1,4 @@
+// functions to handle coin transactions and management
 export function openCurrencyPanel(event) {
 	event.preventDefault();
 
