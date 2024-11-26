@@ -96,6 +96,7 @@ Hooks.on('renderCompendium', async (compendium) => {
 
 // If you need to add Handlebars helpers, here is a useful example:
 Handlebars.registerHelper('diff', (a, b) => a - b);
+Handlebars.registerHelper('notEqual', (a, b) => a !== b);
 Handlebars.registerHelper('repeat', function (times, opts) {
   var out = '';
   var i;
@@ -118,6 +119,10 @@ Handlebars.registerHelper('repeat', function (times, opts) {
 Handlebars.registerHelper('toLowerCase', function (str) {
   return str.toLowerCase();
 });
+Handlebars.registerHelper('filterNonSkillItems', function (items, options) {
+  const filteredItems = items.filter((item) => item.type !== 'skill');
+  return options.fn({ items: filteredItems });
+}); //need this for inventory to filter out skills from normal inv
 
 /* -------------------------------------------- */
 /*  Ready Hook                                  */

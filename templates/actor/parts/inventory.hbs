@@ -1,17 +1,19 @@
 <div class='sheet-inventory'>
-	<div class='item-container'>
-		{{#each items}}
-			<button title='{{this.name}}' class='item-view' data-action='item-view' data-item-id='{{this._id}}'>
-				<img src='{{this.img}}'></img>
-			</button>
-		{{/each}}
-		{{#repeat (diff system.itemSlots actor.items.size) }}
-			<button title='Add Item' class='drop-zone'>
-				<img src="">+</img>
-			</button>
-		{{/repeat}}
-	</div>
-	<button class='resource-label' data-action='purchase-slots'>
-		EXPAND INVENTORY
-	</button>
+  <div class='item-container'>
+    {{#filterNonSkillItems actor.items}}
+      {{#each items}}
+        <button title='{{this.name}}' class='item-view' data-action='item-view' data-item-id='{{this._id}}'>
+          <img src='{{this.img}}'></img>
+        </button>
+      {{/each}}
+      {{#repeat (diff ../system.itemSlots items.length) }}
+        <button title='Add Item' class='drop-zone'>
+          <img src="">+</img>
+        </button>
+      {{/repeat}}
+    {{/filterNonSkillItems}}
+  </div>
+  <button class='resource-label' data-action='purchase-slots'>
+    EXPAND INVENTORY
+  </button>
 </div>

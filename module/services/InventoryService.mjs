@@ -8,9 +8,13 @@ export async function onDropItem(event) {
     event.originalEvent.dataTransfer.getData('text/plain')
   );
   const item = await Item.implementation.fromDropData(data);
+  // Prevent items of type 'skill' from being dropped in the inventory
+  if (item.type === 'skill') {
+    return ui.notifications.error('Skills cannot be dropped in the inventory.');
+  }
 
   const itemSlots = this.actor.system.itemSlots;
-  const items = this.actor.items;
+  const items = this.actor.items.filter((i) => i.type !== 'skill'); //exclude skills
 
   if (items.size >= itemSlots) {
     return ui.notifications.error('Not enough item slots!');

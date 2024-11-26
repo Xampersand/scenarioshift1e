@@ -1,0 +1,15 @@
+<div class='sheet-skill-inventory'>
+  <div class='skill-container drop-zone'>
+    {{#each items}}
+      {{#if (eq this.type 'skill')}}
+      <div class="skill-item">
+        <button title='{{this.name}}' class='item-view skill-box' data-action='skill-view' data-item-id='{{this._id}}'>
+          <img src='{{this.img}}'></img><span class="skill-name">{{this.name}}</span>
+        </button>
+        <button class="skill-roll-button skill-accuracy-roll" data-action="roll-skill-accuracy"><img src="systems/ss1e/assets/images/target-icon.png"></button>
+        <button class="skill-roll-button skill-damage-roll" data-action="roll-skill-damage"><img src="systems/ss1e/assets/images/punch-icon.png"></button>
+        </div>
+      {{/if}}
+    {{/each}}
+  </div>
+</div>

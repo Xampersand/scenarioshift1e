@@ -40,4 +40,8 @@ export const preloadHandlebarsTemplates = async function () {
     'constellation-messages-gmboard',
     constellationMessagingGmboardTemplatePath
   );
+  const skillInventoryTemplatePath = await getTemplate(
+    'systems/ss1e/templates/actor/parts/skill-inventory.hbs'
+  );
+  Handlebars.registerPartial('skill-inventory', skillInventoryTemplatePath);
 };

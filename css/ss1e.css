@@ -1866,3 +1866,55 @@ input.input-text::selection {
   margin-bottom: 4px;
   width: 150px;
 }
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item {
+  display: flex;
+  flex-direction: row;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 5px 0px 0px 5px;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+  font-size: 1rem;
+  margin: 5px 0px 5px 0px;
+  width: 200px;
+  padding: 0;
+  height: 40px;
+  text-transform: uppercase;
+  border-right: 0;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-box img {
+  justify-self: flex-start;
+  width: 34px;
+  height: auto;
+  border: 0;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-box span {
+  text-align: center;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-roll-button {
+  background: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 5px 0px 5px 0px;
+  border-radius: 0;
+  border: 1px solid white;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-roll-button img {
+  width: 38px;
+  height: auto;
+  max-width: inherit;
+  border: 0;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-roll-button.skill-damage-roll {
+  border-radius: 0 5px 5px 0;
+  border-left: 0;
+}

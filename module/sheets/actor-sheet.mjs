@@ -12,6 +12,7 @@ import * as Gmboard from '../services/GmboardService.mjs';
 import * as WeaponRoll from '../services/WeaponRollService.mjs';
 import * as RpRollService from '../services/RpRollService.mjs';
 import * as ActionPoints from '../services/ActionPointService.mjs';
+import * as SkillInventory from '../services/SkillInventoryService.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -125,6 +126,15 @@ export class SS1EActorSheet extends ActorSheet {
     });
 
     html.find('.drop-zone').on('drop', Inventory.onDropItem.bind(this));
+    // Handle skill drop
+    html
+      .find('.skill-container.drop-zone')
+      .on('drop', SkillInventory.onDropSkill.bind(this));
+    //handle skill dialog
+    html.find('button[data-action="skill-view"]').click((event) => {
+      const itemId = $(event.currentTarget).data('item-id');
+      SkillInventory.openSkillDialog(event, itemId, this.actor);
+    });
 
     // Render the item sheet for viewing/editing prior to the editable check.
     html.on('click', '.item-edit', (ev) => {
