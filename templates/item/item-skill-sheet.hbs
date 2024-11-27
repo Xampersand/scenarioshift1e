@@ -47,6 +47,21 @@
 						{{/if}}
 
 					</div>
+					<div class="weapon-rarity">
+						<label for="system.skillType">SKILL TYPE:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.skillType'
+								type='text'
+								value='{{system.skillType}}'
+								placeholder='SKILL TYPE'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.skillType}}</div>
+						{{/if}}
+					</div>
 				</div>
 			</section>
 			{{! Sheet Body }}

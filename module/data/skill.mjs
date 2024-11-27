@@ -25,6 +25,7 @@ export default class SS1ESkill extends SS1EItemBase {
     });
     schema.damageType = new fields.StringField({ initial: 'bludgeoning' });
     schema.damageFormula = new fields.StringField({ initial: '' });
+    schema.skillType = new fields.StringField({ initial: 'damage' });
 
     return schema;
   }
@@ -35,3 +36,10 @@ export default class SS1ESkill extends SS1EItemBase {
     this.damageFormula = `${roll.diceNum}${roll.diceSize}+${roll.diceBonus}`;
   }
 }
+// to do
+//  add action point cost to schema
+// setup buttons to use, which consumes action points and sends the description to chat
+// setup active effects to apply to actor when skill is used for a duration
+// setup accuracy and damage formula to be used in the roll buttons
+// evolve the skill based on actor stats ( more dice rolls at say 20 str)
+// setup skill damage roll to scale with user stats
