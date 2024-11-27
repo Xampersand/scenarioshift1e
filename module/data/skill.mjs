@@ -27,6 +27,7 @@ export default class SS1ESkill extends SS1EItemBase {
     schema.damageFormula = new fields.StringField({ initial: '' });
     schema.skillType = new fields.StringField({ initial: 'damage' });
     schema.apCost = new fields.NumberField({ ...requiredInteger, initial: 1 });
+    schema.scaleThreshold = new fields.NumberField({ ...requiredInteger, initial: 20 });
 
     return schema;
   }
@@ -34,7 +35,25 @@ export default class SS1ESkill extends SS1EItemBase {
   prepareDerivedData() {
     super.prepareDerivedData();
     const roll = this.damageRoll;
-    this.damageFormula = `${roll.diceNum}${roll.diceSize}+${roll.diceBonus}`;
+    const actor = this.actor;
+    const statValue = this._getActorStatValue(actor, this.system.requirement.type);
+    const scaleThreshold = this.system.scaleThreshold;
+    const additionalDice = Math.floor(statValue / scaleThreshold);
+
+    this.damageFormula = `${roll.diceNum + additionalDice}${roll.diceSize}+${roll.diceBonus}`;
+  }
+
+  _getActorStatValue(actor, statType) {
+    switch (statType) {
+      case 'str':
+        return actor.system.stats.str.value;
+      case 'agi':
+        return actor.system.stats.agi.value;
+      case 'int':
+        return actor.system.stats.int.value;
+      default:
+        return 0;
+    }
   }
 }
 // to do
