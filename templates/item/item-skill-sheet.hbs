@@ -7,17 +7,9 @@
   </nav>
   <div class='sheet-body'>
     <div class='tab' data-tab='description'>
-      <section class='weapon-top-section'>
-        <img
-          class='weapon-img'
-          src='{{item.img}}'
-          data-edit='img'
-          title='{{item.name}}'
-          height='50px'
-          width='50px'
-        />
-        <div class='skill-info'>
-          <div class='skill-name'>
+		<div class="skill-description-sheet">
+			<section class="skill-title">
+			<div class='skill-info-line'>
             {{#if isEditing}}
               <input
                 name='name'
@@ -26,10 +18,33 @@
                 placeholder='NAME'
               />
             {{else}}
-              <div>{{item.name}}</div>
+              <div class="skill-name">{{item.name}}</div>
             {{/if}}
           </div>
-          <div class='skill-rating'>
+		  </section>
+      <section class='skill-top-section'>
+		<div class="skill-img-container">
+        <img
+          class='skill-img'
+          src='{{item.img}}'
+          data-edit='img'
+          title='{{item.name}}'
+          height='50px'
+          width='50px'
+        />
+		</div>
+		<div class="skill-description-box">
+		{{#if isEditing}}
+			<textarea name="system.description" class="skill-description-textarea"></textarea>
+		{{else}}
+			<div class="skill-description">{{system.description}}</div>
+		{{/if}}
+		</div>
+      </section>
+	  <section class="skill-bottom-section">
+		<div class='skill-shared-stats'>
+          <div class='skill-info-line'>
+			<label class='skill-info-label'>SKILL&nbsp;RATING:&nbsp;</label>
             {{#if isEditing}}
               <input
                 name='system.rating'
@@ -38,10 +53,11 @@
                 placeholder='RATING'
               />
             {{else}}
-              <div>{{system.rating}}</div>
+              <div class="skill-info-value">{{system.rating}}</div>
             {{/if}}
           </div>
-          <div class="skill-mana-type">
+          <div class="skill-info-line">
+			<label class='skill-info-label'>MANA&nbsp;TYPE:&nbsp;</label>
             {{#if isEditing}}
               <input
                 name='system.manaType'
@@ -50,10 +66,11 @@
                 placeholder='MANA TYPE'
               />
             {{else}}
-              <div>{{system.manaType}}</div>
+              <div class="skill-info-value">{{system.manaType}}</div>
             {{/if}}
           </div>
-          <div class="skill-type">
+          <div class="skill-info-line">
+			<label class='skill-info-label'>SKILL&nbsp;TYPE:&nbsp;</label>
             {{#if isEditing}}
               <input
                 name='system.skillType'
@@ -62,12 +79,27 @@
                 placeholder='SKILL TYPE'
               />
             {{else}}
-              <div>{{system.skillType}}</div>
+				<div class="skill-info-value">{{system.skillType}}</div>
             {{/if}}
           </div>
-		  {{> skill-sheet-description}}
+		  <div class="skill-info-line">
+			<label class='skill-info-label'>SKILL&nbsp;STAT:&nbsp;</label>
+			{{#if isEditing}}
+			<input
+				name="system.requirement.type"
+				type="text"
+				value="{{system.requirement.type}}"
+				placeholder='Skill Stat'>
+			{{else}}
+			<div class="skill-info-value">{{system.requirement.type}}</div>
+			{{/if}}
+		  </div>
         </div> <!-- Close skill-info -->
-      </section>
+		<div class='skill-specific-stats'>
+		{{> skill-sheet-description}}
+		</div>
+	  </section>
+	  </div>
     </div> <!-- Close tab description -->
 		<div class='tab' data-tab='attributes'>
 			<div class='effects-body'>

@@ -240,6 +240,9 @@ export class SS1EActorSheet extends ActorSheet {
     html.find('button[data-action="roll-skill-damage"]').click((event) => {
       SkillRoll.onRollSkillDamage(event, this.actor);
     });
+    html.find('button[data-action="use-skill"]').click((event) => {
+      SkillRoll.onSkillUse(event, this.actor);
+    });
     // Send Skill to chat
     html.find('button[data-action="send-skill-to-chat"]').click((event) => {
       SkillRoll.onSendSkillToChat(event, this.actor);

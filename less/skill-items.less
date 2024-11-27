@@ -1,0 +1,69 @@
+.skill-description-sheet {
+  display: flex;
+  flex-direction: column;
+  .skill-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  .skill-top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .skill-img-container {
+      flex: 1;
+      .skill-img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .skill-description-box {
+      flex: 2;
+      .skill-description-textarea {
+        resize: none;
+        width: 100%;
+        height: 100px;
+      }
+    }
+  }
+  .skill-bottom-section {
+    display: flex;
+    flex-direction: row;
+    .skill-shared-stats {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: flex-start;
+      justify-content: space-between;
+      .skill-info-line {
+        display: flex;
+        flex-direction: row;
+        .skill-name {
+          font-weight: bold;
+          font-size: 1.5rem;
+        }
+        label {
+          font-weight: bold;
+          font-size: 1rem;
+        }
+        .skill-info-value {
+          font-size: 1rem;
+        }
+      }
+    }
+    .skill-specific-stats {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: flex-start;
+      .skill-info-line {
+        display: flex;
+        flex-direction: row;
+        font-size: 1rem;
+        label {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

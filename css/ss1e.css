@@ -1892,9 +1892,10 @@ input.input-text::selection {
 }
 .ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-box img {
   justify-self: flex-start;
-  width: 34px;
+  width: 36px;
   height: auto;
-  border: 0;
+  border: 1px solid #52c8ff;
+  margin: 0 4px 0px 2px;
 }
 .ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-box span {
   text-align: center;
@@ -1921,4 +1922,73 @@ input.input-text::selection {
 .ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-button.send-chat-roll {
   text-align: center;
   line-height: 100%;
+}
+.skill-description-sheet {
+  display: flex;
+  flex-direction: column;
+}
+.skill-description-sheet .skill-title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+.skill-description-sheet .skill-top-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.skill-description-sheet .skill-top-section .skill-img-container {
+  flex: 1;
+}
+.skill-description-sheet .skill-top-section .skill-img-container .skill-img {
+  width: 100px;
+  height: 100px;
+}
+.skill-description-sheet .skill-top-section .skill-description-box {
+  flex: 2;
+}
+.skill-description-sheet .skill-top-section .skill-description-box .skill-description-textarea {
+  resize: none;
+  width: 100%;
+  height: 100px;
+}
+.skill-description-sheet .skill-bottom-section {
+  display: flex;
+  flex-direction: row;
+}
+.skill-description-sheet .skill-bottom-section .skill-shared-stats {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.skill-description-sheet .skill-bottom-section .skill-shared-stats .skill-info-line {
+  display: flex;
+  flex-direction: row;
+}
+.skill-description-sheet .skill-bottom-section .skill-shared-stats .skill-info-line .skill-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.skill-description-sheet .skill-bottom-section .skill-shared-stats .skill-info-line label {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.skill-description-sheet .skill-bottom-section .skill-shared-stats .skill-info-line .skill-info-value {
+  font-size: 1rem;
+}
+.skill-description-sheet .skill-bottom-section .skill-specific-stats {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+}
+.skill-description-sheet .skill-bottom-section .skill-specific-stats .skill-info-line {
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+}
+.skill-description-sheet .skill-bottom-section .skill-specific-stats .skill-info-line label {
+  font-weight: bold;
 }

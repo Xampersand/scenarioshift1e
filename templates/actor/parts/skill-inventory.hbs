@@ -6,14 +6,14 @@
         <button title='{{this.name}}' class='item-view skill-box' data-action='skill-view' data-item-id='{{this._id}}'>
           <img src='{{this.img}}'></img><span class="skill-name">{{this.name}}</span>
         </button>
-        {{#if (eq this.system.skillType 'damage')}}
+        {{#if (eq this.system.skillType 'offensive')}}
         <button class="skill-button send-chat-roll" data-action="send-skill-to-chat" data-item-id="{{this._id}}"><span>Send to Chat</span></button>
         <button class="skill-button skill-accuracy-roll" data-action="roll-skill-accuracy" data-item-id="{{this._id}}"><img src="systems/ss1e/assets/images/target-icon.png"></button>
         <button class="skill-button skill-damage-roll" data-action="roll-skill-damage" data-item-id="{{this._id}}"><img src="systems/ss1e/assets/images/punch-icon.png"></button>
         {{/if}}
-        {{#if (notEqual this.system.skillType 'damage')}}
-        <button class="skill-button send-chat-roll" data-action="send-skill-to-chat" data-item-id="{{this._id}}"><img src="" alt=""></button>
-        <button class="skill-button use-skill-roll" data-action="use-skill" data-item-id="{{this._id}}"><span>Use</span></button>
+        {{#if (notEqual this.system.skillType 'offensive')}}
+        <button class="skill-button send-chat-roll" data-action="send-skill-to-chat" data-item-id="{{this._id}}"><img src="" alt="">Send to Chat</button>
+        <button class="skill-button use-skill-roll" data-action="use-skill" data-item-id="{{this._id}}"><span>Use Skill</span></button>
         {{/if}}
       </div>
       {{/if}}
