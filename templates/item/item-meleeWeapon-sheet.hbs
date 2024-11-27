@@ -35,12 +35,11 @@
 						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
-							<input
-								name='system.rating'
-								type='text'
-								value='{{system.rating}}'
-								placeholder='COMMON'
-							/>
+							<select name='system.rating'>
+                {{#each ../SS1E.ratings}}
+                  <option value='{{@key}}' {{#if (eq ../system.rating @key)}}selected{{/if}}>{{this}}</option>
+                {{/each}}
+              </select>
 						{{else}}
 							<!-- Non-editable display here -->
 							<div>{{system.rating}}</div>

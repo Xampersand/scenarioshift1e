@@ -40,7 +40,6 @@ export class SS1EItemSheet extends ItemSheet {
   getData() {
     // Retrieve base data structure.
     const context = super.getData();
-
     // Use a safe clone of the item data for further operations.
     const itemData = context.data;
 

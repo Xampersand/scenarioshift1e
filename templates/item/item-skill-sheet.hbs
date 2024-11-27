@@ -35,12 +35,13 @@
 						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
-							<input
-								name='system.rating'
-								type='text'
-								value='{{system.rating}}'
-								placeholder='COMMON'
-							/>
+							<select name='system.rating'>
+								<option value="COMMON">COMMON</option>
+								<option value="UNCOMMON">UNCOMMON</option>
+								<option value="RARE">RARE</option>
+								<option value="EPIC">EPIC</option>
+								<option value="LEGENDARY">LEGENDARY</option>
+              				</select>
 						{{else}}
 							<!-- Non-editable display here -->
 							<div>{{system.rating}}</div>
@@ -77,12 +78,13 @@
 								value='{{system.requirement.value}}'
 								placeholder=''
 							/>
-							<input
-								name='system.requirement.type'
-								type='text'
-								value='{{system.requirement.type}}'
-								placeholder='str'
-							/>
+							<select name="system.requirement.type">
+								<option value="str">STRENGTH</option>
+								<option value="agi">AGILITY</option>
+								<option value="con">CONSTITUTION</option>
+								<option value="int">INTELLIGENCE</option>
+							</select>
+
 						{{else}}
 							<!-- Non-editable display here -->
 							<div>{{system.requirement.value}}

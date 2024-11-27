@@ -11,6 +11,8 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/ss1e/templates/item/parts/item-effects.hbs',
     // Constellation messaging partials
     'systems/ss1e/templates/actor/parts/constellation-messages.hbs',
+    //skill inventory partial
+    'systems/ss1e/templates/actor/parts/skill-inventory.hbs',
   ]);
 
   // Register the inventory partial
