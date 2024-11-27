@@ -7,12 +7,14 @@ export const preloadHandlebarsTemplates = async function () {
   await loadTemplates([
     // Actor partials.
     'systems/ss1e/templates/actor/parts/inventory.hbs',
-    // Item partials
+    // Item effect partials
     'systems/ss1e/templates/item/parts/item-effects.hbs',
     // Constellation messaging partials
     'systems/ss1e/templates/actor/parts/constellation-messages.hbs',
     //skill inventory partial
     'systems/ss1e/templates/actor/parts/skill-inventory.hbs',
+    //skill sheet partial
+    'systems/ss1e/templates/item/parts/skill-sheet-description.hbs',
   ]);
 
   // Register the inventory partial
@@ -46,4 +48,11 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/ss1e/templates/actor/parts/skill-inventory.hbs'
   );
   Handlebars.registerPartial('skill-inventory', skillInventoryTemplatePath);
+  const skillSheetDescriptionTemplatePath = await getTemplate(
+    'systems/ss1e/templates/item/parts/skill-sheet-description.hbs'
+  );
+  Handlebars.registerPartial(
+    'skill-sheet-description',
+    skillSheetDescriptionTemplatePath
+  );
 };

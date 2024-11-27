@@ -1,0 +1,164 @@
+{{! #if skill type eq offensive
+name
+rating
+mana type
+skill type
+range
+accuracy
+formula: dice: num /size /bonus /damage type
+upgrade threshhold
+mana cost
+ap cost 
+-------------------------
+#if skill type eq supportive
+name : 
+rating: common
+mana type
+skill type : supportive
+range
+formula: dice num/size/bonus
+upgrade threshold
+mana cost
+ap cost 
+------------------------
+#if skill type eq debuff
+name
+rating
+mana type
+skill type: debuff
+range
+effect: (input)
+mana cost
+ap cost 
+----------------------
+#if skill type eq special
+name
+rating
+mana type:
+skill type: special
+range
+effect:(input)
+mana cost
+ap cost 
+------------------------
+#if skill type eq heal
+name
+rating
+mana type:
+skill type:
+range
+formula: dice: num/size/bonus
+mana cost
+ap cost  }}
+<div class='skill-stats'>
+  {{#if (eq system.skillType 'offensive')}}
+    {{#if isEditing}}
+      <input type='number' name='system.diceNum' placeholder='number of dice' />
+      <input type='text' name='system.diceSize' placeholder='size of dice' />
+      <input type='number' name='system.diceBonus' placeholder='bonus' />
+      <input type='text' name='system.damageType' placeholder='damage type' />
+    {{else}}
+    <label class="skill-info-label">DAMAGE:&nbsp;</label>
+      <div class="skill-info-value"
+      >{{system.diceNum}}{{system.diceSize}}&nbsp;+&nbsp;{{system.diceBonus}}&nbsp;{{system.damageType}}</span>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.range' placeholder='range' />
+      <input type='number' name='system.accuracy' placeholder='accuracy' />
+    {{else}}
+    <label class="skill-info-label">RANGE:&nbsp;</label>
+      <div class="skill-info-value">{{system.range}}</div>
+    <label class="skill-info-label">ACCURACY:&nbsp;</label>
+      <div class="skill-info-value">{{system.accuracy}}</div>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.upgradeThreshold' placeholder='upgrade threshold' />
+      <input type='number' name='system.manaCost' placeholder='mana cost' />
+      <input type='number' name='system.apCost' placeholder='ap cost' />
+    {{else}}
+    <label class="skill-info-label">UPGRADE&nbsp;THRESHOLD:&nbsp;</label>
+      <div class="skill-info-value">{{system.upgradeThreshold}}</div>
+    <label class="skill-info-label">MANA&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.manaCost}}</div>
+    <label class="skill-info-label">AP&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.apCost}}</div>
+    {{/if}}
+  {{/if}}
+  {{#if (eq system.skillType 'healing')}}
+    {{#if isEditing}}
+      <input type='number' name='system.diceNum' placeholder='number of dice' />
+      <input type='text' name='system.diceSize' placeholder='size of dice' />
+      <input type='number' name='system.diceBonus' placeholder='bonus' />
+    {{else}}
+    <label class="skill-info-label">HEAL:&nbsp;</label>
+      <div class="skill-info-value">{{system.diceNum}}{{system.diceSize}}&nbsp;+&nbsp;{{system.diceBonus}}</div>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.range' placeholder='range' />
+    {{else}}
+    <label class="skill-info-label">RANGE:&nbsp;</label>
+      <div class="skill-info-value">{{system.range}}</div>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.upgradeThreshold' placeholder='upgrade threshold' />
+      <input type='number' name='system.manaCost' placeholder='mana cost' />
+      <input type='number' name='system.apCost' placeholder='ap cost' />
+    {{else}}
+    <label class="skill-info-label">UPGRADE&nbsp;THRESHOLD:&nbsp;</label>
+      <div class="skill-info
+      -value">{{system.upgradeThreshold}}</div>
+    <label class="skill-info-label">MANA&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.manaCost}}</div>
+    <label class="skill-info-label">AP&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.apCost}}</div>
+    {{/if}}
+  {{/if}}
+  {{#if (eq system.skillType 'debuff')}}
+    {{#if isEditing}}
+      <input type='text' name='system.effect' placeholder='effect' />
+    {{else}}
+    <label class="skill-info-label">EFFECT:&nbsp;</label>
+      <div class="skill-info-value">{{system.effect}}</div>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.range' placeholder='range' />
+    {{else}}
+    <label class="skill-info-label">RANGE:&nbsp;</label>
+      <div class="skill-info
+      -value">{{system.range}}</div>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.manaCost' placeholder='mana cost' />
+      <input type='number' name='system.apCost' placeholder='ap cost' />
+    {{else}}
+    <label class="skill-info-label">MANA&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.manaCost}}</div>
+    <label class="skill-info-label">AP&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.apCost}}</div>
+    {{/if}}
+  {{/if}}
+  {{#if (eq system.skillType 'special')}}
+    {{#if isEditing}}
+      <input type='text' name='system.effect' placeholder='effect' />
+    {{else}}
+    <label class="skill-info-label">EFFECT:&nbsp;</label>
+      <div class="skill-info-value">{{system.effect}}</div>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.range' placeholder='range' />
+    {{else}}
+    <label class="skill-info-label">RANGE:&nbsp;</label>
+      <div class="skill-info
+      -value">{{system.range}}</div>
+    {{/if}}
+    {{#if isEditing}}
+      <input type='number' name='system.manaCost' placeholder='mana cost' />
+      <input type='number' name='system.apCost' placeholder='ap cost' />
+    {{else}}
+    <label class="skill-info-label">MANA&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.manaCost}}</div>
+    <label class="skill-info-label">AP&nbsp;COST:&nbsp;</label>
+      <div class="skill-info-value">{{system.apCost}}</div>
+    {{/if}}
+  {{/if}}
+</div>

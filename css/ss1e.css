@@ -1899,7 +1899,7 @@ input.input-text::selection {
 .ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-box span {
   text-align: center;
 }
-.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-roll-button {
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-button {
   background: none;
   width: 40px;
   height: 40px;
@@ -1908,13 +1908,17 @@ input.input-text::selection {
   border-radius: 0;
   border: 1px solid white;
 }
-.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-roll-button img {
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-button img {
   width: 38px;
   height: auto;
   max-width: inherit;
   border: 0;
 }
-.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-roll-button.skill-damage-roll {
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-button.skill-damage-roll {
   border-radius: 0 5px 5px 0;
   border-left: 0;
+}
+.ss1e.sheet.actor.character .character-skill-inventory .sheet-skill-inventory .skill-container .skill-item .skill-button.send-chat-roll {
+  text-align: center;
+  line-height: 100%;
 }
