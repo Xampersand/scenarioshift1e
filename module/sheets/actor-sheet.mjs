@@ -13,6 +13,7 @@ import * as WeaponRoll from '../services/WeaponRollService.mjs';
 import * as RpRollService from '../services/RpRollService.mjs';
 import * as ActionPoints from '../services/ActionPointService.mjs';
 import * as SkillInventory from '../services/SkillInventoryService.mjs';
+import * as SkillRoll from '../services/SkillService.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -229,6 +230,19 @@ export class SS1EActorSheet extends ActorSheet {
     // Roll Unmarmed damage button
     html.find('#roll-unarmed-damage').click((event) => {
       WeaponRoll.onRollUnarmedDamage(event, this.actor);
+    });
+    // Roll skill accuracy button
+    html.find('button[data-action="roll-skill-accuracy"]').click((event) => {
+      SkillRoll.onRollSkillAccuracy(event, this.actor);
+    });
+
+    // Roll skill damage button
+    html.find('button[data-action="roll-skill-damage"]').click((event) => {
+      SkillRoll.onRollSkillDamage(event, this.actor);
+    });
+    // Send Skill to chat
+    html.find('button[data-action="send-skill-to-chat"]').click((event) => {
+      SkillRoll.onSendSkillToChat(event, this.actor);
     });
     // Send Preset Message
     html
