@@ -7,6 +7,8 @@ export default class SS1EConsumable extends SS1EItemBase {
     const schema = super.defineSchema();
 
 	schema.effect = new fields.StringField({ initial: "No Effect" });
+  schema.consumableType = new fields.StringField({ initial: "HP" });
+  schema.consumableValue = new fields.NumberField({ initial: 5 });
 
     return schema;
   }

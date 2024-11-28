@@ -80,7 +80,36 @@
 							<!-- Non-editable display here -->
 							<div>{{system.effect}}</div>
 						{{/if}}
-
+					</div>
+					<div class="consumable-type">
+						<label for='system.consumableType'>Potion type:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.consumableType'
+								type='text'
+								value='{{system.consumableType}}'
+								placeholder='potion type'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.consumableType}} Potion</div>
+						{{/if}}
+					</div>
+					<div class="consumable-value">
+						<label for='system.consumableValue'>Potion effect:</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.consumableValue'
+								type='text'
+								value='{{system.consumableValue}}'
+								placeholder='5'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>Gain{{system.consumableValue}}{{system.consumableType}}</div>
+						{{/if}}
 					</div>
 					{{! add another div here for each stat/bonus }}
 				</div>
