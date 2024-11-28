@@ -23,7 +23,7 @@ export default class SS1ESkill extends SS1EItemBase {
     });
     schema.damageType = new fields.StringField({ initial: 'bludgeoning' });
     // schema.damageFormula = new fields.StringField({ initial: '' });
-    schema.skillType = new fields.StringField({ initial: 'damage' });
+    schema.skillType = new fields.StringField({ initial: 'offensive' });
     schema.apCost = new fields.NumberField({ ...requiredInteger, initial: 1 });
     schema.upgradeThreshold = new fields.NumberField({
       ...requiredInteger,
