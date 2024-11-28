@@ -46,6 +46,12 @@ export default class SS1ECharacter extends SS1EActorBase {
     resources.health.max = 5 + Math.round(stats.con.value * HEALTH_INCREMENT);
 
     resources.mana.max = Math.round(stats.int.value * MANA_INCREMENT);
+    if (resources.mana.value > resources.mana.max) {
+      resources.mana.value = resources.mana.max;
+    }
+    if (resources.health.value > resources.health.max) {
+      resources.health.value = resources.health.max;
+    }
   }
 
   calculateStats(path) {
