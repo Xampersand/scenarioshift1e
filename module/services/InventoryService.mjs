@@ -72,10 +72,8 @@ export function openItemDialog(event, itemId, actor) {
             : 'USE',
           callback: async () => {
             const requirement = item.system.requirement;
-            if (
-              actor.system.stats[requirement.type].baseValue >=
-              requirement.value
-            ) {
+            const statTotal = actor.system[`${requirement.type}Total`];
+            if (statTotal >= requirement.value) {
               if (equippables.includes(item.type)) {
                 if (item.system.equipped) {
                   await item.onUnequip();
@@ -85,20 +83,14 @@ export function openItemDialog(event, itemId, actor) {
                 item.system.equipped = !item.system.equipped;
                 await item.update({ 'system.equipped': item.system.equipped });
               } else if (item.system.consumableType === 'health') {
-                actor.system.resources.health.value += item.system.consumableValue;
-                if (actor.system.resources.health.value > actor.system.resources.health.max) {
-                  actor.system.resources.health.value = actor.system.resources.health.max;
-                }
+                actor.system.healthCurrent += item.system.consumableValue;
                 await actor.sheet.render(true);
               } else if (item.system.consumableType === 'mana') {
-                actor.system.resources.mana.value += item.system.consumableValue;
-                if (actor.system.resources.mana.value > actor.system.resources.mana.max) {
-                  actor.system.resources.mana.value = actor.system.resources.mana.max;
-                }
+                actor.system.manaCurrent += item.system.consumableValue;
                 await actor.sheet.render(true);
               } else {
                 console.log('Item used!');
-              }  
+              }
             } else {
               ui.notifications.error(
                 'You do not meet the requirements to equip this item!'

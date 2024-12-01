@@ -9,32 +9,26 @@ export function onRollMeleeWeapon(event, actor) {
     ui.notifications.warn('No equipped melee weapon found!');
     return;
   }
-  // How much stat do you need to get 1% inc damage
-  const STRENGTH_DAMAGE_SCALING = 1;
-  const AGILITY_DAMAGE_SCALING = 2;
-  const INTELLIGENCE_DAMAGE_SCALING = 1;
+  console.log(actor.system.strBase);
+  console.log(actor.system.strMulti);
+  console.log(actor.system.strTotal);
 
   // Determine the stat requirement and use the corresponding actor's stat
-  let playerStatDamageIncrease = 0;
+  let weaponDamageIncreaseTotal = 0;
   const statRequirement = weapon.system.requirement.type || 'str'; // Default to 'str' if no requirement is specified
   if (statRequirement === 'str') {
-    playerStatDamageIncrease =
-      actor.system.stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseStrTotal;
   } else if (statRequirement === 'agi') {
-    playerStatDamageIncrease =
-      actor.system.stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseAgiTotal;
   } else if (statRequirement === 'int') {
-    playerStatDamageIncrease =
-      actor.system.stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseIntTotal;
+  } else if (statRequirement === 'con') {
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseConTotal;
   } else {
-    ui.notifications.warn(
-      'Unknown stat requirement for the equipped melee weapon!'
-    );
+    ui.notifications.warn('Unknown stat requirement for the weapon!');
     return;
   }
-  const totalDamageIncrease = 1 + playerStatDamageIncrease;
-
-  const rollFormula = `round((${weapon.system.damageFormula})*${totalDamageIncrease})`;
+  const rollFormula = `round((${weapon.system.damageFormula})*${weaponDamageIncreaseTotal})`;
   if (!rollFormula) {
     ui.notifications.warn(
       'No damage formula found for the equipped melee weapon!'
@@ -72,33 +66,25 @@ export function onRollRangedWeapon(event, actor) {
     return;
   }
 
-  // How much stat do you need to get 1% inc damage
-  const STRENGTH_DAMAGE_SCALING = 1;
-  const AGILITY_DAMAGE_SCALING = 2;
-  const INTELLIGENCE_DAMAGE_SCALING = 1;
-
   // Determine the stat requirement and use the corresponding actor's stat
-  let playerStatDamageIncrease = 0;
-  const statRequirement = weapon.system.requirement.type || 'str'; // Default to 'str' if no requirement is specified
+  let weaponDamageIncreaseTotal = 0;
+  const statRequirement = weapon.system.requirement.type || 'agi'; // Default to 'str' if no requirement is specified
   if (statRequirement === 'str') {
-    playerStatDamageIncrease =
-      actor.system.stats.str.value / STRENGTH_DAMAGE_SCALING / 100;
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseStrTotal;
   } else if (statRequirement === 'agi') {
-    playerStatDamageIncrease =
-      actor.system.stats.agi.value / AGILITY_DAMAGE_SCALING / 100;
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseAgiTotal;
   } else if (statRequirement === 'int') {
-    playerStatDamageIncrease =
-      actor.system.stats.int.value / INTELLIGENCE_DAMAGE_SCALING / 100;
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseIntTotal;
+  } else if (statRequirement === 'con') {
+    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseConTotal;
   } else {
-    ui.notifications.warn(
-      'Unknown stat requirement for the equipped ranged weapon!'
-    );
+    ui.notifications.warn('Unknown stat requirement for the weapon!');
     return;
   }
 
   const weaponDamageIncrease = weapon.system.damageIncrease || 0;
   const totalDamageIncrease =
-    1 + playerStatDamageIncrease + weaponDamageIncrease;
+    1 + weaponDamageIncreaseTotal + weaponDamageIncrease;
   const rollFormula = `round((${ammo.system.damageFormula})*${totalDamageIncrease})`;
   if (!rollFormula) {
     ui.notifications.warn('No damage formula found for the equipped ammo!');
@@ -119,9 +105,7 @@ export function onRollRangedWeapon(event, actor) {
 }
 export function onRollUnarmedDamage(event, actor) {
   event.preventDefault();
-  const unarmedStrengthDamage = actor.system.stats.str.value / 2;
-  // const playerStatUnarmedDamageIncrease = actor.system.stats.str.value / 100;
-  // const totalDamageIncrease = 1 + playerStatUnarmedDamageIncrease;
+  const unarmedStrengthDamage = actor.system.strTotal / 2;
   const rollFormula = `round(1+${unarmedStrengthDamage})`;
   if (!rollFormula) {
     ui.notifications.warn('No unarmed damage formula found!');
@@ -145,7 +129,7 @@ export function onRollAccuracy(event, actor) {
   event.preventDefault();
 
   // Get the accuracy value from the actor's data
-  const accuracy = actor.system.derived.accuracy.value; // Adjust this path as necessary
+  const accuracy = actor.system.accuracyTotal; // Adjust this path as necessary
 
   // Check if accuracy is a number
   if (typeof accuracy !== 'number') {
@@ -182,7 +166,7 @@ export function onRollWeaponAccuracy(event, actor) {
   }
 
   // Define the roll formula for weapon accuracy
-  const playerAccuracy = actor.system.derived.accuracy.value;
+  const playerAccuracy = actor.system.accuracyTotal;
   const weaponAccuracy = weapon.system.accuracy || 0;
   const totalAccuracy = playerAccuracy + weaponAccuracy;
   const rollFormula = `1d100 + ${totalAccuracy}`;

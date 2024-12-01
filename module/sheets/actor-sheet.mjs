@@ -84,12 +84,12 @@ export class SS1EActorSheet extends ActorSheet {
       this._prepareItems(context);
     }
 
-    const hpValue = context.system.resources.health.value;
-    const hpMax = context.system.resources.health.max;
+    const hpValue = context.system.healthCurrent;
+    const hpMax = context.system.healthMaxTotal;
     const hpBarWidth = (hpValue / hpMax) * 100;
 
-    const manaValue = context.system.resources.mana.value;
-    const manaMax = context.system.resources.mana.max;
+    const manaValue = context.system.manaCurrent;
+    const manaMax = context.system.manaMaxTotal;
     const manaBarWidth = (manaValue / manaMax) * 100;
 
     // Assign this width to the template data
@@ -310,8 +310,8 @@ export class SS1EActorSheet extends ActorSheet {
 
   _openHealthDialog() {
     // Retrieve current health values
-    const currentHealth = this.actor.system.resources.health.value;
-    const maxHealth = this.actor.system.resources.health.max;
+    const currentHealth = this.actor.system.healthCurrent;
+    const maxHealth = this.actor.system.healthMaxTotal;
 
     // Create dialog
     new Dialog({
@@ -332,7 +332,7 @@ export class SS1EActorSheet extends ActorSheet {
 
             // Ensure health is within the valid range
             if (!isNaN(newHealth) && newHealth >= 0 && newHealth <= maxHealth) {
-              this.actor.update({ 'system.resources.health.value': newHealth });
+              this.actor.update({ 'system.healthCurrent': newHealth });
             } else {
               ui.notifications.warn('Please enter a valid health value.');
             }
@@ -347,8 +347,8 @@ export class SS1EActorSheet extends ActorSheet {
   }
   _openManaDialog() {
     // Retrieve current health values
-    const currentMana = this.actor.system.resources.mana.value;
-    const maxMana = this.actor.system.resources.mana.max;
+    const currentMana = this.actor.system.manaCurrent;
+    const maxMana = this.actor.system.manaMaxTotal;
 
     // Create dialog
     new Dialog({
@@ -369,7 +369,7 @@ export class SS1EActorSheet extends ActorSheet {
 
             // Ensure health is within the valid range
             if (!isNaN(newMana) && newMana >= 0 && newMana <= maxMana) {
-              this.actor.update({ 'system.resources.mana.value': newMana });
+              this.actor.update({ 'system.manaCurrent': newMana });
             } else {
               ui.notifications.warn('Please enter a valid mana value.');
             }

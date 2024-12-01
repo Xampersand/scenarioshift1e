@@ -41,7 +41,7 @@
                     style='width: {{hpBarWidth}}%;'
                   ></div><span
                     class='hp-text'
-                  >{{system.resources.health.value}}/{{system.resources.health.max}}</span>
+                  >{{system.healthCurrent}}/{{system.healthMaxTotal}}</span>
 
                 </div>
               </div>
@@ -52,7 +52,7 @@
                     style='width: {{manaBarWidth}}%;'
                   ></div><span
                     class='mana-text'
-                  >{{system.resources.mana.value}}/{{system.resources.mana.max}}</span>
+                  >{{system.manaCurrent}}/{{system.manaMaxTotal}}</span>
                 </div>
               </div>
             </div>
@@ -160,43 +160,50 @@
                 <input type="checkbox" id="action-point-three" checked>
                 <input type="checkbox" id="action-point-four" checked>
               </div>
-              {{#each system.derived as |stat key|}}
-                {{#if
-                  (or (eq key 'accuracy') (eq key 'armor') (eq key 'evasion'))
-                }}
-                  <div class='combat-stat-block'>
-                    <label
-                      class='{{key}}-label'
-                      for='{{key}}-stat'
-                    >{{stat.label}}:&nbsp;</label>
-                    <span class='{{key}}-stat'>{{stat.value}}
-                     <!-- (+{{stat.bonus}}) -->
-                    </span>
-                  </div>
-                {{/if}}
-              {{/each}}
+              <div class='combat-stat-block'>
+                <label class='evasion-label' for='evasion-stat'>Evasion:&nbsp;</label>
+                <span class='evasion-stat'>{{system.evasionTotal}}</span>
+              </div>
+              <div class='combat-stat-block'>
+                <label class='accuracy-label' for='accuracy-stat'>Accuracy:&nbsp;</label>
+                <span class='accuracy-stat'>{{system.accuracyTotal}}</span>
+              </div>
+              <div class='combat-stat-block'>
+                <label class='armor-label' for='armor-stat'>Armor:&nbsp;</label>
+                <span class='armor-stat'>{{system.armorTotal}}</span>
+              </div>
             </div>
             <div class='stat-container'>
-              {{#each system.stats as |stat key|}}
-                <div class='stat-flexrow'>
-                  <div class='combat-stat-block'>
-                    <label
-                      class='{{key}}-label'
-                      for='{{key}}-stat'
-                      data-action='rollStat'
-                      data-key='{{key}}'
-                    >{{stat.label}}:&nbsp;</label>
-                    <span class='{{key}}-stat'>{{stat.value}}
-                      <!-- (+{{stat.bonus}}) --></span>
-                  </div>
-                  <button
-                    class='resource-span'
-                    data-action='attributeLevelUp'
-                    data-key='{{key}}'
-                  >+</button>
-                </div>
-              {{/each}}
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='str-label' for='str-stat' data-action='rollStat' data-key='str'>Strength:&nbsp;</label>
+                <span class='str-stat'>{{system.strTotal}}</span>
+              </div>
+              <button class='resource-span' data-action='attributeLevelUp' data-key='str'>+</button>
             </div>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='agi-label' for='agi-stat' data-action='rollStat' data-key='agi'>Agility:&nbsp;</label>
+                <span class='agi-stat'>{{system.agiTotal}}</span>
+              </div>
+              <button class='resource-span' data-action='attributeLevelUp' data-key='agi'>+</button>
+            </div>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='con-label' for='con-stat' data-action='rollStat' data-key='con'>Constitution:&nbsp;</label>
+                <span class='con-stat'>{{system.conTotal}}</span>
+              </div>
+              <button class='resource-span' data-action='attributeLevelUp' data-key='con'>+</button>
+            </div>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='int-label' for='int-stat' data-action='rollStat' data-key='int'>Intelligence:&nbsp;</label>
+                <span class='int-stat'>{{system.intTotal}}</span>
+              </div>
+              <button class='resource-span' data-action='attributeLevelUp' data-key='int'>+</button>
+            </div>
+            <!-- Add other stats as needed -->
+          </div>
             <div class='coin-container flexrow'>
               <div class="coin-text-container"><label
               for='system.coins'

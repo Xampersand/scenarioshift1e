@@ -1,10 +1,10 @@
 // function to handle rollable attributes
 export function onRollRP(event, actor, key) {
   event.preventDefault();
-  const strRollBonus = Math.round(actor.system.stats.str.value / 5);
-  const agiRollBonus = Math.round(actor.system.stats.agi.value / 5);
-  const conRollBonus = Math.round(actor.system.stats.con.value / 5);
-  const intRollBonus = Math.round(actor.system.stats.int.value / 5);
+  const strRollBonus = Math.round(actor.system.strTotal / 5);
+  const agiRollBonus = Math.round(actor.system.agiTotal / 5);
+  const conRollBonus = Math.round(actor.system.conTotal / 5);
+  const intRollBonus = Math.round(actor.system.intTotal / 5);
 
   // Define different formulas for each type of stat
   const formulas = {
