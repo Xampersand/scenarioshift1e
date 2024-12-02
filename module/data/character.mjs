@@ -25,7 +25,7 @@ export default class SS1ECharacter extends SS1EActorBase {
     schema.healthMaxBonus = new fields.NumberField({ initial: 0 });
     schema.healthMaxMulti = new fields.NumberField({ initial: 1 });
     schema.healthMaxTotal = new fields.NumberField({ initial: 0 });
-    schema.healthCurrent = new fields.NumberField({ initial: 0 });
+    schema.healthCurrent = new fields.NumberField({ initial: 5 });
     schema.manaMaxBase = new fields.NumberField({ initial: 0 });
     schema.manaMaxBonus = new fields.NumberField({ initial: 0 });
     schema.manaMaxMulti = new fields.NumberField({ initial: 1 });
