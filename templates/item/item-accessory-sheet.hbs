@@ -32,7 +32,7 @@
 						{{/if}}
 					</div>
 					<div class='accessory-rarity'>
-						<label for='system.rating'>RATING:</label>
+						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
 							<input
@@ -51,26 +51,15 @@
 
 			{{! Sheet Body }}
 			<section class='accessory-bottom-section'>
+				<div class="stats-title">Bonus&nbsp;Effects:&nbsp;</div>
 				<div class='stats'>
-					<div class='bonus'>
-						<label for='system.bonus'>BONUS:</label>
-						{{#if isEditing}}
-							<!-- Editable fields here -->
-							<input
-								name='system.bonus'
-								type='text'
-								value='{{system.bonus}}'
-								placeholder='+1 Agility'
-							/>
-						{{else}}
-							<!-- Non-editable display here -->
-							<div>{{system.bonus}}</div>
-						{{/if}}
-					</div>
-					{{! add another div here for each stat/bonus }}
-				</div>
-				<div class='accessory-actions'>
-					<button>SEND TO SOMEONE</button>
+					{{#each effects as |section sid|}}
+						{{#each section.effects as |effect|}}
+							<div class='effect'>
+								<div class='effect-name'>{{effect.name}}</div>
+							</div>
+						{{/each}}
+					{{/each}}
 				</div>
 			</section>
 		</div>

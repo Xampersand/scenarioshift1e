@@ -1491,24 +1491,30 @@ input.input-text::selection {
   display: flex;
   flex-direction: row;
 }
-.equipment-bottom-section {
+.equipment-top-section .equipment-title .requirement {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+.equipment-top-section .equipment-bottom-section {
   display: flex;
   flex-direction: row;
   flex-grow: 1 1 50%;
 }
-.equipment-bottom-section .stats {
+.equipment-top-section .equipment-bottom-section .stats {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.equipment-bottom-section .stats .requirement,
-.equipment-bottom-section .stats .defense {
+.equipment-top-section .equipment-bottom-section .stats .requirement,
+.equipment-top-section .equipment-bottom-section .stats .defense {
   display: flex;
   flex-direction: row;
   flex: auto;
 }
-.equipment-bottom-section .stats .requirement input,
-.equipment-bottom-section .stats .defense input {
+.equipment-top-section .equipment-bottom-section .stats .requirement input,
+.equipment-top-section .equipment-bottom-section .stats .defense input {
   margin: 3px;
   text-align: center;
   font-weight: bold;
@@ -1516,29 +1522,29 @@ input.input-text::selection {
   border: none;
   box-shadow: none;
 }
-.equipment-bottom-section .stats .requirement input::selection,
-.equipment-bottom-section .stats .defense input::selection {
+.equipment-top-section .equipment-bottom-section .stats .requirement input::selection,
+.equipment-top-section .equipment-bottom-section .stats .defense input::selection {
   background-color: #52c8ff;
 }
-.equipment-bottom-section .stats .requirement label,
-.equipment-bottom-section .stats .defense label {
+.equipment-top-section .equipment-bottom-section .stats .requirement label,
+.equipment-top-section .equipment-bottom-section .stats .defense label {
   font-weight: bold;
   font-size: 1.1rem;
 }
-.equipment-actions {
+.equipment-top-section .equipment-actions {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.equipment-actions button {
+.equipment-top-section .equipment-actions button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
   transition: box-shadow 0.3s ease-in-out;
   height: fit-content;
 }
-.equipment-actions button:hover {
+.equipment-top-section .equipment-actions button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .ammo-top-section {
@@ -1680,34 +1686,20 @@ input.input-text::selection {
 .accessory-bottom-section {
   display: flex;
   flex-direction: row;
-  flex-grow: 1 1 50%;
+}
+.accessory-bottom-section .stats-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
 }
 .accessory-bottom-section .stats {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   align-content: center;
 }
-.accessory-bottom-section .stats .bonus {
-  display: flex;
-  flex-direction: row;
-  flex: auto;
-}
-.accessory-bottom-section .stats .bonus input {
-  margin: 3px;
-  text-align: center;
-  font-weight: bold;
+.accessory-bottom-section .stats .effect {
+  font-size: 1.2rem;
   color: #ffffff;
-  border: none;
-  box-shadow: none;
-}
-.accessory-bottom-section .stats .bonus input::selection {
-  background-color: #52c8ff;
-}
-.accessory-bottom-section .stats .bonus label {
-  font-weight: bold;
-  font-size: 1.1rem;
 }
 .accessory-actions {
   display: flex;

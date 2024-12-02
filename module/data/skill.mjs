@@ -43,9 +43,9 @@ export default class SS1ESkill extends SS1EItemBase {
   }
 }
 // to do
-// DONE add action point cost to schema
-// MOSTLY DONE setup buttons to use, which consumes action points and sends the description to chat
-// setup active effects to apply to actor when skill is used for a duration
+// add action point cost to schema
+// setup buttons to use, which consumes action points and sends the description to chat
+// setup active effects to apply to actor when skill is used for a duration - cannot do untill automation is setup for combat
 // DONE setup accuracy and damage formula to be used in the roll buttons
-// evolve the skill based on actor stats ( more dice rolls at say 20 str)
-// setup skill damage roll to scale with user stats
+// DONE evolve the skill based on actor stats ( more dice rolls at say 20 str)
+// DONE setup skill damage roll to scale with user stats

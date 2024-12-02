@@ -35,16 +35,16 @@
 						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
-							<select name='system.rating'>
-                {{#each ../SS1E.ratings}}
-                  <option value='{{@key}}' {{#if (eq ../system.rating @key)}}selected{{/if}}>{{this}}</option>
-                {{/each}}
-              </select>
+							<input
+								name='system.rating'
+								type='text'
+								value='{{system.rating}}'
+								placeholder='COMMON'
+							/>
 						{{else}}
 							<!-- Non-editable display here -->
 							<div>{{system.rating}}</div>
 						{{/if}}
-
 					</div>
 				</div>
 			</section>
@@ -142,11 +142,6 @@
 						{{/if}}
 					</div>
 					{{! add another div here for each stat/bonus }}
-				</div>
-				<div class='weapon-actions'>
-					<button>ROLL ACCURACY</button>
-					<button>ROLL DAMAGE</button>
-					<button>SEND TO SOMEONE</button>
 				</div>
 			</section>
 		</div>

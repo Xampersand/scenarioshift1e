@@ -32,7 +32,7 @@
 						{{/if}}
 					</div>
 					<div class='equipment-rarity'>
-						<label for='system.rating'>RATING:</label>
+						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
 							<input
@@ -46,13 +46,8 @@
 							<div>{{system.rating}}</div>
 						{{/if}}
 					</div>
-				</div>
-			</section>
-			{{! Sheet Body }}
-			<section class='equipment-bottom-section'>
-				<div class='stats'>
 					<div class='requirement'>
-						<label for='system.requirement'>REQUIRES:</label>
+						<label for='system.requirement'>REQUIRES:&nbsp;</label>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
 							<input
@@ -73,31 +68,24 @@
 								{{system.requirement.type}}</div>
 						{{/if}}
 					</div>
-					<div class='defense'>
-						<label for='system.defense'>Defense:</label>
-						{{#if isEditing}}
-							<!-- Editable fields here -->
-							<input
-								name='system.defense'
-								type='text'
-								value='{{system.defense}}'
-								placeholder='10'
-							/>
-							<input
-								name='system.defenseType'
-								type='text'
-								value='{{system.defenseType}}'
-								placeholder='armor'
-							/>
-						{{else}}
-							<!-- Non-editable display here -->
-							<div>{{system.defense}} {{system.defenseType}}</div>
-						{{/if}}
-					</div>
-					{{! add another div here for each stat/bonus }}
 				</div>
-				<div class='equipment-actions'>
-					<button>SEND TO SOMEONE</button>
+			</section>
+			{{! Sheet Body }}
+			<section class='equipment-bottom-section'>
+				<div class='stats'>
+					
+					<div class="active-effects">
+						<div class="stats-title">Bonus&nbsp;Effects:&nbsp;</div>
+						<div class='stats'>
+							{{#each effects as |section sid|}}
+								{{#each section.effects as |effect|}}
+									<div class='effect'>
+										<div class='effect-name'>{{effect.name}}</div>
+									</div>
+								{{/each}}
+							{{/each}}
+						</div>
+					</div>
 				</div>
 			</section>
 		</div>

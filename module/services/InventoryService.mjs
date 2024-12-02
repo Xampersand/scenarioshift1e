@@ -38,7 +38,13 @@ export function openItemDialog(event, itemId, actor) {
     return;
   }
 
-  const equippables = ['meleeWeapon', 'rangedWeapon', 'equipment', 'ammo'];
+  const equippables = [
+    'meleeWeapon',
+    'rangedWeapon',
+    'equipment',
+    'ammo',
+    'accessory',
+  ];
   const consumables = ['item', 'consumable'];
 
   // onEquip and onUnequip need to be defined here, or else they wont work as async functions(dont ask me why)
