@@ -1,10 +1,10 @@
 <form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
   <!-- 1st Row: Character Information Title -->
-  <button class='edit-mode-toggle'>📝</button>
+  <button class='edit-mode-toggle'>Edit</button>
   <nav class='sheet-tabs tabs'>
-    <a class='item' data-tab='features'>Features</a>
+    <a class='item' data-tab='features'>Character</a>
     <a class='item' data-tab='inventory'>Inventory</a>
-    <a class='item' data-tab='abilities'>Abilities</a>
+    <a class='item' data-tab='abilities'>Skills</a>
     <!-- Add more tabs as necessary -->
   </nav>
   <section class='ss1e sheet actor character'>
@@ -32,7 +32,6 @@
                 width='180'
               />
             {{/if}}
-            {{!-- <img src="systems/ss1e/assets/images/picture-frame-four.png" class="picture-frame"alt=""> --}}
             <div class='hp-mana-container'>
               <div class='hp-block' id='hp-bar'>
                 <div class='hp-bar-container'>
