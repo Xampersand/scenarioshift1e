@@ -9,10 +9,6 @@ export function onRollMeleeWeapon(event, actor) {
     ui.notifications.warn('No equipped melee weapon found!');
     return;
   }
-  console.log(actor.system.strBase);
-  console.log(actor.system.strMulti);
-  console.log(actor.system.strTotal);
-
   // Determine the stat requirement and use the corresponding actor's stat
   let weaponDamageIncreaseTotal = 0;
   const statRequirement = weapon.system.requirement.type || 'str'; // Default to 'str' if no requirement is specified

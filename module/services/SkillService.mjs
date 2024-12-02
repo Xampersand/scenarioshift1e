@@ -42,7 +42,6 @@ export function onRollSkillAccuracy(event, actor) {
 export function onRollSkillDamage(event, actor) {
   event.preventDefault();
   const itemId = event.currentTarget.dataset.itemId;
-  console.log(`Item ID: ${itemId}`); // Debugging statement
 
   if (!itemId) {
     console.error('No item ID found on the clicked button.');
@@ -55,13 +54,6 @@ export function onRollSkillDamage(event, actor) {
     ui.notifications.warn('No skill found!');
     return;
   }
-  console.log(`Skill found: ${skill.name}`); // Debugging statement
-
-  // How much stat do you need to get 1% inc damage with the skill
-  const STRENGTH_DAMAGE_SCALING = 1;
-  const AGILITY_DAMAGE_SCALING = 1;
-  const INTELLIGENCE_DAMAGE_SCALING = 1;
-  const CONSTITUTION_DAMAGE_SCALING = 1;
 
   // Determine the stat requirement and use the corresponding actor's stat
   let skillDamageIncreaseTotal = 0;
@@ -110,7 +102,7 @@ export function onRollSkillDamage(event, actor) {
   }
 }
 // non damage skill usage
-export function onSkillUse(event, actor) {
+export async function onSkillUse(event, actor) {
   event.preventDefault();
   const itemId = event.currentTarget.dataset.itemId;
   const skill = actor.items.get(itemId);
@@ -123,16 +115,14 @@ export function onSkillUse(event, actor) {
     return;
   } else if (skill.system.skillType === 'healing') {
     // Healing skill
-    // How much stat do you need to get 1% inc damage with the skill
     const STRENGTH_HEALING_SCALING = 1;
     const AGILITY_HEALING_SCALING = 1;
     const INTELLIGENCE_HEALING_SCALING = 1;
     const CONSTITUTION_HEALING_SCALING = 1;
 
-    // Determine the stat requirement and use the corresponding actor's stat
     let playerStatHealingIncrease = 0;
     let additionalDice = 0;
-    const statRequirement = skill.system.requirement.type || 'int'; // Default to 'int' if no requirement is specified
+    const statRequirement = skill.system.requirement.type || 'int';
     if (statRequirement === 'str') {
       playerStatHealingIncrease =
         actor.system.strTotal / STRENGTH_HEALING_SCALING / 100;
@@ -186,9 +176,31 @@ export function onSkillUse(event, actor) {
     actor.system.manaCurrent -= skill.system.manaCost;
     actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
     return;
-  } else consumeActionPoints(actor, skill.system.apCost);
-  actor.system.manaCurrent -= skill.system.manaCost;
-  actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+  } else if (
+    skill.system.skillType === 'buff' ||
+    skill.system.skillType === 'debuff'
+  ) {
+    // Get the active effects present on the item
+    const effects = skill.effects;
+    // Apply the effects to the selected token
+    const selectedToken = canvas.tokens.controlled[0];
+    if (!selectedToken) {
+      ui.notifications.warn('No token selected!');
+      return;
+    }
+    for (let effect of effects) {
+      await selectedToken.actor.createEmbeddedDocuments('ActiveEffect', [
+        {
+          ...effect.toObject(),
+          disabled: false, // Enable the effect when applied
+        },
+      ]);
+    }
+    consumeActionPoints(actor, skill.system.apCost);
+    actor.system.manaCurrent -= skill.system.manaCost;
+    actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+    return;
+  }
 }
 // sending to chat
 export function onSendSkillToChat(event, actor) {

@@ -9,11 +9,6 @@ export function onStatLevelUp(event) {
   const statValue = this.actor.system[statTotalKey];
   const cost = 300 + Math.floor(statValue / 10) * 100;
 
-  console.log(`Attempting to level up ${statLabel}`);
-  console.log(`Current ${statLabel} value: ${statValue}`);
-  console.log(`Cost to level up: ${cost} Coins`);
-  console.log(`Current Armor Total: ${this.actor.system.armorTotal}`);
-
   new Dialog({
     title: 'Level Up!',
     content: `
@@ -30,9 +25,6 @@ export function onStatLevelUp(event) {
             const updatedCoins = this.actor.system.coins - cost;
             const newStatValue = this.actor.system[statBaseKey] + 1;
 
-            console.log(`Updating ${statLabel} to new value: ${newStatValue}`);
-            console.log(`Updated coins: ${updatedCoins}`);
-
             // Prepare the data object for updating
             let updateData = {
               [`system.coins`]: updatedCoins,
@@ -44,7 +36,6 @@ export function onStatLevelUp(event) {
               const healthGain = 2.5; // Rounding the 2.5 heal
               updateData['system.healthCurrent'] =
                 (this.actor.system.healthCurrent || 0) + healthGain;
-              console.log(`Health gain: ${healthGain}`);
             }
 
             // Add mana if Intelligence is leveled up
@@ -52,22 +43,16 @@ export function onStatLevelUp(event) {
               const manaGain = 5;
               updateData['system.manaCurrent'] =
                 (this.actor.system.manaCurrent || 0) + manaGain;
-              console.log(`Mana gain: ${manaGain}`);
             }
 
             // Apply updates to actor
             this.actor.update(updateData).then(() => {
-              console.log('Actor updated successfully');
               // Recalculate derived values
               this.actor.prepareDerivedData();
-              console.log(
-                `Recalculated Armor Total: ${this.actor.system.armorTotal}`
-              );
               this.render(); // Re-render the sheet
             });
           } else {
             ui.notifications.error('Not enough coins to level up!');
-            console.log('Not enough coins to level up!');
           }
         },
       },
