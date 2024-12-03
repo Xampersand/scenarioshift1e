@@ -6,32 +6,64 @@ export function consumeActionPoints(actor, points) {
   if (!combatant) {
     return;
   } else {
-    const checkboxes = Array.from(
-      document.querySelectorAll(
-        '.action-point-container input[type="checkbox"]'
-      )
-    ).reverse(); // Reverse the order of checkboxes
-    let uncheckedCount = 0;
-
-    for (let checkbox of checkboxes) {
-      if (uncheckedCount < points && checkbox.checked) {
-        checkbox.checked = false;
-        uncheckedCount++;
-      }
-    }
-
-    if (uncheckedCount < points) {
+    if (actor.system.actionPointsCurrent >= points) {
+      actor.system.actionPointsCurrent -= points;
+      actor
+        .update({
+          'system.actionPointsCurrent': actor.system.actionPointsCurrent,
+        })
+        .catch((err) => {
+          console.error(
+            `Failed to update action points for actor: ${actor.name}`,
+            err
+          );
+        });
+    } else {
       ui.notifications.warn(`Not enough action points!`);
     }
   }
 }
+// Function to reset action points
+export function resetActionPoints(actor) {
+  actor.system.actionPointsCurrent = actor.system.actionPointsMax;
+  actor
+    .update({
+      'system.actionPointsCurrent': actor.system.actionPointsMax,
+    })
+    .catch((err) => {
+      console.error(
+        `Failed to update action points for actor: ${actor.name}`,
+        err
+      );
+    });
+}
 
-// Hook to recheck all checkboxes at the start of each combat round
-Hooks.on('combatRound', (combat, round) => {
-  const checkboxes = document.querySelectorAll(
-    '.action-point-container input[type="checkbox"]'
-  );
-  for (let checkbox of checkboxes) {
-    checkbox.checked = true;
-  }
-});
+// Function to decrease action points
+export function minusActionPoints(actor) {
+  actor.system.actionPointsCurrent -= 1;
+  actor
+    .update({
+      'system.actionPointsCurrent': actor.system.actionPointsCurrent,
+    })
+    .catch((err) => {
+      console.error(
+        `Failed to update action points for actor: ${actor.name}`,
+        err
+      );
+    });
+}
+
+// Function to increase action points
+export function addActionPoints(actor) {
+  actor.system.actionPointsCurrent += 1;
+  actor
+    .update({
+      'system.actionPointsCurrent': actor.system.actionPointsCurrent,
+    })
+    .catch((err) => {
+      console.error(
+        `Failed to update action points for actor: ${actor.name}`,
+        err
+      );
+    });
+}

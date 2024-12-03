@@ -201,6 +201,16 @@ export class SS1EActorSheet extends ActorSheet {
       .find('button[data-action="purchase-slots"]')
       .click(Inventory.openPurchaseSlots.bind(this));
 
+    html
+      .find('button[data-action="plus-ap"]')
+      .click(() => ActionPoints.addActionPoints(this.actor));
+    html
+      .find('button[data-action="minus-ap"]')
+      .click(() => ActionPoints.minusActionPoints(this.actor));
+    html
+      .find('button[data-action="reset-ap"]')
+      .click(() => ActionPoints.resetActionPoints(this.actor));
+
     // Drag events for macros.
     if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);

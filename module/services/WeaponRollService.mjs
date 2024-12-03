@@ -66,13 +66,13 @@ export function onRollRangedWeapon(event, actor) {
   let weaponDamageIncreaseTotal = 0;
   const statRequirement = weapon.system.requirement.type || 'agi'; // Default to 'str' if no requirement is specified
   if (statRequirement === 'str') {
-    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseStrTotal;
+    weaponDamageIncreaseTotal = actor.system.damageIncreaseStrTotal;
   } else if (statRequirement === 'agi') {
-    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseAgiTotal;
+    weaponDamageIncreaseTotal = actor.system.damageIncreaseAgiTotal;
   } else if (statRequirement === 'int') {
-    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseIntTotal;
+    weaponDamageIncreaseTotal = actor.system.damageIncreaseIntTotal;
   } else if (statRequirement === 'con') {
-    weaponDamageIncreaseTotal = 1 + actor.system.damageIncreaseConTotal;
+    weaponDamageIncreaseTotal = actor.system.damageIncreaseConTotal;
   } else {
     ui.notifications.warn('Unknown stat requirement for the weapon!');
     return;

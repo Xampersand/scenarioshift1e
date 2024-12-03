@@ -211,17 +211,60 @@ export function onSendSkillToChat(event, actor) {
     ui.notifications.warn('No skill found!');
     return;
   }
-
+  let messageContent = ``;
   // send chat message with skill properties
-  const messageContent = `
-    <div class="skill-announce">&lt;SKILL - ${skill.name}&gt;</div><br>
-    <div>Name: ${skill.name}</div>
+  if (skill.system.skillType === 'offensive') {
+    messageContent = `
+  <div class="skill-message" style="display: flex; flex-direction: column;">
+    <div class="skill-announce" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+      <div class="skill-img" style="flex:1"><img src="${skill.img}" alt="${skill.name}" width="30" height="30" ></div>
+        <div class"skill-name" style="flex:2"><span >&lt;${skill.name}&gt;</span></div>
+    </div>
+    <div>${skill.system.description}</div>
+    <div>Base Damage: ${skill.system.diceNum}&nbsp;${skill.system.diceSize}&nbsp;+&nbsp;${skill.system.diceBonus}&nbsp;${skill.system.damageType}</div>
     <div>Range: ${skill.system.range}</div>
     <div>Accuracy: ${skill.system.accuracy}</div>
-    <div>Damage Roll: ${skill.system.damageFormula}</div>
-    <div>Damage Type: ${skill.system.damageType}</div>
     <div>AP Cost: ${skill.system.apCost}</div>
+    <div>Mana Cost: ${skill.system.manaCost}</div>
+  </div>
+  `;
+  } else if (skill.system.skillType === 'healing') {
+    messageContent = `
+    <div class="skill-message" style="display: flex; flex-direction: column;">
+      <div class="skill-announce" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+        <div class="skill-img" style="flex:1"><img src="${skill.img}" alt="${skill.name}" width="30" height="30" ></div>
+        <div class"skill-name" style="flex:2"><span >&lt;${skill.name}&gt;</span></div>
+      </div>
+      <div>${skill.system.description}</div><br>
+      <div>Healing Roll: ${skill.system.damageFormula}</div>
+      <div>AP Cost: ${skill.system.apCost}</div>
+      <div>Mana Cost: ${skill.system.manaCost}</div>
+    </div>
     `;
+  } else if (skill.system.skillType === 'buff') {
+    messageContent = `
+    <div class="skill-message">
+      <div class="skill-announce" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+        <img src="${skill.img}" alt="${skill.name}" width="30" height="30">
+        &lt;${skill.name}&gt;
+      </div><br>
+      <div>AP Cost: ${skill.system.apCost}</div>
+    </div>
+    `;
+  } else if (skill.system.skillType === 'debuff') {
+    messageContent = `
+    <div class="skill-message">
+      <div class="skill-announce" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+        <img src="${skill.img}" alt="${skill.name}" width="30" height="30">
+        &lt;${skill.name}&gt;
+      </div><br>
+      <div>AP Cost: ${skill.system.apCost}</div>
+    </div>
+    `;
+  } else {
+    ui.notifications.warn('Unknown skill type!');
+    return;
+  }
   ChatMessage.create({
     content: messageContent,
     speaker: ChatMessage.getSpeaker({ actor: actor }),

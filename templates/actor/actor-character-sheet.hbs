@@ -2,9 +2,9 @@
   <!-- 1st Row: Character Information Title -->
   <button class='edit-mode-toggle'>Edit</button>
   <nav class='sheet-tabs tabs'>
-    <a class='item' data-tab='features'>Character</a>
-    <a class='item' data-tab='inventory'>Inventory</a>
-    <a class='item' data-tab='abilities'>Skills</a>
+    <a class='item' data-tab='features'>CHARACTER</a>
+    <a class='item' data-tab='inventory'>INVENTORY</a>
+    <a class='item' data-tab='abilities'>COMBAT</a>
     <!-- Add more tabs as necessary -->
   </nav>
   <section class='ss1e sheet actor character'>
@@ -153,11 +153,9 @@
         <div class='body'>
           <div class='stat-related'>
             <div class='combat-stat-container'>
-              <div class="action-point-container">
-                <input type="checkbox" id="action-point-one" checked>
-                <input type="checkbox" id="action-point-two" checked>
-                <input type="checkbox" id="action-point-three" checked>
-                <input type="checkbox" id="action-point-four" checked>
+              <div class='combat-stat-block'>
+                <label>AP:&nbsp;</label>
+                <span>{{system.actionPointsCurrent}}/{{system.actionPointsMax}}</span>
               </div>
               <div class='combat-stat-block'>
                 <label class='evasion-label' for='evasion-stat'>Evasion:&nbsp;</label>
@@ -226,63 +224,6 @@
           
         </div>
         <div class='bottom'>
-          <div class='accuracy-rolls'>
-            <div class="accuracy-roll-container"><img src="systems/ss1e/assets/images/target-icon.png"><button id='roll-accuracy' class='rollable'>Roll Accuracy</button></div>
-            {{#each actor.items as |item|}}
-              {{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
-                <div class="accuracy-roll-container"><img src={{item.img}} class="item-roll-icon"><button
-                  class='rollable'
-                  data-item-id='{{item._id}}'
-                  data-action='rollWeaponAccuracy'
-                >{{item.name}}
-                  Accuracy
-                </button></div>
-              {{/if}}
-            {{/each}}
-            {{#each actor.items as |item|}}
-              {{#if (and (eq item.type 'rangedWeapon') item.system.equipped)}}
-                <button
-                  class='rollable'
-                  data-item-id='{{item._id}}'
-                  data-action='rollWeaponAccuracy'
-                >{{item.name}}
-                  Accuracy
-                </button>
-              {{/if}}
-            {{/each}}
-          </div>
-          <div class='damage-rolls'>
-            <div class="damage-roll-container"><img src="systems/ss1e/assets/images/punch-icon.png" alt=""><button id='roll-unarmed-damage'>Roll Unarmed Damage</button></div>
-            {{#each actor.items as |item|}}
-              {{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
-                <div class="damage-roll-container"><img src={{item.img}} alt=""><button
-                  class='rollable'
-                  data-item-id='{{item._id}}'
-                  id='roll-melee-weapon'
-                >{{item.name}}
-                  Damage</button></div>
-              {{/if}}
-            {{/each}}
-            {{#each actor.items as |weapon|}}
-              {{#if
-                (and (eq weapon.type 'rangedWeapon') weapon.system.equipped)
-              }}
-                {{#each actor.items as |ammo|}}
-                  {{#if (and (eq ammo.type 'ammo') ammo.system.equipped)}}
-                    <button
-                      class='rollable'
-                      data-weapon-id='{{weapon._id}}'
-                      data-ammo-id='{{ammo._id}}'
-                      id='roll-ranged-weapon'
-                    >{{weapon.name}}
-                      with
-                      {{ammo.name}}
-                    </button>
-                  {{/if}}
-                {{/each}}
-              {{/if}}
-            {{/each}}
-          </div>
         </div>
       </div>
       <div class='tab character-inventory' data-tab='inventory'>
@@ -291,8 +232,77 @@
         {{> inventory}}
       </div>
       <div class='tab character-skill-inventory' data-tab='abilities'>
-        <div class='sheet-title'>&lt;SKILLS&gt;</div>
-        {{> skill-inventory}}
+        <div class="combat-resources">
+          <div class='hp-mana-container'>
+            <div class='hp-block' id='hp-bar'>
+              <div class='hp-bar-container'>
+                <div class='hp-bar'style='width: {{hpBarWidth}}%;'></div>
+                <span class='hp-text'>{{system.healthCurrent}}/{{system.healthMaxTotal}}</span>
+               </div>
+            </div>
+            <div class='mana-block' id='mana-bar'>
+              <div class='mana-bar-container'>
+                <div class='mana-bar'style='width: {{manaBarWidth}}%;'></div>
+                <span class='mana-text'>{{system.manaCurrent}}/{{system.manaMaxTotal}}</span>
+              </div>
+             </div>
+          </div>
+          <div class="ap-container">
+            <label>Action&nbsp;Points:&nbsp;</label>
+            <span>{{system.actionPointsCurrent}}/{{system.actionPointsMax}}</span>
+            <button class="rollable ap-button" data-action="plus-ap"><img src="systems/ss1e/assets/images/plus-icon.png" alt=""></button>
+            <button class="rollable ap-button" data-action="minus-ap"><img src="systems/ss1e/assets/images/minus-icon.png" alt=""></button>
+            <button class="rollable ap-button" data-action="reset-ap"><img src="systems/ss1e/assets/images/reload-icon.png" alt=""></button>
+          </div>
+        </div>
+        <div class="combat-actions">
+          {{> skill-inventory}}
+          <div class="attack-actions">
+            <div class="action-title"><span>&lt;ATTACKS&gt;</span></div>
+            <div class="attack-roll-container">
+              <div class="attack-box"><img src="systems/ss1e/assets/images/unarmed-icon.png" alt=""><span>Unarmed</span></div>
+              <button id='roll-accuracy' class='attack-roll attack-accuracy-roll'>
+                <img src="systems/ss1e/assets/images/target-icon.png">
+              </button>
+              <button id='roll-unarmed-damage' class="attack-roll attack-damage-roll">
+                <img src="systems/ss1e/assets/images/damage-icon.png" alt="">
+              </button>
+            </div>
+            {{#each actor.items as |item|}}
+              {{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
+                <div class="attack-roll-container">
+                    <div class="attack-box"><img src="{{item.img}}" alt=""><span>&nbsp;{{item.name}}</span></div>
+                    <button class='attack-roll attack-accuracy-roll' data-item-id={{item._id}} data-action='rollWeaponAccuracy'>
+                      <img src="systems/ss1e/assets/images/target-icon.png">
+                    </button>
+                    <button class="attack-roll attack-damage-roll"data-item-id='{{item._id}}'id='roll-melee-weapon'>
+                      <img src="systems/ss1e/assets/images/damage-icon.png" alt="">
+                    </button>
+                  </div>
+              {{/if}}
+            {{/each}}
+            {{#each actor.items as |weapon|}}
+              {{#if
+                (and (eq weapon.type 'rangedWeapon') weapon.system.equipped)
+              }}
+                {{#each actor.items as |ammo|}}
+                  {{#if (and (eq ammo.type 'ammo') ammo.system.equipped)}}
+                  <div class="attack-roll-container">
+                    <div class="attack-box"><img src="{{weapon.img}}" alt=""><span>&nbsp;{{weapon.name}}&nbsp;using&nbsp;{{ammo.name}}</span></div>
+                    <button class='attack-roll attack-accuracy-roll' data-item-id={{weapon._id}} data-action='rollWeaponAccuracy'>
+                      <img src="systems/ss1e/assets/images/target-icon.png">
+                    </button>
+                    <button class="attack-roll attack-damage-roll"data-weapon-id='{{weapon._id}}'data-ammo-id='{{ammo._id}}'id='roll-ranged-weapon'>
+                      <img src="systems/ss1e/assets/images/damage-icon.png" alt="">
+                    </button>
+                  </div>
+                  {{/if}}
+                {{/each}}
+              {{/if}}
+            {{/each}}
+          </div>
+          </div>
+        </div>
       </div>
       <!-- Add more tab content as necessary -->
     </div>
