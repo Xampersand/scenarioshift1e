@@ -233,6 +233,24 @@
       </div>
       <div class='tab character-skill-inventory' data-tab='abilities'>
         <div class="combat-resources">
+          <div class="pfp-hp-mana">{{#if isEditing}}
+              <img
+                class='profile-img'
+                src='{{actor.img}}'
+                data-edit='img'
+                title='{{actor.name}}'
+                height='64'
+                width='64'
+              />
+            {{else}}
+              <img
+                class='profile-img'
+                src='{{actor.img}}'
+                title='{{actor.name}}'
+                height='64'
+                width='64'
+              />
+            {{/if}}
           <div class='hp-mana-container'>
             <div class='hp-block' id='hp-bar'>
               <div class='hp-bar-container'>
@@ -246,6 +264,7 @@
                 <span class='mana-text'>{{system.manaCurrent}}/{{system.manaMaxTotal}}</span>
               </div>
              </div>
+          </div>
           </div>
           <div class="ap-container">
             <label>Action&nbsp;Points:&nbsp;</label>

@@ -4,74 +4,77 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      margin-top: 10px;
+      margin-top: 25px;
       margin-bottom: 5px;
-      .hp-mana-container {
-        position: relative;
+      .pfp-hp-mana {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        .hp-block {
-          .set-display-flex-row();
-          justify-content: space-evenly;
-          align-items: center;
+        flex-direction: row;
+        .profile-img {
+          border: 1px solid @subaccent-color;
+        }
+        .hp-mana-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          .hp-block {
+            .set-display-flex-row();
+            justify-content: space-evenly;
+            align-items: center;
 
-          .hp-bar-container {
-            width: 160px;
-            height: 32px;
-            background-color: @resource-container-color;
-            border-bottom: 1px solid @subaccent-color;
-            //   border-radius: 20% 20% 0px 0px;
-            overflow: hidden;
-            align-self: flex-end;
-            position: relative;
-            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
-
-            .hp-bar {
-              height: 100%;
-              background-color: @hp-color;
-              transition: width 0.3s ease;
-              display: flex;
-              justify-content: center;
-            }
-            & span {
-              font-size: 1.4rem;
-              font-weight: normal;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
+            .hp-bar-container {
+              width: 160px;
+              height: 32px;
+              background-color: @resource-container-color;
+              border-bottom: 1px solid @subaccent-color;
+              overflow: hidden;
+              align-self: flex-end;
+              position: relative;
+              clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+              .hp-bar {
+                height: 100%;
+                background-color: @hp-color;
+                transition: width 0.3s ease;
+                display: flex;
+                justify-content: center;
+              }
+              & span {
+                font-size: 1.4rem;
+                font-weight: normal;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
             }
           }
-        }
-        .mana-block {
-          .set-display-flex-row();
-          justify-content: space-evenly;
-          align-items: center;
-          .mana-bar-container {
-            width: 160px;
-            height: 32px;
-            background-color: @resource-container-color;
-            border-top: 0;
-            //   border-radius: 0px 0px 20% 20%;
-            overflow: hidden;
-            position: relative;
-            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-
-            .mana-bar {
-              height: 100%;
-              background-color: @mana-color;
-              transition: width 0.3s ease;
-              display: flex;
-              justify-content: center;
-            }
-            & span {
-              font-size: 1.4rem;
-              font-weight: normal;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
+          .mana-block {
+            .set-display-flex-row();
+            justify-content: space-evenly;
+            align-items: center;
+            .mana-bar-container {
+              width: 160px;
+              height: 32px;
+              background-color: @resource-container-color;
+              border-top: 0;
+              overflow: hidden;
+              position: relative;
+              clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+              .mana-bar {
+                height: 100%;
+                background-color: @mana-color;
+                transition: width 0.3s ease;
+                display: flex;
+                justify-content: center;
+              }
+              & span {
+                font-size: 1.4rem;
+                font-weight: normal;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
             }
           }
         }
@@ -222,41 +225,21 @@
             background: none;
             width: 34px;
             height: 34px;
-            padding: 0;
+            padding: 2px;
             margin: 5px 0px 5px 0px;
             border-radius: 0;
             border: 1px solid @main-border-color;
             img {
-              width: 32px; // Adjust to fit the button
+              width: 28px; // Adjust to fit the button
               height: auto; // Maintain aspect ratio
               max-width: inherit;
               border: 0;
             }
-            .attack-roll.attack-damage-roll {
-              border-radius: 0 5px 5px 0;
-              border-left: 0;
-            }
           }
-          // & img {
-          //   width: 40px; /* Adjust width proportionally */
-          //   height: 40px; /* Match the height of the container */
-          //   aspect-ratio: 1; /* Ensure the image remains square */
-          //   border: 1px solid @main-border-color;
-          //   border-right: none;
-          //   .add-glow(@glow-color, 2px, 5px);
-          // }
-
-          // & button {
-          //   border: 1px solid @main-border-color;
-          //   border-radius: 0px 5px 5px 0px;
-          //   .add-glow(@glow-color, 2px, 5px);
-          //   font-size: 1rem;
-          //   margin: 5px 5px 5px 0px;
-          //   width: 40px;
-          //   padding: 0;
-          //   height: 40px;
-          //   text-transform: uppercase;
-          // }
+          .attack-roll.attack-damage-roll {
+            border-radius: 0 5px 5px 0;
+            border-left: 0;
+          }
         }
       }
       .damage-rolls {

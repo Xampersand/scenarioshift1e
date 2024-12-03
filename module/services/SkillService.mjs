@@ -33,9 +33,9 @@ export function onRollSkillAccuracy(event, actor) {
   } catch (error) {
     console.error('Error while rolling skill accuracy:', error);
   }
-  consumeActionPoints(actor, skill.system.apCost);
   actor.system.manaCurrent -= skill.system.manaCost;
   actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+  consumeActionPoints(actor, skill.system.apCost);
 }
 
 // Function to handle the skill damage roll
@@ -172,9 +172,9 @@ export async function onSkillUse(event, actor) {
     } catch (error) {
       console.error('Error while rolling skill damage:', error);
     }
-    consumeActionPoints(actor, skill.system.apCost);
     actor.system.manaCurrent -= skill.system.manaCost;
     actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+    consumeActionPoints(actor, skill.system.apCost);
     return;
   } else if (
     skill.system.skillType === 'buff' ||
@@ -196,9 +196,9 @@ export async function onSkillUse(event, actor) {
         },
       ]);
     }
-    consumeActionPoints(actor, skill.system.apCost);
     actor.system.manaCurrent -= skill.system.manaCost;
     actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+    consumeActionPoints(actor, skill.system.apCost);
     return;
   }
 }
