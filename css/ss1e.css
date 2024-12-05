@@ -954,6 +954,40 @@ h2.category-title,
   font-weight: normal;
   font-size: 1.1rem;
 }
+.ss1e.sheet.actor.character .bottom {
+  display: flex;
+  flex-direction: row;
+}
+.ss1e.sheet.actor.character .bottom .stat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 50%;
+}
+.ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block label {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 40px;
+}
+.ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block .stat-numbers {
+  width: 60px;
+}
+.ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block .stat-numbers span {
+  font-size: 1.1rem;
+  text-align: center;
+}
 input.input-text {
   border: none;
   box-shadow: none;
@@ -996,13 +1030,19 @@ input.input-text::selection {
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-  flex: 1;
   text-align: center;
+  width: 90px !important;
 }
-.body .stat-related .combat-stat-container .combat-stat-block span {
+.body .stat-related .combat-stat-container .combat-stat-block .stat-numbers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 60px;
+  flex: 1;
+}
+.body .stat-related .combat-stat-container .combat-stat-block .stat-numbers span {
   font-size: 1.1rem;
   text-align: center;
-  flex: 1;
 }
 .body .stat-related .stat-container {
   flex: 1;
@@ -1024,7 +1064,7 @@ input.input-text::selection {
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-  width: 115px;
+  width: 90px;
 }
 .body .stat-related .stat-container .stat-flexrow .combat-stat-block span {
   font-size: 1.1rem;
@@ -1073,10 +1113,6 @@ input.input-text::selection {
 }
 .body button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
-}
-.bottom {
-  display: flex;
-  flex-direction: row;
 }
 .ss1e.sheet.actor.constellation.header .header {
   display: flex;

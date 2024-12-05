@@ -155,54 +155,70 @@
             <div class='combat-stat-container'>
               <div class='combat-stat-block'>
                 <label>AP:&nbsp;</label>
+                <div class="stat-numbers">
                 <span>{{system.actionPointsCurrent}}/{{system.actionPointsMax}}</span>
+                </div>
               </div>
               <div class='combat-stat-block'>
                 <label class='evasion-label' for='evasion-stat'>Evasion:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='evasion-stat'>{{system.evasionTotal}}</span>
                 <span id="temp-evasion" class="evasion-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.evasionTempBonus}}&#41;</span>
+                </div>
               </div>
               <div class='combat-stat-block'>
                 <label class='accuracy-label' for='accuracy-stat'>Accuracy:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='accuracy-stat'>{{system.accuracyTotal}}</span>
                 <span id="temp-accuracy" class="accuracy" data-action="edit-temp-stat">&nbsp;&#40;+{{system.accuracyTempBonus}}&#41;</span>
+                </div>
               </div>
               <div class='combat-stat-block'>
                 <label class='armor-label' for='armor-stat'>Armor:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='armor-stat'>{{system.armorTotal}}</span>
                 <span id="temp-armor" class="armor-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.armorTempBonus}}&#41;</span>
+                </div>
               </div>
             </div>
             <div class='stat-container'>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
                 <label class='str-label' for='str-stat' data-action='rollStat' data-key='str'>Strength:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='str-stat'>{{system.strTotal}}</span>
                 <span id="temp-str" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.strTempBonus}}&#41;</span>
+                </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='str'>+</button>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
                 <label class='agi-label' for='agi-stat' data-action='rollStat' data-key='agi'>Agility:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='agi-stat'>{{system.agiTotal}}</span>
                 <span id="temp-agi" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.agiTempBonus}}&#41;</span>
+                </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='agi'>+</button>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
                 <label class='con-label' for='con-stat' data-action='rollStat' data-key='con'>Constitution:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='con-stat'>{{system.conTotal}}</span>
                 <span id="temp-con" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.conTempBonus}}&#41;</span>
+                </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='con'>+</button>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
                 <label class='int-label' for='int-stat' data-action='rollStat' data-key='int'>Intelligence:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='int-stat'>{{system.intTotal}}</span>
                 <span id="temp-int" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.intTempBonus}}&#41;</span>
+                </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='int'>+</button>
             </div>
@@ -233,30 +249,38 @@
           <div class='stat-container'>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='str-dmg-label' for='str-dmg-stat'>Strength&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <label class='str-dmg-label' for='str-dmg-stat'>Strength&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='str-dmg-stat'>{{system.damageIncreaseStrTotal}}</span>
                 <span id="temp-str-dmg" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseStrTempBonus}}&#41;</span>
+                </div>
               </div>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='agi-dmg-label' for='agi-dmg-stat'>Agility&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <label class='agi-dmg-label' for='agi-dmg-stat'>Agility&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='agi-dmg-stat'>{{system.damageIncreaseAgiTotal}}</span>
                 <span id="temp-agi-dmg" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseAgiTempBonus}}&#41;</span>
+                </div>
               </div>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='con-dmg-label' for='con-dmg-stat'>Constitution&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <label class='con-dmg-label' for='con-dmg-stat'>Constitution&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='con-dmg-stat'>{{system.damageIncreaseConTotal}}</span>
                 <span id="temp-con-dmg" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseConTempBonus}}&#41;</span>
+                </div>
               </div>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='int-dmg-label' for='int-dmg-stat'>Intelligence&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <label class='int-dmg-label' for='int-dmg-stat'>Intelligence&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <div class="stat-numbers">
                 <span class='int-dmg-stat'>{{system.damageIncreaseIntTotal}}</span>
                 <span id="temp-int-dmg" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseIntTempBonus}}&#41;</span>
+                </div>
               </div>
             </div>
           </div>  
