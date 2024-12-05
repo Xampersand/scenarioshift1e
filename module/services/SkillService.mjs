@@ -29,13 +29,13 @@ export function onRollSkillAccuracy(event, actor) {
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         flavor: `Rolling Accuracy for ${skill.name}`, // Optional flavor text
       });
+      actor.system.manaCurrent -= skill.system.manaCost;
+      actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+      consumeActionPoints(actor, skill.system.apCost);
     });
   } catch (error) {
     console.error('Error while rolling skill accuracy:', error);
   }
-  actor.system.manaCurrent -= skill.system.manaCost;
-  actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
-  consumeActionPoints(actor, skill.system.apCost);
 }
 
 // Function to handle the skill damage roll
@@ -156,25 +156,21 @@ export async function onSkillUse(event, actor) {
     const healingFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
 
     const rollFormula = `round((${healingFormula})*${totalHealingIncrease})`;
-
-    if (skill.system.manaCost > actor.system.manaCurrent) {
-      ui.notifications.warn('Not enough mana!');
-      return;
-    }
     try {
       const roll = new Roll(rollFormula, actor.getRollData());
       roll.roll().then((rolled) => {
         rolled.toMessage({
           speaker: ChatMessage.getSpeaker({ actor: actor }),
           flavor: `Rolling healing for ${skill.name}`, // Optional flavor text
-        });
+        }); 
+        actor.system.manaCurrent -= skill.system.manaCost;
+        actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+        consumeActionPoints(actor, skill.system.apCost);
       });
     } catch (error) {
       console.error('Error while rolling skill damage:', error);
     }
-    actor.system.manaCurrent -= skill.system.manaCost;
-    actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
-    consumeActionPoints(actor, skill.system.apCost);
+
     return;
   } else if (
     skill.system.skillType === 'buff' ||

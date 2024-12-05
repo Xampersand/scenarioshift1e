@@ -160,14 +160,17 @@
               <div class='combat-stat-block'>
                 <label class='evasion-label' for='evasion-stat'>Evasion:&nbsp;</label>
                 <span class='evasion-stat'>{{system.evasionTotal}}</span>
+                <span id="temp-evasion" class="evasion-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.evasionTempBonus}}&#41;</span>
               </div>
               <div class='combat-stat-block'>
                 <label class='accuracy-label' for='accuracy-stat'>Accuracy:&nbsp;</label>
                 <span class='accuracy-stat'>{{system.accuracyTotal}}</span>
+                <span id="temp-accuracy" class="accuracy" data-action="edit-temp-stat">&nbsp;&#40;+{{system.accuracyTempBonus}}&#41;</span>
               </div>
               <div class='combat-stat-block'>
                 <label class='armor-label' for='armor-stat'>Armor:&nbsp;</label>
                 <span class='armor-stat'>{{system.armorTotal}}</span>
+                <span id="temp-armor" class="armor-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.armorTempBonus}}&#41;</span>
               </div>
             </div>
             <div class='stat-container'>
@@ -175,6 +178,7 @@
               <div class='combat-stat-block'>
                 <label class='str-label' for='str-stat' data-action='rollStat' data-key='str'>Strength:&nbsp;</label>
                 <span class='str-stat'>{{system.strTotal}}</span>
+                <span id="temp-str" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.strTempBonus}}&#41;</span>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='str'>+</button>
             </div>
@@ -182,6 +186,7 @@
               <div class='combat-stat-block'>
                 <label class='agi-label' for='agi-stat' data-action='rollStat' data-key='agi'>Agility:&nbsp;</label>
                 <span class='agi-stat'>{{system.agiTotal}}</span>
+                <span id="temp-agi" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.agiTempBonus}}&#41;</span>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='agi'>+</button>
             </div>
@@ -189,6 +194,7 @@
               <div class='combat-stat-block'>
                 <label class='con-label' for='con-stat' data-action='rollStat' data-key='con'>Constitution:&nbsp;</label>
                 <span class='con-stat'>{{system.conTotal}}</span>
+                <span id="temp-con" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.conTempBonus}}&#41;</span>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='con'>+</button>
             </div>
@@ -196,6 +202,7 @@
               <div class='combat-stat-block'>
                 <label class='int-label' for='int-stat' data-action='rollStat' data-key='int'>Intelligence:&nbsp;</label>
                 <span class='int-stat'>{{system.intTotal}}</span>
+                <span id="temp-int" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.intTempBonus}}&#41;</span>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='int'>+</button>
             </div>
@@ -220,10 +227,39 @@
             >MANAGE COINS</button>
             <button class='resource-label' data-action='sendCoins'>SEND COINS</button>
           </div>
-          </div>
-          
+        </div>
         </div>
         <div class='bottom'>
+          <div class='stat-container'>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='str-dmg-label' for='str-dmg-stat'>Strength&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <span class='str-dmg-stat'>{{system.damageIncreaseStrTotal}}</span>
+                <span id="temp-str-dmg" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseStrTempBonus}}&#41;</span>
+              </div>
+            </div>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='agi-dmg-label' for='agi-dmg-stat'>Agility&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <span class='agi-dmg-stat'>{{system.damageIncreaseAgiTotal}}</span>
+                <span id="temp-agi-dmg" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseAgiTempBonus}}&#41;</span>
+              </div>
+            </div>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='con-dmg-label' for='con-dmg-stat'>Constitution&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <span class='con-dmg-stat'>{{system.damageIncreaseConTotal}}</span>
+                <span id="temp-con-dmg" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseConTempBonus}}&#41;</span>
+              </div>
+            </div>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='int-dmg-label' for='int-dmg-stat'>Intelligence&nbsp;Damage&nbsp;Increase:&nbsp;</label>
+                <span class='int-dmg-stat'>{{system.damageIncreaseIntTotal}}</span>
+                <span id="temp-int-dmg" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseIntTempBonus}}&#41;</span>
+              </div>
+            </div>
+          </div>  
         </div>
       </div>
       <div class='tab character-inventory' data-tab='inventory'>

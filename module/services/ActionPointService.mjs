@@ -8,16 +8,7 @@ export function consumeActionPoints(actor, points) {
   } else {
     if (actor.system.actionPointsCurrent >= points) {
       actor.system.actionPointsCurrent -= points;
-      actor
-        .update({
-          'system.actionPointsCurrent': actor.system.actionPointsCurrent,
-        })
-        .catch((err) => {
-          console.error(
-            `Failed to update action points for actor: ${actor.name}`,
-            err
-          );
-        });
+      actor.sheet.render(true); // Trigger a render of the actor sheet to update the ap value
     } else {
       ui.notifications.warn(`Not enough action points!`);
     }
@@ -26,44 +17,17 @@ export function consumeActionPoints(actor, points) {
 // Function to reset action points
 export function resetActionPoints(actor) {
   actor.system.actionPointsCurrent = actor.system.actionPointsMax;
-  actor
-    .update({
-      'system.actionPointsCurrent': actor.system.actionPointsMax,
-    })
-    .catch((err) => {
-      console.error(
-        `Failed to update action points for actor: ${actor.name}`,
-        err
-      );
-    });
+  actor.sheet.render(true); // Trigger a render of the actor sheet to update the ap value
 }
 
 // Function to decrease action points
 export function minusActionPoints(actor) {
   actor.system.actionPointsCurrent -= 1;
-  actor
-    .update({
-      'system.actionPointsCurrent': actor.system.actionPointsCurrent,
-    })
-    .catch((err) => {
-      console.error(
-        `Failed to update action points for actor: ${actor.name}`,
-        err
-      );
-    });
+  actor.sheet.render(true); // Trigger a render of the actor sheet to update the ap value
 }
 
 // Function to increase action points
 export function addActionPoints(actor) {
   actor.system.actionPointsCurrent += 1;
-  actor
-    .update({
-      'system.actionPointsCurrent': actor.system.actionPointsCurrent,
-    })
-    .catch((err) => {
-      console.error(
-        `Failed to update action points for actor: ${actor.name}`,
-        err
-      );
-    });
+  actor.sheet.render(true); // Trigger a render of the actor sheet to update the ap value
 }

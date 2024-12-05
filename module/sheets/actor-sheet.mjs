@@ -14,6 +14,7 @@ import * as RpRollService from '../services/RpRollService.mjs';
 import * as ActionPoints from '../services/ActionPointService.mjs';
 import * as SkillInventory from '../services/SkillInventoryService.mjs';
 import * as SkillRoll from '../services/SkillService.mjs';
+import * as TempBonus from '../services/TempStatService.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -190,6 +191,13 @@ export class SS1EActorSheet extends ActorSheet {
       const key = ev.currentTarget.dataset.key;
       RpRollService.onRollRP(ev, this.actor, key);
     });
+    
+// Add event listener to spans with data-action="edit-temp-stat"
+html.on('click', '[data-action="edit-temp-stat"]', (event) => {
+  const statId = event.currentTarget.id;
+  const currentValue = parseInt(event.currentTarget.textContent.match(/\d+/)[0]);
+  TempBonus.openEditTempStatDialog(this.actor.id, statId, currentValue);
+});
 
     html
       .find('button[data-action="attributeLevelUp"]')

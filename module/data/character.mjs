@@ -11,23 +11,28 @@ export default class SS1ECharacter extends SS1EActorBase {
     schema.stigmas = new fields.StringField({ initial: 'None' });
     schema.evasionBase = new fields.NumberField({ initial: 0 });
     schema.evasionBonus = new fields.NumberField({ initial: 0 });
+    schema.evasionTempBonus = new fields.NumberField({ initial: 0 });
     schema.evasionMulti = new fields.NumberField({ initial: 1 });
     schema.evasionTotal = new fields.NumberField({ initial: 0 });
     schema.accuracyBase = new fields.NumberField({ initial: 0 });
     schema.accuracyBonus = new fields.NumberField({ initial: 0 });
+    schema.accuracyTempBonus = new fields.NumberField({ initial: 0 });
     schema.accuracyMulti = new fields.NumberField({ initial: 1 });
     schema.accuracyTotal = new fields.NumberField({ initial: 0 });
     schema.armorBase = new fields.NumberField({ initial: 0 });
     schema.armorBonus = new fields.NumberField({ initial: 0 });
+    schema.armorTempBonus = new fields.NumberField({ initial: 0 });
     schema.armorMulti = new fields.NumberField({ initial: 1 });
     schema.armorTotal = new fields.NumberField({ initial: 0 });
     schema.healthMaxBase = new fields.NumberField({ initial: 5 });
     schema.healthMaxBonus = new fields.NumberField({ initial: 0 });
+    schema.healthMaxTempBonus = new fields.NumberField({ initial: 0 });
     schema.healthMaxMulti = new fields.NumberField({ initial: 1 });
     schema.healthMaxTotal = new fields.NumberField({ initial: 0 });
     schema.healthCurrent = new fields.NumberField({ initial: 5 });
     schema.manaMaxBase = new fields.NumberField({ initial: 0 });
     schema.manaMaxBonus = new fields.NumberField({ initial: 0 });
+    schema.manaMaxTempBonus = new fields.NumberField({ initial: 0 });
     schema.manaMaxMulti = new fields.NumberField({ initial: 1 });
     schema.manaMaxTotal = new fields.NumberField({ initial: 0 });
     schema.manaCurrent = new fields.NumberField({ initial: 0 });
@@ -39,6 +44,10 @@ export default class SS1ECharacter extends SS1EActorBase {
     schema.damageIncreaseAgiBonus = new fields.NumberField({ initial: 0 });
     schema.damageIncreaseIntBonus = new fields.NumberField({ initial: 0 });
     schema.damageIncreaseConBonus = new fields.NumberField({ initial: 0 });
+    schema.damageIncreaseStrTempBonus = new fields.NumberField({ initial: 0 });
+    schema.damageIncreaseAgiTempBonus = new fields.NumberField({ initial: 0 });
+    schema.damageIncreaseIntTempBonus = new fields.NumberField({ initial: 0 });
+    schema.damageIncreaseConTempBonus = new fields.NumberField({ initial: 0 });
     schema.damageIncreaseStrTotal = new fields.NumberField({ initial: 0 });
     schema.damageIncreaseAgiTotal = new fields.NumberField({ initial: 0 });
     schema.damageIncreaseIntTotal = new fields.NumberField({ initial: 0 });
@@ -67,15 +76,16 @@ export default class SS1ECharacter extends SS1EActorBase {
     this.intMulti = 1 + this.intMulti / 100;
 
     // Total stats
-    this.strTotal = Math.round((this.strBase + this.strBonus) * this.strMulti);
-    this.agiTotal = Math.round((this.agiBase + this.agiBonus) * this.agiMulti);
-    this.conTotal = Math.round((this.conBase + this.conBonus) * this.conMulti);
-    this.intTotal = Math.round((this.intBase + this.intBonus) * this.intMulti);
+    this.strTotal = Math.round((this.strBase + this.strBonus + this.strTempBonus) * this.strMulti);
+    this.agiTotal = Math.round((this.agiBase + this.agiBonus + this.agiTempBonus) * this.agiMulti);
+    this.conTotal = Math.round((this.conBase + this.conBonus + this.conTempBonus) * this.conMulti);
+    this.intTotal = Math.round((this.intBase + this.intBonus + this.intTempBonus) * this.intMulti);
 
     //stat scalings
     const ARMOR_INCREMENT = 0.5;
     const EVASION_INCREMENT = 0.5;
-    const AGI_ACCURACY_INCREMENT = 2;
+    const STR_ACCURACY_INCREMENT = 0.5;
+    const AGI_ACCURACY_INCREMENT = 0.75;
     const INT_ACCURACY_INCREMENT = 2;
     const MANA_INCREMENT = 5;
     const HEALTH_INCREMENT = 2.5;
@@ -91,7 +101,8 @@ export default class SS1ECharacter extends SS1EActorBase {
     this.evasionBase = this.agiTotal * EVASION_INCREMENT;
     this.accuracyBase =
       this.agiTotal * AGI_ACCURACY_INCREMENT +
-      this.intTotal * INT_ACCURACY_INCREMENT;
+      this.intTotal * INT_ACCURACY_INCREMENT +
+      this.strTotal * STR_ACCURACY_INCREMENT;
     this.armorBase = this.strTotal * ARMOR_INCREMENT;
     this.healthMaxBase = this.conTotal * HEALTH_INCREMENT;
     this.manaMaxBase = this.intTotal * MANA_INCREMENT;
@@ -109,45 +120,42 @@ export default class SS1ECharacter extends SS1EActorBase {
     this.damageIncreaseAgiBonus = this.damageIncreaseAgiBonus / 100;
     this.damageIncreaseIntBonus = this.damageIncreaseIntBonus / 100;
     this.damageIncreaseConBonus = this.damageIncreaseConBonus / 100;
+    this.damageIncreaseStrTempBonus = this.damageIncreaseStrTempBonus / 100;
+    this.damageIncreaseAgiTempBonus = this.damageIncreaseAgiTempBonus / 100;
+    this.damageIncreaseIntTempBonus = this.damageIncreaseIntTempBonus / 100;
+    this.damageIncreaseConTempBonus = this.damageIncreaseConTempBonus / 100;
+
 
     // total damage increases
     this.damageIncreaseStrTotal =
-      this.damageIncreaseStrBase + this.damageIncreaseStrBonus;
+      this.damageIncreaseStrBase + this.damageIncreaseStrBonus + this.damageIncreaseStrTempBonus;
     this.damageIncreaseAgiTotal =
-      this.damageIncreaseAgiBase + this.damageIncreaseAgiBonus;
+      this.damageIncreaseAgiBase + this.damageIncreaseAgiBonus + this.damageIncreaseAgiTempBonus;
     this.damageIncreaseIntTotal =
-      this.damageIncreaseIntBase + this.damageIncreaseIntBonus;
+      this.damageIncreaseIntBase + this.damageIncreaseIntBonus + this.damageIncreaseIntTempBonus;
     this.damageIncreaseConTotal =
-      this.damageIncreaseConBase + this.damageIncreaseConBonus;
+      this.damageIncreaseConBase + this.damageIncreaseConBonus + this.damageIncreaseConTempBonus;
 
     //total combat stats
     this.evasionTotal = Math.round(
-      (this.evasionBase + this.evasionBonus) * this.evasionMulti
+      (this.evasionBase + this.evasionBonus + this.evasionTempBonus) * this.evasionMulti
     );
     this.accuracyTotal = Math.round(
-      (this.accuracyBase + this.accuracyBonus) * this.accuracyMulti
+      (this.accuracyBase + this.accuracyBonus + this.accuracyTempBonus) * this.accuracyMulti
     );
     this.armorTotal = Math.round(
-      (this.armorBase + this.armorBonus) * this.armorMulti
+      (this.armorBase + this.armorBonus + this.armorTempBonus) * this.armorMulti
     );
     this.healthMaxTotal = Math.round(
-      5 + (this.healthMaxBase + this.healthMaxBonus) * this.healthMaxMulti
+      5 + (this.healthMaxBase + this.healthMaxBonus + this.healthMaxTempBonus) * this.healthMaxMulti
     );
     this.manaMaxTotal = Math.round(
-      (this.manaMaxBase + this.manaMaxBonus) * this.manaMaxMulti
+      (this.manaMaxBase + this.manaMaxBonus + this.manaMaxTempBonus) * this.manaMaxMulti
     );
 
     // rounding resource values
     this.healthCurrent = Math.round(this.healthCurrent);
     this.manaCurrent = Math.round(this.manaCurrent);
-
-    // fixing resources going over
-    if (this.healthCurrent > this.healthMaxTotal) {
-      this.healthCurrent = this.healthMaxTotal;
-    }
-    if (this.manaCurrent > this.manaMaxTotal) {
-      this.manaCurrent = this.manaMaxTotal;
-    }
   }
 
   addItemModifiers() {

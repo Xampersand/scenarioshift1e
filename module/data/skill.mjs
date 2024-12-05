@@ -30,10 +30,7 @@ export default class SS1ESkill extends SS1EItemBase {
       initial: 10,
     });
     schema.manaType = new fields.StringField({ initial: 'Transmutation' });
-    schema.manaCost = new fields.NumberField({
-      ...requiredInteger,
-      initial: 0,
-    });
+    schema.manaCost = new fields.NumberField({initial: 0});
 
     return schema;
   }

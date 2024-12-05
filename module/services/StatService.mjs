@@ -33,7 +33,7 @@ export function onStatLevelUp(event) {
 
             // Add health if Constitution is leveled up
             if (key === 'con') {
-              const healthGain = 2.5; // Rounding the 2.5 heal
+              const healthGain = 2.5;
               updateData['system.healthCurrent'] =
                 (this.actor.system.healthCurrent || 0) + healthGain;
             }

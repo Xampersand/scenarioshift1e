@@ -41,18 +41,22 @@ export default class SS1EActorBase extends foundry.abstract.TypeDataModel {
     schema.age = new fields.NumberField({ ...requiredInteger, initial: 1 });
     schema.strBase = new fields.NumberField({ initial: 0 });
     schema.strBonus = new fields.NumberField({ initial: 0 });
+    schema.strTempBonus = new fields.NumberField({ initial: 0 });
     schema.strMulti = new fields.NumberField({ initial: 0 });
     schema.strTotal = new fields.NumberField({ initial: 0 });
     schema.agiBase = new fields.NumberField({ initial: 0 });
     schema.agiBonus = new fields.NumberField({ initial: 0 });
+    schema.agiTempBonus = new fields.NumberField({ initial: 0 });
     schema.agiMulti = new fields.NumberField({ initial: 0 });
     schema.agiTotal = new fields.NumberField({ initial: 0 });
     schema.conBase = new fields.NumberField({ initial: 0 });
     schema.conBonus = new fields.NumberField({ initial: 0 });
+    schema.conTempBonus = new fields.NumberField({ initial: 0 });
     schema.conMulti = new fields.NumberField({ initial: 0 });
     schema.conTotal = new fields.NumberField({ initial: 0 });
     schema.intBase = new fields.NumberField({ initial: 0 });
     schema.intBonus = new fields.NumberField({ initial: 0 });
+    schema.intTempBonus = new fields.NumberField({ initial: 0 });
     schema.intMulti = new fields.NumberField({ initial: 0 });
     schema.intTotal = new fields.NumberField({ initial: 0 });
 
