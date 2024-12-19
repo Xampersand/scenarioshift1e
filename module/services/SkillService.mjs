@@ -163,9 +163,13 @@ export async function onSkillUse(event, actor) {
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 					flavor: `Rolling healing for ${skill.name}`, // Optional flavor text
 				});
+				console.log(
+					`mana before spell cost:`,
+					actor.system.manaCurrent
+				);
 				actor.system.manaCurrent -= skill.system.manaCost;
-				actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
 				consumeActionPoints(actor, skill.system.apCost);
+				actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
 			});
 		} catch (error) {
 			console.error('Error while rolling skill damage:', error);
@@ -193,9 +197,10 @@ export async function onSkillUse(event, actor) {
 				},
 			]);
 		}
+		// log current mana
 		actor.system.manaCurrent -= skill.system.manaCost;
-		actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
 		consumeActionPoints(actor, skill.system.apCost);
+		actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
 		return;
 	}
 }
