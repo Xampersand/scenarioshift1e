@@ -40,7 +40,7 @@
                     style='width: {{hpBarWidth}}%;'
                   ></div><span
                     class='hp-text'
-                  >{{system.healthCurrent}}/{{system.healthMaxTotal}}</span>
+                  >{{system.healthCurrent}}/{{system.healthMaxTotal}}&nbsp;&#40;+{{system.healthMaxTempBonus}}&#41;</span>
 
                 </div>
               </div>
@@ -51,7 +51,7 @@
                     style='width: {{manaBarWidth}}%;'
                   ></div><span
                     class='mana-text'
-                  >{{system.manaCurrent}}/{{system.manaMaxTotal}}</span>
+                  >{{system.manaCurrent}}/{{system.manaMaxTotal}}&nbsp;&#40;+{{system.manaMaxTempBonus}}&#41;</span>
                 </div>
               </div>
             </div>
@@ -247,39 +247,44 @@
         </div>
         <div class='bottom'>
           <div class='stat-container'>
+            <div class="stat-flexrow">
+              <div class="combat-stat-block">
+                <label>Damage Increases:</label>
+              </div>
+            </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='str-dmg-label' for='str-dmg-stat'>Strength&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <label class='str-dmg-label' for='str-dmg-stat'>Strength:&nbsp;</label>
                 <div class="stat-numbers">
-                <span class='str-dmg-stat'>{{system.damageIncreaseStrTotal}}</span>
-                <span id="temp-str-dmg" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseStrTempBonus}}&#41;</span>
+                <span class='str-dmg-stat'>{{strDamageIncreasePercentage}}%</span>
+                <span id="temp-str-dmg" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{strDamageIncreaseBonusPercentage}}%&#41;</span>
                 </div>
               </div>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='agi-dmg-label' for='agi-dmg-stat'>Agility&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <label class='agi-dmg-label' for='agi-dmg-stat'>Agility:&nbsp;</label>
                 <div class="stat-numbers">
-                <span class='agi-dmg-stat'>{{system.damageIncreaseAgiTotal}}</span>
-                <span id="temp-agi-dmg" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseAgiTempBonus}}&#41;</span>
+                <span class='agi-dmg-stat'>{{agiDamageIncreasePercentage}}%</span>
+                <span id="temp-agi-dmg" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{agiDamageIncreaseBonusPercentage}}%&#41;</span>
                 </div>
               </div>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='con-dmg-label' for='con-dmg-stat'>Constitution&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <label class='con-dmg-label' for='con-dmg-stat'>Constitution:&nbsp;</label>
                 <div class="stat-numbers">
-                <span class='con-dmg-stat'>{{system.damageIncreaseConTotal}}</span>
-                <span id="temp-con-dmg" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseConTempBonus}}&#41;</span>
+                <span class='con-dmg-stat'>{{conDamageIncreasePercentage}}%</span>
+                <span id="temp-con-dmg" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{conDamageIncreaseBonusPercentage}}%&#41;</span>
                 </div>
               </div>
             </div>
             <div class='stat-flexrow'>
               <div class='combat-stat-block'>
-                <label class='int-dmg-label' for='int-dmg-stat'>Intelligence&nbsp;Extra&nbsp;Damage&nbsp;Multiplier:&nbsp;</label>
+                <label class='int-dmg-label' for='int-dmg-stat'>Intelligence:&nbsp;</label>
                 <div class="stat-numbers">
-                <span class='int-dmg-stat'>{{system.damageIncreaseIntTotal}}</span>
-                <span id="temp-int-dmg" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.damageIncreaseIntTempBonus}}&#41;</span>
+                <span class='int-dmg-stat'>{{intDamageIncreasePercentage}}%</span>
+                <span id="temp-int-dmg" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{intDamageIncreaseBonusPercentage}}%&#41;</span>
                 </div>
               </div>
             </div>
@@ -315,13 +320,13 @@
             <div class='hp-block' id='hp-bar'>
               <div class='hp-bar-container'>
                 <div class='hp-bar'style='width: {{hpBarWidth}}%;'></div>
-                <span class='hp-text'>{{system.healthCurrent}}/{{system.healthMaxTotal}}</span>
+                <span class='hp-text'>{{system.healthCurrent}}/{{system.healthMaxTotal}}&nbsp;&#40;+{{system.healthMaxTempBonus}}&#41;</span>
                </div>
             </div>
             <div class='mana-block' id='mana-bar'>
               <div class='mana-bar-container'>
                 <div class='mana-bar'style='width: {{manaBarWidth}}%;'></div>
-                <span class='mana-text'>{{system.manaCurrent}}/{{system.manaMaxTotal}}</span>
+                <span class='mana-text'>{{system.manaCurrent}}/{{system.manaMaxTotal}}&nbsp;&#40;+{{system.manaMaxTempBonus}}&#41;</span>
               </div>
              </div>
           </div>

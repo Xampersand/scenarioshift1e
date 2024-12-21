@@ -646,7 +646,11 @@ nav#navigation #scene-list li {
 .scene-sheet,
 .app.window-app.filepicker,
 .journal-sheet,
-.active-effect-sheet {
+.active-effect-sheet,
+.chat-bubble.emote.right,
+.chat-bubble.emote.left,
+.chat-bubble.right,
+.chat-bubble.left {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
   border: 3px double white;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
@@ -685,7 +689,11 @@ nav#navigation #scene-list li {
 .scene-sheet:hover,
 .app.window-app.filepicker:hover,
 .journal-sheet:hover,
-.active-effect-sheet:hover {
+.active-effect-sheet:hover,
+.chat-bubble.emote.right:hover,
+.chat-bubble.emote.left:hover,
+.chat-bubble.right:hover,
+.chat-bubble.left:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .app.window-app.sheet:has(.sound-volume) {
@@ -982,6 +990,8 @@ h2.category-title,
   margin-right: 40px;
 }
 .ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block .stat-numbers {
+  display: flex;
+  flex-direction: row;
   width: 60px;
 }
 .ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block .stat-numbers span {

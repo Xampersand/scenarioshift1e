@@ -2,573 +2,573 @@
 
 // make scrollbars white and change font everywhere also making it white
 * {
-  scrollbar-color: @primary-text-color @transparent;
-  font-family: @font;
-  color: @primary-text-color !important;
+	scrollbar-color: @primary-text-color @transparent;
+	font-family: @font;
+	color: @primary-text-color !important;
 }
 //changing logo in top left
 #logo {
-  content: url('../assets/images/orv_logo.png');
-  height: 100px;
+	content: url('../assets/images/orv_logo.png');
+	height: 100px;
 }
 // removing background image from things amd removing shadow
 .app {
-  background-image: none;
-  box-shadow: none;
+	background-image: none;
+	box-shadow: none;
 }
 // global background removal
 .window-app {
-  // header icons and text changes
-  .window-header {
-    background-color: transparent;
-    color: @primary-text-color;
-    padding-top: 5px;
-    border: none;
-    & a {
-      background-color: transparent;
-      font-size: 0px;
-      padding-top: 8px;
-      & i {
-        background: none;
-        font-size: 14px;
-      }
-      & span {
-        font-size: 14px;
-      }
-    }
-    & .window-title {
-      padding-top: 5px;
-    }
-  }
-  .window-content {
-    padding: 0;
-    background-image: none;
-    border-radius: 0 0 10px 10px;
-    background-color: transparent;
-  }
+	// header icons and text changes
+	.window-header {
+		background-color: transparent;
+		color: @primary-text-color;
+		padding-top: 5px;
+		border: none;
+		& a {
+			background-color: transparent;
+			font-size: 0px;
+			padding-top: 8px;
+			& i {
+				background: none;
+				font-size: 14px;
+			}
+			& span {
+				font-size: 14px;
+			}
+		}
+		& .window-title {
+			padding-top: 5px;
+		}
+	}
+	.window-content {
+		padding: 0;
+		background-image: none;
+		border-radius: 0 0 10px 10px;
+		background-color: transparent;
+	}
 }
 
 // making spans in options/settings menu white
 p.notes {
-  color: @primary-text-color;
+	color: @primary-text-color;
 }
 //chat changes
 li.chat-message.message {
-  background-color: transparent;
-  background-image: none;
-  border: 2px solid @subaccent-color;
-  box-shadow: 0 0 3px @inset-color inset;
+	background-color: transparent;
+	background-image: none;
+	border: 2px solid @subaccent-color;
+	box-shadow: 0 0 3px @inset-color inset;
 }
 // chat box
 textarea {
-  background-image: none !important;
-  border: 2px double @main-border-color;
-  &:focus {
-    box-shadow: none;
-  }
+	background-image: none !important;
+	border: 2px double @main-border-color;
+	&:focus {
+		box-shadow: none;
+	}
 }
 // chat roll select
 #chat-controls {
-  .roll-type-select {
-    background-color: transparent;
-    border: 1px solid @main-border-color;
-  }
+	.roll-type-select {
+		background-color: transparent;
+		border: 1px solid @main-border-color;
+	}
 }
 //dice
 .dice-roll {
-  .dice-formula {
-    border: 1px solid @main-border-color;
-  }
-  .dice-total {
-    border: 1px solid @main-border-color;
-  }
+	.dice-formula {
+		border: 1px solid @main-border-color;
+	}
+	.dice-total {
+		border: 1px solid @main-border-color;
+	}
 }
 .dice-tooltip .dice-rolls {
-  & .roll {
-    color: @primary-text-color !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    box-shadow: 0 0 3px @inset-color inset !important;
-  }
-  & .roll.min {
-    color: red !important;
-  }
-  & .roll.max {
-    color: green !important;
-  }
+	& .roll {
+		color: @primary-text-color !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		box-shadow: 0 0 3px @inset-color inset !important;
+	}
+	& .roll.min {
+		color: red !important;
+	}
+	& .roll.max {
+		color: green !important;
+	}
 }
 
 //fixing hovering elements being red
 a:hover {
-  text-shadow: 0 0 10px @accent-color;
+	text-shadow: 0 0 10px @accent-color;
 }
 i:hover {
-  text-shadow: 0 0 10px @accent-color;
+	text-shadow: 0 0 10px @accent-color;
 }
 input {
-  border-color: @accent-color;
-  .remove-default-glow();
-  &::placeholder {
-    color: @primary-text-color;
-  }
-  &:focus {
-    .remove-default-glow();
-    .add-glow(@glow-color, 5px, 10px);
-  }
-  &::selection {
-    .remove-default-glow();
-    .add-glow(@glow-color, 5px, 10px);
-  }
-  &[type='text']:focus {
-    border-color: @accent-color;
-    border: 1px solid @main-border-color;
-    .add-glow(@glow-color, 5px, 10px);
-  }
-  &[type='search'] {
-    background: none;
-    border-color: @primary-text-color;
-    &::placeholder {
-      color: @primary-text-color;
-    }
-    &:focus {
-      border: 1px solid @main-border-color;
-      .add-glow(@glow-color, 5px, 10px);
-    }
-  }
+	border-color: @accent-color;
+	.remove-default-glow();
+	&::placeholder {
+		color: @primary-text-color;
+	}
+	&:focus {
+		.remove-default-glow();
+		.add-glow(@glow-color, 5px, 10px);
+	}
+	&::selection {
+		.remove-default-glow();
+		.add-glow(@glow-color, 5px, 10px);
+	}
+	&[type='text']:focus {
+		border-color: @accent-color;
+		border: 1px solid @main-border-color;
+		.add-glow(@glow-color, 5px, 10px);
+	}
+	&[type='search'] {
+		background: none;
+		border-color: @primary-text-color;
+		&::placeholder {
+			color: @primary-text-color;
+		}
+		&:focus {
+			border: 1px solid @main-border-color;
+			.add-glow(@glow-color, 5px, 10px);
+		}
+	}
 }
 select {
-  &:focus {
-    .remove-default-glow();
-    .add-glow(@glow-color, 5px, 10px);
-    border: 1px solid @main-border-color;
-  }
-  border: 1px solid @main-border-color;
+	&:focus {
+		.remove-default-glow();
+		.add-glow(@glow-color, 5px, 10px);
+		border: 1px solid @main-border-color;
+	}
+	border: 1px solid @main-border-color;
 }
 //removes background from search inputs in side bar
 .directory .directory-header .header-search input {
-  background-color: @transparent;
+	background-color: @transparent;
 }
 //and adding a hwite border
 input[type='text'] {
-  border: 1px solid @main-border-color;
+	border: 1px solid @main-border-color;
 }
 // making active tabs glow blue
 .tabs > [data-tab].active {
-  text-shadow: 0 0 10px @glow-color;
+	text-shadow: 0 0 10px @glow-color;
 }
 // making dropdowns be readable
 option {
-  background-color: @subaccent-color;
-  color: @primary-text-color;
+	background-color: @subaccent-color;
+	color: @primary-text-color;
 }
 //  global button modifications
 button {
-  background-color: @background-color;
-  font-family: @font;
-  &:hover {
-    .add-glow(@glow-color, 5px);
-  }
-  border-color: @main-border-color;
+	background-color: @background-color;
+	font-family: @font;
+	&:hover {
+		.add-glow(@glow-color, 5px);
+	}
+	border-color: @main-border-color;
 }
 form button {
-  background-color: rgba(0 0 0 1);
-  font-family: @font;
-  &:hover {
-    .add-glow(@glow-color, 5px);
-  }
-  border: 2px groove @main-border-color;
+	background-color: rgba(0 0 0 1);
+	font-family: @font;
+	&:hover {
+		.add-glow(@glow-color, 5px);
+	}
+	border: 2px groove @main-border-color;
 }
 // //actor sheet changes
 .app.window-app.ss1e.sheet.actor {
-  background-image: @actor-sheet-background-image-eighty;
-  background-position: center;
-  background-size: cover;
-  background-color: transparent;
-  padding: 20px 24px;
-  box-shadow: none;
-  .window-header {
-    background-color: transparent;
-  }
-  .window-content {
-    background-color: transparent;
-  }
-  nav.sheet-tabs.tabs {
-    display: flex;
-    position: absolute;
-    left: 98.6%;
-    top: 10%;
-    flex-direction: column;
-    background-image: @background-tile;
-    border-top: 2px double @main-border-color;
-    border-bottom: 2px double @main-border-color;
-    border-right: 2px double @main-border-color;
-    border-radius: 0px 5px 5px 0px;
-    .add-glow(@glow-color, 2px, 5px);
-    > [data-tab] {
-      padding: 8px 12px;
-      &.active {
-        text-shadow: 0 0 10px @subaccent-color;
-      }
-    }
-    .item {
-      width: 100%;
-      text-align: center;
-      cursor: pointer;
-      text-shadow: none;
-      .add-glow(@subaccent-color, 2px, 5px);
-      .remove-default-glow();
-    }
-  }
-  &.minimized {
-    background-image: none;
-    background-color: @background-color;
-    padding-top: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 46px;
-    border: 2px double @main-border-color;
-  }
+	background-image: @actor-sheet-background-image-eighty;
+	background-position: center;
+	background-size: cover;
+	background-color: transparent;
+	padding: 20px 24px;
+	box-shadow: none;
+	.window-header {
+		background-color: transparent;
+	}
+	.window-content {
+		background-color: transparent;
+	}
+	nav.sheet-tabs.tabs {
+		display: flex;
+		position: absolute;
+		left: 98.6%;
+		top: 10%;
+		flex-direction: column;
+		background-image: @background-tile;
+		border-top: 2px double @main-border-color;
+		border-bottom: 2px double @main-border-color;
+		border-right: 2px double @main-border-color;
+		border-radius: 0px 5px 5px 0px;
+		.add-glow(@glow-color, 2px, 5px);
+		> [data-tab] {
+			padding: 8px 12px;
+			&.active {
+				text-shadow: 0 0 10px @subaccent-color;
+			}
+		}
+		.item {
+			width: 100%;
+			text-align: center;
+			cursor: pointer;
+			text-shadow: none;
+			.add-glow(@subaccent-color, 2px, 5px);
+			.remove-default-glow();
+		}
+	}
+	&.minimized {
+		background-image: none;
+		background-color: @background-color;
+		padding-top: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 46px;
+		border: 2px double @main-border-color;
+	}
 }
 // item sheet changes
 .app.window-app.ss1e.sheet.item {
-  background-image: @item-sheet-background-image-eighty;
-  background-position: center;
-  background-size: cover;
-  background-color: transparent;
-  padding: 20px 24px;
-  box-shadow: none;
-  .window-header {
-    background-color: transparent;
-  }
-  .window-content {
-    background-color: transparent;
-  }
-  nav.sheet-tabs.tabs {
-    display: flex;
-    position: absolute;
-    left: 96.5%;
-    top: 10%;
-    flex-direction: column;
-    background-image: @background-tile;
-    border-top: 2px double @main-border-color;
-    border-bottom: 2px double @main-border-color;
-    border-right: 2px double @main-border-color;
-    border-radius: 0px 5px 5px 0px;
-    .add-glow(@glow-color, 2px, 5px);
-    > [data-tab] {
-      padding: 8px 12px;
-      &.active {
-        text-shadow: 0 0 10px @subaccent-color;
-      }
-    }
-    .item {
-      width: 100%;
-      text-align: center;
-      cursor: pointer;
-      text-shadow: none;
-      .add-glow(@subaccent-color, 2px, 5px);
-      .remove-default-glow();
-    }
-  }
-  &.minimized {
-    background-image: none;
-    background-color: @background-color;
-    padding-top: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 46px;
-    border: 2px double @main-border-color;
-  }
+	background-image: @item-sheet-background-image-eighty;
+	background-position: center;
+	background-size: cover;
+	background-color: transparent;
+	padding: 20px 24px;
+	box-shadow: none;
+	.window-header {
+		background-color: transparent;
+	}
+	.window-content {
+		background-color: transparent;
+	}
+	nav.sheet-tabs.tabs {
+		display: flex;
+		position: absolute;
+		left: 96.5%;
+		top: 10%;
+		flex-direction: column;
+		background-image: @background-tile;
+		border-top: 2px double @main-border-color;
+		border-bottom: 2px double @main-border-color;
+		border-right: 2px double @main-border-color;
+		border-radius: 0px 5px 5px 0px;
+		.add-glow(@glow-color, 2px, 5px);
+		> [data-tab] {
+			padding: 8px 12px;
+			&.active {
+				text-shadow: 0 0 10px @subaccent-color;
+			}
+		}
+		.item {
+			width: 100%;
+			text-align: center;
+			cursor: pointer;
+			text-shadow: none;
+			.add-glow(@subaccent-color, 2px, 5px);
+			.remove-default-glow();
+		}
+	}
+	&.minimized {
+		background-image: none;
+		background-color: @background-color;
+		padding-top: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 46px;
+		border: 2px double @main-border-color;
+	}
 }
 .effects-list {
-  .items-header {
-    text-align: center;
-    h3 {
-      font-size: 1rem;
-      border: none;
-      margin: 0px !important;
-    }
-  }
-  .effect-name {
-    flex: none;
-    .item-image {
-      width: 38px;
-      height: 38px;
-      border: 1px solid @main-border-color;
-    }
-  }
+	.items-header {
+		text-align: center;
+		h3 {
+			font-size: 1rem;
+			border: none;
+			margin: 0px !important;
+		}
+	}
+	.effect-name {
+		flex: none;
+		.item-image {
+			width: 38px;
+			height: 38px;
+			border: 1px solid @main-border-color;
+		}
+	}
 }
 .active-effect-sheet .effects-header {
-  height: auto;
-  background: none;
-  border: 1px solid @main-border-color;
-  font-weight: normal;
+	height: auto;
+	background: none;
+	border: 1px solid @main-border-color;
+	font-weight: normal;
 }
 // window title on sheets moved a bit
 h4.window-title {
-  text-align: start;
-  padding-left: 20px;
+	text-align: start;
+	padding-left: 20px;
 }
 // GLOBAL DIALOG BOXES - to be changed into each dialog box
 //remove dialog x button
 .dialog {
-  .window-header {
-    .header-button {
-      &.control {
-        &.close {
-          display: none;
-        }
-      }
-    }
-  }
-  & input {
-    color: @primary-text-color;
-  }
+	.window-header {
+		.header-button {
+			&.control {
+				&.close {
+					display: none;
+				}
+			}
+		}
+	}
+	& input {
+		color: @primary-text-color;
+	}
 }
 
 .app.window-app.dialog {
-  background-image: @dialog-background-image-eighty;
-  background-color: transparent;
-  background-size: cover;
-  background-position: center;
-  padding: 20px;
-  box-shadow: none;
-  font-size: 1rem;
-  .window-header {
-    background-color: transparent;
-  }
-  .window-content {
-    background-color: transparent;
-    .dialog-buttons {
-      & button {
-        border: 1px solid white;
-        border-radius: 5px;
-        .add-glow(@glow-color, 2px, 5px);
-        font-size: 1.2rem;
-        margin: 5px;
-        text-transform: uppercase;
-        height: fit-content;
-        width: 100px;
-      }
-    }
-  }
+	background-image: @dialog-background-image-eighty;
+	background-color: transparent;
+	background-size: cover;
+	background-position: center;
+	padding: 20px;
+	box-shadow: none;
+	font-size: 1rem;
+	.window-header {
+		background-color: transparent;
+	}
+	.window-content {
+		background-color: transparent;
+		.dialog-buttons {
+			& button {
+				border: 1px solid white;
+				border-radius: 5px;
+				.add-glow(@glow-color, 2px, 5px);
+				font-size: 1.2rem;
+				margin: 5px;
+				text-transform: uppercase;
+				height: fit-content;
+				width: 100px;
+			}
+		}
+	}
 }
 
 //  even better, SPECIFIC DIALOG BOXES!!
 .app.window-app.dialog {
-  // constellation messaging dialog
-  &:has(.constellation-message) {
-    background-image: @dialog-background-image-eighty;
-    background-color: transparent;
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-    box-shadow: none;
-    font-size: 1rem;
-    .window-header {
-      background-color: transparent;
-      .window-title {
-        display: none;
-      }
-    }
-    .window-content {
-      background-color: transparent;
-      .dialog-buttons {
-        display: none;
-      }
+	// constellation messaging dialog
+	&:has(.constellation-message) {
+		background-image: @dialog-background-image-eighty;
+		background-color: transparent;
+		background-size: cover;
+		background-position: center;
+		padding: 20px;
+		box-shadow: none;
+		font-size: 1rem;
+		.window-header {
+			background-color: transparent;
+			.window-title {
+				display: none;
+			}
+		}
+		.window-content {
+			background-color: transparent;
+			.dialog-buttons {
+				display: none;
+			}
 
-      .constellation-message {
-        text-align: center;
-        font-size: 1.3rem;
-      }
-    }
-  }
-  // stat level up dialog
-  &:has(.stat-dialog) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  // scenario dialog
-  &:has(.scenario-message) {
-    background-image: @scenario-background-image-eighty;
-    .window-header {
-      .window-title {
-        display: none;
-      }
-    }
-    .window-content {
-      background-color: transparent;
-      .dialog-content {
-        display: flex;
-        flex-direction: column;
-        .scenario-message {
-          display: flex;
-          flex-direction: column;
-          font-size: 1.2rem;
-          .scenario-announce {
-            font-size: 1.3rem;
-            font-weight: bold;
-            align-self: center;
-            text-align: center;
-          }
-        }
-      }
-      .dialog-buttons {
-        display: none;
-      }
-    }
-  }
+			.constellation-message {
+				text-align: center;
+				font-size: 1.3rem;
+			}
+		}
+	}
+	// stat level up dialog
+	&:has(.stat-dialog) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	// scenario dialog
+	&:has(.scenario-message) {
+		background-image: @scenario-background-image-eighty;
+		.window-header {
+			.window-title {
+				display: none;
+			}
+		}
+		.window-content {
+			background-color: transparent;
+			.dialog-content {
+				display: flex;
+				flex-direction: column;
+				.scenario-message {
+					display: flex;
+					flex-direction: column;
+					font-size: 1.2rem;
+					.scenario-announce {
+						font-size: 1.3rem;
+						font-weight: bold;
+						align-self: center;
+						text-align: center;
+					}
+				}
+			}
+			.dialog-buttons {
+				display: none;
+			}
+		}
+	}
 }
 // styling for big ui elements (side elements, top bars etc.)
 nav#controls {
-  background-image: @background-tile;
-  background-color: transparent;
-  border: 3px double @main-border-color;
-  border-radius: 8px;
-  box-shadow: 0 0 3px @inset-color inset;
-  .scene-control {
-    background: none !important;
-    box-shadow: none;
-    background-image: @background-tile;
-    &.active {
-      .add-glow(@glow-color, 5px, 20px);
-    }
-  }
-  ol.control-tools {
-    & > li {
-      border: 1px solid @main-border-color;
-      .add-glow(@subaccent-color, 5px, 20px);
-      &.active {
-        border: 1px solid @main-border-color;
-        border-bottom: 1px solid @subaccent-color;
-        box-shadow: 0 0 10px rgb(0, 60, 139);
-      }
-      &:hover {
-        border: 1px solid @subaccent-color;
-      }
-    }
-  }
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double @main-border-color;
+	border-radius: 8px;
+	box-shadow: 0 0 3px @inset-color inset;
+	.scene-control {
+		background: none !important;
+		box-shadow: none;
+		background-image: @background-tile;
+		&.active {
+			.add-glow(@glow-color, 5px, 20px);
+		}
+	}
+	ol.control-tools {
+		& > li {
+			border: 1px solid @main-border-color;
+			.add-glow(@subaccent-color, 5px, 20px);
+			&.active {
+				border: 1px solid @main-border-color;
+				border-bottom: 1px solid @subaccent-color;
+				box-shadow: 0 0 10px rgb(0, 60, 139);
+			}
+			&:hover {
+				border: 1px solid @subaccent-color;
+			}
+		}
+	}
 }
 aside#players {
-  background-image: @background-tile;
-  background-color: transparent;
-  border: 3px double @main-border-color;
-  border-radius: 8px;
-  box-shadow: 0 0 3px @inset-color inset;
-  margin: 0;
-  margin-top: 1px;
-  & h3 {
-    border-bottom: 2px groove @main-border-color;
-  }
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double @main-border-color;
+	border-radius: 8px;
+	box-shadow: 0 0 3px @inset-color inset;
+	margin: 0;
+	margin-top: 1px;
+	& h3 {
+		border-bottom: 2px groove @main-border-color;
+	}
 }
 div#sidebar {
-  background-image: @background-tile;
-  background-color: transparent;
-  border: 3px double @main-border-color;
-  border-radius: 8px;
-  box-shadow: 0 0 3px @inset-color inset;
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double @main-border-color;
+	border-radius: 8px;
+	box-shadow: 0 0 3px @inset-color inset;
 }
 nav#navigation {
-  background-image: @background-tile;
-  background-color: transparent;
-  border: 3px double @main-border-color;
-  border-radius: 8px;
-  box-shadow: 0 0 3px @inset-color inset;
-  & .nav-item {
-    border: 1px solid @main-border-color;
-    margin: 4px;
-  }
-  #scene-list {
-    & li {
-      background-color: transparent !important;
-      background-image: @background-tile !important;
-      border: 1px solid @main-border-color !important;
-      box-shadow: 0 0 10px @glow-color !important;
-    }
-  }
+	background-image: @background-tile;
+	background-color: transparent;
+	border: 3px double @main-border-color;
+	border-radius: 8px;
+	box-shadow: 0 0 3px @inset-color inset;
+	& .nav-item {
+		border: 1px solid @main-border-color;
+		margin: 4px;
+	}
+	#scene-list {
+		& li {
+			background-color: transparent !important;
+			background-image: @background-tile !important;
+			border: 1px solid @main-border-color !important;
+			box-shadow: 0 0 10px @glow-color !important;
+		}
+	}
 }
 
 // edit mode button
 .edit-mode-toggle {
-  width: auto;
-  top: 3.8%;
-  position: absolute;
-  left: 80%;
-  padding: 0;
-  margin: 0;
-  font-size: 1rem;
-  background-color: @transparent;
-  .remove-default-glow(); // call the mixin
-  font-family: @font;
-  height: fit-content;
+	width: auto;
+	top: 3.8%;
+	position: absolute;
+	left: 80%;
+	padding: 0;
+	margin: 0;
+	font-size: 1rem;
+	background-color: @transparent;
+	.remove-default-glow(); // call the mixin
+	font-family: @font;
+	height: fit-content;
 }
 // sidebar
 #sidebar {
-  background-image: none;
-  .directory-header {
-    background-color: @background-color;
-  }
-  border: 0;
-  #sidebar-tabs {
-    box-shadow: 0 0 10px @subaccent-color;
-    border-bottom: 1px solid @subaccent-color;
-    margin-bottom: 1px;
-    .item {
-      border: 1px solid @subaccent-color;
-      &:hover {
-        text-shadow: 0 0 10px @accent-color;
-      }
-    }
-    .item.active {
-      border: 1px solid @subaccent-color;
-      text-shadow: 0 0 10px @accent-color;
-      box-shadow: 0 0 6px inset @accent-color;
-    }
-  }
-  #chat {
-    #chat-controls {
-      margin: 0;
-    }
-    #chat-form {
-      padding-bottom: 0;
-      #chat-message {
-        font-family: @font;
-        margin: 0;
-        box-shadow: 0 0 4px @inset-color inset;
-      }
-    }
-  }
+	background-image: none;
+	.directory-header {
+		background-color: @background-color;
+	}
+	border: 0;
+	#sidebar-tabs {
+		box-shadow: 0 0 10px @subaccent-color;
+		border-bottom: 1px solid @subaccent-color;
+		margin-bottom: 1px;
+		.item {
+			border: 1px solid @subaccent-color;
+			&:hover {
+				text-shadow: 0 0 10px @accent-color;
+			}
+		}
+		.item.active {
+			border: 1px solid @subaccent-color;
+			text-shadow: 0 0 10px @accent-color;
+			box-shadow: 0 0 6px inset @accent-color;
+		}
+	}
+	#chat {
+		#chat-controls {
+			margin: 0;
+		}
+		#chat-form {
+			padding-bottom: 0;
+			#chat-message {
+				font-family: @font;
+				margin: 0;
+				box-shadow: 0 0 4px @inset-color inset;
+			}
+		}
+	}
 }
 //settigns menu
 .settings-sidebar h2 {
-  border-top: 1px solid @main-border-color;
-  border-bottom: 1px solid @main-border-color;
+	border-top: 1px solid @main-border-color;
+	border-bottom: 1px solid @main-border-color;
 }
 #settings-game {
-  & button {
-    border: 1px solid @main-border-color;
-  }
+	& button {
+		border: 1px solid @main-border-color;
+	}
 }
 #settings-documentation {
-  & button {
-    border: 1px solid @main-border-color;
-  }
+	& button {
+		border: 1px solid @main-border-color;
+	}
 }
 #settings-access {
-  & button {
-    border: 1px solid @main-border-color;
-  }
+	& button {
+		border: 1px solid @main-border-color;
+	}
 }
 .minimized {
-  background-image: none !important;
-  background-color: @background-color !important;
-  padding-top: 0 !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-  padding-bottom: 46px !important;
-  border: 2px double white !important;
-  .add-glow(@glow-color, 2px, 5px) !important;
+	background-image: none !important;
+	background-color: @background-color !important;
+	padding-top: 0 !important;
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+	padding-bottom: 46px !important;
+	border: 2px double white !important;
+	.add-glow(@glow-color, 2px, 5px) !important;
 }
 // different windows global setup
 #keybindings,
@@ -604,63 +604,67 @@ nav#navigation {
 .scene-sheet,
 .app.window-app.filepicker,
 .journal-sheet,
-.active-effect-sheet {
-  background-image: @background-tile;
-  border: 3px double @main-border-color;
-  .add-glow(@glow-color, 2px, 5px);
+.active-effect-sheet,
+.chat-bubble.emote.right,
+.chat-bubble.emote.left,
+.chat-bubble.right,
+.chat-bubble.left {
+	background-image: @background-tile;
+	border: 3px double @main-border-color;
+	.add-glow(@glow-color, 2px, 5px);
 }
 .app.window-app.sheet {
-  &:has(.sound-volume) {
-    background-image: @background-tile;
-    border: 3px double @main-border-color;
-    .add-glow(@glow-color, 2px, 5px);
-  }
-  &:has([value='music']) {
-    background-image: @background-tile;
-    border: 3px double @main-border-color;
-    .add-glow(@glow-color, 2px, 5px);
-  }
+	&:has(.sound-volume) {
+		background-image: @background-tile;
+		border: 3px double @main-border-color;
+		.add-glow(@glow-color, 2px, 5px);
+	}
+	&:has([value='music']) {
+		background-image: @background-tile;
+		border: 3px double @main-border-color;
+		.add-glow(@glow-color, 2px, 5px);
+	}
 }
 // Journal
 .sheet.journal-entry .journal-entry-content {
-  background-image: @background-tile;
-  border: 3px double @main-border-color;
-  .add-glow(@glow-color, 2px, 5px);
+	background-image: @background-tile;
+	border: 3px double @main-border-color;
+	.add-glow(@glow-color, 2px, 5px);
 }
 // hotbars and menus
 #hotbar {
-  .bar-controls {
-    background-color: transparent;
-    background-image: @background-tile;
-    border: 1px solid @main-border-color;
-    box-shadow: 0 0 5px @inset-color inset;
-  }
-  #macro-list {
-    border: 1px solid transparent;
-  }
-  .macro {
-    background-color: transparent;
-    background-image: @background-tile;
-    border: 1px solid @main-border-color;
-    box-shadow: 0 0 5px @inset-color inset;
-    &:hover {
-      border: 1px solid @subaccent-color;
-      .add-glow(@glow-color, 2px, 5px);
-    }
-    &.active {
-      &:hover {
-        border: 1px solid @subaccent-color;
-      }
-    }
-  }
+	.bar-controls {
+		background-color: transparent;
+		background-image: @background-tile;
+		border: 1px solid @main-border-color;
+		box-shadow: 0 0 5px @inset-color inset;
+	}
+	#macro-list {
+		border: 1px solid transparent;
+	}
+	.macro {
+		background-color: transparent;
+		background-image: @background-tile;
+		border: 1px solid @main-border-color;
+		box-shadow: 0 0 5px @inset-color inset;
+		&:hover {
+			border: 1px solid @subaccent-color;
+			.add-glow(@glow-color, 2px, 5px);
+		}
+		&.active {
+			&:hover {
+				border: 1px solid @subaccent-color;
+			}
+		}
+	}
 }
 a#nav-toggle {
-  background-color: transparent !important;
-  background-image: @background-tile !important;
+	background-color: transparent !important;
+	background-image: @background-tile !important;
 }
 // fixing some heading borders
 .directory .directory-item {
-  border-top: 1px solid @main-border-color;
+	border-top: 1px solid @main-border-color;
 }
 .directory .directory-list > .directory-item:last-child,
 h2.border,
@@ -668,18 +672,18 @@ h2.category-title,
 .package-configuration aside.sidebar nav.tabs .category-tab.active,
 .package-configuration aside.sidebar nav.tabs .category-tab,
 .journal-page-content h2 {
-  border-bottom: 1px solid @main-border-color;
+	border-bottom: 1px solid @main-border-color;
 }
 .combat-sidebar .combat-tracker-header,
 .journal-page-header h1 {
-  border-bottom: 2px groove @main-border-color;
+	border-bottom: 2px groove @main-border-color;
 }
 .package-configuration aside.sidebar {
-  border-right: 1px solid @main-border-color;
+	border-right: 1px solid @main-border-color;
 }
 #keybindings .action {
-  border-bottom: 1px dotted @main-border-color;
+	border-bottom: 1px dotted @main-border-color;
 }
 #sidebar.collapsed #sidebar-tabs > .item.active {
-  border-bottom: 1px solid @accent-color;
+	border-bottom: 1px solid @accent-color;
 }
