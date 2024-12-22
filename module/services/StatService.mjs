@@ -6,14 +6,20 @@ export function onStatLevelUp(event) {
 	const statBaseKey = `${key}Base`;
 	const statTotalKey = `${key}Total`;
 	const statLabel = key.charAt(0).toUpperCase() + key.slice(1); // Capitalize the first letter for the label
-	const statValue = this.actor.system[statTotalKey];
+	const statValue = this.actor.system[statBaseKey];
+	const statTotalValue = this.actor.system[statTotalKey];
+
 	const cost = 300 + Math.floor(statValue / 10) * 100;
 
 	new Dialog({
 		title: 'Level Up!',
 		content: `
       <div class='stat-dialog'>
-        <p>${statLabel} Lv. ${statValue} → ${statLabel} Lv. ${statValue + 1}</p>
+        <p>Base ${statLabel} Lv. ${statValue} → ${statLabel} Lv. ${
+			statValue + 1
+		} (${statTotalValue} ${statLabel} → ${
+			statTotalValue + 1
+		} ${statLabel})</p>
         <p>Cost: ${cost} Coins</p>
       </div>`,
 		buttons: {

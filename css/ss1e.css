@@ -502,15 +502,6 @@ nav#controls ol.control-tools > li.active {
 nav#controls ol.control-tools > li:hover {
   border: 1px solid #52c8ff;
 }
-aside#players {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
-  background-color: transparent;
-  border: 3px double white;
-  border-radius: 8px;
-  box-shadow: 0 0 3px #102531 inset;
-  margin: 0;
-  margin-top: 1px;
-}
 aside#players h3 {
   border-bottom: 2px groove white;
 }
@@ -557,12 +548,7 @@ nav#navigation #scene-list li {
   border: 0;
 }
 #sidebar .directory-header {
-  background-color: rgba(83, 178, 241, 0.7);
-}
-#sidebar #sidebar-tabs {
-  box-shadow: 0 0 10px #52c8ff;
-  border-bottom: 1px solid #52c8ff;
-  margin-bottom: 1px;
+  background-color: transparent;
 }
 #sidebar #sidebar-tabs .item {
   border: 1px solid #52c8ff;
@@ -638,6 +624,8 @@ nav#navigation #scene-list li {
 #av-config,
 #font-config,
 #default-sheets-config,
+#players-active,
+#players-inactive,
 .app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar,
 .macro-sheet,
 .roll-table-config,
@@ -650,8 +638,24 @@ nav#navigation #scene-list li {
 .chat-bubble.emote.right,
 .chat-bubble.emote.left,
 .chat-bubble.right,
-.chat-bubble.left {
-  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+.chat-bubble.left,
+.tab.sidebar-tab.chat-sidebar.active,
+.tab.sidebar-tab.combat-sidebar.active,
+.tab.sidebar-tab.scenes-sidebar.active,
+.tab.sidebar-tab.actors-sidebar.active,
+.tab.sidebar-tab.items-sidebar.active,
+.tab.sidebar-tab.journal-sidebar.active,
+.tab.sidebar-tab.tables-sidebar.active,
+.tab.sidebar-tab.cards-sidebar.active,
+.tab.sidebar-tab.macros-sidebar.active,
+.tab.sidebar-tab.playlists-sidebar.active,
+.tab.sidebar-tab.compendium-sidebar.active,
+.tab.sidebar-tab.settings-sidebar.active,
+.scene.view,
+.chat-input,
+.chat-message.message {
+  background-color: transparent;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
   border: 3px double white;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
   transition: box-shadow 0.3s ease-in-out;
@@ -681,6 +685,8 @@ nav#navigation #scene-list li {
 #av-config:hover,
 #font-config:hover,
 #default-sheets-config:hover,
+#players-active:hover,
+#players-inactive:hover,
 .app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar:hover,
 .macro-sheet:hover,
 .roll-table-config:hover,
@@ -693,7 +699,22 @@ nav#navigation #scene-list li {
 .chat-bubble.emote.right:hover,
 .chat-bubble.emote.left:hover,
 .chat-bubble.right:hover,
-.chat-bubble.left:hover {
+.chat-bubble.left:hover,
+.tab.sidebar-tab.chat-sidebar.active:hover,
+.tab.sidebar-tab.combat-sidebar.active:hover,
+.tab.sidebar-tab.scenes-sidebar.active:hover,
+.tab.sidebar-tab.actors-sidebar.active:hover,
+.tab.sidebar-tab.items-sidebar.active:hover,
+.tab.sidebar-tab.journal-sidebar.active:hover,
+.tab.sidebar-tab.tables-sidebar.active:hover,
+.tab.sidebar-tab.cards-sidebar.active:hover,
+.tab.sidebar-tab.macros-sidebar.active:hover,
+.tab.sidebar-tab.playlists-sidebar.active:hover,
+.tab.sidebar-tab.compendium-sidebar.active:hover,
+.tab.sidebar-tab.settings-sidebar.active:hover,
+.scene.view:hover,
+.chat-input:hover,
+.chat-message.message:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .app.window-app.sheet:has(.sound-volume) {
@@ -776,6 +797,13 @@ h2.category-title,
 }
 #sidebar.collapsed #sidebar-tabs > .item.active {
   border-bottom: 1px solid #22518f;
+}
+.chat-input::placeholder {
+  color: #ffffff;
+}
+.icon,
+i {
+  font-family: 'Font Awesome 6 Pro';
 }
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
@@ -1979,6 +2007,7 @@ input.input-text::selection {
   display: block;
   text-align: center;
   height: fit-content;
+  flex: 1;
 }
 .ss1e.sheet.actor.character .character-skill-inventory .combat-actions .sheet-skill-inventory .skill-container .skill-item .skill-button {
   background: none;
@@ -2010,6 +2039,7 @@ input.input-text::selection {
 .ss1e.sheet.actor.character .character-skill-inventory .combat-actions .sheet-skill-inventory .skill-container .skill-item .skill-button.use-skill-roll span {
   height: 34px;
   width: 34px;
+  align-self: flex-start;
 }
 .ss1e.sheet.actor.character .character-skill-inventory .combat-actions .attack-actions {
   width: 50%;

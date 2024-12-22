@@ -451,13 +451,6 @@ nav#controls {
 	}
 }
 aside#players {
-	background-image: @background-tile;
-	background-color: transparent;
-	border: 3px double @main-border-color;
-	border-radius: 8px;
-	box-shadow: 0 0 3px @inset-color inset;
-	margin: 0;
-	margin-top: 1px;
 	& h3 {
 		border-bottom: 2px groove @main-border-color;
 	}
@@ -507,13 +500,10 @@ nav#navigation {
 #sidebar {
 	background-image: none;
 	.directory-header {
-		background-color: @background-color;
+		background-color: transparent;
 	}
 	border: 0;
 	#sidebar-tabs {
-		box-shadow: 0 0 10px @subaccent-color;
-		border-bottom: 1px solid @subaccent-color;
-		margin-bottom: 1px;
 		.item {
 			border: 1px solid @subaccent-color;
 			&:hover {
@@ -596,6 +586,8 @@ nav#navigation {
 #av-config,
 #font-config,
 #default-sheets-config,
+#players-active,
+#players-inactive,
 .app.window-app.tab.sidebar-tab.sidebar-popout.Compendium-sidebar,
 .macro-sheet,
 .roll-table-config,
@@ -608,8 +600,24 @@ nav#navigation {
 .chat-bubble.emote.right,
 .chat-bubble.emote.left,
 .chat-bubble.right,
-.chat-bubble.left {
-	background-image: @background-tile;
+.chat-bubble.left,
+.tab.sidebar-tab.chat-sidebar.active,
+.tab.sidebar-tab.combat-sidebar.active,
+.tab.sidebar-tab.scenes-sidebar.active,
+.tab.sidebar-tab.actors-sidebar.active,
+.tab.sidebar-tab.items-sidebar.active,
+.tab.sidebar-tab.journal-sidebar.active,
+.tab.sidebar-tab.tables-sidebar.active,
+.tab.sidebar-tab.cards-sidebar.active,
+.tab.sidebar-tab.macros-sidebar.active,
+.tab.sidebar-tab.playlists-sidebar.active,
+.tab.sidebar-tab.compendium-sidebar.active,
+.tab.sidebar-tab.settings-sidebar.active,
+.scene.view,
+.chat-input,
+.chat-message.message {
+	background-color: transparent;
+	background-image: @background-tile !important;
 	border: 3px double @main-border-color;
 	.add-glow(@glow-color, 2px, 5px);
 }
@@ -686,4 +694,11 @@ h2.category-title,
 }
 #sidebar.collapsed #sidebar-tabs > .item.active {
 	border-bottom: 1px solid @accent-color;
+}
+.chat-input::placeholder {
+	color: @primary-text-color;
+}
+.icon,
+i {
+	font-family: 'Font Awesome 6 Pro';
 }

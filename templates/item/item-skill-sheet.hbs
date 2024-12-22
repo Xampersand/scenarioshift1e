@@ -94,6 +94,18 @@
 			<div class="skill-info-value">{{system.requirement.type}}</div>
 			{{/if}}
 		  </div>
+      <div class="skill-info-line">
+			<label class='skill-info-label'>STAT&nbsp;REQUIREMENT:&nbsp;</label>
+			{{#if isEditing}}
+			<input
+				name="system.requirement.value"
+				type="number"
+				value="{{system.requirement.value}}"
+				placeholder='Skill Stat'>
+			{{else}}
+			<div class="skill-info-value">{{system.requirement.value}}</div>
+			{{/if}}
+		  </div>
         </div> <!-- Close skill-info -->
 		<div class='skill-specific-stats'>
 		{{> skill-sheet-description}}

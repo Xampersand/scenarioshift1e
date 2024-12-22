@@ -97,14 +97,18 @@ export class SS1EActorSheet extends ActorSheet {
 		context.hpBarWidth = hpBarWidth;
 		context.manaBarWidth = manaBarWidth;
 		// Making damage number percentage in the sheet
-		context.strDamageIncreasePercentage =
-			context.system.damageIncreaseStrTotal * 100;
-		context.agiDamageIncreasePercentage =
-			context.system.damageIncreaseAgiTotal * 100;
-		context.intDamageIncreasePercentage =
-			context.system.damageIncreaseIntTotal * 100;
-		context.conDamageIncreasePercentage =
-			context.system.damageIncreaseConTotal * 100;
+		context.strDamageIncreasePercentage = Math.round(
+			context.system.damageIncreaseStrTotal * 100
+		);
+		context.agiDamageIncreasePercentage = Math.round(
+			context.system.damageIncreaseAgiTotal * 100
+		);
+		context.intDamageIncreasePercentage = Math.round(
+			context.system.damageIncreaseIntTotal * 100
+		);
+		context.conDamageIncreasePercentage = Math.round(
+			context.system.damageIncreaseConTotal * 100
+		);
 
 		// making bonus increase number a percentage
 		context.strDamageIncreaseBonusPercentage =

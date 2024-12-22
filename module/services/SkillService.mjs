@@ -22,6 +22,26 @@ export function onRollSkillAccuracy(event, actor) {
 		ui.notifications.warn('Not enough mana!');
 		return;
 	}
+
+	const STAT_MAPPINGS = {
+		str: { total: actor.system.strTotal },
+		agi: { total: actor.system.agiTotal },
+		int: { total: actor.system.intTotal },
+		con: { total: actor.system.conTotal },
+	};
+
+	const statRequirement = skill.system.requirement.type || 'int';
+
+	if (!STAT_MAPPINGS[statRequirement]) {
+		ui.notifications.warn('Unknown stat requirement for the skill!');
+		return;
+	}
+	const { total } = STAT_MAPPINGS[statRequirement];
+	let additionalManaCost = Math.floor(
+		(total - skill.system.requirement.value) / skill.system.upgradeThreshold
+	);
+	let totalManaCost = skill.system.manaCost * (1 + additionalManaCost);
+
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
 		roll.roll().then((rolled) => {
@@ -29,7 +49,7 @@ export function onRollSkillAccuracy(event, actor) {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: `Rolling Accuracy for ${skill.name}`, // Optional flavor text
 			});
-			actor.system.manaCurrent -= skill.system.manaCost;
+			actor.system.manaCurrent -= totalManaCost;
 			actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
 			consumeActionPoints(actor, skill.system.apCost);
 		});
@@ -54,37 +74,39 @@ export function onRollSkillDamage(event, actor) {
 		ui.notifications.warn('No skill found!');
 		return;
 	}
+	const STAT_MAPPINGS = {
+		str: {
+			total: actor.system.strTotal,
+			damageIncrease: actor.system.damageIncreaseStrTotal,
+		},
+		agi: {
+			total: actor.system.agiTotal,
+			damageIncrease: actor.system.damageIncreaseAgiTotal,
+		},
+		int: {
+			total: actor.system.intTotal,
+			damageIncrease: actor.system.damageIncreaseIntTotal,
+		},
+		con: {
+			total: actor.system.conTotal,
+			damageIncrease: actor.system.damageIncreaseConTotal,
+		},
+	};
 
-	// Determine the stat requirement and use the corresponding actor's stat
-	let skillDamageIncreaseTotal = 0;
-	let additionalDice = 0;
-	const statRequirement = skill.system.requirement.type || 'int'; // Default to 'int' if no requirement is specified
-	if (statRequirement === 'str') {
-		skillDamageIncreaseTotal = 1 + actor.system.damageIncreaseStrTotal;
-		additionalDice = Math.floor(
-			actor.system.strTotal / skill.system.upgradeThreshold
-		);
-	} else if (statRequirement === 'agi') {
-		skillDamageIncreaseTotal = 1 + actor.system.damageIncreaseAgiTotal;
-		additionalDice = Math.floor(
-			actor.system.agiTotal / skill.system.upgradeThreshold
-		);
-	} else if (statRequirement === 'int') {
-		skillDamageIncreaseTotal = 1 + actor.system.damageIncreaseIntTotal;
-		additionalDice = Math.floor(
-			actor.system.intTotal / skill.system.upgradeThreshold
-		);
-	} else if (statRequirement === 'con') {
-		skillDamageIncreaseTotal = 1 + actor.system.damageIncreaseConTotal;
-		additionalDice = Math.floor(
-			actor.system.conTotal / skill.system.upgradeThreshold
-		);
-	} else {
+	const statRequirement = skill.system.requirement.type || 'int';
+
+	if (!STAT_MAPPINGS[statRequirement]) {
 		ui.notifications.warn('Unknown stat requirement for the skill!');
 		return;
 	}
+	const { total, damageIncrease } = STAT_MAPPINGS[statRequirement];
 
-	const totalDice = skill.system.diceNum + additionalDice;
+	let skillDamageIncreaseTotal = 1 + damageIncrease;
+	let additionalDice = Math.floor(
+		(total - skill.system.requirement.value) / skill.system.upgradeThreshold
+	);
+
+	const totalDice = skill.system.diceNum * (1 + additionalDice);
 	const damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
 
 	const rollFormula = `round((${damageFormula})*${skillDamageIncreaseTotal})`;
@@ -115,47 +137,34 @@ export async function onSkillUse(event, actor) {
 		return;
 	} else if (skill.system.skillType === 'healing') {
 		// Healing skill
-		const STRENGTH_HEALING_SCALING = 1;
-		const AGILITY_HEALING_SCALING = 1;
-		const INTELLIGENCE_HEALING_SCALING = 1;
-		const CONSTITUTION_HEALING_SCALING = 1;
+		const STAT_SCALINGS = {
+			str: { total: actor.system.strTotal, scaling: 1 },
+			agi: { total: actor.system.agiTotal, scaling: 1 },
+			int: { total: actor.system.intTotal, scaling: 1 },
+			con: { total: actor.system.conTotal, scaling: 1 },
+		};
 
-		let playerStatHealingIncrease = 0;
-		let additionalDice = 0;
 		const statRequirement = skill.system.requirement.type || 'int';
-		if (statRequirement === 'str') {
-			playerStatHealingIncrease =
-				actor.system.strTotal / STRENGTH_HEALING_SCALING / 100;
-			additionalDice = Math.floor(
-				actor.system.strTotal / skill.system.upgradeThreshold
-			);
-		} else if (statRequirement === 'agi') {
-			playerStatHealingIncrease =
-				actor.system.agiTotal / AGILITY_HEALING_SCALING / 100;
-			additionalDice = Math.floor(
-				actor.system.agiTotal / skill.system.upgradeThreshold
-			);
-		} else if (statRequirement === 'int') {
-			playerStatHealingIncrease =
-				actor.system.intTotal / INTELLIGENCE_HEALING_SCALING / 100;
-			additionalDice = Math.floor(
-				actor.system.intTotal / skill.system.upgradeThreshold
-			);
-		} else if (statRequirement === 'con') {
-			playerStatHealingIncrease =
-				actor.system.conTotal / CONSTITUTION_HEALING_SCALING / 100;
-			additionalDice = Math.floor(
-				actor.system.conTotal / skill.system.upgradeThreshold
-			);
-		} else {
+
+		if (!STAT_SCALINGS[statRequirement]) {
 			ui.notifications.warn('Unknown stat requirement for the skill!');
 			return;
 		}
+		const { total, scaling } = STAT_SCALINGS[statRequirement];
+		const playerStatHealingIncrease = (total * scaling) / 100;
+		const additionalDice = Math.floor(
+			(total - skill.system.requirement.value) /
+				skill.system.upgradeThreshold
+		);
 		const totalHealingIncrease = 1 + playerStatHealingIncrease;
-		const totalDice = skill.system.diceNum + additionalDice;
+		const totalDice = skill.system.diceNum * (1 + additionalDice);
 		const healingFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
-
 		const rollFormula = `round((${healingFormula})*${totalHealingIncrease})`;
+		const additionalManaCost = Math.floor(
+			(total - skill.system.requirement.value) /
+				skill.system.upgradeThreshold
+		);
+		const totalManaCost = skill.system.manaCost * (1 + additionalManaCost);
 		try {
 			const roll = new Roll(rollFormula, actor.getRollData());
 			roll.roll().then((rolled) => {
@@ -167,7 +176,7 @@ export async function onSkillUse(event, actor) {
 					`mana before spell cost:`,
 					actor.system.manaCurrent
 				);
-				actor.system.manaCurrent -= skill.system.manaCost;
+				actor.system.manaCurrent -= totalManaCost;
 				consumeActionPoints(actor, skill.system.apCost);
 				actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
 			});
@@ -238,7 +247,7 @@ export function onSendSkillToChat(event, actor) {
         <div class"skill-name" style="flex:2"><span >&lt;${skill.name}&gt;</span></div>
       </div>
       <div>${skill.system.description}</div><br>
-      <div>Healing Roll: ${skill.system.damageFormula}</div>
+      <div>Healing Roll: ${skill.system.diceNum}&nbsp;${skill.system.diceSize}&nbsp;+&nbsp;${skill.system.diceBonus}</div>
       <div>AP Cost: ${skill.system.apCost}</div>
       <div>Mana Cost: ${skill.system.manaCost}</div>
     </div>

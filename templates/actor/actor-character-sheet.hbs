@@ -162,6 +162,7 @@
               <div class='combat-stat-block'>
                 <label class='evasion-label' for='evasion-stat'>Evasion:&nbsp;</label>
                 <div class="stat-numbers">
+                  
                 <span class='evasion-stat'>{{system.evasionTotal}}</span>
                 <span id="temp-evasion" class="evasion-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.evasionTempBonus}}&#41;</span>
                 </div>
@@ -186,8 +187,20 @@
               <div class='combat-stat-block'>
                 <label class='str-label' for='str-stat' data-action='rollStat' data-key='str'>Strength:&nbsp;</label>
                 <div class="stat-numbers">
+                  {{#if isEditing}}
+                  Base Strength:
+                  <input
+                  type='number'
+                  id='strBase'
+                  class='input-text'
+                  name='system.strBase'
+                  value='{{system.strBase}}'
+                  placeholder='Base Strength'
+                />
+                {{else}}
                 <span class='str-stat'>{{system.strTotal}}</span>
                 <span id="temp-str" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.strTempBonus}}&#41;</span>
+                {{/if}}
                 </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='str'>+</button>
@@ -196,8 +209,20 @@
               <div class='combat-stat-block'>
                 <label class='agi-label' for='agi-stat' data-action='rollStat' data-key='agi'>Agility:&nbsp;</label>
                 <div class="stat-numbers">
+                  {{#if isEditing}}
+                  Base Agility:
+                  <input
+                  type='number'
+                  id='agiBase'
+                  class='input-text'
+                  name='system.agiBase'
+                  value='{{system.agiBase}}'
+                  placeholder='Base Agility'
+                />
+                {{else}}
                 <span class='agi-stat'>{{system.agiTotal}}</span>
                 <span id="temp-agi" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.agiTempBonus}}&#41;</span>
+                {{/if}}
                 </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='agi'>+</button>
@@ -206,8 +231,20 @@
               <div class='combat-stat-block'>
                 <label class='con-label' for='con-stat' data-action='rollStat' data-key='con'>Constitution:&nbsp;</label>
                 <div class="stat-numbers">
+                  {{#if isEditing}}
+                  Base Constitution:
+                  <input
+                  type='number'
+                  id='conBase'
+                  class='input-text'
+                  name='system.conBase'
+                  value='{{system.conBase}}'
+                  placeholder='Base Constitution'
+                />
+                {{else}}
                 <span class='con-stat'>{{system.conTotal}}</span>
                 <span id="temp-con" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.conTempBonus}}&#41;</span>
+                {{/if}}
                 </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='con'>+</button>
@@ -216,8 +253,20 @@
               <div class='combat-stat-block'>
                 <label class='int-label' for='int-stat' data-action='rollStat' data-key='int'>Intelligence:&nbsp;</label>
                 <div class="stat-numbers">
+                  {{#if isEditing}}
+                  Base Intelligence:
+                  <input
+                  type='number'
+                  id='intBase'
+                  class='input-text'
+                  name='system.intBase'
+                  value='{{system.intBase}}'
+                  placeholder='Base Intelligence'
+                />
+                {{else}}
                 <span class='int-stat'>{{system.intTotal}}</span>
                 <span id="temp-int" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.intTempBonus}}&#41;</span>
+                {{/if}}
                 </div>
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='int'>+</button>
