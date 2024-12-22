@@ -9,27 +9,48 @@ export function onStatLevelUp(event) {
 	const statValue = this.actor.system[statBaseKey];
 	const statTotalValue = this.actor.system[statTotalKey];
 
-	const cost = 300 + Math.floor(statValue / 10) * 100;
+	const baseCost = 300;
+	const costPerLevel = 100;
 
 	new Dialog({
 		title: 'Level Up!',
 		content: `
       <div class='stat-dialog'>
-        <p>Base ${statLabel} Lv. ${statValue} → ${statLabel} Lv. ${
+        <p>Base ${statLabel} Lv. ${statValue} → ${statLabel} Lv. <span id="new-stat-value">${
 			statValue + 1
-		} (${statTotalValue} ${statLabel} → ${
+		}</span> (${statTotalValue} ${statLabel} → <span id="new-stat-total-value">${
 			statTotalValue + 1
-		} ${statLabel})</p>
-        <p>Cost: ${cost} Coins</p>
+		}</span> ${statLabel})</p>
+        <p>Cost per level: 	${
+			baseCost + Math.floor(statValue / 10) * 100
+		} coins. (${baseCost} + ${costPerLevel} every 10 levels.)</p>
+        <label for="level-increase">Levels to increase:</label>
+        <input type="number" id="level-increase" name="level-increase" value="1" min="1" style="width: 50px;">
       </div>`,
 		buttons: {
 			yes: {
 				icon: '<i class="fas fa-check"></i>',
 				label: 'Yes',
 				callback: () => {
-					if (this.actor.system.coins >= cost) {
-						const updatedCoins = this.actor.system.coins - cost;
-						const newStatValue = this.actor.system[statBaseKey] + 1;
+					const levelsToIncrease = parseInt(
+						document.getElementById('level-increase').value
+					);
+					let totalCost = 0;
+
+					// Calculate the total cost for each level increase
+					for (let i = 0; i < levelsToIncrease; i++) {
+						const currentLevel = statValue + i;
+						const levelCost =
+							baseCost +
+							Math.floor(currentLevel / 10) * costPerLevel;
+						totalCost += levelCost;
+					}
+
+					if (this.actor.system.coins >= totalCost) {
+						const updatedCoins =
+							this.actor.system.coins - totalCost;
+						const newStatValue =
+							this.actor.system[statBaseKey] + levelsToIncrease;
 
 						// Prepare the data object for updating
 						let updateData = {
@@ -39,8 +60,8 @@ export function onStatLevelUp(event) {
 
 						// Add health if Constitution is leveled up
 						if (key === 'con') {
-							const healthGain = 3;
-							const manaGain = 1;
+							const healthGain = 3 * levelsToIncrease;
+							const manaGain = 1 * levelsToIncrease;
 							updateData['system.healthCurrent'] =
 								(this.actor.system.healthCurrent || 0) +
 								healthGain;
@@ -50,19 +71,15 @@ export function onStatLevelUp(event) {
 
 						// Add mana if Intelligence is leveled up
 						if (key === 'int') {
-							const manaGain = 5;
+							const manaGain = 5 * levelsToIncrease;
 							updateData['system.manaCurrent'] =
 								(this.actor.system.manaCurrent || 0) + manaGain;
 						}
 
 						// Apply updates to actor
-						this.actor.update(updateData).then(() => {
-							// Recalculate derived values
-							this.actor.prepareDerivedData();
-							this.render(); // Re-render the sheet
-						});
+						this.actor.update(updateData).then(() => this.render());
 					} else {
-						ui.notifications.error('Not enough coins to level up!');
+						ui.notifications.error('Not enough coins!');
 					}
 				},
 			},
@@ -73,6 +90,5 @@ export function onStatLevelUp(event) {
 			},
 		},
 		default: 'no',
-		close: () => console.log('Dialog closed without choosing.'),
-	}).render(true, { width: 400, height: 200 });
+	}).render(true);
 }

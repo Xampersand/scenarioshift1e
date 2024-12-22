@@ -107,7 +107,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		const INT_ACCURACY_INCREMENT = 1;
 		const INT_MANA_INCREMENT = 5;
 		const CON_MANA_INCREMENT = 1;
-		const HEALTH_INCREMENT = 2.5;
+		const HEALTH_INCREMENT = 3;
 
 		// damage scaling, x point of stat = 1% increase in damage
 		// this is generic, for specific scaling, change in roll formulas
