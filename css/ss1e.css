@@ -436,6 +436,11 @@ h4.window-title {
   text-align: center;
   font-size: 1.3rem;
 }
+.app.window-app.dialog:has(.temp-stat-bonus) {
+  background-size: cover;
+  width: 400px;
+  height: 200px;
+}
 .app.window-app.dialog:has(.stat-dialog) {
   display: flex;
   flex-direction: column;
@@ -654,7 +659,9 @@ nav#navigation #scene-list li {
 .tab.sidebar-tab.settings-sidebar.active,
 .scene.view,
 .chat-input,
-.chat-message.message {
+.chat-message.message,
+.cards-config,
+.card-config {
   background-color: transparent;
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
   border: 3px double white;
@@ -715,7 +722,9 @@ nav#navigation #scene-list li {
 .tab.sidebar-tab.settings-sidebar.active:hover,
 .scene.view:hover,
 .chat-input:hover,
-.chat-message.message:hover {
+.chat-message.message:hover,
+.cards-config:hover,
+.card-config:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .app.window-app.sheet:has(.sound-volume) {
@@ -735,6 +744,15 @@ nav#navigation #scene-list li {
 }
 .app.window-app.sheet:has([value='music']):hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
+.app.window-app.sheet:has([id='permission-control']) {
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png) !important;
+  border: 3px double white !important;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff !important;
+  transition: box-shadow 0.3s ease-in-out !important;
+}
+.app.window-app.sheet:has([id='permission-control']):hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff !important;
 }
 .sheet.journal-entry .journal-entry-content {
   background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
@@ -803,7 +821,8 @@ h2.category-title,
   color: #ffffff;
 }
 .icon,
-i {
+i,
+a.sound-control {
   font-family: 'Font Awesome 6 Pro';
 }
 .slot.open,
