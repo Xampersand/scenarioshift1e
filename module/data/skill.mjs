@@ -28,6 +28,39 @@ export default class SS1ESkill extends SS1EItemBase {
 			initial: 0,
 			min: 0,
 		});
+		schema.secondDiceNum = new fields.NumberField({
+			...requiredInteger,
+			initial: 0,
+			min: 0,
+		});
+		schema.secondDiceSize = new fields.StringField({ initial: 'd6' });
+		schema.secondDiceBonus = new fields.NumberField({
+			...requiredInteger,
+			initial: 0,
+			min: 0,
+		});
+		schema.thirdDiceNum = new fields.NumberField({
+			...requiredInteger,
+			initial: 0,
+			min: 0,
+		});
+		schema.thirdDiceSize = new fields.StringField({ initial: 'd8' });
+		schema.thirdDiceBonus = new fields.NumberField({
+			...requiredInteger,
+			initial: 0,
+			min: 0,
+		});
+		schema.fourthDiceNum = new fields.NumberField({
+			...requiredInteger,
+			initial: 0,
+			min: 0,
+		});
+		schema.fourthDiceSize = new fields.StringField({ initial: 'd10' });
+		schema.fourthDiceBonus = new fields.NumberField({
+			...requiredInteger,
+			initial: 0,
+			min: 0,
+		});
 		schema.damageType = new fields.StringField({ initial: 'bludgeoning' });
 		// schema.damageFormula = new fields.StringField({ initial: '' });
 		schema.skillType = new fields.StringField({ initial: 'offensive' });

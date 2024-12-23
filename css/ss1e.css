@@ -2298,17 +2298,17 @@ input.input-text::selection {
 .skill-description-sheet .skill-bottom-section .skill-shared-stats .skill-info-line .skill-info-value {
   font-size: 1rem;
 }
-.skill-description-sheet .skill-bottom-section .skill-specific-stats {
+.skill-specific-stats {
   display: flex;
   flex-direction: column;
-  flex: 1;
   align-items: flex-start;
 }
-.skill-description-sheet .skill-bottom-section .skill-specific-stats .skill-info-line {
+.skill-specific-stats .skill-info-line {
+  margin-bottom: 5px;
   display: flex;
   flex-direction: row;
   font-size: 1rem;
 }
-.skill-description-sheet .skill-bottom-section .skill-specific-stats .skill-info-line label {
+.skill-specific-stats .skill-info-line label {
   font-weight: bold;
 }

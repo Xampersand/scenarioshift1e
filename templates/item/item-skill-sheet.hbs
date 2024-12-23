@@ -2,8 +2,9 @@
   <button class='edit-mode-toggle'>Edit</button>
 
   <nav class='sheet-tabs tabs' data-group='primary'>
-    <a class='item' data-tab='description'>Item Description</a>
-    <a class='item' data-tab='attributes'>Edit effects</a>
+    <a class='item' data-tab='description'>Skill Description</a>
+    <a class="item" data-tab="details">Skill Details</a>
+    <a class='item' data-tab='effects'>Active Effects</a>
   </nav>
   <div class='sheet-body'>
     <div class='tab' data-tab='description'>
@@ -106,14 +107,27 @@
 			<div class="skill-info-value">{{system.requirement.value}}</div>
 			{{/if}}
 		  </div>
-        </div> <!-- Close skill-info -->
-		<div class='skill-specific-stats'>
-		{{> skill-sheet-description}}
-		</div>
+      {{#if isEditing}}
+        <div class='skill-info-line'>
+          <label class='skill-info-label'>MACRO EFFECT:&nbsp;</label>
+          <input
+            type='text'
+            name='system.macroEffect'
+            placeholder='Macro Effect'
+            value='{{system.macroEffect}}'
+          />
+        </div>
+      {{/if}}
+    </div> <!-- Close skill-info -->
 	  </section>
 	  </div>
     </div> <!-- Close tab description -->
-		<div class='tab' data-tab='attributes'>
+    <div class="tab" data-tab="details">
+      <div class='skill-specific-stats'>
+		    {{> skill-sheet-description}}
+		  </div>
+    </div>
+		<div class='tab' data-tab='effects'>
 			<div class='effects-body'>
 				{{> "item-effects" effects=effects}}
 				<button class="effect-control" data-action="create">Add Effect</button>

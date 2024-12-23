@@ -108,9 +108,21 @@ export function onRollSkillDamage(event, actor) {
 
 	const totalDice = skill.system.diceNum * (1 + additionalDice);
 	const damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
-
-	const rollFormula = `round((${damageFormula})*${skillDamageIncreaseTotal})`;
-
+	const secondDamageFormula = `${skill.system.secondDiceNum}${skill.system.secondDiceSize}+${skill.system.secondDiceBonus}`;
+	const thirdDamageFormula = `${skill.system.thirdDiceNum}${skill.system.thirdDiceSize}+${skill.system.thirdDiceBonus}`;
+	const fourthDamageFormula = `${skill.system.fourthDiceNum}${skill.system.fourthDiceSize}+${skill.system.fourthDiceBonus}`;
+	//map the additional damage formuals to an object, if the diceNum is 0 the formula is not added to the roll formula
+	const additionalDamageFormulas = {
+		second: skill.system.secondDiceNum ? `+${secondDamageFormula}` : '',
+		third: skill.system.thirdDiceNum ? `+${thirdDamageFormula}` : '',
+		fourth: skill.system.fourthDiceNum ? `+${fourthDamageFormula}` : '',
+	};
+	//combine the additional damage formulas into the roll formula
+	const rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})`;
+	if (!rollFormula) {
+		ui.notifications.warn('No damage formula found for the skill!');
+		return;
+	}
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
 		roll.roll().then((rolled) => {

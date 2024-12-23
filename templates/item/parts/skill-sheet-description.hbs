@@ -26,7 +26,7 @@
 </div>
 {{#if (eq system.skillType 'offensive')}}
 	<div class='skill-info-line'>
-		<label class='skill-info-label'>DAMAGE:&nbsp;</label>
+		<label class='skill-info-label'>DAMAGE&nbsp;ROLL:&nbsp;</label>
 		{{#if isEditing}}
 			<input
 				type='number'
@@ -56,6 +56,94 @@
 			<div
 				class='skill-info-value'
 			>{{system.diceNum}}{{system.diceSize}}&nbsp;+&nbsp;{{system.diceBonus}}&nbsp;{{system.damageType}}</div>
+		{{/if}}
+	</div>
+	<div class='skill-info-line'>
+		<label
+			class='skill-info-label'
+		>SECOND&nbsp;DAMAGE&nbsp;ROLL:&nbsp;</label>
+		{{#if isEditing}}
+			<input
+				type='number'
+				name='system.secondDiceNum'
+				placeholder='number of dice'
+				value='{{system.secondDiceNum}}'
+			/>
+			<input
+				type='text'
+				name='system.secondDiceSize'
+				placeholder='size of dice'
+				value='{{system.secondDiceSize}}'
+			/>
+			<input
+				type='number'
+				name='system.secondDiceBonus'
+				placeholder='bonus'
+				value='{{system.secondDiceBonus}}'
+			/>
+
+		{{else}}
+			<div
+				class='skill-info-value'
+			>{{system.secondDiceNum}}{{system.secondDiceSize}}&nbsp;+&nbsp;{{system.secondDiceBonus}}</div>
+		{{/if}}
+	</div>
+	<div class='skill-info-line'>
+		<label
+			class='skill-info-label'
+		>THIRD&nbsp;DAMAGE&nbsp;ROLL:&nbsp;</label>
+		{{#if isEditing}}
+			<input
+				type='number'
+				name='system.thirdDiceNum'
+				placeholder='number of dice'
+				value='{{system.thirdDiceNum}}'
+			/>
+			<input
+				type='text'
+				name='system.thirdDiceSize'
+				placeholder='size of dice'
+				value='{{system.thirdDiceSize}}'
+			/>
+			<input
+				type='number'
+				name='system.thirdDiceBonus'
+				placeholder='bonus'
+				value='{{system.thirdDiceBonus}}'
+			/>
+		{{else}}
+			<div
+				class='skill-info-value'
+			>{{system.thirdDiceNum}}{{system.thirdDiceSize}}&nbsp;+&nbsp;{{system.thirdDiceBonus}}</div>
+		{{/if}}
+	</div>
+	<div class='skill-info-line'>
+		<label
+			class='skill-info-label'
+		>FOURTH&nbsp;DAMAGE&nbsp;ROLL:&nbsp;</label>
+		{{#if isEditing}}
+			<input
+				type='number'
+				name='system.fourthDiceNum'
+				placeholder='number of dice'
+				value='{{system.fourthDiceNum}}'
+			/>
+			<input
+				type='text'
+				name='system.fourthDiceSize'
+				placeholder='size of dice'
+				value='{{system.fourthDiceSize}}'
+			/>
+			<input
+				type='number'
+				name='system.fourthDiceBonus'
+				placeholder='bonus'
+				value='{{system.fourthDiceBonus}}'
+			/>
+		{{else}}
+			<div
+				class='skill-info-value'
+			>{{system.fourthDiceNum}}{{system.fourthDiceSize}}&nbsp;+&nbsp;{{system.fourthDiceBonus}}</div>
 		{{/if}}
 	</div>
 	<div class='skill-info-line'>
@@ -185,14 +273,3 @@
 		<div class='skill-info-value'>{{system.range}}&nbsp;ft.</div>
 	{{/if}}
 </div>
-{{#if isEditing}}
-	<div class='skill-info-line'>
-		<label class='skill-info-label'>MACRO EFFECT:&nbsp;</label>
-		<input
-			type='text'
-			name='system.macroEffect'
-			placeholder='Macro Effect'
-			value='{{system.macroEffect}}'
-		/>
-	</div>
-{{/if}}
