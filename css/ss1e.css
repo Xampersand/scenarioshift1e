@@ -806,6 +806,26 @@ h2.category-title,
 i {
   font-family: 'Font Awesome 6 Pro';
 }
+.slot.open,
+.slot.full {
+  background: none;
+  background-color: transparent;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+}
+.slot.open span,
+.slot.full span {
+  background-color: #22518f;
+}
+.slot.open:hover,
+.slot.full:hover {
+  border: 1px solid #52c8ff;
+  box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.slot.open:hover:hover,
+.slot.full:hover:hover {
+  box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
+}
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1829,16 +1849,17 @@ input.input-text::selection {
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
-  border-bottom: 1px solid white;
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section {
   flex: 1;
+  margin-bottom: 40px;
+  place-self: center;
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section .checkbox-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section .checkbox-grid .checkbox-container {
   display: flex;
@@ -1847,15 +1868,51 @@ input.input-text::selection {
   border: 1px solid white;
   width: 200px;
 }
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .preset-recipient {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  width: auto;
+  align-self: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .preset-message-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   flex: 1;
+  margin-bottom: 40px;
+  place-self: center;
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .preset-message-buttons .constellation-sheet-button {
   margin-top: 4px;
   margin-bottom: 4px;
   width: 150px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .message-recipient {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .starstream-message-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .starstream-message-input label {
+  font-size: 1.5rem;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .starstream-message-input textarea {
+  width: 50%;
+  height: 50%;
+  font-size: 1rem;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .starstream-message-input button {
+  width: 60px;
 }
 .ss1e.sheet.actor.character .character-skill-inventory .combat-resources {
   display: flex;

@@ -703,3 +703,16 @@ h2.category-title,
 i {
 	font-family: 'Font Awesome 6 Pro';
 }
+.slot.open,
+.slot.full {
+	background: none;
+	background-color: transparent;
+	background-image: @background-tile;
+	span {
+		background-color: @accent-color;
+	}
+	&:hover {
+		border: 1px solid @subaccent-color;
+		.add-glow(@glow-color, 2px, 5px);
+	}
+}

@@ -171,7 +171,24 @@ export class SS1EActorSheet extends ActorSheet {
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
-
+		//gmboard system messaging
+		html.on(
+			'click',
+			'button[data-action="sendStarstreamGmboard"]',
+			async (ev) => {
+				const message = html.find('#starstreamMessage').val();
+				const recipientId = html
+					.find('#starstreamMessageRecipient')
+					.val();
+				await Gmboard.onSendCustomStarstreamMessage(
+					ev,
+					recipientId,
+					message
+				);
+				const delayTime = Math.random() * 400; // Random delay time to prevent spamming
+				await new Promise((resolve) => setTimeout(resolve, delayTime)); // Wait for x seconds between messages
+			}
+		);
 		//gmboard messaging, checkboxing and stuff,
 		html.on(
 			'click',
