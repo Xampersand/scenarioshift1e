@@ -1833,7 +1833,7 @@ input.input-text::selection {
   transition: box-shadow 0.3s ease-in-out;
   padding: 2px;
   height: 800px !important;
-  width: 1000px !important;
+  width: 800px !important;
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid):hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
@@ -1859,7 +1859,7 @@ input.input-text::selection {
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section .checkbox-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .message-bottom-section .checkbox-grid .checkbox-container {
   display: flex;
@@ -1879,7 +1879,7 @@ input.input-text::selection {
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .multi-constellation-dialog .preset-message-buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   flex: 1;
   margin-bottom: 40px;
   place-self: center;
@@ -1913,6 +1913,33 @@ input.input-text::selection {
 }
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) .starstream-message-input button {
   width: 60px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form .form-line {
+  display: flex;
+  flex-direction: row;
+  width: 450px;
+  margin-bottom: 5px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form .form-line label {
+  width: 20%;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form .form-line input {
+  width: 80%;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form .form-line textarea {
+  width: 80%;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form button {
+  font-size: 1rem;
+  margin-top: 10px;
+  background-color: #800707;
+  width: 150px;
 }
 .ss1e.sheet.actor.character .character-skill-inventory .combat-resources {
   display: flex;

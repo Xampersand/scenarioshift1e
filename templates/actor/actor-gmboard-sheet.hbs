@@ -39,41 +39,57 @@
     </div>
     <div class='tab' data-tab='inventory'>
       <div id='scenario-form'>
-        <label for='scenario-name'>Scenario Name:</label><br />
-        <input type='text' id='scenario-name' name='scenario-name' /><br />
-        <label for='scenario-category'>Scenario Category</label><br />
-        <input type='text' id='scenario-category' name='scenario-category' />
-        <label for='scenario-difficulty'>Difficulty</label><br />
-        <input
-          type='text'
-          id='scenario-difficulty'
-          name='scenario-difficulty'
-        />
-        <label for='scenario-conditions'>Clear conditions:</label><br />
-        <textarea
-          id='scenario-conditions'
-          name='scenario-conditions'
-          rows='10'
-          cols='30'
-        >1. Condition 1</textarea>
-        <label for='scenario-time-limit'>Time Limit:</label><br />
-        <input
-          type='text'
-          id='scenario-time-limit'
-          name='scenario-time-limit'
-        />
-        <label for='scenario-reward'>Reward:</label><br />
-        <input type='text' id='scenario-reward' name='scenario-reward' />
-        <label for='scenario-fail'>Failure Penalty:</label><br />
-        <input type='text' id='scenario-fail' name='scenario-fail' />
-        <label for='scenario-notes'>Notes:</label><br />
-        <textarea
-          id='scenario-notes'
-          name='scenario-notes'
-          rows='10'
-          cols='30'
-        >Scenario notes here</textarea>
-        <button type='submit' id='scenario-submit'>INITIATE SCENARIO</button>
+        <div class="form-line">
+          <label for='scenario-name'>Scenario Name:</label>
+          <input type='text' id='scenario-name' name='scenario-name' />
+        </div>
+        <div class="form-line">
+          <label for='scenario-category'>Scenario Category:</label>
+          <input type='text' id='scenario-category' name='scenario-category' />
+        </div>
+        <div class="form-line">
+          <label for='scenario-difficulty'>Difficulty Rank:</label>
+          <input
+            type='text'
+            id='scenario-difficulty'
+            name='scenario-difficulty'
+          />
+        </div>
+        <div class="form-line">
+          <label for='scenario-conditions'>Clear conditions:</label>
+          <textarea
+            id='scenario-conditions'
+            name='scenario-conditions'
+            rows='10'
+            cols='30'
+          >1. Condition 1</textarea>
+        </div>
+        <div class="form-line">
+          <label for='scenario-time-limit'>Time Limit:</label>
+          <input
+            type='text'
+            id='scenario-time-limit'
+            name='scenario-time-limit'
+          />
+        </div>
+        <div class="form-line">
+          <label for='scenario-reward'>Reward:</label>
+          <input type='text' id='scenario-reward' name='scenario-reward' />
+        </div>
+        <div class="form-line">
+          <label for='scenario-fail'>Failure Penalty:</label>
+          <input type='text' id='scenario-fail' name='scenario-fail' />
+        </div>
+        <div class="form-line">
+          <label for='scenario-notes'>Notes:</label>
+          <textarea
+            id='scenario-notes'
+            name='scenario-notes'
+            rows='10'
+            cols='30'
+          >Scenario notes here</textarea>
+        </div>
+        <button type='submit' id='scenario-submit'>!INITIATE SCENARIO!</button>
       </div>
     </div>
     <div class='tab' data-tab='abilities'>

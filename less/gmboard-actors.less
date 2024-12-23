@@ -4,7 +4,7 @@
 	.add-glow(@glow-color, 2px, 5px);
 	padding: 2px;
 	height: 800px !important;
-	width: 1000px !important;
+	width: 800px !important;
 	.window-header {
 		padding-bottom: 8px;
 		h4 {
@@ -24,7 +24,7 @@
 			place-self: center;
 			.checkbox-grid {
 				display: grid;
-				grid-template-columns: repeat(4, 1fr);
+				grid-template-columns: repeat(3, 1fr);
 				.checkbox-container {
 					display: flex;
 					flex-direction: row;
@@ -45,7 +45,7 @@
 		}
 		.preset-message-buttons {
 			display: grid;
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: repeat(3, 1fr);
 			flex: 1;
 			margin-bottom: 40px;
 			place-self: center;
@@ -79,6 +79,33 @@
 		}
 		button {
 			width: 60px;
+		}
+	}
+	#scenario-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		.form-line {
+			display: flex;
+			flex-direction: row;
+			width: 450px;
+			margin-bottom: 5px;
+			label {
+				width: 20%;
+			}
+			input {
+				width: 80%;
+			}
+			textarea {
+				width: 80%;
+			}
+		}
+		button {
+			font-size: 1rem;
+			margin-top: 10px;
+			background-color: rgb(128, 7, 7);
+			width: 150px;
 		}
 	}
 }
