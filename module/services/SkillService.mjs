@@ -190,29 +190,21 @@ export async function onSkillUse(event, actor) {
 		skill.system.skillType === 'debuff' ||
 		skill.system.skillType === 'other'
 	) {
-		// Get the active effects present on the item
-		const effects = skill.effects;
-		// Apply the effects to the selected token
-		const selectedToken = canvas.tokens.controlled[0];
-		if (!selectedToken) {
-			ui.notifications.warn('No token selected!');
-			return;
+		if (skill.macroEffect !== 0) {
+			const macro = `/macro ${skill.macroEffect}`;
+			ChatMessage.create({
+				content: macro,
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+			});
 		}
-		for (let effect of effects) {
-			await selectedToken.actor.createEmbeddedDocuments('ActiveEffect', [
-				{
-					...effect.toObject(),
-					disabled: false, // Enable the effect when applied
-				},
-			]);
-		}
-		// log current mana
-		actor.system.manaCurrent -= skill.system.manaCost;
-		consumeActionPoints(actor, skill.system.apCost);
-		actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
-		return;
 	}
+	// log current mana
+	actor.system.manaCurrent -= skill.system.manaCost;
+	consumeActionPoints(actor, skill.system.apCost);
+	actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+	return;
 }
+
 // sending to chat
 export function onSendSkillToChat(event, actor) {
 	event.preventDefault();
