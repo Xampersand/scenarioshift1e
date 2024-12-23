@@ -191,11 +191,9 @@ export async function onSkillUse(event, actor) {
 		skill.system.skillType === 'other'
 	) {
 		if (skill.macroEffect !== 0) {
-			const macro = `/macro ${skill.macroEffect}`;
-			ChatMessage.create({
-				content: macro,
-				speaker: ChatMessage.getSpeaker({ actor: actor }),
-			});
+			console.log(game.macros);
+			const macro = skill.system.macroEffect;
+			game.macros.getName(`${macro}`).execute();
 		}
 	}
 	// log current mana

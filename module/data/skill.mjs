@@ -41,7 +41,7 @@ export default class SS1ESkill extends SS1EItemBase {
 		});
 		schema.manaType = new fields.StringField({ initial: 'Transmutation' });
 		schema.manaCost = new fields.NumberField({ initial: 0 });
-		schema.macroEffect = new fields.StringField({ initial: '' });
+		schema.macroEffect = new fields.StringField({ initial: 'none' });
 		return schema;
 	}
 
