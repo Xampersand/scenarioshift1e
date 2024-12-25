@@ -1,124 +1,135 @@
 <form class='{{cssClass}} flexcol' autocomplete='off'>
-  <button class='edit-mode-toggle'>📝</button>
-  {{! Sheet Tab Navigation }}
-  <nav class='sheet-tabs tabs' data-group='primary'>
-    <a class='item' data-tab='description'>Item Description</a>
-    <a class='item' data-tab='attributes'>Edit effects</a>
-  </nav>
-  <div class='sheet-body'>
-    <div class='tab' data-tab='description'>
-      <section class='consumable-top-section'>
-        <img
-          class='consumable-img'
-          src='{{item.img}}'
-          data-edit='img'
-          title='{{item.name}}'
-          height='200px'
-          width='200px'
-        />
-        <div class='consumable-title'>
-          <div class='consumable-name'>
-            {{#if isEditing}}
-              <!-- Editable fields here -->
-              <input
-                name='name'
-                type='text'
-                value='{{item.name}}'
-                placeholder='NAME'
-              />
-            {{else}}
-              <!-- Non-editable display here -->
-              <div>{{item.name}}</div>
-            {{/if}}
-          </div>
-          <div class='consumable-rarity'>
-            <label for='system.rating'>RATING:&nbsp;</label>
-            {{#if isEditing}}
-              <!-- Editable fields here -->
-              <input
-                name='system.rating'
-                type='text'
-                value='{{system.rating}}'
-                placeholder='COMMON'
-              />
-            {{else}}
-              <!-- Non-editable display here -->
-              <div>{{system.rating}}</div>
-            {{/if}}
-          </div>
-        </div>
-      </section>
-      {{! Sheet Body }}
-      <section class='consumable-bottom-section'>
-        <div class='stats'>
-          <div class='quantity'>
-            <label for='system.quantity'>QUANTITY:&nbsp;</label>
-            {{#if isEditing}}
-              <!-- Editable fields here -->
-              <input
-                name='system.quantity'
-                type='text'
-                value='{{system.quantity}}'
-                placeholder='1'
-              />
-            {{else}}
-              <!-- Non-editable display here -->
-              <div>{{system.quantity}}</div>
-            {{/if}}
-          </div>
-          <div class='effect'>
-            <label for='system.effect'>EFFECT:&nbsp;</label>
-            {{#if isEditing}}
-              <!-- Editable fields here -->
-              <input
-                name='system.effect'
-                type='text'
-                value='{{system.effect}}'
-                placeholder='HEAL 20HP'
-              />
-            {{else}}
-              <!-- Non-editable display here -->
-              <div>{{system.effect}}</div>
-            {{/if}}
-          </div>
-          <div class='consumable-type'>
-            <label for='system.consumableType'>Potion type:&nbsp;</label>
-            {{#if isEditing}}
-              <!-- Editable fields here -->
-              <input
-                name='system.consumableType'
-                type='text'
-                value='{{system.consumableType}}'
-                placeholder='potion type'
-              />
-            {{else}}
-              <!-- Non-editable display here -->
-              <div>{{system.consumableType}} Potion</div>
-            {{/if}}
-          </div>
-          <div class='consumable-value'>
-            <label for='system.consumableValue'>Potion effect:&nbsp;</label>
-            {{#if isEditing}}
-              <!-- Editable fields here -->
-              <input
-                name='system.consumableValue'
-                type='text'
-                value='{{system.consumableValue}}'
-                placeholder='5'
-              />
-            {{else}}
-              <!-- Non-editable display here -->
-              <div>Gain{{system.consumableValue}}{{system.consumableType}}</div>
-            {{/if}}
-          </div>
-          {{! add another div here for each stat/bonus }}
-        </div>
-        <div class='consumable-actions'>
-          <button>SEND TO SOMEONE</button>
-        </div>
-      </section>
-    </div>
-    <div class='tab' data-tab='attributes'>
-      <ol><li>effect 1</li> <li>effect 2</li></ol></div>
-  </div>
+	<button class='edit-mode-toggle'>📝</button>
+	{{! Sheet Tab Navigation }}
+	<nav class='sheet-tabs tabs' data-group='primary'>
+		<a class='item' data-tab='description'>Item Description</a>
+		<a class='item' data-tab='attributes'>Edit effects</a>
+	</nav>
+	<div class='sheet-body'>
+		<div class='tab' data-tab='description'>
+			<section class='consumable-top-section'>
+				<img
+					class='consumable-img'
+					src='{{item.img}}'
+					data-edit='img'
+					title='{{item.name}}'
+					height='200px'
+					width='200px'
+				/>
+				<div class='consumable-title'>
+					<div class='consumable-name'>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='name'
+								type='text'
+								value='{{item.name}}'
+								placeholder='NAME'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{item.name}}</div>
+						{{/if}}
+					</div>
+					<div class='consumable-rarity'>
+						<label for='system.rating'>RATING:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.rating'
+								type='text'
+								value='{{system.rating}}'
+								placeholder='COMMON'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.rating}}</div>
+						{{/if}}
+					</div>
+					<div class='item-description'>
+						{{#if isEditing}}
+							<textarea
+								name='system.description'
+								class='item-description-textarea'
+							>{{system.description}}</textarea>
+						{{else}}
+							<div>{{system.description}}</div>
+						{{/if}}
+					</div>
+				</div>
+			</section>
+			{{! Sheet Body }}
+			<section class='consumable-bottom-section'>
+				<div class='stats'>
+					<div class='quantity'>
+						<label for='system.quantity'>QUANTITY:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.quantity'
+								type='text'
+								value='{{system.quantity}}'
+								placeholder='1'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.quantity}}</div>
+						{{/if}}
+					</div>
+					<div class='effect'>
+						<label for='system.effect'>EFFECT:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.effect'
+								type='text'
+								value='{{system.effect}}'
+								placeholder='HEAL 20HP'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.effect}}</div>
+						{{/if}}
+					</div>
+					<div class='consumable-type'>
+						<label for='system.consumableType'>Potion type:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.consumableType'
+								type='text'
+								value='{{system.consumableType}}'
+								placeholder='potion type'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div>{{system.consumableType}} Potion</div>
+						{{/if}}
+					</div>
+					<div class='consumable-value'>
+						<label for='system.consumableValue'>Potion effect:&nbsp;</label>
+						{{#if isEditing}}
+							<!-- Editable fields here -->
+							<input
+								name='system.consumableValue'
+								type='text'
+								value='{{system.consumableValue}}'
+								placeholder='5'
+							/>
+						{{else}}
+							<!-- Non-editable display here -->
+							<div
+							>Gain{{system.consumableValue}}{{system.consumableType}}</div>
+						{{/if}}
+					</div>
+					{{! add another div here for each stat/bonus }}
+				</div>
+				<div class='consumable-actions'>
+					<button>SEND TO SOMEONE</button>
+				</div>
+			</section>
+		</div>
+		<div class='tab' data-tab='attributes'>
+			<ol><li>effect 1</li> <li>effect 2</li></ol></div>
+	</div>
 </form>

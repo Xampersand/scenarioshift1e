@@ -46,6 +46,13 @@
 							<div>{{system.rating}}</div>
 						{{/if}}
 					</div>
+					<div class="item-description">
+					{{#if isEditing}}
+						<textarea name="system.description" class="item-description-textarea">{{system.description}}</textarea>
+					{{else}}
+						<div>{{system.description}}</div>
+					{{/if}}
+					</div>
 				</div>
 			</section>
 			{{! Sheet Body }}

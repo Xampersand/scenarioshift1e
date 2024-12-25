@@ -365,12 +365,6 @@ form button:hover:hover {
   height: 38px;
   border: 1px solid white;
 }
-.active-effect-sheet .effects-header {
-  height: auto;
-  background: none;
-  border: 1px solid white;
-  font-weight: normal;
-}
 h4.window-title {
   text-align: start;
   padding-left: 20px;
@@ -640,7 +634,6 @@ nav#navigation #scene-list li {
 .scene-sheet,
 .app.window-app.filepicker,
 .journal-sheet,
-.active-effect-sheet,
 .chat-bubble.emote.right,
 .chat-bubble.emote.left,
 .chat-bubble.right,
@@ -703,7 +696,6 @@ nav#navigation #scene-list li {
 .scene-sheet:hover,
 .app.window-app.filepicker:hover,
 .journal-sheet:hover,
-.active-effect-sheet:hover,
 .chat-bubble.emote.right:hover,
 .chat-bubble.emote.left:hover,
 .chat-bubble.right:hover,

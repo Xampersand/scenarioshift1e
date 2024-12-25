@@ -20,7 +20,14 @@ export function onManageActiveEffect(event, owner) {
 					origin: owner.uuid,
 					disabled: false,
 					duration: { rounds: 1 },
-					changes: [],
+					// initiate the effect with 4 changes
+					changes: [
+						{
+							key: 'system.strBonus',
+							mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+							value: 0,
+						},
+					],
 				},
 			]);
 			break;
