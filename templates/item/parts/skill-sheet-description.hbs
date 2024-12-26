@@ -273,3 +273,16 @@
 		<div class='skill-info-value'>{{system.range}}&nbsp;ft.</div>
 	{{/if}}
 </div>
+<div class='skill-info-line'>
+	<label class='skill-info-label'>COOLDOWN:&nbsp;</label>
+	{{#if isEditing}}
+		<input
+			type='number'
+			name='system.skillCooldown'
+			placeholder='range'
+			value='{{system.skillCooldown}}'
+		/>
+	{{else}}
+		<div class='skill-info-value'>{{system.skillCooldown}}&nbsp;rounds</div>
+	{{/if}}
+</div>
