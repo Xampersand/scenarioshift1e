@@ -1,4 +1,5 @@
 import { consumeActionPoints } from './ActionPointService.mjs';
+import { spendManaCost } from './ManaCostService.mjs';
 // rolling skill acc
 export function onRollSkillAccuracy(event, actor) {
 	event.preventDefault();
@@ -49,8 +50,7 @@ export function onRollSkillAccuracy(event, actor) {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: `Rolling Accuracy for ${skill.name}`, // Optional flavor text
 			});
-			actor.system.manaCurrent -= totalManaCost;
-			actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+			spendManaCost(actor, totalManaCost);
 			consumeActionPoints(actor, skill.system.apCost);
 		});
 	} catch (error) {
@@ -184,13 +184,14 @@ export async function onSkillUse(event, actor) {
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 					flavor: `Rolling healing for ${skill.name}`, // Optional flavor text
 				});
-				console.log(
-					`mana before spell cost:`,
-					actor.system.manaCurrent
-				);
-				actor.system.manaCurrent -= totalManaCost;
+				//update actor data with mana new mana value
+				updateData = {
+					[`system.manaCurrent`]:
+						actor.system.manaCurrent - totalManaCost,
+				};
+				spendManaCost(actor, totalManaCost);
 				consumeActionPoints(actor, skill.system.apCost);
-				actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
+				actor.sheet.render(true);
 			});
 		} catch (error) {
 			console.error('Error while rolling skill damage:', error);
@@ -202,17 +203,17 @@ export async function onSkillUse(event, actor) {
 		skill.system.skillType === 'debuff' ||
 		skill.system.skillType === 'other'
 	) {
+		const totalManaCost = skill.system.manaCost;
 		if (skill.macroEffect !== 0) {
 			console.log(game.macros);
 			const macro = skill.system.macroEffect;
 			game.macros.getName(`${macro}`).execute();
 		}
+		spendManaCost(actor, totalManaCost);
+		consumeActionPoints(actor, skill.system.apCost);
+		actor.sheet.render(true);
+		return;
 	}
-	// log current mana
-	actor.system.manaCurrent -= skill.system.manaCost;
-	consumeActionPoints(actor, skill.system.apCost);
-	actor.sheet.render(true); // Trigger a render of the actor sheet to update the mana value
-	return;
 }
 
 // sending to chat

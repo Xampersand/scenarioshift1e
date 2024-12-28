@@ -89,6 +89,26 @@ Hooks.on('renderCompendium', async (compendium) => {
 		await syncInventoryImages(inventory);
 	}
 });
+// every time the combat round changes, we set ap to max and gain mana
+Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
+	if (updateData.round && updateData.round !== combat.previous.round) {
+		for (const combatant of combat.combatants) {
+			const actor = combatant.actor;
+
+			if (!actor) continue;
+
+			const maxAP = actor.system.actionPointsMax;
+			const manaGainPerTurn = Math.round(
+				actor.system.manaMaxTotal * 0.05
+			);
+			await actor.update({ 'system.actionPointsCurrent': maxAP });
+			await actor.update({
+				'system.manaCurrent':
+					actor.system.manaCurrent + manaGainPerTurn,
+			});
+		}
+	}
+});
 
 /* -------------------------------------------- */
 /*  Handlebars Helpers                          */
