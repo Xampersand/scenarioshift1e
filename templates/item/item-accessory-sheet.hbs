@@ -19,7 +19,6 @@
 				<div class='accessory-title'>
 					<div class='accessory-name'>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
 							<input
 								name='name'
 								type='text'
@@ -27,23 +26,33 @@
 								placeholder='NAME'
 							/>
 						{{else}}
-							<!-- Non-editable display here -->
 							<div>{{item.name}}</div>
 						{{/if}}
 					</div>
 					<div class='accessory-rarity'>
 						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
-							<input
-								name='system.rating'
-								type='text'
-								value='{{system.rating}}'
-								placeholder='COMMON'
-							/>
+							<select name="system.rating">
+								<option value="{{system.rating}}">{{system.rating}}</option>
+								{{#each possibleRatings as |rating|}}
+									<option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
+								{{/each}}
+							</select>
 						{{else}}
-							<!-- Non-editable display here -->
 							<div>{{system.rating}}</div>
+						{{/if}}
+					</div>
+					<div class="slot">
+						<label for='system.slotOccupied'>OCCUPIES:&nbsp;</label>
+						{{#if isEditing}}
+							<select name="system.slotOccupied">
+								<option value="{{system.slotOccupied}}">{{system.slotOccupied}}</option>
+								{{#each possibleSlots as |slot|}}
+									<option value="{{slot}}" {{#if (eq system.slotOccupied slot)}}selected{{/if}}>{{slot}}</option>
+								{{/each}}
+							</select>
+						{{else}}
+							<div>{{system.slotOccupied}}&nbsp;</div>
 						{{/if}}
 					</div>
 					<div class="item-description">
@@ -55,8 +64,6 @@
 					</div>
 				</div>
 			</section>
-
-			{{! Sheet Body }}
 			<section class='accessory-bottom-section'>
 				<div class="stats-title">Bonus&nbsp;Effects:&nbsp;</div>
 				<div class='stats'>

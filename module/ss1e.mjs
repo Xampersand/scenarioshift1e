@@ -117,6 +117,7 @@ Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
 // If you need to add Handlebars helpers, here is a useful example:
 Handlebars.registerHelper('diff', (a, b) => a - b);
 Handlebars.registerHelper('notEqual', (a, b) => a !== b);
+Handlebars.registerHelper('eq', (a, b) => a === b);
 Handlebars.registerHelper('repeat', function (times, opts) {
 	var out = '';
 	var i;

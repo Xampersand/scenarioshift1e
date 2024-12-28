@@ -184,11 +184,6 @@ export async function onSkillUse(event, actor) {
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 					flavor: `Rolling healing for ${skill.name}`, // Optional flavor text
 				});
-				//update actor data with mana new mana value
-				updateData = {
-					[`system.manaCurrent`]:
-						actor.system.manaCurrent - totalManaCost,
-				};
 				spendManaCost(actor, totalManaCost);
 				consumeActionPoints(actor, skill.system.apCost);
 				actor.sheet.render(true);

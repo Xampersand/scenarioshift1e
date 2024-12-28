@@ -19,7 +19,6 @@
 				<div class='equipment-title'>
 					<div class='equipment-name'>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
 							<input
 								name='name'
 								type='text'
@@ -27,22 +26,19 @@
 								placeholder='NAME'
 							/>
 						{{else}}
-							<!-- Non-editable display here -->
 							<div>{{item.name}}</div>
 						{{/if}}
 					</div>
 					<div class='equipment-rarity'>
 						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
-							<input
-								name='system.rating'
-								type='text'
-								value='{{system.rating}}'
-								placeholder='COMMON'
-							/>
+							<select name="system.rating">
+								<option value="{{system.rating}}">{{system.rating}}</option>
+								{{#each possibleRatings as |rating|}}
+									<option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
+								{{/each}}
+							</select>
 						{{else}}
-							<!-- Non-editable display here -->
 							<div>{{system.rating}}</div>
 						{{/if}}
 					</div>
@@ -56,28 +52,38 @@
 					<div class='requirement'>
 						<label for='system.requirement'>REQUIRES:&nbsp;</label>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
 							<input
 								name='system.requirement.value'
 								type='text'
 								value='{{system.requirement.value}}'
 								placeholder=''
 							/>
-							<input
-								name='system.requirement.type'
-								type='text'
-								value='{{system.requirement.type}}'
-								placeholder='str'
-							/>
+							<select name="system.requirement.type">
+								<option value="{{system.requirement.type}}">{{system.requirement.type}}</option>
+								{{#each possibleStats as |stat|}}
+									<option value="{{stat}}" {{#if (eq system.requirement.type stat)}}selected{{/if}}>{{stat}}</option>
+								{{/each}}
+							</select>
 						{{else}}
-							<!-- Non-editable display here -->
 							<div>{{system.requirement.value}}
 								{{system.requirement.type}}</div>
 						{{/if}}
 					</div>
+					<div class="slot">
+						<label for='system.slotOccupied'>OCCUPIES:&nbsp;</label>
+						{{#if isEditing}}
+							<select name="system.slotOccupied">
+								<option value="{{system.slotOccupied}}">{{system.slotOccupied}}</option>
+								{{#each possibleSlots as |slot|}}
+									<option value="{{slot}}" {{#if (eq system.slotOccupied slot)}}selected{{/if}}>{{slot}}</option>
+								{{/each}}
+							</select>
+						{{else}}
+							<div>{{system.slotOccupied}}</div>
+						{{/if}}
+					</div>
 				</div>
 			</section>
-			{{! Sheet Body }}
 			<section class='equipment-bottom-section'>
 				<div class='stats'>
 					

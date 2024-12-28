@@ -34,24 +34,24 @@
 				placeholder='number of dice'
 				value='{{system.diceNum}}'
 			/>
-			<input
-				type='text'
-				name='system.diceSize'
-				placeholder='size of dice'
-				value='{{system.diceSize}}'
-			/>
+			<select name="system.diceSize">
+				<option value="{{system.diceSize}}">{{system.diceSize}}</option>
+				{{#each possibleDice as |dice|}}
+					<option value="{{dice}}" {{#if (eq system.diceSize dice)}}selected{{/if}}>{{dice}}</option>
+				{{/each}}
+			</select>
 			<input
 				type='number'
 				name='system.diceBonus'
 				placeholder='bonus'
 				value='{{system.diceBonus}}'
 			/>
-			<input
-				type='text'
-				name='system.damageType'
-				placeholder='damage type'
-				value='{{system.damageType}}'
-			/>
+			<select name="system.damageType">
+				<option value="{{system.damageType}}">{{system.damageType}}</option>
+				{{#each possibleDamageTypes as |type|}}
+					<option value="{{type}}" {{#if (eq system.damageType type)}}selected{{/if}}>{{type}}</option>
+				{{/each}}
+			</select>
 		{{else}}
 			<div
 				class='skill-info-value'
@@ -69,12 +69,12 @@
 				placeholder='number of dice'
 				value='{{system.secondDiceNum}}'
 			/>
-			<input
-				type='text'
-				name='system.secondDiceSize'
-				placeholder='size of dice'
-				value='{{system.secondDiceSize}}'
-			/>
+			<select name="system.secondDiceSize">
+				<option value="{{system.secondDiceSize}}">{{system.secondDiceSize}}</option>
+				{{#each possibleDice as |dice|}}
+					<option value="{{dice}}" {{#if (eq system.secondDiceSize dice)}}selected{{/if}}>{{dice}}</option>
+				{{/each}}
+			</select>
 			<input
 				type='number'
 				name='system.secondDiceBonus'
@@ -99,12 +99,12 @@
 				placeholder='number of dice'
 				value='{{system.thirdDiceNum}}'
 			/>
-			<input
-				type='text'
-				name='system.thirdDiceSize'
-				placeholder='size of dice'
-				value='{{system.thirdDiceSize}}'
-			/>
+			<select name="system.thirdDiceSize">
+				<option value="{{system.thirdDiceSize}}">{{system.thirdDiceSize}}</option>
+				{{#each possibleDice as |dice|}}
+					<option value="{{dice}}" {{#if (eq system.thirdDiceSize dice)}}selected{{/if}}>{{dice}}</option>
+				{{/each}}
+			</select>
 			<input
 				type='number'
 				name='system.thirdDiceBonus'
@@ -128,12 +128,12 @@
 				placeholder='number of dice'
 				value='{{system.fourthDiceNum}}'
 			/>
-			<input
-				type='text'
-				name='system.fourthDiceSize'
-				placeholder='size of dice'
-				value='{{system.fourthDiceSize}}'
-			/>
+			<select name="system.fourthDiceSize">
+				<option value="{{system.fourthDiceSize}}">{{system.fourthDiceSize}}</option>
+				{{#each possibleDice as |dice|}}
+					<option value="{{dice}}" {{#if (eq system.fourthDiceSize dice)}}selected{{/if}}>{{dice}}</option>
+				{{/each}}
+			</select>
 			<input
 				type='number'
 				name='system.fourthDiceBonus'

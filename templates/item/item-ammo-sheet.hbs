@@ -20,7 +20,6 @@
 				<div class='ammo-title'>
 					<div class='ammo-name'>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
 							<input
 								name='name'
 								type='text'
@@ -28,22 +27,19 @@
 								placeholder='NAME'
 							/>
 						{{else}}
-							<!-- Non-editable display here -->
 							<div>{{item.name}}</div>
 						{{/if}}
 					</div>
 					<div class='ammo-rarity'>
 						<label for='system.rating'>RATING:&nbsp;</label>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
-							<input
-								name='system.rating'
-								type='text'
-								value='{{system.rating}}'
-								placeholder='COMMON'
-							/>
+							<select name="system.rating">
+								<option value="{{system.rating}}">{{system.rating}}</option>
+								{{#each possibleRatings as |rating|}}
+									<option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
+								{{/each}}
+							</select>
 						{{else}}
-							<!-- Non-editable display here -->
 							<div>{{system.rating}}</div>
 						{{/if}}
 					</div>
@@ -62,38 +58,35 @@
 					<div class='damage'>
 						<label for='system.damage'>DAMAGE:&nbsp;</label>
 						{{#if isEditing}}
-							<!-- Editable fields here -->
 							<input
 								name='system.damageRoll.diceNum'
 								type='text'
 								value='{{system.damageRoll.diceNum}}'
 								placeholder='1'
 							/>
-							<input
-								name='system.damageRoll.diceSize'
-								type='text'
-								value='{{system.damageRoll.diceSize}}'
-								placeholder='d4'
-							/>
+							<select name="system.damageRoll.diceSize">
+								<option value="{{system.damageRoll.diceSize}}">{{system.damageRoll.diceSize}}</option>
+								{{#each possibleDice as |dice|}}
+									<option value="{{dice}}" {{#if (eq system.damageRoll.diceSize dice)}}selected{{/if}}>{{dice}}</option>
+								{{/each}}
+							</select>
 							<input
 								name='system.damageRoll.diceBonus'
 								type='text'
 								value='{{system.damageRoll.diceBonus}}'
 								placeholder='1'
 							/>
-							<input
-								name='system.damageType'
-								type='text'
-								value='{{system.damageType}}'
-								placeholder='piercing'
-							/>
+							<select name="system.damageType">
+								<option value="{{system.damageType}}">{{system.damageType}}</option>
+								{{#each possibleDamageTypes as |type|}}
+									<option value="{{type}}" {{#if (eq system.damageType type)}}selected{{/if}}>{{type}}</option>
+								{{/each}}
+							</select>
 						{{else}}
-							<!-- Non-editable display here -->
 							<span>{{system.damageFormula}}&nbsp;</span>
 							<span>{{system.damageType}}</span>
 						{{/if}}
 					</div>
-					{{! add another div here for each stat/bonus }}
 				</div>
 			</section>
 		</div>

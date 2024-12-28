@@ -47,12 +47,12 @@
           <div class='skill-info-line'>
 			<label class='skill-info-label'>SKILL&nbsp;RATING:&nbsp;</label>
             {{#if isEditing}}
-              <input
-                name='system.rating'
-                type='text'
-                value='{{system.rating}}'
-                placeholder='RATING'
-              />
+              <select name="system.rating">
+								<option value="{{system.rating}}">{{system.rating}}</option>
+								{{#each possibleRatings as |rating|}}
+									<option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
+								{{/each}}
+							</select>
             {{else}}
               <div class="skill-info-value">{{system.rating}}</div>
             {{/if}}
@@ -60,12 +60,12 @@
           <div class="skill-info-line">
 			<label class='skill-info-label'>MANA&nbsp;TYPE:&nbsp;</label>
             {{#if isEditing}}
-              <input
-                name='system.manaType'
-                type='text'
-                value='{{system.manaType}}'
-                placeholder='MANA TYPE'
-              />
+              <select name="system.manaType">
+								<option value="{{system.manaType}}">{{system.manaType}}</option>
+								{{#each possibleManaTypes as |type|}}
+									<option value="{{type}}" {{#if (eq system.manaType type)}}selected{{/if}}>{{type}}</option>
+								{{/each}}
+							</select>
             {{else}}
               <div class="skill-info-value">{{system.manaType}}</div>
             {{/if}}
@@ -73,12 +73,12 @@
           <div class="skill-info-line">
 			<label class='skill-info-label'>SKILL&nbsp;TYPE:&nbsp;</label>
             {{#if isEditing}}
-              <input
-                name='system.skillType'
-                type='text'
-                value='{{system.skillType}}'
-                placeholder='SKILL TYPE'
-              />
+              <select name="system.skillType">
+								<option value="{{system.skillType}}">{{system.skillType}}</option>
+								{{#each possibleSkillTypes as |type|}}
+									<option value="{{type}}" {{#if (eq system.skillType type)}}selected{{/if}}>{{type}}</option>
+								{{/each}}
+							</select>
             {{else}}
 				<div class="skill-info-value">{{system.skillType}}</div>
             {{/if}}
@@ -86,11 +86,12 @@
 		  <div class="skill-info-line">
 			<label class='skill-info-label'>SKILL&nbsp;STAT:&nbsp;</label>
 			{{#if isEditing}}
-			<input
-				name="system.requirement.type"
-				type="text"
-				value="{{system.requirement.type}}"
-				placeholder='Skill Stat'>
+			<select name="system.requirement.type">
+					<option value="{{system.requirement.type}}">{{system.requirement.type}}</option>
+						{{#each possibleStats as |stat|}}
+					<option value="{{stat}}" {{#if (eq system.requirement.type stat)}}selected{{/if}}>{{stat}}</option>
+			  {{/each}}
+			</select>
 			{{else}}
 			<div class="skill-info-value">{{system.requirement.type}}</div>
 			{{/if}}
