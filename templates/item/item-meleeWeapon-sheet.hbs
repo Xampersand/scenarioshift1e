@@ -1,9 +1,10 @@
 <form class='{{cssClass}} flexcol' autocomplete='off'>
-	<button class='edit-mode-toggle'>📝</button>
+	<button class='edit-mode-toggle'>Edit</button>
 	{{! Sheet Tab Navigation }}
 	<nav class='sheet-tabs tabs' data-group='primary'>
-		<a class='item' data-tab='description'>Item Description</a>
-		<a class='item' data-tab='attributes'>Edit effects</a>
+		<a class='item' data-tab='description'>Description</a>
+		<a class="item" data-tab="stats">Details</a>
+		<a class='item' data-tab='attributes'>Active Effects</a>
 	</nav>
 	<div class='sheet-body'>
 		<div class='tab' data-tab='description'>
@@ -14,8 +15,8 @@
 					src='{{item.img}}'
 					data-edit='img'
 					title='{{item.name}}'
-					height='160px'
-					width='160px'
+					height='140px'
+					width='140px'
 				/>
 					<div class='weapon-name'>
 						{{#if isEditing}}
@@ -44,13 +45,15 @@
 					</div>
 					<div class="item-description">
 					{{#if isEditing}}
-						<textarea name="system.description" class="item-description-textarea">{{system.description}}</textarea>
+						<prose-mirror class="editor prosemirror"name="system.description" value="{{system.description}}"></prose-mirror>
 					{{else}}
-						<div>{{system.description}}</div>
+						<div>{{{system.description}}}</div>
 					{{/if}}
 					</div>
 				</div>
 			</section>
+		</div>
+		<div class="tab" data-tab="stats">
 			<section class='weapon-bottom-section'>
 				<div class='stats'>
 					<div class="slot">

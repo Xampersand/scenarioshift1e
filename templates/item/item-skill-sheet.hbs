@@ -35,11 +35,11 @@
         />
 		</div>
 		<div class="skill-description-box">
-		{{#if isEditing}}
-			<textarea name="system.description" class="skill-description-textarea">{{system.description}}</textarea>
-		{{else}}
-			<div class="skill-description">{{system.description}}</div>
-		{{/if}}
+			{{#if isEditing}}
+			<prose-mirror class="editor prosemirror"name="system.description" value="{{system.description}}"></prose-mirror>
+			{{else}}
+			<div>{{{system.description}}}</div>
+			{{/if}}
 		</div>
       </section>
 	  <section class="skill-bottom-section">
@@ -47,12 +47,12 @@
           <div class='skill-info-line'>
 			<label class='skill-info-label'>SKILL&nbsp;RATING:&nbsp;</label>
             {{#if isEditing}}
-              <select name="system.rating">
-								<option value="{{system.rating}}">{{system.rating}}</option>
-								{{#each possibleRatings as |rating|}}
-									<option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
-								{{/each}}
-							</select>
+                <select name="system.rating">
+					<option value="{{system.rating}}">{{system.rating}}</option>
+					{{#each possibleRatings as |rating|}}
+						<option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
+					{{/each}}
+				</select>
             {{else}}
               <div class="skill-info-value">{{system.rating}}</div>
             {{/if}}
@@ -61,11 +61,11 @@
 			<label class='skill-info-label'>MANA&nbsp;TYPE:&nbsp;</label>
             {{#if isEditing}}
               <select name="system.manaType">
-								<option value="{{system.manaType}}">{{system.manaType}}</option>
-								{{#each possibleManaTypes as |type|}}
-									<option value="{{type}}" {{#if (eq system.manaType type)}}selected{{/if}}>{{type}}</option>
-								{{/each}}
-							</select>
+					<option value="{{system.manaType}}">{{system.manaType}}</option>
+					{{#each possibleManaTypes as |type|}}
+						<option value="{{type}}" {{#if (eq system.manaType type)}}selected{{/if}}>{{type}}</option>
+					{{/each}}
+				</select>
             {{else}}
               <div class="skill-info-value">{{system.manaType}}</div>
             {{/if}}
@@ -74,11 +74,11 @@
 			<label class='skill-info-label'>SKILL&nbsp;TYPE:&nbsp;</label>
             {{#if isEditing}}
               <select name="system.skillType">
-								<option value="{{system.skillType}}">{{system.skillType}}</option>
-								{{#each possibleSkillTypes as |type|}}
-									<option value="{{type}}" {{#if (eq system.skillType type)}}selected{{/if}}>{{type}}</option>
-								{{/each}}
-							</select>
+					<option value="{{system.skillType}}">{{system.skillType}}</option>
+					{{#each possibleSkillTypes as |type|}}
+						<option value="{{type}}" {{#if (eq system.skillType type)}}selected{{/if}}>{{type}}</option>
+					{{/each}}
+				</select>
             {{else}}
 				<div class="skill-info-value">{{system.skillType}}</div>
             {{/if}}

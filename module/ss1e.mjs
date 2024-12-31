@@ -246,7 +246,132 @@ function showConstellationMessage(message) {
 
 	setTimeout(() => dialog.close(), 5000);
 }
+Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
+	// Ensure the message will trigger a 3D roll animation
+	if (!interception.willTrigger3DRoll) return;
 
+	// Retrieve the chat message by ID
+	const message = game.messages.get(messageId);
+	if (!message) return;
+
+	// Ensure this is a roll message
+	if (!message.isRoll || !message.rolls?.length) return;
+
+	const sender = game.users.get(message.user.id);
+	if (!sender) return;
+
+	// Skip if the sender is a GM
+	if (sender.isGM) return;
+
+	// Ensure only the GM processes this
+	if (!game.user.isGM) return;
+
+	// Check the flavor text of the message to see if it matches a damage roll
+	const flavorText = message.flavor || '';
+	if (!flavorText.toLowerCase().includes('damage')) return; // Check for "damage" in the flavor text
+
+	const targets = Array.from(sender.targets);
+	if (targets.length === 0) return;
+
+	const rollResult = message.rolls[0].total;
+
+	let gmMessage = `${sender.name} rolled an initial damage of: ${rollResult}`;
+
+	for (const target of targets) {
+		const targetArmor = target.actor.system.armorTotal || 0;
+		const reductionFactor = (targetArmor * 100) / (targetArmor + 100) / 100;
+		const armorDR = Math.round(reductionFactor * 100);
+		const finalDamage = Math.round(
+			rollResult - rollResult * reductionFactor
+		);
+
+		gmMessage += `<br>Target: ${target.name} | Final damage: ${finalDamage} (${targetArmor} armor, ${armorDR}% DR)`;
+	}
+
+	// Send the message to the GM
+	await ChatMessage.create({
+		content: gmMessage,
+		whisper: [game.user.id],
+	});
+});
+Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
+	// Ensure the message will trigger a 3D roll animation
+	if (!interception.willTrigger3DRoll) return;
+
+	// Retrieve the chat message by ID
+	const message = game.messages.get(messageId);
+	if (!message) return;
+
+	// Ensure this is a roll message
+	if (!message.isRoll || !message.rolls?.length) return;
+
+	const sender = game.users.get(message.user.id);
+	if (!sender) return;
+
+	// Skip if the sender is a GM
+	if (sender.isGM) return;
+
+	// Ensure only the GM processes this
+	if (!game.user.isGM) return;
+
+	// Check the flavor text of the message to see if it matches an accuracy roll
+	const flavorText = message.flavor || '';
+	if (!flavorText.toLowerCase().includes('accuracy')) return;
+
+	const targets = Array.from(sender.targets);
+	if (targets.length === 0) return;
+
+	const rollResult = message.rolls[0].total;
+	const diceTerms = message.rolls[0].dice;
+
+	// Check if diceTerms is available and has values
+	if (!diceTerms || diceTerms.length === 0) return;
+
+	let gmMessage = `${sender.name} rolled an initial accuracy of: ${rollResult}`;
+
+	// Loop through each target and apply evasion checks
+	for (const target of targets) {
+		const targetEvasion = target.actor.system.evasionTotal || 0;
+		const finalHitDice = rollResult - targetEvasion;
+
+		// Check for mega crit and mega miss first, before hit/miss/crit checks
+		let megaMiss = false;
+		let megaCrit = false;
+
+		// Iterate through each dice term to check for 1s (megaMiss) and 100s (megaCrit)
+		for (const diceTerm of diceTerms) {
+			const diceResults = diceTerm.results;
+			for (const dieResult of diceResults) {
+				if (dieResult.result === 1) megaMiss = true;
+				if (dieResult.result === 100) megaCrit = true;
+			}
+		}
+
+		if (megaMiss) {
+			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:red !important'>MEGA&nbsp;MISSED</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
+		} else if (megaCrit) {
+			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:green !important'>MEGA&nbsp;CRIT</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
+		} else {
+			// If it's not a mega crit or mega miss, evaluate hit, miss, and crit
+			const hit = finalHitDice >= 20;
+			const miss = finalHitDice <= 19;
+			const crit = finalHitDice >= 95;
+			if (crit) {
+				gmMessage += `<br>${sender.name} <strong>crit</strong>&nbsp;${target.name}&nbsp;|&nbsp;${rollResult}&nbsp;Acc&nbsp;-&nbsp;${targetEvasion}&nbsp;ev&nbsp;=&nbsp;${finalHitDice}&nbsp;(crit)`;
+			} else if (miss) {
+				gmMessage += `<br>${sender.name} <strong>missed</strong>&nbsp;${target.name}&nbsp;|&nbsp;${rollResult}&nbsp;Acc&nbsp;-&nbsp;${targetEvasion}&nbsp;ev&nbsp;=&nbsp;${finalHitDice}&nbsp;(miss)`;
+			} else if (hit) {
+				gmMessage += `<br>${sender.name} <strong>hit</strong>&nbsp;${target.name}&nbsp;|&nbsp;${rollResult}&nbsp;Acc&nbsp;-&nbsp;${targetEvasion}&nbsp;ev&nbsp;=&nbsp;${finalHitDice}&nbsp;(hit)`;
+			}
+		}
+	}
+
+	// Send the message to the GM
+	await ChatMessage.create({
+		content: gmMessage,
+		whisper: [game.user.id],
+	});
+});
 Hooks.once('ready', function () {
 	// Wait to register hotbar drop hook on ready so that modules csould register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
