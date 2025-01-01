@@ -340,8 +340,10 @@ export class SS1EActorSheet extends ActorSheet {
 		// Event listener for MAana bar click
 		html.find('#mana-bar').click(() => this._openManaDialog());
 
+		// Event listener for the scenario button
 		html.find('#scenario-submit').on('click', (event) => {
-			Scenario.onScenarioSubmit(event); // Call your submission handler
+			const recipientId = html.find('#gmboardScenarioRecipient').val();
+			Scenario.onScenarioSubmit(event, recipientId); // Pass recipientId to the handler
 		});
 
 		html.find('button[data-action="item-view"]').click((event) => {

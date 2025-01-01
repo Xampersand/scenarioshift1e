@@ -45,24 +45,36 @@
         </div>
         <div class="form-line">
           <label for='scenario-category'>Scenario Category:</label>
-          <input type='text' id='scenario-category' name='scenario-category' />
+          <select name="scenario-category" id="scenario-category">
+            <option value="Main Scenario">Main Scenario</option>
+            <option value="Sub-Scenario">Sub-Scenario</option>
+            <option value="Bounty Scenario">Bounty Scenario</option>
+            <option value="Hidden Scenario">Hidden Scenario</option>
+            <option value="Personal Scenario">Personal Scenario</option>
+            <option value="???">???</option>
+
+          </select>
         </div>
         <div class="form-line">
           <label for='scenario-difficulty'>Difficulty Rank:</label>
-          <input
-            type='text'
-            id='scenario-difficulty'
-            name='scenario-difficulty'
-          />
+          <select name="scenario-difficulty" id="scenario-difficulty">
+            <option value="C">C</option>
+            <option value="B">B</option>
+            <option value="A">A</option>
+            <option value="S">S</option>
+            <option value="S+">S+</option>
+            <option value="SS">SS</option>
+            <option value="SSS">SSS</option>
+            <option value="???">???</option>
+          </select>
         </div>
         <div class="form-line">
           <label for='scenario-conditions'>Clear conditions:</label>
-          <textarea
+          <prose-mirror
             id='scenario-conditions'
             name='scenario-conditions'
-            rows='10'
-            cols='30'
-          >1. Condition 1</textarea>
+            placeholder="1. Don't Die\n2. Don't Die\n3. Don't Die"
+          ></prose-mirror>
         </div>
         <div class="form-line">
           <label for='scenario-time-limit'>Time Limit:</label>
@@ -82,14 +94,22 @@
         </div>
         <div class="form-line">
           <label for='scenario-notes'>Notes:</label>
-          <textarea
+          <prose-mirror
             id='scenario-notes'
             name='scenario-notes'
-            rows='10'
-            cols='30'
-          >Scenario notes here</textarea>
+            placeholder="Notes go here, Leave empty if none."
+          ></prose-mirror>
         </div>
-        <button type='submit' id='scenario-submit'>!INITIATE SCENARIO!</button>
+        <div class='scenario-recipient'>
+            <label for='gmboardScenarioRecipient' class=''>Scenario Recipient:</label>
+            <select id='gmboardScenarioRecipient' name='gmboardScenarioRecipient' class='scenario-recipient-dropdown'>
+              <option value='public'  class='scenario-recipient-option' >Everyone</option>
+              {{#each players}}
+                <option value='{{this.id}}' class='scenario-recipient-option'>{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        <button class="scenario-button" type='submit' id='scenario-submit'>!INITIATE SCENARIO!</button>
       </div>
     </div>
     <div class='tab' data-tab='abilities'>

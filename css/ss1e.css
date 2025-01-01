@@ -1949,11 +1949,15 @@ input.input-text::selection {
 .app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form .form-line textarea {
   width: 80%;
 }
-.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form button {
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form .scenario-button {
   font-size: 1rem;
   margin-top: 10px;
   background-color: #800707;
   width: 150px;
+}
+.app.window-app.ss1e.sheet.actor:has(.checkbox-grid) #scenario-form prose-mirror {
+  width: 100%;
+  height: 250px;
 }
 .ss1e.sheet.actor.character .character-skill-inventory .combat-resources {
   display: flex;
