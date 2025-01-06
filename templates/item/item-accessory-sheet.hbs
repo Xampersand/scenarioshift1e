@@ -8,7 +8,8 @@
 	<div class='sheet-body'>
 		<div class='tab' data-tab='description'>
 			<section class='accessory-top-section'>
-				<img
+				<div class='accessory-title'>
+					<img
 					class='accessory-img'
 					src='{{item.img}}'
 					data-edit='img'
@@ -16,7 +17,6 @@
 					height='140px'
 					width='140px'
 				/>
-				<div class='accessory-title'>
 					<div class='accessory-name'>
 						{{#if isEditing}}
 							<input
@@ -42,6 +42,18 @@
 							<div>{{system.rating}}</div>
 						{{/if}}
 					</div>
+					<div class="item-description">
+					{{#if isEditing}}
+					<prose-mirror class="editor prosemirror"name="system.description" value="{{system.description}}"></prose-mirror>
+					{{else}}
+					<div>{{{system.description}}}</div>
+					{{/if}}
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="tab" data-tab="stats">
+			<section class='accessory-bottom-section'>
 					<div class="slot">
 						<label for='system.slotOccupied'>OCCUPIES:&nbsp;</label>
 						{{#if isEditing}}
@@ -52,21 +64,11 @@
 								{{/each}}
 							</select>
 						{{else}}
-							<div>{{system.slotOccupied}}&nbsp;</div>
+							<span>{{system.slotOccupied}}&nbsp;</span>
 						{{/if}}
 					</div>
-					<div class="item-description">
-					{{#if isEditing}}
-					<prose-mirror class="editor prosemirror"name="system.description" value="{{system.description}}"></prose-mirror>
-					{{else}}
-					<div>{{{system.description}}}</div>
-					{{/if}}
-					</div>
-				</div>
-			</section>
-			<section class='accessory-bottom-section'>
-				<div class="stats-title">Bonus&nbsp;Effects:&nbsp;</div>
 				<div class='stats'>
+					<label class="stats-title">Bonus&nbsp;Effects:&nbsp;</label>
 					{{#each effects as |section sid|}}
 						{{#each section.effects as |effect|}}
 							<div class='effect'>

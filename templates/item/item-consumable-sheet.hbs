@@ -3,20 +3,21 @@
 	{{! Sheet Tab Navigation }}
 	<nav class='sheet-tabs tabs' data-group='primary'>
 		<a class='item' data-tab='description'>Item Description</a>
+		<a class='item' data-tab='stats'>Details</a>
 		<a class='item' data-tab='attributes'>Edit effects</a>
 	</nav>
 	<div class='sheet-body'>
 		<div class='tab' data-tab='description'>
 			<section class='consumable-top-section'>
-				<img
-					class='consumable-img'
-					src='{{item.img}}'
-					data-edit='img'
-					title='{{item.name}}'
-					height='200px'
-					width='200px'
-				/>
 				<div class='consumable-title'>
+					<img
+						class='consumable-img'
+						src='{{item.img}}'
+						data-edit='img'
+						title='{{item.name}}'
+						height='140px'
+						width='140px'
+					/>
 					<div class='consumable-name'>
 						{{#if isEditing}}
 							<!-- Editable fields here -->
@@ -48,17 +49,20 @@
 					</div>
 					<div class='item-description'>
 						{{#if isEditing}}
-							<textarea
+							<prose-mirror
+								class='editor prosemirror'
 								name='system.description'
-								class='item-description-textarea'
-							>{{system.description}}</textarea>
+								value='{{system.description}}'
+							></prose-mirror>
 						{{else}}
-							<div>{{system.description}}</div>
+							<div>{{{system.description}}}</div>
 						{{/if}}
 					</div>
 				</div>
 			</section>
-			{{! Sheet Body }}
+		</div>
+		{{! Sheet Body }}
+		<div class='tab' data-tab='stats'>
 			<section class='consumable-bottom-section'>
 				<div class='stats'>
 					<div class='quantity'>
@@ -73,7 +77,7 @@
 							/>
 						{{else}}
 							<!-- Non-editable display here -->
-							<div>{{system.quantity}}</div>
+							<span>{{system.quantity}}</span>
 						{{/if}}
 					</div>
 					<div class='effect'>
@@ -88,7 +92,7 @@
 							/>
 						{{else}}
 							<!-- Non-editable display here -->
-							<div>{{system.effect}}</div>
+							<span>{{system.effect}}</span>
 						{{/if}}
 					</div>
 					<div class='consumable-type'>
@@ -103,7 +107,7 @@
 							/>
 						{{else}}
 							<!-- Non-editable display here -->
-							<div>{{system.consumableType}} Potion</div>
+							<span>{{system.consumableType}} Potion</span>
 						{{/if}}
 					</div>
 					<div class='consumable-value'>
@@ -118,14 +122,11 @@
 							/>
 						{{else}}
 							<!-- Non-editable display here -->
-							<div
-							>Gain{{system.consumableValue}}{{system.consumableType}}</div>
+							<span
+							>Gain&nbsp;{{system.consumableValue}}&nbsp;{{system.consumableType}}</span>
 						{{/if}}
 					</div>
 					{{! add another div here for each stat/bonus }}
-				</div>
-				<div class='consumable-actions'>
-					<button>SEND TO SOMEONE</button>
 				</div>
 			</section>
 		</div>

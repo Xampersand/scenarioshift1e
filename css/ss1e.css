@@ -1405,11 +1405,13 @@ input.input-text::selection {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 .weapon-bottom-section .stats .requirement,
 .weapon-bottom-section .stats .damage,
 .weapon-bottom-section .stats .accuracy,
-.weapon-bottom-section .stats .range {
+.weapon-bottom-section .stats .range,
+.weapon-bottom-section .stats .slot {
   display: flex;
   flex-direction: row;
   flex: auto;
@@ -1417,7 +1419,8 @@ input.input-text::selection {
 .weapon-bottom-section .stats .requirement input,
 .weapon-bottom-section .stats .damage input,
 .weapon-bottom-section .stats .accuracy input,
-.weapon-bottom-section .stats .range input {
+.weapon-bottom-section .stats .range input,
+.weapon-bottom-section .stats .slot input {
   margin: 3px;
   text-align: center;
   font-weight: bold;
@@ -1428,13 +1431,15 @@ input.input-text::selection {
 .weapon-bottom-section .stats .requirement input::selection,
 .weapon-bottom-section .stats .damage input::selection,
 .weapon-bottom-section .stats .accuracy input::selection,
-.weapon-bottom-section .stats .range input::selection {
+.weapon-bottom-section .stats .range input::selection,
+.weapon-bottom-section .stats .slot input::selection {
   background-color: #52c8ff;
 }
 .weapon-bottom-section .stats .requirement label,
 .weapon-bottom-section .stats .damage label,
 .weapon-bottom-section .stats .accuracy label,
-.weapon-bottom-section .stats .range label {
+.weapon-bottom-section .stats .range label,
+.weapon-bottom-section .stats .slot label {
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -1442,7 +1447,8 @@ input.input-text::selection {
 .weapon-bottom-section .stats .requirement span,
 .weapon-bottom-section .stats .damage span,
 .weapon-bottom-section .stats .accuracy span,
-.weapon-bottom-section .stats .range span {
+.weapon-bottom-section .stats .range span,
+.weapon-bottom-section .stats .slot span {
   font-size: 1.2rem;
   text-transform: uppercase;
 }
@@ -1530,24 +1536,22 @@ input.input-text::selection {
   font-size: 1.2rem;
   color: #ffffff;
 }
-.equipment-top-section .equipment-bottom-section {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1 1 50%;
-}
-.equipment-top-section .equipment-bottom-section .stats {
+.equipment-bottom-section {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 }
-.equipment-top-section .equipment-bottom-section .stats .requirement,
-.equipment-top-section .equipment-bottom-section .stats .defense {
+.requirement,
+.stats,
+.slot {
   display: flex;
   flex-direction: row;
   flex: auto;
 }
-.equipment-top-section .equipment-bottom-section .stats .requirement input,
-.equipment-top-section .equipment-bottom-section .stats .defense input {
+.requirement input,
+.stats input,
+.slot input {
   margin: 3px;
   text-align: center;
   font-weight: bold;
@@ -1555,29 +1559,38 @@ input.input-text::selection {
   border: none;
   box-shadow: none;
 }
-.equipment-top-section .equipment-bottom-section .stats .requirement input::selection,
-.equipment-top-section .equipment-bottom-section .stats .defense input::selection {
+.requirement input::selection,
+.stats input::selection,
+.slot input::selection {
   background-color: #52c8ff;
 }
-.equipment-top-section .equipment-bottom-section .stats .requirement label,
-.equipment-top-section .equipment-bottom-section .stats .defense label {
+.requirement label,
+.stats label,
+.slot label {
+  font-size: 1.2rem;
   font-weight: bold;
-  font-size: 1.1rem;
+  text-transform: uppercase;
 }
-.equipment-top-section .equipment-actions {
+.requirement span,
+.stats span,
+.slot span {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.equipment-actions {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.equipment-top-section .equipment-actions button {
+.equipment-actions button {
   border: none;
   box-shadow: none;
   box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
   transition: box-shadow 0.3s ease-in-out;
   height: fit-content;
 }
-.equipment-top-section .equipment-actions button:hover {
+.equipment-actions button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
 .ammo-top-section {
@@ -1718,21 +1731,30 @@ input.input-text::selection {
 }
 .accessory-bottom-section {
   display: flex;
-  flex-direction: row;
-}
-.accessory-bottom-section .stats-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ffffff;
-}
-.accessory-bottom-section .stats {
-  display: flex;
   flex-direction: column;
+  align-items: center;
+}
+.accessory-bottom-section .stats,
+.accessory-bottom-section .slot {
+  display: flex;
+  flex-direction: row;
   align-content: center;
 }
-.accessory-bottom-section .stats .effect {
+.accessory-bottom-section .stats .effect,
+.accessory-bottom-section .slot .effect {
   font-size: 1.2rem;
   color: #ffffff;
+}
+.accessory-bottom-section .stats label,
+.accessory-bottom-section .slot label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.accessory-bottom-section .stats span,
+.accessory-bottom-section .slot span {
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 .accessory-actions {
   display: flex;
