@@ -348,9 +348,9 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 		}
 
 		if (megaMiss) {
-			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:red !important'>MEGA&nbsp;MISSED</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
+			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:#742100 !important'>&nbsp;MEGA&nbsp;MISSED&nbsp;</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
 		} else if (megaCrit) {
-			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:green !important'>MEGA&nbsp;CRIT</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
+			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:green !important'>&nbsp;MEGA&nbsp;CRIT&nbsp;</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
 		} else {
 			// If it's not a mega crit or mega miss, evaluate hit, miss, and crit
 			const hit = finalHitDice >= 20;
