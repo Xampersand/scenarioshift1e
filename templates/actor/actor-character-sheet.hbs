@@ -405,7 +405,7 @@
               {{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
                 <div class="attack-roll-container">
                     <div class="attack-box"><img src="{{item.img}}" alt=""><span>&nbsp;{{item.name}}</span></div>
-                    <button class='attack-roll attack-accuracy-roll' data-item-id={{item._id}} data-action='rollWeaponAccuracy'>
+                    <button class='attack-roll attack-accuracy-roll' data-item-id={{item._id}} data-action='rollWeaponAccuracy' id="roll-weapon-accuracy">
                       <img src="systems/ss1e/assets/images/target-icon.png">
                     </button>
                     <button class="attack-roll attack-damage-roll"data-item-id='{{item._id}}'id='roll-melee-weapon'>
@@ -422,7 +422,7 @@
                   {{#if (and (eq ammo.type 'ammo') ammo.system.equipped)}}
                   <div class="attack-roll-container">
                     <div class="attack-box"><img src="{{weapon.img}}" alt=""><span>&nbsp;{{weapon.name}}&nbsp;using&nbsp;{{ammo.name}}</span></div>
-                    <button class='attack-roll attack-accuracy-roll' data-item-id={{weapon._id}} data-action='rollWeaponAccuracy'>
+                    <button class='attack-roll attack-accuracy-roll' data-item-id={{weapon._id}} data-action='rollWeaponAccuracy' id="roll-weapon-accuracy">
                       <img src="systems/ss1e/assets/images/target-icon.png">
                     </button>
                     <button class="attack-roll attack-damage-roll"data-weapon-id='{{weapon._id}}'data-ammo-id='{{ammo._id}}'id='roll-ranged-weapon'>

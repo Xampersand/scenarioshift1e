@@ -1,10 +1,8 @@
 import { consumeActionPoints } from './ActionPointService.mjs';
 import { spendManaCost } from './ManaCostService.mjs';
 // rolling skill acc
-export function onRollSkillAccuracy(event, actor) {
-	event.preventDefault();
-	const itemId = event.currentTarget.dataset.itemId;
-	const skill = actor.items.get(itemId);
+export function onRollSkillAccuracy(actor, skillId, mode) {
+	const skill = actor.items.get(skillId);
 	if (!skill) {
 		ui.notifications.warn('No skill found!');
 		return;
@@ -14,7 +12,12 @@ export function onRollSkillAccuracy(event, actor) {
 	const playerAccuracy = actor.system.accuracyTotal;
 	const skillAccuracy = skill.system.accuracy || 0;
 	const totalAccuracy = playerAccuracy + skillAccuracy;
-	const rollFormula = `1d100 + ${totalAccuracy}`;
+	let rollFormula = `1d100 + ${totalAccuracy}`;
+	if (mode === 'advantage') {
+		rollFormula = `2d100kh1 + ${totalAccuracy}`;
+	} else if (mode === 'disadvantage') {
+		rollFormula = `2d100kl1 + ${totalAccuracy}`;
+	}
 	if (!rollFormula) {
 		ui.notifications.warn('No accuracy formula found for the skill!');
 		return;
@@ -59,16 +62,9 @@ export function onRollSkillAccuracy(event, actor) {
 }
 
 // Function to handle the skill damage roll
-export function onRollSkillDamage(event, actor) {
-	event.preventDefault();
-	const itemId = event.currentTarget.dataset.itemId;
+export function onRollSkillDamage(actor, skillId, mode) {
+	const skill = actor.items.get(skillId);
 
-	if (!itemId) {
-		console.error('No item ID found on the clicked button.');
-		return;
-	}
-
-	const skill = actor.items.get(itemId);
 	if (!skill) {
 		console.warn(`No skill found with ID: ${itemId}`); // More detailed warning
 		ui.notifications.warn('No skill found!');
@@ -107,10 +103,16 @@ export function onRollSkillDamage(event, actor) {
 	);
 
 	const totalDice = skill.system.diceNum * (1 + additionalDice);
-	const damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
-	const secondDamageFormula = `${skill.system.secondDiceNum}${skill.system.secondDiceSize}+${skill.system.secondDiceBonus}`;
-	const thirdDamageFormula = `${skill.system.thirdDiceNum}${skill.system.thirdDiceSize}+${skill.system.thirdDiceBonus}`;
-	const fourthDamageFormula = `${skill.system.fourthDiceNum}${skill.system.fourthDiceSize}+${skill.system.fourthDiceBonus}`;
+	let damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
+	let secondDamageFormula = `${skill.system.secondDiceNum}${skill.system.secondDiceSize}+${skill.system.secondDiceBonus}`;
+	let thirdDamageFormula = `${skill.system.thirdDiceNum}${skill.system.thirdDiceSize}+${skill.system.thirdDiceBonus}`;
+	let fourthDamageFormula = `${skill.system.fourthDiceNum}${skill.system.fourthDiceSize}+${skill.system.fourthDiceBonus}`;
+	if (mode === 'megaCrit') {
+		damageFormula = `${totalDice}${skill.system.diceSize}x+${skill.system.diceBonus}`;
+		secondDamageFormula = `${skill.system.secondDiceNum}${skill.system.secondDiceSize}x+${skill.system.secondDiceBonus}`;
+		thirdDamageFormula = `${skill.system.thirdDiceNum}${skill.system.thirdDiceSize}x+${skill.system.thirdDiceBonus}`;
+		fourthDamageFormula = `${skill.system.fourthDiceNum}${skill.system.fourthDiceSize}x+${skill.system.fourthDiceBonus}`;
+	}
 	//map the additional damage formuals to an object, if the diceNum is 0 the formula is not added to the roll formula
 	const additionalDamageFormulas = {
 		second: skill.system.secondDiceNum ? `+${secondDamageFormula}` : '',
@@ -118,7 +120,12 @@ export function onRollSkillDamage(event, actor) {
 		fourth: skill.system.fourthDiceNum ? `+${fourthDamageFormula}` : '',
 	};
 	//combine the additional damage formulas into the roll formula
-	const rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})`;
+	let rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})`;
+	if (mode === 'crit') {
+		rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
+	} else if (mode === 'megaCrit') {
+		rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
+	}
 	if (!rollFormula) {
 		ui.notifications.warn('No damage formula found for the skill!');
 		return;

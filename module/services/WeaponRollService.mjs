@@ -1,8 +1,6 @@
 import { consumeActionPoints } from './ActionPointService.mjs';
 
-export function onRollMeleeWeapon(event, actor) {
-	event.preventDefault();
-	const itemId = event.currentTarget.dataset.itemId;
+export function onRollMeleeWeapon(actor, itemId, mode) {
 	const weapon = actor.items.get(itemId);
 	if (!weapon) {
 		ui.notifications.warn('No equipped melee weapon found!');
@@ -23,7 +21,12 @@ export function onRollMeleeWeapon(event, actor) {
 		ui.notifications.warn('Unknown stat requirement for the weapon!');
 		return;
 	}
-	const rollFormula = `round((${weapon.system.damageFormula})*${weaponDamageIncreaseTotal})`;
+	let rollFormula = `round((${weapon.system.damageFormula})*${weaponDamageIncreaseTotal})`;
+	if (mode === 'crit') {
+		rollFormula = `round((${weapon.system.damageFormula})*${weaponDamageIncreaseTotal})*2`;
+	} else if (mode === 'megaCrit') {
+		rollFormula = `round((${weapon.system.damageRoll.diceNum}${weapon.system.damageRoll.diceSize}x+${weapon.system.damageRoll.diceBonus})*${weaponDamageIncreaseTotal})*2`;
+	}
 	if (!rollFormula) {
 		ui.notifications.warn(
 			'No damage formula found for the equipped melee weapon!'
@@ -44,10 +47,7 @@ export function onRollMeleeWeapon(event, actor) {
 	}
 }
 
-export function onRollRangedWeapon(event, actor) {
-	event.preventDefault();
-	const weaponId = event.currentTarget.dataset.weaponId;
-	const ammoId = event.currentTarget.dataset.ammoId;
+export function onRollRangedWeapon(actor, weaponId, ammoId, mode) {
 	const weapon = actor.items.get(weaponId);
 	const ammo = actor.items.get(ammoId);
 
@@ -78,7 +78,12 @@ export function onRollRangedWeapon(event, actor) {
 	const weaponDamageIncrease = weapon.system.damageIncrease || 0;
 	const totalDamageIncrease =
 		1 + weaponDamageIncreaseTotal + weaponDamageIncrease;
-	const rollFormula = `round((${ammo.system.damageFormula})*${totalDamageIncrease})`;
+	let rollFormula = `round((${ammo.system.damageFormula})*${totalDamageIncrease})`;
+	if (mode === 'crit') {
+		rollFormula = `round((${ammo.system.damageFormula})*${totalDamageIncrease})*2`;
+	} else if (mode === 'megaCrit') {
+		rollFormula = `round((${ammo.system.damageRoll.diceNum}${ammo.system.damageRoll.diceSize}x+${ammo.system.damageRoll.diceBonus})*${totalDamageIncrease})*2`;
+	}
 	if (!rollFormula) {
 		ui.notifications.warn('No damage formula found for the equipped ammo!');
 		return;
@@ -96,10 +101,14 @@ export function onRollRangedWeapon(event, actor) {
 		console.error('Error while rolling ranged weapon damage:', error);
 	}
 }
-export function onRollUnarmedDamage(event, actor) {
-	event.preventDefault();
+export function onRollUnarmedDamage(actor, mode) {
 	const unarmedStrengthDamage = actor.system.strTotal / 2;
-	const rollFormula = `round(1d2+${unarmedStrengthDamage})`;
+	let rollFormula = `round(1d2+${unarmedStrengthDamage})`;
+	if (mode === 'crit') {
+		rollFormula = `round(1d2+${unarmedStrengthDamage})*2`;
+	} else if (mode === 'megaCrit') {
+		rollFormula = `round(1d2x+${unarmedStrengthDamage})*2`;
+	}
 	if (!rollFormula) {
 		ui.notifications.warn('No unarmed damage formula found!');
 		return;
@@ -118,9 +127,7 @@ export function onRollUnarmedDamage(event, actor) {
 	}
 }
 
-export function onRollAccuracy(event, actor) {
-	event.preventDefault();
-
+export function onRollAccuracy(actor, mode) {
 	const accuracy = actor.system.accuracyTotal;
 
 	if (typeof accuracy !== 'number') {
@@ -128,7 +135,13 @@ export function onRollAccuracy(event, actor) {
 		return;
 	}
 
-	const rollFormula = `1d100 + ${accuracy}`;
+	let rollFormula = `1d100 + ${accuracy}`;
+	if (mode === 'advantage') {
+		rollFormula = `2d100kh + ${accuracy}`;
+	} else if (mode === 'disadvantage') {
+		rollFormula = `2d100kl + ${accuracy}`;
+	}
+
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
 
@@ -143,9 +156,7 @@ export function onRollAccuracy(event, actor) {
 	}
 	consumeActionPoints(actor, 2);
 }
-export function onRollWeaponAccuracy(event, actor) {
-	event.preventDefault();
-	const itemId = event.currentTarget.dataset.itemId;
+export function onRollWeaponAccuracy(actor, itemId, mode) {
 	const weapon = actor.items.get(itemId);
 	if (!weapon) {
 		ui.notifications.warn('No equipped weapon found!');
@@ -155,7 +166,12 @@ export function onRollWeaponAccuracy(event, actor) {
 	const playerAccuracy = actor.system.accuracyTotal;
 	const weaponAccuracy = weapon.system.accuracy || 0;
 	const totalAccuracy = playerAccuracy + weaponAccuracy;
-	const rollFormula = `1d100 + ${totalAccuracy}`;
+	let rollFormula = `1d100 + ${totalAccuracy}`;
+	if (mode === 'advantage') {
+		rollFormula = `2d100kh + ${totalAccuracy}`;
+	} else if (mode === 'disadvantage') {
+		rollFormula = `2d100kl + ${totalAccuracy}`;
+	}
 	if (!rollFormula) {
 		ui.notifications.warn(
 			'No accuracy formula found for the equipped weapon!'

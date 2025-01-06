@@ -144,7 +144,6 @@ export class SS1EActorSheet extends ActorSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
-		// Toggle edit mode when the button is clicked
 		html.find('.edit-mode-toggle').click((ev) => {
 			this.isEditing = !this.isEditing;
 			this.render(); // Re-render the sheet with updated edit mode
@@ -284,36 +283,48 @@ export class SS1EActorSheet extends ActorSheet {
 			});
 		}
 		//Roll acc button
-		html.find('#roll-accuracy').click((event) =>
-			WeaponRoll.onRollAccuracy(event, this.actor)
-		);
+		html.find('#roll-accuracy').click((event) => {
+			const mode = 'normal';
+			WeaponRoll.onRollAccuracy(this.actor, mode);
+		});
 		// Roll weapon accuracy button
 		// Event listener for rolling weapon accuracy
-		html.find('button[data-action="rollWeaponAccuracy"]').click((event) =>
-			WeaponRoll.onRollWeaponAccuracy(event, this.actor)
-		);
+		html.find('button[data-action="rollWeaponAccuracy"]').click((event) => {
+			const itemId = $(event.currentTarget).data('item-id');
+			const mode = 'normal';
+			WeaponRoll.onRollWeaponAccuracy(this.actor, itemId, mode);
+		});
 		// Roll Melee weapon damage button
 		html.find('#roll-melee-weapon').click((event) => {
-			WeaponRoll.onRollMeleeWeapon(event, this.actor);
+			const itemId = $(event.currentTarget).data('item-id');
+			const mode = 'normal';
+			WeaponRoll.onRollMeleeWeapon(this.actor, itemId, mode);
 		});
 		// Roll Ranged weapon damage button
 		html.find('#roll-ranged-weapon').click((event) => {
-			WeaponRoll.onRollRangedWeapon(event, this.actor);
+			const weaponId = $(event.currentTarget).data('weapon-id');
+			const ammoId = $(event.currentTarget).data('ammo-id');
+			const mode = 'normal';
+			WeaponRoll.onRollRangedWeapon(this.actor, weaponId, ammoId, mode);
 		});
 		// Roll Unmarmed damage button
 		html.find('#roll-unarmed-damage').click((event) => {
-			WeaponRoll.onRollUnarmedDamage(event, this.actor);
+			const mode = 'normal';
+			WeaponRoll.onRollUnarmedDamage(this.actor, mode);
 		});
 		// Roll skill accuracy button
 		html.find('button[data-action="roll-skill-accuracy"]').click(
 			(event) => {
-				SkillRoll.onRollSkillAccuracy(event, this.actor);
+				const mode = 'normal';
+				const itemId = $(event.currentTarget).data('item-id');
+				SkillRoll.onRollSkillAccuracy(this.actor, itemId, mode);
 			}
 		);
 
 		// Roll skill damage button
 		html.find('button[data-action="roll-skill-damage"]').click((event) => {
-			SkillRoll.onRollSkillDamage(event, this.actor);
+			const itemId = $(event.currentTarget).data('item-id');
+			SkillRoll.onRollSkillDamage(this.actor, itemId, 'normal');
 		});
 		html.find('button[data-action="use-skill"]').click((event) => {
 			SkillRoll.onSkillUse(event, this.actor);
@@ -343,13 +354,255 @@ export class SS1EActorSheet extends ActorSheet {
 		// Event listener for the scenario button
 		html.find('#scenario-submit').on('click', (event) => {
 			const recipientId = html.find('#gmboardScenarioRecipient').val();
-			Scenario.onScenarioSubmit(event, recipientId); // Pass recipientId to the handler
+			Scenario.onScenarioSubmit(event, recipientId);
 		});
 
 		html.find('button[data-action="item-view"]').click((event) => {
 			const itemId = $(event.currentTarget).data('item-id');
 			Inventory.openItemDialog(event, itemId, this.actor);
 		});
+
+		document
+			.querySelectorAll('#roll-skill-accuracy')
+			.forEach((skillBox) => {
+				new ContextMenu(
+					skillBox,
+					'#roll-skill-accuracy',
+					[
+						{
+							name: 'Roll Accuracy with Advantage',
+							icon: '<i class="fas fa-dice-d20"></i>',
+							callback: (arg0) => {
+								const skillId = arg0.data('item-id');
+								const actor = this.actor;
+								const mode = 'advantage';
+								SkillRoll.onRollSkillAccuracy(
+									actor,
+									skillId,
+									mode
+								);
+							},
+						},
+						{
+							name: 'Roll Accuracy with Disadvantage',
+							icon: '<i class="fas fa-dice-d20"></i>',
+							callback: (arg0) => {
+								const skillId = arg0.data('item-id');
+								const actor = this.actor;
+								const mode = 'disadvantage';
+								SkillRoll.onRollSkillAccuracy(
+									actor,
+									skillId,
+									mode
+								);
+							},
+						},
+					],
+					{
+						fixed: true,
+					}
+				);
+			});
+		document.querySelectorAll('#roll-skill-damage').forEach((skillBox) => {
+			new ContextMenu(
+				skillBox,
+				'#roll-skill-damage',
+				[
+					{
+						name: 'Roll Critical Damage',
+						icon: '<i class="fas fa-dice-d20"></i>',
+						callback: (arg0) => {
+							const skillId = arg0.data('item-id');
+							const actor = this.actor;
+							const mode = 'crit';
+							SkillRoll.onRollSkillDamage(actor, skillId, mode);
+						},
+					},
+					{
+						name: 'Roll Mega Crit',
+						icon: '<i class="fas fa-dice-d20"></i>',
+						callback: (arg0) => {
+							const skillId = arg0.data('item-id');
+							const actor = this.actor;
+							const mode = 'megaCrit';
+							SkillRoll.onRollSkillDamage(actor, skillId, mode);
+						},
+					},
+				],
+				{
+					fixed: true,
+				}
+			);
+		});
+		document
+			.querySelectorAll('#roll-weapon-accuracy')
+			.forEach((skillBox) => {
+				new ContextMenu(
+					skillBox,
+					'#roll-weapon-accuracy',
+					[
+						{
+							name: 'Roll Accuracy with Advantage',
+							icon: '<i class="fas fa-dice-d20"></i>',
+							callback: (arg0) => {
+								const skillId = arg0.data('item-id');
+								const actor = this.actor;
+								const mode = 'advantage';
+								WeaponRoll.onRollWeaponAccuracy(
+									actor,
+									skillId,
+									mode
+								);
+							},
+						},
+						{
+							name: 'Roll Accuracy with Disadvantage',
+							icon: '<i class="fas fa-dice-d20"></i>',
+							callback: (arg0) => {
+								const skillId = arg0.data('item-id');
+								const actor = this.actor;
+								const mode = 'disadvantage';
+								WeaponRoll.onRollWeaponAccuracy(
+									actor,
+									skillId,
+									mode
+								);
+							},
+						},
+					],
+					{
+						fixed: true,
+					}
+				);
+			});
+		document.querySelectorAll('#roll-melee-weapon').forEach((skillBox) => {
+			new ContextMenu(
+				skillBox,
+				'#roll-melee-weapon',
+				[
+					{
+						name: 'Roll Critical Damage',
+						icon: '<i class="fas fa-dice-d20"></i>',
+						callback: (arg0) => {
+							const itemId = arg0.data('item-id');
+							const actor = this.actor;
+							const mode = 'crit';
+							WeaponRoll.onRollMeleeWeapon(actor, itemId, mode);
+						},
+					},
+					{
+						name: 'Roll Mega Crit',
+						icon: '<i class="fas fa-dice-d20"></i>',
+						callback: (arg0) => {
+							const itemId = arg0.data('item-id');
+							const actor = this.actor;
+							const mode = 'megaCrit';
+							WeaponRoll.onRollMeleeWeapon(actor, itemId, mode);
+						},
+					},
+				],
+				{
+					fixed: true,
+				}
+			);
+		});
+		document.querySelectorAll('#roll-ranged-weapon').forEach((skillBox) => {
+			new ContextMenu(
+				skillBox,
+				'#roll-ranged-weapon',
+				[
+					{
+						name: 'Roll Critical Damage',
+						icon: '<i class="fas fa-dice-d20"></i>',
+						callback: (arg0) => {
+							const weaponId = arg0.data('weapon-id');
+							const ammoId = arg0.data('ammo-id');
+							const actor = this.actor;
+							const mode = 'crit';
+							WeaponRoll.onRollRangedWeapon(
+								actor,
+								weaponId,
+								ammoId,
+								mode
+							); // Pass both IDs to the function
+						},
+					},
+					{
+						name: 'Roll Mega Crit',
+						icon: '<i class="fas fa-dice-d20"></i>',
+						callback: (arg0) => {
+							const weaponId = arg0.data('weapon-id');
+							const ammoId = arg0.data('ammo-id');
+							const actor = this.actor;
+							const mode = 'megaCrit';
+							WeaponRoll.onRollRangedWeapon(
+								actor,
+								weaponId,
+								ammoId,
+								mode
+							);
+						},
+					},
+				],
+				{
+					fixed: true,
+				}
+			);
+		});
+		new ContextMenu(
+			document.querySelector('#roll-unarmed-damage'),
+			'#roll-unarmed-damage',
+			[
+				{
+					name: 'Roll Critical Damage',
+					icon: '<i class="fas fa-dice-d20"></i>',
+					callback: (arg0) => {
+						const actor = this.actor;
+						const mode = 'crit';
+						WeaponRoll.onRollUnarmedDamage(actor, mode);
+					},
+				},
+				{
+					name: 'Roll Mega Crit',
+					icon: '<i class="fas fa-dice-d20"></i>',
+					callback: (arg0) => {
+						const actor = this.actor;
+						const mode = 'megaCrit';
+						WeaponRoll.onRollUnarmedDamage(actor, mode);
+					},
+				},
+			],
+			{
+				fixed: true,
+			}
+		);
+		new ContextMenu(
+			document.querySelector('#roll-accuracy'),
+			'#roll-accuracy',
+			[
+				{
+					name: 'Roll Accuracy with Advantage',
+					icon: '<i class="fas fa-dice-d20"></i>',
+					callback: (arg0) => {
+						const actor = this.actor;
+						const mode = 'advantage';
+						WeaponRoll.onRollAccuracy(actor, mode);
+					},
+				},
+				{
+					name: 'Roll Accuracy with Disadvantage',
+					icon: '<i class="fas fa-dice-d20"></i>',
+					callback: (arg0) => {
+						const actor = this.actor;
+						const mode = 'disadvantage';
+						WeaponRoll.onRollAccuracy(actor, mode);
+					},
+				},
+			],
+			{
+				fixed: true,
+			}
+		);
 	}
 
 	/**
