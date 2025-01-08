@@ -840,6 +840,24 @@ a.sound-control {
 .editor.prosemirror.active {
   border: 1px solid white;
 }
+[data-rating='Legendary'] {
+  color: #ffd000 !important;
+}
+[data-rating='Rare'] {
+  color: #1867c2 !important;
+}
+[data-rating='Uncommon'] {
+  color: #12b34f !important;
+}
+[data-rating='Common'] {
+  color: white !important;
+}
+[data-rating='Heroic'] {
+  color: #8a17cc !important;
+}
+[data-rating='Mythical'] {
+  color: red !important;
+}
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

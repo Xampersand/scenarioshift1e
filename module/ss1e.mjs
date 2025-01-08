@@ -260,9 +260,6 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 	const sender = game.users.get(message.user.id);
 	if (!sender) return;
 
-	// Skip if the sender is a GM
-	if (sender.isGM) return;
-
 	// Ensure only the GM processes this
 	if (!game.user.isGM) return;
 
@@ -308,9 +305,6 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 	const sender = game.users.get(message.user.id);
 	if (!sender) return;
 
-	// Skip if the sender is a GM
-	if (sender.isGM) return;
-
 	// Ensure only the GM processes this
 	if (!game.user.isGM) return;
 
@@ -327,7 +321,7 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 	// Check if diceTerms is available and has values
 	if (!diceTerms || diceTerms.length === 0) return;
 
-	let gmMessage = `${sender.name} rolled an initial accuracy of: ${rollResult}`;
+	let gmMessage = `${sender.name} rolled an initial accuracy of: <strong>${rollResult}<strong>`;
 
 	// Loop through each target and apply evasion checks
 	for (const target of targets) {
@@ -348,9 +342,9 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 		}
 
 		if (megaMiss) {
-			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:#742100 !important'>&nbsp;MEGA&nbsp;MISSED&nbsp;</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
+			gmMessage += `<br>${sender.name}&nbsp;<strong><span style='color:#742100 !important'>&nbsp;MEGA&nbsp;MISSED&nbsp;</span></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
 		} else if (megaCrit) {
-			gmMessage += `<br>${sender.name}&nbsp;<strong><p style='color:green !important'>&nbsp;MEGA&nbsp;CRIT&nbsp;</p></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
+			gmMessage += `<br>${sender.name}&nbsp;<strong><span style='color:green !important'>&nbsp;MEGA&nbsp;CRIT&nbsp;</span></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
 		} else {
 			// If it's not a mega crit or mega miss, evaluate hit, miss, and crit
 			const hit = finalHitDice >= 20;
