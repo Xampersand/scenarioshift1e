@@ -837,6 +837,10 @@ a.sound-control {
 .slot.full:hover:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
+a.inline-roll {
+  background: none;
+  border-color: white;
+}
 .editor.prosemirror.active {
   border: 1px solid white;
 }
