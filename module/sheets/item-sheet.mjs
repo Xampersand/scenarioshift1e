@@ -76,6 +76,7 @@ export class SS1EItemSheet extends ItemSheet {
 			'healing',
 			'buff',
 			'debuff',
+			'passive',
 			'other',
 		];
 		context.possibleManaTypes = [
