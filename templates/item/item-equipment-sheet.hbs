@@ -1,114 +1,113 @@
 <form class='{{cssClass}} flexcol' autocomplete='off'>
-	<button class='edit-mode-toggle'>Edit</button>
-	{{! Sheet Tab Navigation }}
-	<nav class='sheet-tabs tabs' data-group='primary'>
-		<a class='item' data-tab='description'>Description</a>
-		<a class="item" data-tab="stats">Details</a>
-		<a class='item' data-tab='attributes'>Active Effects</a>
-	</nav>
-	<div class='sheet-body'>
-		<div class='tab' data-tab='description'>
-			<section class='equipment-top-section'>
-				<div class='equipment-title'>
-				<img
-					class='equipment-img'
-					src='{{item.img}}'
-					data-edit='img'
-					title='{{item.name}}'
-					height='140px'
-					width='140px'
-				/>
-					<div class='equipment-name'>
-						{{#if isEditing}}
-							<input
-								name='name'
-								type='text'
-								value='{{item.name}}'
-								placeholder='NAME'
-							/>
-						{{else}}
-							<div>{{item.name}}</div>
-						{{/if}}
-					</div>
-					<div class='equipment-rarity'>
-						<label for='system.rating'>RATING:&nbsp;</label>
-						{{#if isEditing}}
-							<select name="system.rating">
-								<option value="{{system.rating}}">{{system.rating}}</option>
-								{{#each possibleRatings as |rating|}}
-									<option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
-								{{/each}}
-							</select>
-						{{else}}
-							<div data-rating="{{system.rating}}">{{system.rating}}</div>
-						{{/if}}
-					</div>
-					<div class="item-description">
-					{{#if isEditing}}
-					<prose-mirror class="editor prosemirror"name="system.description" value="{{system.description}}"></prose-mirror>
-					{{else}}
-					<div>{{{system.description}}}</div>
-					{{/if}}
-					</div>
-				</div>
-			</section>
-		</div>
-		<div class="tab" data-tab="stats">
-			<section class="equipment-bottom-section">
-			<div class='requirement'>
-				<label for='system.requirement'>REQUIRES:&nbsp;</label>
-				{{#if isEditing}}
-					<input
-						name='system.requirement.value'
-						type='text'
-						value='{{system.requirement.value}}'
-						placeholder=''
-					/>
-					<select name="system.requirement.type">
-						<option value="{{system.requirement.type}}">{{system.requirement.type}}</option>
-						{{#each possibleStats as |stat|}}
-							<option value="{{stat}}" {{#if (eq system.requirement.type stat)}}selected{{/if}}>{{stat}}</option>
-						{{/each}}
-					</select>
-				{{else}}
-					<span>{{system.requirement.value}}
-						{{system.requirement.type}}</span>
-				{{/if}}
-			</div>
-			<div class="slot">
-				<label for='system.slotOccupied'>OCCUPIES:&nbsp;</label>
-				{{#if isEditing}}
-					<select name="system.slotOccupied">
-						<option value="{{system.slotOccupied}}">{{system.slotOccupied}}</option>
-						{{#each possibleSlots as |slot|}}
-							<option value="{{slot}}" {{#if (eq system.slotOccupied slot)}}selected{{/if}}>{{slot}}</option>
-						{{/each}}
-					</select>
-				{{else}}
-					<span>{{system.slotOccupied}}</span>
-				{{/if}}
-			</div>
-				<div class='stats'>
-					<div class="active-effects">
-						<label class="stats-title">Bonus&nbsp;Effects:&nbsp;</div>
-						<div class='stats'>
-							{{#each effects as |section sid|}}
-								{{#each section.effects as |effect|}}
-									<div class='effect'>
-										<div class='effect-name'>{{effect.name}}</div>
-									</div>
-								{{/each}}
-							{{/each}}
-						</div>
-					</div>
-				</div>
-		</div>
-		</section>
-		<div class='tab' data-tab='attributes'>
-			<div class='effects-body'>
-				{{> "item-effects" effects=effects}}
-				<button class="effect-control" data-action="create">Add Effect</button>
-			</div>
-		</div>
-	</div>
+  <button class='edit-mode-toggle'>Edit</button>
+  {{! Sheet Tab Navigation }}
+  <nav class='sheet-tabs tabs' data-group='primary'>
+    <a class='item' data-tab='description'>Description</a>
+    <a class="item" data-tab="stats">Details</a>
+    <a class='item' data-tab='attributes'>Active Effects</a>
+  </nav>
+  <div class='sheet-body'>
+    <div class='tab' data-tab='description'>
+      <section class='equipment-top-section'>
+        <div class='equipment-title'>
+          <img
+            class='equipment-img'
+            src='{{item.img}}'
+            data-edit='img'
+            title='{{item.name}}'
+            height='140px'
+            width='140px'
+          />
+          <div class='equipment-name'>
+            {{#if isEditing}}
+              <input
+                name='name'
+                type='text'
+                value='{{item.name}}'
+                placeholder='NAME'
+              />
+            {{else}}
+              <div>{{item.name}}</div>
+            {{/if}}
+          </div>
+          <div class='equipment-rarity'>
+            <label for='system.rating'>RATING:&nbsp;</label>
+            {{#if isEditing}}
+              <select name="system.rating">
+                <option value="{{system.rating}}">{{system.rating}}</option>
+                {{#each possibleRatings as |rating|}}
+                  <option value="{{rating}}" {{#if (eq system.rating rating)}}selected{{/if}}>{{rating}}</option>
+                {{/each}}
+              </select>
+            {{else}}
+              <div data-rating="{{system.rating}}">{{system.rating}}</div>
+            {{/if}}
+          </div>
+          <div class="item-description">
+            {{#if isEditing}}
+              <prose-mirror class="editor prosemirror" name="system.description" value="{{system.description}}"></prose-mirror>
+            {{else}}
+              <div>{{{system.description}}}</div>
+            {{/if}}
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="tab" data-tab="stats">
+      <section class="equipment-bottom-section">
+        <div class='requirement'>
+          <label for='system.requirement'>REQUIRES:&nbsp;</label>
+          {{#if isEditing}}
+            <input
+              name='system.requirement.value'
+              type='text'
+              value='{{system.requirement.value}}'
+              placeholder=''
+            />
+            <select name="system.requirement.type">
+              <option value="{{system.requirement.type}}">{{system.requirement.type}}</option>
+              {{#each possibleStats as |stat|}}
+                <option value="{{stat}}" {{#if (eq system.requirement.type stat)}}selected{{/if}}>{{stat}}</option>
+              {{/each}}
+            </select>
+          {{else}}
+            <span>{{system.requirement.value}} {{system.requirement.type}}</span>
+          {{/if}}
+        </div>
+        <div class="slot">
+          <label for='system.slotOccupied'>OCCUPIES:&nbsp;</label>
+          {{#if isEditing}}
+            <select name="system.slotOccupied">
+              <option value="{{system.slotOccupied}}">{{system.slotOccupied}}</option>
+              {{#each possibleSlots as |slot|}}
+                <option value="{{slot}}" {{#if (eq system.slotOccupied slot)}}selected{{/if}}>{{slot}}</option>
+              {{/each}}
+            </select>
+          {{else}}
+            <span>{{system.slotOccupied}}</span>
+          {{/if}}
+        </div>
+        <div class='stats'>
+          <div class="active-effects">
+            <label class="stats-title">Bonus&nbsp;Effects:&nbsp;</label>
+            <div class='stats'>
+              {{#each effects as |section sid|}}
+                {{#each section.effects as |effect|}}
+                  <div class='effect'>
+                    <div class='effect-name'>{{effect.name}}</div>
+                  </div>
+                {{/each}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class='tab' data-tab='attributes'>
+      <div class='effects-body'>
+        {{> "item-effects" effects=effects}}
+        <button class="effect-control" data-action="create">Add Effect</button>
+      </div>
+    </div>
+  </div>
 </form>
