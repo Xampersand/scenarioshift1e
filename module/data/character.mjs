@@ -64,6 +64,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.damageIncreaseConTotal = new fields.NumberField({ initial: 0 });
 		schema.actionPointsMax = new fields.NumberField({ initial: 4 });
 		schema.actionPointsCurrent = new fields.NumberField({ initial: 0 });
+		schema.initiativeBonus = new fields.NumberField({ initial: 0 });
 
 		return schema;
 	}

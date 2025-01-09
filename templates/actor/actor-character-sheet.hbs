@@ -296,6 +296,24 @@
         </div>
         <div class='bottom'>
           <div class='stat-container'>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label class='str-dmg-label' for='str-dmg-stat'>Bonus Initiative:&nbsp;</label>
+                <div class="stat-numbers">
+                <span class='str-dmg-stat'>{{system.initiativeBonus}}</span>
+                {{#if isEditing}}
+                <input
+                  type='number'
+                  id='initiativeBonus'
+                  class='input-text'
+                  name='system.initiativeBonus'
+                  value='{{system.initiativeBonus}}'
+                  placeholder='Bonus Initiative'
+                />
+                {{/if}}
+                </div>
+              </div>
+            </div>
             <div class="stat-flexrow">
               <div class="combat-stat-block">
                 <label>Damage Increases:</label>
