@@ -65,6 +65,10 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.actionPointsMax = new fields.NumberField({ initial: 4 });
 		schema.actionPointsCurrent = new fields.NumberField({ initial: 0 });
 		schema.initiativeBonus = new fields.NumberField({ initial: 0 });
+		schema.baseManaRegen = new fields.NumberField({ initial: 0.05 });
+		schema.baseHealthRegen = new fields.NumberField({ initial: 0 });
+		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
+		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
 
 		return schema;
 	}

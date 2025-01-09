@@ -99,7 +99,8 @@ Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
 
 			const maxAP = actor.system.actionPointsMax;
 			const manaGainPerTurn = Math.round(
-				actor.system.manaMaxTotal * 0.05
+				actor.system.manaMaxTotal *
+					(actor.system.baseManaRegen + actor.system.bonusManaRegen)
 			);
 			await actor.update({ 'system.actionPointsCurrent': maxAP });
 			await actor.update({
