@@ -103,10 +103,23 @@ Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
 					(actor.system.baseManaRegen + actor.system.bonusManaRegen)
 			);
 			await actor.update({ 'system.actionPointsCurrent': maxAP });
-			await actor.update({
-				'system.manaCurrent':
-					actor.system.manaCurrent + manaGainPerTurn,
-			});
+			if (
+				actor.system.manaCurrent + manaGainPerTurn >
+				actor.system.manaMaxTotal
+			) {
+				await actor.update({
+					'system.manaCurrent': actor.system.manaMaxTotal,
+				});
+			} else if (actor.system.manaCurrent > actor.system.manaMaxTotal) {
+				await actor.update({
+					'system.manaCurrent': actor.system.manaMaxTotal,
+				});
+			} else {
+				await actor.update({
+					'system.manaCurrent':
+						actor.system.manaCurrent + manaGainPerTurn,
+				});
+			}
 		}
 	}
 });
