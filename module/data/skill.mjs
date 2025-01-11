@@ -76,6 +76,8 @@ export default class SS1ESkill extends SS1EItemBase {
 		schema.manaCost = new fields.NumberField({ initial: 0 });
 		schema.macroEffect = new fields.StringField({ initial: 'none' });
 		schema.skillCooldown = new fields.NumberField({ initial: 0 });
+		schema.usesCustomMacro = new fields.BooleanField({ initial: false });
+		schema.customMacro = new fields.StringField({ initial: '' });
 		return schema;
 	}
 

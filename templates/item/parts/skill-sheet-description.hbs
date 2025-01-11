@@ -286,3 +286,23 @@
 		<div class='skill-info-value'>{{system.skillCooldown}}&nbsp;rounds</div>
 	{{/if}}
 </div>
+{{#if isEditing}}
+	<div class='skill-info-line'>
+		<label class='skill-info-label'>USES CUSTOM FUNCTIONALITY?&nbsp;</label>
+		<select name="system.usesCustomMacro" id="">
+			<option value="system.usesCustomMacro">{{system.usesCustomMacro}}</option>
+			<option value="true" {{#if (eq system.usesCustomMacro true)}}selected{{/if}}>True</option>
+			<option value="false" {{#if (eq system.usesCustomMacro false)}}selected{{/if}}>False</option>
+		</select>
+	</div>
+	{{#if system.usesCustomMacro}}
+		<div class='skill-info-line'>
+			<label class='skill-info-label'>CUSTOM MACRO NAME:&nbsp;</label>
+			<input
+				type='text'
+				name='system.customMacro'
+				value='{{system.customMacro}}'
+			/>
+		</div>
+	{{/if}}
+{{/if}}

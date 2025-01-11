@@ -70,6 +70,10 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		ui.notifications.warn('No skill found!');
 		return;
 	}
+	if (skill.system.usesCustomMacro) {
+		game.macros.getName(`${skill.system.customMacro}`).execute();
+		return;
+	}
 	const STAT_MAPPINGS = {
 		str: {
 			total: actor.system.strTotal,
@@ -147,6 +151,10 @@ export async function onSkillUse(event, actor) {
 	event.preventDefault();
 	const itemId = event.currentTarget.dataset.itemId;
 	const skill = actor.items.get(itemId);
+	if (skill.system.usesCustomMacro) {
+		game.macros.getName(`${skill.system.customMacro}`).execute();
+		return;
+	}
 	if (!skill) {
 		ui.notifications.warn('No skill found!');
 		return;

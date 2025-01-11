@@ -16,6 +16,10 @@
           {{#if (notEqual this.system.skillType 'passive')}}
             <button class="skill-button use-skill-roll" data-action="use-skill" data-item-id="{{this._id}}"><span>Use</span></button>
             <button class="skill-button send-chat-roll" data-action="send-skill-to-chat" data-item-id="{{this._id}}"><img src="systems/ss1e/assets/images/chat-icon.png" alt=""></button>
+          {{else}}
+            {{#if this.system.usesCustomMacro}}
+            <button class="skill-button use-skill-roll" data-action="use-skill" data-item-id="{{this._id}}"><span>Use</span></button>
+            {{/if}}
           {{/if}}
         {{/if}}
       </div>
