@@ -7,6 +7,7 @@ export function onScenarioSubmit(event, recipientId) {
 	const conditionText = $('#scenario-conditions').val();
 	const timeLimit = $('#scenario-time-limit').val();
 	const reward = $('#scenario-reward').val();
+	const failureConditionText = $('#scenario-fail-condition').val();
 	const penalty = $('#scenario-fail').val();
 	const notesText = $('#scenario-notes').val();
 
@@ -18,6 +19,7 @@ export function onScenarioSubmit(event, recipientId) {
 		<div>Clear&nbsp;conditions:<br>${conditionText}</div>
 		<div>Time&nbsp;Limit:&nbsp;${timeLimit}</div>
 		<div>Reward:&nbsp;${reward}</div>
+		<div>Failure&nbsp;Condition:&nbsp;${failureConditionText}</div>
 		<div>Failure&nbsp;Penalty:&nbsp;${penalty}</div>
 		<div>${notesText}</div>
 	`;
@@ -34,6 +36,7 @@ export function onScenarioSubmit(event, recipientId) {
 				<p><strong>Clear&nbsp;conditions:</strong><br>${conditionText}</p>
 				<p><strong>Time Limit:</strong>&nbsp;${timeLimit}</p>
 				<p><strong>Reward:</strong>&nbsp;${reward}</p>
+				<p><strong>Failure Condition:</strong>&nbsp;${failureConditionText}</p>
 				<p><strong>Failure Penalty:</strong>&nbsp;${penalty}</p>
 				<p>${notesText}</p>
 			`,
