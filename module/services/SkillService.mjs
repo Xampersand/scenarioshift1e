@@ -191,7 +191,7 @@ export async function onSkillUse(event, actor) {
 			(total - skill.system.requirement.value) /
 				skill.system.upgradeThreshold
 		);
-		const totalManaCost = skill.system.manaCost * (1 + additionalManaCost);
+		const totalManaCost = skill.system.manaCost;
 		try {
 			const roll = new Roll(rollFormula, actor.getRollData());
 			roll.roll().then((rolled) => {
