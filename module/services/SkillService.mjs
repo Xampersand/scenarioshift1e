@@ -44,7 +44,7 @@ export function onRollSkillAccuracy(actor, skillId, mode) {
 	let additionalManaCost = Math.floor(
 		(total - skill.system.requirement.value) / skill.system.upgradeThreshold
 	);
-	let totalManaCost = skill.system.manaCost * (1 + additionalManaCost);
+	let totalManaCost = skill.system.manaCost;
 
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
@@ -106,7 +106,7 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		(total - skill.system.requirement.value) / skill.system.upgradeThreshold
 	);
 
-	const totalDice = skill.system.diceNum * (1 + additionalDice);
+	const totalDice = skill.system.diceNum;
 	let damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
 	let secondDamageFormula = `${skill.system.secondDiceNum}${skill.system.secondDiceSize}+${skill.system.secondDiceBonus}`;
 	let thirdDamageFormula = `${skill.system.thirdDiceNum}${skill.system.thirdDiceSize}+${skill.system.thirdDiceBonus}`;
@@ -184,7 +184,7 @@ export async function onSkillUse(event, actor) {
 				skill.system.upgradeThreshold
 		);
 		const totalHealingIncrease = 1 + playerStatHealingIncrease;
-		const totalDice = skill.system.diceNum * (1 + additionalDice);
+		const totalDice = skill.system.diceNum;
 		const healingFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
 		const rollFormula = `round((${healingFormula})*${totalHealingIncrease})`;
 		const additionalManaCost = Math.floor(
