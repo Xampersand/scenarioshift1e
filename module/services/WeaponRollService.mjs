@@ -102,12 +102,12 @@ export function onRollRangedWeapon(actor, weaponId, ammoId, mode) {
 	}
 }
 export function onRollUnarmedDamage(actor, mode) {
-	const unarmedStrengthDamage = actor.system.strTotal / 2;
-	let rollFormula = `round(1d2+${unarmedStrengthDamage})`;
+	const unarmedStrengthRolls = Math.round(actor.system.strTotal / 10);
+	let rollFormula = `round(1d4+${unarmedStrengthRolls}d4)`;
 	if (mode === 'crit') {
-		rollFormula = `round(1d2+${unarmedStrengthDamage})*2`;
+		rollFormula = `round(1d4+${unarmedStrengthRolls}d4)*2`;
 	} else if (mode === 'megaCrit') {
-		rollFormula = `round(1d2x+${unarmedStrengthDamage})*2`;
+		rollFormula = `round(1d4x+${unarmedStrengthRolls}d4x)*2`;
 	}
 	if (!rollFormula) {
 		ui.notifications.warn('No unarmed damage formula found!');
