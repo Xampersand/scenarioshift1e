@@ -26,32 +26,26 @@ export function onRollSkillAccuracy(actor, skillId, mode) {
 		ui.notifications.warn('Not enough mana!');
 		return;
 	}
-
-	const STAT_MAPPINGS = {
-		str: { total: actor.system.strTotal },
-		agi: { total: actor.system.agiTotal },
-		int: { total: actor.system.intTotal },
-		con: { total: actor.system.conTotal },
-	};
-
-	const statRequirement = skill.system.requirement.type || 'int';
-
-	if (!STAT_MAPPINGS[statRequirement]) {
-		ui.notifications.warn('Unknown stat requirement for the skill!');
-		return;
-	}
-	const { total } = STAT_MAPPINGS[statRequirement];
-	let additionalManaCost = Math.floor(
-		(total - skill.system.requirement.value) / skill.system.upgradeThreshold
-	);
 	let totalManaCost = skill.system.manaCost;
+	let flavor = `Rolling Accuracy for ${skill.name}`;
+	if (skill.system.isAttackSkill) {
+		const usedWeapon = actor.items.get(actor.system.attackSkillWeapon);
+		const usedWeaponAccuracy = usedWeapon.system.accuracy || 0;
+		rollFormula = `1d100 + ${totalAccuracy} + ${usedWeaponAccuracy}`;
+		flavor = `Rolling Accuracy for ${skill.name} with ${usedWeapon.name}`;
+		if (mode === 'advantage') {
+			rollFormula = `2d100kh1 + ${totalAccuracy} + ${usedWeaponAccuracy}`;
+		} else if (mode === 'disadvantage') {
+			rollFormula = `2d100kl1 + ${totalAccuracy} + ${usedWeaponAccuracy}`;
+		}
+	}
 
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
 		roll.roll().then((rolled) => {
 			rolled.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
-				flavor: `Rolling Accuracy for ${skill.name}`, // Optional flavor text
+				flavor: flavor, // Optional flavor text
 			});
 			spendManaCost(actor, totalManaCost);
 			consumeActionPoints(actor, skill.system.apCost);
@@ -99,12 +93,9 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		ui.notifications.warn('Unknown stat requirement for the skill!');
 		return;
 	}
-	const { total, damageIncrease } = STAT_MAPPINGS[statRequirement];
+	const { damageIncrease } = STAT_MAPPINGS[statRequirement];
 
 	let skillDamageIncreaseTotal = 1 + damageIncrease;
-	let additionalDice = Math.floor(
-		(total - skill.system.requirement.value) / skill.system.upgradeThreshold
-	);
 
 	const totalDice = skill.system.diceNum;
 	let damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
@@ -134,12 +125,30 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		ui.notifications.warn('No damage formula found for the skill!');
 		return;
 	}
+	let flavor = `Rolling Damage for ${skill.name}`;
+	if (skill.system.isAttackSkill) {
+		const usedWeapon = actor.items.get(actor.system.attackSkillWeapon);
+		const usedWeaponDamageRoll = usedWeapon.system.damageRoll.diceNum || 0;
+		const usedWeaponDamageSize =
+			usedWeapon.system.damageRoll.diceSize || `d4`;
+		const usedWeaponDamageBonus =
+			usedWeapon.system.damageRoll.diceBonus || 0;
+		flavor = `Rolling Damage for ${skill.name} with ${usedWeapon.name}`;
+		let usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}+${usedWeaponDamageBonus}`;
+		rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})`;
+		if (mode === 'crit') {
+			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
+		} else if (mode === 'megaCrit') {
+			usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}x+${usedWeaponDamageBonus}`;
+			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
+		}
+	}
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
 		roll.roll().then((rolled) => {
 			rolled.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
-				flavor: `Rolling Damage for ${skill.name}`, // Optional flavor text
+				flavor: flavor,
 			});
 		});
 	} catch (error) {

@@ -25,6 +25,16 @@
 	{{/if}}
 </div>
 {{#if (eq system.skillType 'offensive')}}
+	{{#if isEditing}}
+	<div class='skill-info-line'>
+		<label class='skill-info-label'>USES WEAPON?&nbsp;</label>
+		<select name="system.isAttackSkill" id="">
+			<option value="{{system.isAttackSkill}}">{{system.isAttackSkill}}</option>
+			<option value="true">True</option>
+			<option value="false">False</option>
+		</select>
+	</div>
+	{{/if}}
 	<div class='skill-info-line'>
 		<label class='skill-info-label'>DAMAGE&nbsp;ROLL:&nbsp;</label>
 		{{#if isEditing}}
@@ -159,7 +169,7 @@
 			<div class='skill-info-value'>{{system.accuracy}}</div>
 		{{/if}}
 	</div>
-	<div class='skill-info-line'>
+	<!--<div class='skill-info-line'>
 		<label class='skill-info-label'>UPGRADE&nbsp;THRESHOLD:&nbsp;</label>
 		{{#if isEditing}}
 			<input
@@ -171,7 +181,7 @@
 		{{else}}
 			<div class='skill-info -value'>{{system.upgradeThreshold}}</div>
 		{{/if}}
-	</div>
+	</div>-->
 {{/if}}
 {{#if (eq system.skillType 'healing')}}
 	<div class='skill-info-line'>
@@ -201,7 +211,7 @@
 			>{{system.diceNum}}{{system.diceSize}}&nbsp;+&nbsp;{{system.diceBonus}}</div>
 		{{/if}}
 	</div>
-	<div class='skill-info-line'>
+	<!--<div class='skill-info-line'>
 		<label class='skill-info-label'>UPGRADE&nbsp;THRESHOLD:&nbsp;</label>
 		{{#if isEditing}}
 			<input
@@ -213,7 +223,7 @@
 		{{else}}
 			<div class='skill-info -value'>{{system.upgradeThreshold}}</div>
 		{{/if}}
-	</div>
+	</div>-->
 {{/if}}
 {{#if (eq system.skillType 'debuff')}}
 	<div class='skill-info-line'>

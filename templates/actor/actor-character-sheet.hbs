@@ -410,6 +410,15 @@
           {{> skill-inventory}}
           <div class="attack-actions">
             <div class="action-title"><span>&lt;ATTACKS&gt;</span></div>
+            <div class='attack-roll-container'>
+              <label for='attackSkillWeapon' class=''>Weapon used for Attack Skills:</label>
+              <select id='attackSkillWeapon' name='system.attackSkillWeapon' class='message-recipient-dropdown'>
+                <option value="none" class="message-recipient-option">None</option>
+                {{#each weapons}}
+                  <option value='{{this.id}}' class='message-recipient-option' {{#if (eq ../system.attackSkillWeapon this.id)}}selected{{/if}}>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
             <div class="attack-roll-container">
               <div class="attack-box"><img src="systems/ss1e/assets/images/unarmed-icon.png" alt=""><span>Unarmed</span></div>
               <button id='roll-accuracy' class='attack-roll attack-accuracy-roll'>

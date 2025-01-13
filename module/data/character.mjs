@@ -69,6 +69,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.baseHealthRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
+		schema.attackSkillWeapon = new fields.StringField({ initial: '' });
 
 		return schema;
 	}

@@ -78,6 +78,7 @@ export default class SS1ESkill extends SS1EItemBase {
 		schema.skillCooldown = new fields.NumberField({ initial: 0 });
 		schema.usesCustomMacro = new fields.BooleanField({ initial: false });
 		schema.customMacro = new fields.StringField({ initial: '' });
+		schema.isAttackSkill = new fields.BooleanField({ initial: false });
 		return schema;
 	}
 
