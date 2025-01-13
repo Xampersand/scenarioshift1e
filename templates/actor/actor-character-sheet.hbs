@@ -460,6 +460,22 @@
                 {{/each}}
               {{/if}}
             {{/each}}
+            {{#each items}}
+              {{#if (eq this.type 'skill')}}
+                 {{#if (eq this.system.skillType 'offensive')}}
+                   {{#if (eq this.system.isAttackSkill true)}}
+                   <div class="skill-item" data-item-id='{{this._id}}'>
+                     <button title='{{this.name}}' class='item-view skill-box' data-action='skill-view' data-item-id='{{this._id}}' id="skill-box">
+                      <img src='{{this.img}}'></img><span class="skill-name">{{this.name}}</span>
+                     </button>
+                     <button class="skill-button skill-accuracy-roll" data-action="roll-skill-accuracy" data-item-id="{{this._id}}" id="roll-skill-accuracy"><img src="systems/ss1e/assets/images/target-icon.png"></button>
+                     <button class="skill-button skill-damage-roll" data-action="roll-skill-damage" data-item-id="{{this._id}}" id="roll-skill-damage"><img src="systems/ss1e/assets/images/damage-icon.png"></button>
+                    <button class="skill-button send-chat-roll" data-action="send-skill-to-chat" data-item-id="{{this._id}}"><img src="systems/ss1e/assets/images/chat-icon.png" alt=""></button>
+                   </div>  
+                   {{/if}}
+                 {{/if}}
+              {{/if}}
+            {{/each}}
           </div>
           </div>
         </div>

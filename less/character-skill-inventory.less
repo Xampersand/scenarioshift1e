@@ -243,6 +243,72 @@
 						border-left: 0;
 					}
 				}
+				.skill-item {
+					display: flex;
+					flex-direction: row;
+
+					.skill-box {
+						display: flex;
+						align-items: center;
+						border: 1px solid white;
+						border-radius: 5px 0px 0px 5px;
+						box-shadow: 0 0 2px #25e6ff, 0 0 4px #25e6ff;
+						transition: box-shadow 0.3s ease-in-out;
+						font-size: 1rem;
+						margin: 5px 0px 5px 0px;
+						padding: 0;
+						height: 34px;
+						text-transform: uppercase;
+						border-right: 0;
+						img {
+							justify-self: flex-start;
+							width: 32px; // Adjust to fit the button
+							height: auto; // Maintain aspect ratio
+							border: 1px solid @subaccent-color;
+							margin: 0 4px 0px 0px;
+							border-radius: 5px 0px 0px 5px;
+						}
+						span {
+							display: block;
+							text-align: center;
+							height: fit-content;
+							flex: 1;
+						}
+						// Hide the tooltip by default
+					}
+					.skill-button {
+						background: none;
+						width: 34px;
+						height: 34px;
+						padding: 2px;
+						margin: 5px 0px 5px 0px;
+						border-radius: 0;
+						border: 1px solid @main-border-color;
+						img {
+							width: 28px; // Adjust to fit the button
+							height: auto; // Maintain aspect ratio
+							max-width: inherit;
+							border: 0;
+						}
+					}
+					.skill-button.skill-accuracy-roll {
+						border-right: 0px;
+					}
+					.skill-button.send-chat-roll {
+						border-radius: 0 5px 5px 0;
+						border-left: 0;
+					}
+					.skill-button.use-skill-roll {
+						height: 34px;
+						width: 34px;
+						display: flex;
+						span {
+							height: 34px;
+							width: 34px;
+							align-self: flex-start;
+						}
+					}
+				}
 			}
 			.damage-rolls {
 				display: flex;
