@@ -343,7 +343,7 @@
               <div class="gear-slot helmet-slot">
                 {{#each actor.items as |item|}}
                     {{#if (and (eq item.system.slotOccupied 'Helmet') item.system.equipped)}}
-                      <div class="item-slot" data-item-id="{{item.id}}" data-action="item-view">
+                      <div class="item-slot" data-item-id="{{item.id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
                       </div>
                     {{/if}}
