@@ -33,7 +33,7 @@
               />
             {{/if}}
             <div class='hp-mana-container'>
-              <div class='hp-block' id='hp-bar'>
+              <div class='hp-block' id='hp-bar' data-action="hp-bar">
                 <div class='hp-bar-container'>
                   <div
                     class='hp-bar'
@@ -44,7 +44,7 @@
 
                 </div>
               </div>
-              <div class='mana-block' id='mana-bar'>
+              <div class='mana-block' id='mana-bar' data-action="mana-bar">
                 <div class='mana-bar-container'>
                   <div
                     class='mana-bar'
@@ -384,13 +384,13 @@
               />
             {{/if}}
           <div class='hp-mana-container'>
-            <div class='hp-block' id='hp-bar'>
+            <div class='hp-block' id='hp-bar' data-action="hp-bar">
               <div class='hp-bar-container'>
                 <div class='hp-bar'style='width: {{hpBarWidth}}%;'></div>
                 <span class='hp-text'>{{system.healthCurrent}}/{{system.healthMaxTotal}}&nbsp;&#40;+{{system.healthMaxTempBonus}}&#41;</span>
                </div>
             </div>
-            <div class='mana-block' id='mana-bar'>
+            <div class='mana-block' id='mana-bar'data-action="mana-bar">
               <div class='mana-bar-container'>
                 <div class='mana-bar'style='width: {{manaBarWidth}}%;'></div>
                 <span class='mana-text'>{{system.manaCurrent}}/{{system.manaMaxTotal}}&nbsp;&#40;+{{system.manaMaxTempBonus}}&#41;</span>
@@ -466,18 +466,27 @@
             {{/each}}
             {{#each items}}
               {{#if (eq this.type 'skill')}}
-                 {{#if (eq this.system.skillType 'offensive')}}
-                   {{#if (eq this.system.isAttackSkill true)}}
-                   <div class="skill-item" data-item-id='{{this._id}}'>
-                     <button title='{{this.name}}' class='item-view skill-box' data-action='skill-view' data-item-id='{{this._id}}' id="skill-box">
+                {{#if (eq this.system.skillType 'offensive')}}
+                  {{#if (eq this.system.isAttackSkill true)}}
+                    <div class="skill-item" data-item-id='{{this._id}}'>
+                      <button title='{{this.name}}' class='item-view skill-box' data-action='skill-view' data-item-id='{{this._id}}' id="skill-box">
+                        <img src='{{this.img}}'></img><span class="skill-name">{{this.name}}</span>
+                      </button>
+                      <button class="skill-button skill-accuracy-roll" data-action="roll-skill-accuracy" data-item-id="{{this._id}}" id="roll-skill-accuracy"><img src="systems/ss1e/assets/images/target-icon.png"></button>
+                      <button class="skill-button skill-damage-roll" data-action="roll-skill-damage" data-item-id="{{this._id}}" id="roll-skill-damage"><img src="systems/ss1e/assets/images/damage-icon.png"></button>
+                      <button class="skill-button send-chat-roll" data-action="send-skill-to-chat" data-item-id="{{this._id}}"><img src="systems/ss1e/assets/images/chat-icon.png" alt=""></button>
+                    </div>
+                  {{else}}
+                  <div class="skill-item" data-item-id='{{this._id}}'>
+                    <button title='{{this.name}}' class='item-view skill-box' data-action='skill-view' data-item-id='{{this._id}}' id="skill-box">
                       <img src='{{this.img}}'></img><span class="skill-name">{{this.name}}</span>
-                     </button>
-                     <button class="skill-button skill-accuracy-roll" data-action="roll-skill-accuracy" data-item-id="{{this._id}}" id="roll-skill-accuracy"><img src="systems/ss1e/assets/images/target-icon.png"></button>
-                     <button class="skill-button skill-damage-roll" data-action="roll-skill-damage" data-item-id="{{this._id}}" id="roll-skill-damage"><img src="systems/ss1e/assets/images/damage-icon.png"></button>
+                    </button>
+                    <button class="skill-button skill-accuracy-roll" data-action="roll-skill-accuracy" data-item-id="{{this._id}}" id="roll-skill-accuracy"><img src="systems/ss1e/assets/images/target-icon.png"></button>
+                    <button class="skill-button skill-damage-roll" data-action="roll-skill-damage" data-item-id="{{this._id}}" id="roll-skill-damage"><img src="systems/ss1e/assets/images/damage-icon.png"></button>
                     <button class="skill-button send-chat-roll" data-action="send-skill-to-chat" data-item-id="{{this._id}}"><img src="systems/ss1e/assets/images/chat-icon.png" alt=""></button>
-                   </div>  
-                   {{/if}}
-                 {{/if}}
+                  </div>  
+                  {{/if}}
+                {{/if}}
               {{/if}}
             {{/each}}
           </div>

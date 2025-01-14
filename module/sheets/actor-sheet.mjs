@@ -354,9 +354,13 @@ export class SS1EActorSheet extends ActorSheet {
 			Coin.onSendCoins.bind(this)
 		);
 		// Event listener for HP bar click
-		html.find('#hp-bar').click(() => this._openHealthDialog());
+		html.find('[data-action="hp-bar"]').click(() =>
+			this._openHealthDialog()
+		);
 		// Event listener for MAana bar click
-		html.find('#mana-bar').click(() => this._openManaDialog());
+		html.find('[data-action="mana-bar"]').click(() =>
+			this._openManaDialog()
+		);
 
 		// Event listener for the scenario button
 		html.find('#scenario-submit').on('click', (event) => {
@@ -656,42 +660,72 @@ export class SS1EActorSheet extends ActorSheet {
 			title: 'Edit Health',
 			content: `
 				<form>
-					<div class="form-group">
-						<label>Current Health</label>
-						<input type="number" name="health" value="${currentHealth}" min="0" max="${maxHealth}">
-						<label>Bonus Health</label>
-						<input type="number" name="healthBonus" value="${healthMaxTempBonus}" min="0">
+					<div class= "form-group-column" style="display: flex; flex-direction: column;">
+						<div class= "form-group-row" style="display: flex; flex-direction: row; justify-content: space-between;">
+							<div class= "form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;margin-bottom:4px;">
+								<label>Current&nbsp;Health</label>
+								<input type="number" name="health" value="${currentHealth}" min="0" max="${maxHealth}" style="width:60px;">
+							</div>
+							<div class= "form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;">
+								<label>Bonus&nbsp;Health</label>
+								<input type="number" name="healthBonus" value="${healthMaxTempBonus}" min="0" style="width:60px;">
+							</div>
+						</div>
+						<div class= "form-group-row" style="display: flex; flex-direction: row; justify-content: space-between;margin-top:4px;">
+							<div class= "form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;">
+								<label style="color:#df5555 !important;">Damage&nbsp;Taken</label>
+								<input type="number" name="damage" value="0" min="0" max="${maxHealth}" style="width:60px;">
+							</div>
+							<div class= "form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;">
+								<label style="color:#70f9ba !important">Healing&nbsp;Received</label>
+								<input type="number" name="healing" value="0" min="0" max="${maxHealth}" style="width:60px;">
+							</div>
+						</div>			
 					</div>
 				</form>
 			`,
 			buttons: {
 				save: {
-					label: 'Save',
+					label: 'Apply',
 					callback: (html) => {
-						const newHealth = parseInt(
-							html.find('input[name="health"]').val()
-						);
-						const newHealthBonus = parseInt(
-							html.find('input[name="healthBonus"]').val()
-						);
+						let newHealth =
+							parseInt(html.find('input[name="health"]').val()) ||
+							0;
+						let newHealthBonus =
+							parseInt(
+								html.find('input[name="healthBonus"]').val()
+							) || 0;
+						let damageTaken =
+							parseInt(html.find('input[name="damage"]').val()) ||
+							0;
+						let healingReceived =
+							parseInt(
+								html.find('input[name="healing"]').val()
+							) || 0;
 
-						// Ensure health is within the valid range
-						if (
-							!isNaN(newHealth) &&
-							newHealth >= 0 &&
-							newHealth <= maxHealth
-						) {
-							this.actor.update({
-								'system.healthCurrent': newHealth,
-							});
-							this.actor.update({
-								'system.healthMaxTempBonus': newHealthBonus,
-							});
-						} else {
-							ui.notifications.warn(
-								'Please enter a valid health value.'
+						if (damageTaken > 0) {
+							if (newHealthBonus > damageTaken) {
+								newHealthBonus -= damageTaken;
+								damageTaken = 0;
+							} else {
+								damageTaken -= newHealthBonus;
+								newHealthBonus = 0;
+							}
+
+							newHealth = Math.max(newHealth - damageTaken, 0);
+						}
+
+						if (healingReceived > 0) {
+							newHealth = Math.min(
+								newHealth + healingReceived,
+								maxHealth
 							);
 						}
+
+						this.actor.update({
+							'system.healthCurrent': newHealth,
+							'system.healthMaxTempBonus': newHealthBonus,
+						});
 					},
 				},
 				cancel: {
@@ -711,37 +745,71 @@ export class SS1EActorSheet extends ActorSheet {
 		new Dialog({
 			title: 'Edit Mana',
 			content: `
-				<form>
-					<div class="form-group">
-						<label>Current Mana</label>
-						<input type="number" name="mana" value="${currentMana}" min="0" max="${maxMana}">
-						<label>Bonus Mana</label>
-						<input type="number" name="manaBonus" value="${manaMaxTempBonus}" min="0">
-					</div>
-				</form>
-			`,
+        <form>
+            <div class="form-group-column" style="display: flex; flex-direction: column;">
+                <div class="form-group-row" style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div class="form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;margin-bottom:4px;">
+                        <label>Current&nbsp;Mana</label>
+                        <input type="number" name="mana" value="${currentMana}" min="0" max="${maxMana}" style="width:60px;">
+                    </div>
+                    <div class="form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;">
+                        <label>Bonus&nbsp;Mana</label>
+                        <input type="number" name="manaBonus" value="${manaMaxTempBonus}" min="0" style="width:60px;">
+                    </div>
+                </div>
+                <div class="form-group-row" style="display: flex; flex-direction: row; justify-content: space-between;margin-top:4px;">
+                    <div class="form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;">
+                        <label>Mana&nbsp;Used</label>
+                        <input type="number" name="manaCost" value="0" min="0" max="${maxMana}" style="width:60px;">
+                    </div>
+                    <div class="form-group-row" style="display: flex; flex-direction: row; justify-content: space-evenly; flex:1;">
+                        <label>Mana&nbsp;Gained</label>
+                        <input type="number" name="manaRegen" value="0" min="0" max="${maxMana}" style="width:60px;">
+                    </div>
+                </div>
+            </div>
+        </form>
+    `,
 			buttons: {
 				save: {
-					label: 'Save',
+					label: 'Apply',
 					callback: (html) => {
-						const newMana = parseInt(
-							html.find('input[name="mana"]').val()
-						);
+						let newMana =
+							parseInt(html.find('input[name="mana"]').val()) ||
+							0;
+						let newManaBonus =
+							parseInt(
+								html.find('input[name="manaBonus"]').val()
+							) || 0;
+						let manaCost =
+							parseInt(
+								html.find('input[name="manaCost"]').val()
+							) || 0;
+						let manaRegen =
+							parseInt(
+								html.find('input[name="manaRegen"]').val()
+							) || 0;
 
-						// Ensure health is within the valid range
-						if (
-							!isNaN(newMana) &&
-							newMana >= 0 &&
-							newMana <= maxMana
-						) {
-							this.actor.update({
-								'system.manaCurrent': newMana,
-							});
-						} else {
-							ui.notifications.warn(
-								'Please enter a valid mana value.'
-							);
+						// Subtract mana cost from bonus mana first
+						if (manaCost > 0) {
+							if (manaCost <= newManaBonus) {
+								newManaBonus -= manaCost;
+							} else {
+								manaCost -= newManaBonus;
+								newManaBonus = 0;
+								// Subtract remaining mana cost from current mana
+								newMana = Math.max(newMana - manaCost, 0);
+							}
 						}
+
+						// Apply mana regen effect
+						newMana = Math.min(newMana + manaRegen, maxMana);
+
+						// Update actor's mana and bonus
+						this.actor.update({
+							'system.manaCurrent': newMana,
+							'system.manaMaxTempBonus': newManaBonus,
+						});
 					},
 				},
 				cancel: {
