@@ -2086,6 +2086,11 @@ input.input-text::selection {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.ss1e.sheet.actor.character .character-skill-inventory .combat-resources .combat-resource-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .ss1e.sheet.actor.character .character-skill-inventory .combat-resources .ap-container {
   display: flex;
   flex-direction: row;

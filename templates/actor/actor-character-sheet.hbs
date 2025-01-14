@@ -398,27 +398,31 @@
              </div>
           </div>
           </div>
-          <div class="ap-container">
+          <div class="combat-resource-right-container">
+            <div class="ap-container">
             <label>Action&nbsp;Points:&nbsp;</label>
-            <span>{{system.actionPointsCurrent}}/{{system.actionPointsMax}}</span>
-            <button class="rollable ap-button" data-action="plus-ap"><img src="systems/ss1e/assets/images/plus-icon.png" alt=""></button>
-            <button class="rollable ap-button" data-action="minus-ap"><img src="systems/ss1e/assets/images/minus-icon.png" alt=""></button>
-            <button class="rollable ap-button" data-action="reset-ap"><img src="systems/ss1e/assets/images/reload-icon.png" alt=""></button>
+              <span>{{system.actionPointsCurrent}}/{{system.actionPointsMax}}</span>
+              <button class="rollable ap-button" data-action="plus-ap"><img src="systems/ss1e/assets/images/plus-icon.png" alt=""></button>
+              <button class="rollable ap-button" data-action="minus-ap"><img src="systems/ss1e/assets/images/minus-icon.png" alt=""></button>
+              <button class="rollable ap-button" data-action="reset-ap"><img src="systems/ss1e/assets/images/reload-icon.png" alt=""></button>
+            </div>
+            <div class="weapon-picker-container">
+                <div class='attack-roll-container'>
+                <label for='attackSkillWeapon' class=''>Weapon used for Attack Skills:</label>
+                <select id='attackSkillWeapon' name='system.attackSkillWeapon' class='message-recipient-dropdown'>
+                  <option value="none" class="message-recipient-option">None</option>
+                  {{#each weapons}}
+                    <option value='{{this.id}}' class='message-recipient-option' {{#if (eq ../system.attackSkillWeapon this.id)}}selected{{/if}}>{{this.name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
           </div>
         </div>
         <div class="combat-actions">
           {{> skill-inventory}}
           <div class="attack-actions">
-            <div class="action-title"><span>&lt;ATTACKS&gt;</span></div>
-            <div class='attack-roll-container'>
-              <label for='attackSkillWeapon' class=''>Weapon used for Attack Skills:</label>
-              <select id='attackSkillWeapon' name='system.attackSkillWeapon' class='message-recipient-dropdown'>
-                <option value="none" class="message-recipient-option">None</option>
-                {{#each weapons}}
-                  <option value='{{this.id}}' class='message-recipient-option' {{#if (eq ../system.attackSkillWeapon this.id)}}selected{{/if}}>{{this.name}}</option>
-                {{/each}}
-              </select>
-            </div>
+            <div class="action-title"><span>&lt;OFFENSIVE&gt;</span></div>
             <div class="attack-roll-container">
               <div class="attack-box"><img src="systems/ss1e/assets/images/unarmed-icon.png" alt=""><span>Unarmed</span></div>
               <button id='roll-accuracy' class='attack-roll attack-accuracy-roll'>
@@ -431,7 +435,7 @@
             {{#each actor.items as |item|}}
               {{#if (and (eq item.type 'meleeWeapon') item.system.equipped)}}
                 <div class="attack-roll-container">
-                    <div class="attack-box"><img src="{{item.img}}" alt=""><span>&nbsp;{{item.name}}</span></div>
+                    <button class="attack-box" data-action="item-view" data-item-id="{{item.id}}"><img src="{{item.img}}" alt=""><span>&nbsp;{{item.name}}</span></button>
                     <button class='attack-roll attack-accuracy-roll' data-item-id={{item._id}} data-action='rollWeaponAccuracy' id="roll-weapon-accuracy">
                       <img src="systems/ss1e/assets/images/target-icon.png">
                     </button>

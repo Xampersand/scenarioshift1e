@@ -76,8 +76,6 @@ export class SS1EActorSheet extends ActorSheet {
 				id: item.id,
 				name: item.name,
 			}));
-		console.log(context.weapons);
-		console.log(this.actor.system.attackSkillWeapon);
 
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;

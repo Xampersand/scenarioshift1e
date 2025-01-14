@@ -217,14 +217,46 @@ export async function onSkillUse(event, actor) {
 		}
 
 		return;
+	} else if (skill.system.skillType === 'buff') {
+		const totalManaCost = skill.system.manaCost;
+		let updateData = {};
+		if (skill.system.isActive === false) {
+			updateData = {
+				[`system.isActive`]: true,
+			};
+			await skill.update(updateData);
+			for (let effect of skill.effects) {
+				await effect.update({ disabled: false });
+			}
+			const macro = game.macros.getName(skill.system.macroEffect);
+			if (macro) {
+				macro.execute();
+			}
+			spendManaCost(actor, totalManaCost);
+			consumeActionPoints(actor, skill.system.apCost);
+		} else {
+			updateData = {
+				[`system.isActive`]: false,
+			};
+			await skill.update(updateData);
+			for (let effect of skill.effects) {
+				await effect.update({ disabled: true });
+			}
+			const macro = game.macros.getName(
+				'00 - A - Delete filters on Selected'
+			);
+			if (macro) {
+				macro.execute();
+			}
+		}
+		actor.sheet.render(true);
+		return;
 	} else if (
-		skill.system.skillType === 'buff' ||
 		skill.system.skillType === 'debuff' ||
 		skill.system.skillType === 'other'
 	) {
 		const totalManaCost = skill.system.manaCost;
 		if (skill.macroEffect !== 0) {
-			console.log(game.macros);
 			const macro = skill.system.macroEffect;
 			game.macros.getName(`${macro}`).execute();
 		}

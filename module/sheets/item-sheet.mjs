@@ -111,7 +111,6 @@ export class SS1EItemSheet extends ItemSheet {
 
 		// Debugging: Log the context to ensure actor data is available
 		console.log('Item Sheet Context:', context);
-		console.log('Active Effects:', context.effects);
 
 		return context;
 	}
