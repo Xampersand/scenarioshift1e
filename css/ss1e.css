@@ -1061,14 +1061,12 @@ a.inline-roll {
 .ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow {
   display: flex;
   flex-direction: row;
-  flex: 1;
 }
 .ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  flex: 1 1 50%;
 }
 .ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block label {
   font-size: 1rem;
@@ -1084,6 +1082,35 @@ a.inline-roll {
 .ss1e.sheet.actor.character .bottom .stat-container .stat-flexrow .combat-stat-block .stat-numbers span {
   font-size: 1.1rem;
   text-align: center;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-evenly;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container .item-slot img {
+  cursor: pointer;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container .gear-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container .gear-container .gear-slot {
+  width: 46px;
+  height: 46px;
+  background-color: green;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container .accessory-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container .accessory-container .accessory-slot {
+  width: 46px;
+  height: 46px;
+  background-color: blue;
 }
 input.input-text {
   border: none;

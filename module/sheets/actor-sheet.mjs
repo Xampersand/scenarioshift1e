@@ -76,6 +76,15 @@ export class SS1EActorSheet extends ActorSheet {
 				id: item.id,
 				name: item.name,
 			}));
+		context.accessories = this.actor.items
+			.filter((item) => item.type === 'accessory')
+			.filter((item) => item.system.equipped === true)
+			.map((item) => ({
+				id: item.id,
+				name: item.name,
+				img: item.img,
+			}));
+		console.log(context.accessories);
 
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
@@ -368,7 +377,7 @@ export class SS1EActorSheet extends ActorSheet {
 			Scenario.onScenarioSubmit(event, recipientId);
 		});
 
-		html.find('button[data-action="item-view"]').click((event) => {
+		html.find('[data-action="item-view"]').click((event) => {
 			const itemId = $(event.currentTarget).data('item-id');
 			Inventory.openItemDialog(event, itemId, this.actor);
 		});

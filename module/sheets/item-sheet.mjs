@@ -47,13 +47,15 @@ export class SS1EItemSheet extends ItemSheet {
 		context.isEditing = this.isEditing;
 		//DONE
 		context.possibleSlots = [
-			'One Hand Slot',
-			'Two Hand Slots',
-			'Armor Slot',
-			'Ring Slot',
-			'Amulet Slot',
+			'One Hand',
+			'Two Hands',
+			'Armor',
+			'Helmet',
+			'Boots',
+			'Gloves',
+			'Accessory',
 			'Other',
-			'No Slots',
+			'None',
 		];
 		//DONE
 		context.possibleStats = ['agi', 'str', 'int', 'con'];

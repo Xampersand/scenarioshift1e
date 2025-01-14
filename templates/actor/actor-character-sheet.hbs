@@ -154,15 +154,15 @@
           <div class='stat-related'>
             <div class='combat-stat-container'>
               <div class='combat-stat-block'>
-                <label>AP:&nbsp;</label>
+                <label class='evasion-label' for='evasion-stat'>Initiative:&nbsp;</label>
                 <div class="stat-numbers">
-                <span>{{system.actionPointsCurrent}}/{{system.actionPointsMax}}</span>
+                <span class='evasion-stat'>{{system.initiativeTotal}}</span>
+                <span id="temp-initiative" class="initiative-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.initiativeTempBonus}}&#41;</span>
                 </div>
               </div>
               <div class='combat-stat-block'>
                 <label class='evasion-label' for='evasion-stat'>Evasion:&nbsp;</label>
                 <div class="stat-numbers">
-                  
                 <span class='evasion-stat'>{{system.evasionTotal}}</span>
                 <span id="temp-evasion" class="evasion-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{system.evasionTempBonus}}&#41;</span>
                 </div>
@@ -296,24 +296,6 @@
         </div>
         <div class='bottom'>
           <div class='stat-container'>
-            <div class='stat-flexrow'>
-              <div class='combat-stat-block'>
-                <label class='str-dmg-label' for='str-dmg-stat'>Bonus Initiative:&nbsp;</label>
-                <div class="stat-numbers">
-                <span class='str-dmg-stat'>{{system.initiativeBonus}}</span>
-                {{#if isEditing}}
-                <input
-                  type='number'
-                  id='initiativeBonus'
-                  class='input-text'
-                  name='system.initiativeBonus'
-                  value='{{system.initiativeBonus}}'
-                  placeholder='Bonus Initiative'
-                />
-                {{/if}}
-                </div>
-              </div>
-            </div>
             <div class="stat-flexrow">
               <div class="combat-stat-block">
                 <label>Damage Increases:</label>
@@ -355,7 +337,76 @@
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
+          <div class="equipped-item-container">
+            <div class="gear-container">
+              <div class="gear-slot helmet-slot">
+                {{#each actor.items as |item|}}
+                    {{#if (and (eq item.system.slotOccupied 'Helmet') item.system.equipped)}}
+                      <div class="item-slot" data-item-id="{{item.id}}" data-action="item-view">
+                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                      </div>
+                    {{/if}}
+                {{/each}}
+              </div>
+              <div class="gear-slot armor-slot">
+                {{#each actor.items as |item|}}
+                    {{#if (and (eq item.system.slotOccupied 'Armor') item.system.equipped)}}
+                      <div class="item-slot" data-item-id="{{item.id}}">
+                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                      </div>
+                    {{/if}}
+                {{/each}}
+              </div>
+              <div class="gear-slot gloves-slot">
+                {{#each actor.items as |item|}}
+                    {{#if (and (eq item.system.slotOccupied 'Gloves') item.system.equipped)}}
+                      <div class="item-slot" data-item-id="{{item.id}}">
+                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                      </div>
+                    {{/if}}
+                {{/each}}
+                </div>
+                <div class="gear-slot boots-slot">
+                  {{#each actor.items as |item|}}
+                      {{#if (and (eq item.system.slotOccupied 'Boots') item.system.equipped)}}
+                        <div class="item-slot" data-item-id="{{item.id}}">
+                          <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                        </div>
+                      {{/if}}
+                  {{/each}}
+                </div>
+              </div>
+            <div class="accessory-container">
+              <div class="accessory-slot accessory-slot-one">
+                {{#each accessories as |item index|}}
+                    {{#if (eq index 0)}}
+                      <div class="item-slot" data-item-id="{{item.id}}">
+                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                      </div>
+                    {{/if}}
+                {{/each}}
+              </div>
+              <div class="accessory-slot accessory-slot-two">
+                {{#each accessories as |item index|}}
+                    {{#if (eq index 1)}}
+                      <div class="item-slot" data-item-id="{{item.id}}">
+                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                      </div>
+                  {{/if}}
+                {{/each}}
+              </div>
+              <div class="accessory-slot accessory-slot-three">
+                {{#each accessories as |item index|}}
+                    {{#if (eq index 2)}}
+                      <div class="item-slot" data-item-id="{{item.id}}">
+                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                      </div>
+                  {{/if}}
+                {{/each}}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class='tab character-inventory' data-tab='inventory'>

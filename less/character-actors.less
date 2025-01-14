@@ -173,13 +173,11 @@
 			.stat-flexrow {
 				display: flex;
 				flex-direction: row;
-				flex: 1;
 				.combat-stat-block {
 					display: flex;
 					flex-direction: row;
 					justify-content: flex-start;
 					align-items: center;
-					flex: 1 1 50%;
 					label {
 						font-size: 1rem;
 						font-weight: bold;
@@ -195,6 +193,37 @@
 							text-align: center;
 						}
 					}
+				}
+			}
+		}
+		.equipped-item-container {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			justify-content: space-evenly;
+			.item-slot {
+				img {
+					cursor: pointer;
+				}
+			}
+			.gear-container {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-evenly;
+				.gear-slot {
+					width: 46px;
+					height: 46px;
+					background-color: green;
+				}
+			}
+			.accessory-container {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-evenly;
+				.accessory-slot {
+					width: 46px;
+					height: 46px;
+					background-color: blue;
 				}
 			}
 		}

@@ -66,6 +66,9 @@ export function updateTempBonus(actorId, statId, newValue) {
 		case 'temp-int-dmg':
 			actor.update({ 'system.damageIncreaseIntTempBonus': newValue });
 			break;
+		case 'temp-initiative':
+			actor.update({ 'system.initiativeTempBonus': newValue });
+			break;
 		// Add more cases as needed
 	}
 }

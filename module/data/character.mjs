@@ -64,12 +64,16 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.damageIncreaseConTotal = new fields.NumberField({ initial: 0 });
 		schema.actionPointsMax = new fields.NumberField({ initial: 4 });
 		schema.actionPointsCurrent = new fields.NumberField({ initial: 0 });
-		schema.initiativeBonus = new fields.NumberField({ initial: 0 });
 		schema.baseManaRegen = new fields.NumberField({ initial: 0.05 });
 		schema.baseHealthRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
 		schema.attackSkillWeapon = new fields.StringField({ initial: '' });
+		schema.initiativeBase = new fields.NumberField({ initial: 0 });
+		schema.initiativeBonus = new fields.NumberField({ initial: 0 });
+		schema.initiativeTempBonus = new fields.NumberField({ initial: 0 });
+		schema.initiativeTotal = new fields.NumberField({ initial: 0 });
+		schema.initiativeMulti = new fields.NumberField({ initial: 1 });
 
 		return schema;
 	}
@@ -114,6 +118,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		const INT_MANA_INCREMENT = 5;
 		const CON_MANA_INCREMENT = 1;
 		const HEALTH_INCREMENT = 3;
+		const INITIATIVE_INCREMENT = 0.5;
 
 		// damage scaling, x point of stat = 1% increase in damage
 		// this is generic, for specific scaling, change in roll formulas
@@ -133,6 +138,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		this.manaMaxBase =
 			this.conTotal * CON_MANA_INCREMENT +
 			this.intTotal * INT_MANA_INCREMENT;
+		this.initiativeBase = this.agiTotal * INITIATIVE_INCREMENT;
 
 		//base damage increases
 		this.damageIncreaseAgiBase =
@@ -191,7 +197,11 @@ export default class SS1ECharacter extends SS1EActorBase {
 		this.manaMaxTotal = Math.round(
 			(this.manaMaxBase + this.manaMaxBonus) * this.manaMaxMulti
 		);
-
+		this.initiativeTotal = Math.round(
+			this.initiativeBase +
+				this.initiativeBonus +
+				this.initiativeTempBonus
+		);
 		// rounding resource values
 		this.healthCurrent = Math.round(this.healthCurrent);
 		this.manaCurrent = Math.round(this.manaCurrent);
