@@ -117,7 +117,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 
 		// damage scaling, x point of stat = 1% increase in damage
 		// this is generic, for specific scaling, change in roll formulas
-		const AGILITY_DAMAGE_SCALING = 2;
+		const AGILITY_DAMAGE_SCALING = 1;
 		const INTELLIGENCE_DAMAGE_SCALING = 1;
 		const STRENGTH_DAMAGE_SCALING = 1;
 		const CONSTITUTION_DAMAGE_SCALING = 1;

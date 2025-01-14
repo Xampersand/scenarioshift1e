@@ -790,22 +790,16 @@ export class SS1EActorSheet extends ActorSheet {
 								html.find('input[name="manaRegen"]').val()
 							) || 0;
 
-						// Subtract mana cost from bonus mana first
 						if (manaCost > 0) {
 							if (manaCost <= newManaBonus) {
 								newManaBonus -= manaCost;
 							} else {
 								manaCost -= newManaBonus;
 								newManaBonus = 0;
-								// Subtract remaining mana cost from current mana
 								newMana = Math.max(newMana - manaCost, 0);
 							}
 						}
-
-						// Apply mana regen effect
 						newMana = Math.min(newMana + manaRegen, maxMana);
-
-						// Update actor's mana and bonus
 						this.actor.update({
 							'system.manaCurrent': newMana,
 							'system.manaMaxTempBonus': newManaBonus,
