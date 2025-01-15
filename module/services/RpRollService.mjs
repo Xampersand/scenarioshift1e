@@ -1,17 +1,21 @@
 // function to handle rollable attributes
 export function onRollRP(event, actor, key) {
 	event.preventDefault();
-	const strRollBonus = Math.round(actor.system.strTotal / 3);
-	const agiRollBonus = Math.round(actor.system.agiTotal / 3);
-	const conRollBonus = Math.round(actor.system.conTotal / 3);
-	const intRollBonus = Math.round(actor.system.intTotal / 3);
+	const strRollBaseBonus = actor.system.strRollBaseBonus;
+	const agiRollBaseBonus = actor.system.agiRollBaseBonus;
+	const conRollBaseBonus = actor.system.conRollBaseBonus;
+	const intRollBaseBonus = actor.system.intRollBaseBonus;
+	const strRollBonus = actor.system.strRollBonus;
+	const agiRollBonus = actor.system.agiRollBonus;
+	const conRollBonus = actor.system.conRollBonus;
+	const intRollBonus = actor.system.intRollBonus;
 
 	// Define different formulas for each type of stat
 	const formulas = {
-		str: `1d100 + ${strRollBonus}`,
-		agi: `1d100 + ${agiRollBonus}`,
-		con: `1d100 + ${conRollBonus}`,
-		int: `1d100 + ${intRollBonus}`,
+		str: `1d100 + ${strRollBaseBonus} + ${strRollBonus}`,
+		agi: `1d100 + ${agiRollBaseBonus} + ${agiRollBonus}`,
+		con: `1d100 + ${conRollBaseBonus} + ${conRollBonus}`,
+		int: `1d100 + ${intRollBaseBonus} + ${intRollBonus}`,
 		// Add more formulas as needed
 	};
 

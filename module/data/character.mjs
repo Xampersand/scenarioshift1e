@@ -68,12 +68,22 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.baseHealthRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
+		schema.flatManaRegen = new fields.NumberField({ initial: 0 });
+		schema.flatHealthRegen = new fields.NumberField({ initial: 0 });
 		schema.attackSkillWeapon = new fields.StringField({ initial: '' });
 		schema.initiativeBase = new fields.NumberField({ initial: 0 });
 		schema.initiativeBonus = new fields.NumberField({ initial: 0 });
 		schema.initiativeTempBonus = new fields.NumberField({ initial: 0 });
 		schema.initiativeTotal = new fields.NumberField({ initial: 0 });
 		schema.initiativeMulti = new fields.NumberField({ initial: 1 });
+		schema.strRollBaseBonus = new fields.NumberField({ initial: 0 });
+		schema.agiRollBaseBonus = new fields.NumberField({ initial: 0 });
+		schema.conRollBaseBonus = new fields.NumberField({ initial: 0 });
+		schema.intRollBaseBonus = new fields.NumberField({ initial: 0 });
+		schema.strRollBonus = new fields.NumberField({ initial: 0 });
+		schema.agiRollBonus = new fields.NumberField({ initial: 0 });
+		schema.conRollBonus = new fields.NumberField({ initial: 0 });
+		schema.intRollBonus = new fields.NumberField({ initial: 0 });
 
 		return schema;
 	}
@@ -202,6 +212,10 @@ export default class SS1ECharacter extends SS1EActorBase {
 				this.initiativeBonus +
 				this.initiativeTempBonus
 		);
+		this.strRollBaseBonus = Math.round(this.strTotal / 3);
+		this.agiRollBaseBonus = Math.round(this.agiTotal / 3);
+		this.conRollBaseBonus = Math.round(this.conTotal / 3);
+		this.intRollBaseBonus = Math.round(this.intTotal / 3);
 		// rounding resource values
 		this.healthCurrent = Math.round(this.healthCurrent);
 		this.manaCurrent = Math.round(this.manaCurrent);

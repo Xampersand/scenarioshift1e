@@ -89,7 +89,6 @@ Hooks.on('renderCompendium', async (compendium) => {
 		await syncInventoryImages(inventory);
 	}
 });
-// every time the combat round changes, we set ap to max and gain mana
 Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
 	if (updateData.round && updateData.round !== combat.previous.round) {
 		for (const combatant of combat.combatants) {
@@ -97,51 +96,38 @@ Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
 
 			if (!actor) continue;
 
+			// Update Action Points to max
 			const maxAP = actor.system.actionPointsMax;
-			const manaGainPerTurn = Math.round(
-				actor.system.manaMaxTotal *
-					(actor.system.baseManaRegen + actor.system.bonusManaRegen)
-			);
 			await actor.update({ 'system.actionPointsCurrent': maxAP });
-			if (actor.system.manaCurrent >= actor.system.manaMaxTotal) {
-				continue;
-			}
-			await actor.update({
-				'system.manaCurrent':
-					actor.system.manaCurrent + manaGainPerTurn,
-			});
-			if (actor.system.manaCurrent > actor.system.manaMaxTotal) {
-				await actor.update({
-					'system.manaCurrent': actor.system.manaMaxTotal,
-				});
-			}
-		}
-	}
-});
-// every time the combat round changes, gain hp equal to hp regen
-Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
-	if (updateData.round && updateData.round !== combat.previous.round) {
-		for (const combatant of combat.combatants) {
-			const actor = combatant.actor;
 
-			if (!actor) continue;
-
-			const healthGainPerTurn = Math.round(
-				actor.system.healthMaxTotal *
-					(actor.system.baseHealthRegen +
-						actor.system.bonusHealthRegen)
-			);
-			if (actor.system.healthCurrent >= actor.system.healthMaxTotal) {
-				continue;
+			// Update Mana
+			const manaGainPerTurn =
+				Math.round(
+					actor.system.manaMaxTotal *
+						(actor.system.baseManaRegen +
+							actor.system.bonusManaRegen)
+				) + actor.system.flatManaRegen;
+			if (actor.system.manaCurrent < actor.system.manaMaxTotal) {
+				let newMana = actor.system.manaCurrent + manaGainPerTurn;
+				if (newMana > actor.system.manaMaxTotal) {
+					newMana = actor.system.manaMaxTotal;
+				}
+				await actor.update({ 'system.manaCurrent': newMana });
 			}
-			await actor.update({
-				'system.healthCurrent':
-					actor.system.healthCurrent + healthGainPerTurn,
-			});
-			if (actor.system.healthCurrent > actor.system.healthMaxTotal) {
-				await actor.update({
-					'system.healthCurrent': actor.system.healthMaxTotal,
-				});
+
+			// Update Health
+			const healthGainPerTurn =
+				Math.round(
+					actor.system.healthMaxTotal *
+						(actor.system.baseHealthRegen +
+							actor.system.bonusHealthRegen)
+				) + actor.system.flatHealthRegen;
+			if (actor.system.healthCurrent < actor.system.healthMaxTotal) {
+				let newHealth = actor.system.healthCurrent + healthGainPerTurn;
+				if (newHealth > actor.system.healthMaxTotal) {
+					newHealth = actor.system.healthMaxTotal;
+				}
+				await actor.update({ 'system.healthCurrent': newHealth });
 			}
 		}
 	}
