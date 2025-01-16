@@ -175,6 +175,28 @@ Hooks.once('socketlib.ready', () => {
 	SS1E.socket = socketlib.registerSystem('ss1e');
 	SS1E.socket.register('scenarioMessage', showScenarioMessage);
 });
+Hooks.on('renderChatMessage', (message, html, data) => {
+	// Find all links with a data-uuid attribute in the message
+	html.find('.content-link[data-uuid]').each(async (index, element) => {
+		const uuid = element.getAttribute('data-uuid');
+
+		try {
+			const item = await fromUuid(uuid);
+			console.log(item);
+
+			if (!item || item.documentName !== 'Item') return;
+
+			// Get the rarity from the item's system data
+			const rating = item.system.rating || 'common'; // Fallback to 'common'
+			console.log(rating);
+
+			// Add the data-rarity attribute to the link
+			element.setAttribute('data-rating', rating);
+		} catch (error) {
+			console.error(`Failed to fetch item from UUID ${uuid}:`, error);
+		}
+	});
+});
 
 function showScenarioMessage(message) {
 	const dialogOptions = {

@@ -843,6 +843,12 @@ a.inline-roll {
   background: none;
   border-color: white;
 }
+a.content-link {
+  background: none;
+  background-image: url(../assets/images/ss1e-actor-sheet-tile-eighty.png);
+  border: 1px solid #52c8ff;
+  font-size: 1rem;
+}
 .editor.prosemirror.active {
   border: 1px solid white;
 }
@@ -1102,6 +1108,9 @@ a.inline-roll {
   height: 46px;
   border: 1px solid #52c8ff;
 }
+.ss1e.sheet.actor.character .bottom .equipped-item-container .gear-container .gear-slot img {
+  border: none;
+}
 .ss1e.sheet.actor.character .bottom .equipped-item-container .accessory-container {
   display: flex;
   flex-direction: row;
@@ -1111,6 +1120,9 @@ a.inline-roll {
   width: 46px;
   height: 46px;
   border: 1px solid #52c8ff;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container .accessory-container .accessory-slot img {
+  border: none;
 }
 input.input-text {
   border: none;
