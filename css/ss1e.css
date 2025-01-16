@@ -1100,7 +1100,7 @@ a.inline-roll {
 .ss1e.sheet.actor.character .bottom .equipped-item-container .gear-container .gear-slot {
   width: 46px;
   height: 46px;
-  background-color: green;
+  border: 1px solid #52c8ff;
 }
 .ss1e.sheet.actor.character .bottom .equipped-item-container .accessory-container {
   display: flex;
@@ -1110,7 +1110,7 @@ a.inline-roll {
 .ss1e.sheet.actor.character .bottom .equipped-item-container .accessory-container .accessory-slot {
   width: 46px;
   height: 46px;
-  background-color: blue;
+  border: 1px solid #52c8ff;
 }
 input.input-text {
   border: none;

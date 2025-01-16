@@ -311,7 +311,7 @@ export class SS1EActorSheet extends ActorSheet {
 			WeaponRoll.onRollWeaponAccuracy(this.actor, itemId, mode);
 		});
 		// Roll Melee weapon damage button
-		html.find('#roll-melee-weapon').click((event) => {
+		html.find('button[data-action="rollWeaponDamage"]').click((event) => {
 			const itemId = $(event.currentTarget).data('item-id');
 			const mode = 'normal';
 			WeaponRoll.onRollMeleeWeapon(this.actor, itemId, mode);
