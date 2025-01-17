@@ -22,7 +22,10 @@ export function onRollSkillAccuracy(actor, skillId, mode) {
 		ui.notifications.warn('No accuracy formula found for the skill!');
 		return;
 	}
-	if (skill.system.manaCost > actor.system.manaCurrent) {
+	if (
+		skill.system.manaCost &&
+		skill.system.manaCost > actor.system.manaCurrent
+	) {
 		ui.notifications.warn('Not enough mana!');
 		return;
 	}
@@ -256,9 +259,9 @@ export async function onSkillUse(event, actor) {
 		skill.system.skillType === 'other'
 	) {
 		const totalManaCost = skill.system.manaCost;
-		if (skill.macroEffect !== 0) {
-			const macro = skill.system.macroEffect;
-			game.macros.getName(`${macro}`).execute();
+		const macro = game.macros.getName(skill.system.macroEffect);
+		if (macro) {
+			macro.execute();
 		}
 		spendManaCost(actor, totalManaCost);
 		consumeActionPoints(actor, skill.system.apCost);
