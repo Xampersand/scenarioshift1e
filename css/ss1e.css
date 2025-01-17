@@ -870,6 +870,24 @@ a.content-link {
 [data-rating='Mythical'] {
   color: red !important;
 }
+.item-view[data-rating='Legendary'] {
+  border: 2px groove #ffd000 !important;
+}
+.item-view[data-rating='Rare'] {
+  border: 2px groove #1867c2 !important;
+}
+.item-view[data-rating='Uncommon'] {
+  border: 2px groove #12b34f !important;
+}
+.item-view[data-rating='Common'] {
+  border: 2px groove white !important;
+}
+.item-view[data-rating='Heroic'] {
+  border: 2px groove #8a17cc !important;
+}
+.item-view[data-rating='Mythical'] {
+  border: 2px groove red !important;
+}
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

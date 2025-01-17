@@ -2,7 +2,7 @@
   <div class='item-container'>
     {{#filterNonSkillItems actor.items}}
       {{#each items}}
-        <button title='{{this.name}}' class='item-view' data-action='item-view' data-item-id='{{this._id}}'>
+        <button title='{{this.name}}' class='item-view' data-action='item-view' data-item-id='{{this._id}}' data-rating="{{this.system.rating}}">
           <img src='{{this.img}}'></img>
         </button>
       {{/each}}
