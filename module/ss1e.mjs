@@ -290,25 +290,20 @@ function showConstellationMessage(message) {
 	setTimeout(() => dialog.close(), 5000);
 }
 Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
-	// Ensure the message will trigger a 3D roll animation
 	if (!interception.willTrigger3DRoll) return;
 
-	// Retrieve the chat message by ID
 	const message = game.messages.get(messageId);
 	if (!message) return;
 
-	// Ensure this is a roll message
 	if (!message.isRoll || !message.rolls?.length) return;
 
 	const sender = game.users.get(message.user.id);
 	if (!sender) return;
 
-	// Ensure only the GM processes this
 	if (!game.user.isGM) return;
 
-	// Check the flavor text of the message to see if it matches a damage roll
 	const flavorText = message.flavor || '';
-	if (!flavorText.toLowerCase().includes('damage')) return; // Check for "damage" in the flavor text
+	if (!flavorText.toLowerCase().includes('damage')) return;
 
 	const targets = Array.from(sender.targets);
 	if (targets.length === 0) return;
@@ -335,30 +330,24 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 		gmMessage += `<br>Target: ${target.name} | <strong>Final damage: ${finalDamage}</strong> (${flatDmgReduction} Flat reduction, ${targetArmor} Armor, ${durabilityPercentage} Durability)`;
 	}
 
-	// Send the message to the GM
 	await ChatMessage.create({
 		content: gmMessage,
 		whisper: [game.user.id],
 	});
 });
 Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
-	// Ensure the message will trigger a 3D roll animation
 	if (!interception.willTrigger3DRoll) return;
 
-	// Retrieve the chat message by ID
 	const message = game.messages.get(messageId);
 	if (!message) return;
 
-	// Ensure this is a roll message
 	if (!message.isRoll || !message.rolls?.length) return;
 
 	const sender = game.users.get(message.user.id);
 	if (!sender) return;
 
-	// Ensure only the GM processes this
 	if (!game.user.isGM) return;
 
-	// Check the flavor text of the message to see if it matches an accuracy roll
 	const flavorText = message.flavor || '';
 	if (!flavorText.toLowerCase().includes('accuracy')) return;
 
@@ -368,26 +357,35 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 	const rollResult = message.rolls[0].total;
 	const diceTerms = message.rolls[0].dice;
 
-	// Check if diceTerms is available and has values
 	if (!diceTerms || diceTerms.length === 0) return;
 
 	let gmMessage = `${sender.name} rolled an initial accuracy of: <strong>${rollResult}<strong>`;
 
-	// Loop through each target and apply evasion checks
-	for (const target of targets) {
-		const targetEvasion = target.actor.system.evasionTotal || 0;
-		const finalHitDice = rollResult - targetEvasion;
+	const senderActor = game.actors.get(
+		sender.character?.id || sender.character
+	);
+	if (!senderActor) {
+		console.error('Sender actor not found');
+		return;
+	}
 
-		// Check for mega crit and mega miss first, before hit/miss/crit checks
+	const senderMegacritBreakpoint =
+		senderActor.system.megacritBreakpoint || 100;
+	for (const target of targets) {
+		const targetActor = target.actor;
+		if (!targetActor || !targetActor.system) continue;
+
+		const targetEvasion = targetActor.system.evasionTotal || 0;
+		const finalHitDice = rollResult - targetEvasion;
 		let megaMiss = false;
 		let megaCrit = false;
 
-		// Iterate through each dice term to check for 1s (megaMiss) and 100s (megaCrit)
 		for (const diceTerm of diceTerms) {
 			const diceResults = diceTerm.results;
 			for (const dieResult of diceResults) {
 				if (dieResult.result === 1) megaMiss = true;
-				if (dieResult.result === 100) megaCrit = true;
+				if (dieResult.result >= senderMegacritBreakpoint)
+					megaCrit = true;
 			}
 		}
 
@@ -396,7 +394,6 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 		} else if (megaCrit) {
 			gmMessage += `<br>${sender.name}&nbsp;<strong><span style='color:green !important'>&nbsp;MEGA&nbsp;CRIT&nbsp;</span></strong>&nbsp;<strong>${target.name}</strong>&nbsp;|&nbsp;${targetEvasion}&nbsp;evasion`;
 		} else {
-			// If it's not a mega crit or mega miss, evaluate hit, miss, and crit
 			const hit = finalHitDice >= 20;
 			const miss = finalHitDice <= 19;
 			const crit = finalHitDice >= 95;

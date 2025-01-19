@@ -61,7 +61,6 @@ export function onRollSkillAccuracy(actor, skillId, mode) {
 // Function to handle the skill damage roll
 export function onRollSkillDamage(actor, skillId, mode) {
 	const skill = actor.items.get(skillId);
-
 	if (!skill) {
 		console.warn(`No skill found with ID: ${itemId}`); // More detailed warning
 		ui.notifications.warn('No skill found!');
@@ -98,6 +97,7 @@ export function onRollSkillDamage(actor, skillId, mode) {
 	}
 	const { damageIncrease } = STAT_MAPPINGS[statRequirement];
 	const amplificationFactor = 1 + actor.system.amplification;
+	const critMulti = actor.system.critMultiTotal || 2;
 	let skillDamageIncreaseTotal = 1 + damageIncrease;
 
 	const totalDice = skill.system.diceNum;
@@ -107,7 +107,7 @@ export function onRollSkillDamage(actor, skillId, mode) {
 	}
 	let rollFormula = `round((${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor})`;
 	if (mode === 'crit' || mode === 'megaCrit') {
-		rollFormula = `round((${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*2)`;
+		rollFormula = `round((${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
 	}
 	if (!rollFormula) {
 		ui.notifications.warn('No damage formula found for the skill!');
@@ -125,10 +125,10 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		let usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}+${usedWeaponDamageBonus}`;
 		rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor})`;
 		if (mode === 'crit') {
-			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*2)`;
+			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
 		} else if (mode === 'megaCrit') {
 			usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}x+${usedWeaponDamageBonus}`;
-			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*2)`;
+			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
 		}
 	}
 	try {

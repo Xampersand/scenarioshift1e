@@ -21,12 +21,13 @@ export function onRollMeleeWeapon(actor, itemId, mode) {
 		ui.notifications.warn('Unknown stat requirement for the weapon!');
 		return;
 	}
+	const critMulti = actor.system.critMultiTotal || 2;
 	const amplificationFactor = 1 + actor.system.amplification || 1;
 	let rollFormula = `round((${weapon.system.damageFormula})*${weaponDamageIncreaseTotal}*${amplificationFactor})`;
 	if (mode === 'crit') {
-		rollFormula = `round((${weapon.system.damageFormula})*${weaponDamageIncreaseTotal}*${amplificationFactor}*2)`;
+		rollFormula = `round((${weapon.system.damageFormula})*${weaponDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
 	} else if (mode === 'megaCrit') {
-		rollFormula = `round((${weapon.system.damageRoll.diceNum}${weapon.system.damageRoll.diceSize}x+${weapon.system.damageRoll.diceBonus})*${weaponDamageIncreaseTotal}*${amplificationFactor}*2)`;
+		rollFormula = `round((${weapon.system.damageRoll.diceNum}${weapon.system.damageRoll.diceSize}x+${weapon.system.damageRoll.diceBonus})*${weaponDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
 	}
 	if (!rollFormula) {
 		ui.notifications.warn(
@@ -105,11 +106,12 @@ export function onRollMeleeWeapon(actor, itemId, mode) {
 export function onRollUnarmedDamage(actor, mode) {
 	const unarmedStrengthRolls = Math.round(actor.system.strTotal / 10);
 	const amplificationFactor = 1 + actor.system.amplification || 1;
+	const critMulti = actor.system.critMultiTotal || 2;
 	let rollFormula = `round((1d4+${unarmedStrengthRolls}d4)*${amplificationFactor})`;
 	if (mode === 'crit') {
-		rollFormula = `round((1d4+${unarmedStrengthRolls}d4)*${amplificationFactor}*2)`;
+		rollFormula = `round((1d4+${unarmedStrengthRolls}d4)*${amplificationFactor}*${critMulti})`;
 	} else if (mode === 'megaCrit') {
-		rollFormula = `round((1d4x+${unarmedStrengthRolls}d4x)*${amplificationFactor}*2)`;
+		rollFormula = `round((1d4x+${unarmedStrengthRolls}d4x)*${amplificationFactor}*${critMulti})`;
 	}
 	if (!rollFormula) {
 		ui.notifications.warn('No unarmed damage formula found!');

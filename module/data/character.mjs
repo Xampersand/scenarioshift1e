@@ -97,6 +97,10 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.trueDmgIncrease = new fields.NumberField({ initial: 0 });
 		schema.durability = new fields.NumberField({ initial: 0 });
 		schema.amplification = new fields.NumberField({ initial: 0 });
+		schema.megacritBreakpoint = new fields.NumberField({ initial: 100 });
+		schema.critMultiBase = new fields.NumberField({ initial: 2 });
+		schema.critMultiBonus = new fields.NumberField({ initial: 0 });
+		schema.critMultiTotal = new fields.NumberField({ initial: 0 });
 
 		return schema;
 	}
@@ -232,6 +236,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		// rounding resource values
 		this.healthCurrent = Math.round(this.healthCurrent);
 		this.manaCurrent = Math.round(this.manaCurrent);
+		this.critMultiTotal = this.critMultiBase + this.critMultiBonus;
 	}
 
 	addItemModifiers() {
