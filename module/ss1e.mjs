@@ -361,16 +361,6 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 
 	let gmMessage = `${sender.name} rolled an initial accuracy of: <strong>${rollResult}<strong>`;
 
-	const senderActor = game.actors.get(
-		sender.character?.id || sender.character
-	);
-	if (!senderActor) {
-		console.error('Sender actor not found');
-		return;
-	}
-
-	const senderMegacritBreakpoint =
-		senderActor.system.megacritBreakpoint || 100;
 	for (const target of targets) {
 		const targetActor = target.actor;
 		if (!targetActor || !targetActor.system) continue;
@@ -384,8 +374,7 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 			const diceResults = diceTerm.results;
 			for (const dieResult of diceResults) {
 				if (dieResult.result === 1) megaMiss = true;
-				if (dieResult.result >= senderMegacritBreakpoint)
-					megaCrit = true;
+				if (dieResult.result === 100) megaCrit = true;
 			}
 		}
 
