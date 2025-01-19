@@ -1,14 +1,12 @@
 <form class='{{cssClass}} {{actor.type}} flexcol' autocomplete='off'>
-  <!-- 1st Row: Character Information Title -->
   <button class='edit-mode-toggle'>Edit</button>
   <nav class='sheet-tabs tabs'>
     <a class='item' data-tab='features'>CHARACTER</a>
     <a class='item' data-tab='inventory'>INVENTORY</a>
     <a class='item' data-tab='abilities'>COMBAT</a>
-    <!-- Add more tabs as necessary -->
+    <a class="item" data-tab="details">DETAILS</a>
   </nav>
   <section class='ss1e sheet actor character'>
-
     <div class='sheet-body'>
       <div class='tab' data-tab='features'>
         <div class='sheet-title'>&lt;CHARACTER INFORMATION&gt;</div>
@@ -59,7 +57,6 @@
           <div class='info-container'>
             <label for='name' class='input-label'>NAME:</label>
             {{#if isEditing}}
-              <!-- Editable fields here -->
               <input
                 name='name'
                 id='name'
@@ -69,13 +66,11 @@
                 placeholder='Name'
               />
             {{else}}
-              <!-- Non-editable display here -->
               <span>{{actor.name}}</span>
             {{/if}}
 
             <label for='age' class='input-label'>AGE:</label>
             {{#if isEditing}}
-              <!-- Editable fields here -->
               <input
                 type='text'
                 id='age'
@@ -86,12 +81,10 @@
                 placeholder='Age'
               />
             {{else}}
-              <!-- Non-editable display here -->
               <div>{{system.age}}</div>
             {{/if}}
             <label for='race' class='input-label'>RACE:</label>
             {{#if isEditing}}
-              <!-- Editable fields here -->
               <input
                 type='text'
                 id='age'
@@ -101,7 +94,6 @@
                 placeholder='Race'
               />
             {{else}}
-              <!-- Non-editable display here -->
               <span>{{system.race}}</span>
             {{/if}}
           </div>
@@ -109,7 +101,6 @@
             <div class='attributes'>
               <label for='sponsor'>SPONSOR:</label>
               {{#if isEditing}}
-                <!-- Editable fields here -->
                 <input
                   type='text'
                   id='sponsor'
@@ -119,7 +110,6 @@
                   placeholder='Sponsor'
                 />
               {{else}}
-                <!-- Non-editable display here -->
                 <span>{{system.sponsor}}</span>
               {{/if}}
               <label>ATTRIBUTES:</label>
@@ -271,7 +261,6 @@
               </div>
               <button class='resource-span' data-action='attributeLevelUp' data-key='int'>+</button>
             </div>
-            <!-- Add other stats as needed -->
           </div>
             <div class='coin-container flexrow'>
               <div class="coin-text-container"><label
@@ -412,7 +401,6 @@
       </div>
       <div class='tab character-inventory' data-tab='inventory'>
         <div class='sheet-title'>&lt;INVENTORY&gt;</div>
-        <!-- Inventory content here -->
         {{> inventory}}
       </div>
       <div class='tab character-skill-inventory' data-tab='abilities'>
@@ -542,12 +530,18 @@
               {{/if}}
             {{/each}}
           </div>
-          </div>
         </div>
       </div>
-      <!-- Add more tab content as necessary -->
+      <div class="tab" data-tab="details">
+      <div class="character-details-container">
+        {{!-- make a detail row for each data line in the actor object --}}
+        {{#each actor.system as |value key|}}
+          <div class="detail-row">
+            <label for="system.{{key}}" class="input-label">{{key}}:</label>
+              <span>{{value}}</span>
+          </div>
+        {{/each}}
+      </div>
     </div>
-    <div style='height: 50px;'></div>
-    <!-- Placeholder spacing -->
   </section>
 </form>

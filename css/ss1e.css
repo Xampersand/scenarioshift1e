@@ -1268,6 +1268,10 @@ input.input-text::selection {
 .body button:hover {
   box-shadow: 0 0 5px #25e6ff, 0 0 10px #25e6ff;
 }
+.character-details-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 .ss1e.sheet.actor.constellation.header .header {
   display: flex;
   align-items: center;

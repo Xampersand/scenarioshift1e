@@ -71,6 +71,7 @@ export class SS1EItemSheet extends ItemSheet {
 			'lightning',
 			'poison',
 			'arcane',
+			'necrotic',
 			'true',
 		];
 		context.possibleSkillTypes = [

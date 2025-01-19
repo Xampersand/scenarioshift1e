@@ -84,6 +84,19 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.agiRollBonus = new fields.NumberField({ initial: 0 });
 		schema.conRollBonus = new fields.NumberField({ initial: 0 });
 		schema.intRollBonus = new fields.NumberField({ initial: 0 });
+		schema.flatDmgReduction = new fields.NumberField({ initial: 0 });
+		schema.bludgeoningDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.piercingDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.slashingDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.fireDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.coldDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.lightningDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.poisonDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.arcaneDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.necroticDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.trueDmgIncrease = new fields.NumberField({ initial: 0 });
+		schema.durability = new fields.NumberField({ initial: 0 });
+		schema.amplification = new fields.NumberField({ initial: 0 });
 
 		return schema;
 	}

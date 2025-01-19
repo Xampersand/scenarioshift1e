@@ -94,19 +94,19 @@
 						{{#if isEditing}}
 							<input
 								name='system.damageRoll.diceNum'
-								type='text'
+								type='number'
 								value='{{system.damageRoll.diceNum}}'
 								placeholder='1'
 							/>
-							<select name="system.damageRoll.diceSize">
-								<option value="{{system.damageRoll.diceSize}}">{{system.damageRoll.diceSize}}</option>
-								{{#each possibleDice as |dice|}}
-									<option value="{{dice}}" {{#if (eq system.damageRoll.diceSize dice)}}selected{{/if}}>{{dice}}</option>
-								{{/each}}
-							</select>
+							<input 
+								type="text" 
+								name="system.damageRoll.diceSize" 
+								value="{{system.damageRoll.diceSize}}" 
+								placeholder="size of dice"
+							/>
 							<input
 								name='system.damageRoll.diceBonus'
-								type='text'
+								type='number'
 								value='{{system.damageRoll.diceBonus}}'
 								placeholder='1'
 							/>

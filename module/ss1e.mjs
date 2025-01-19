@@ -182,13 +182,11 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 
 		try {
 			const item = await fromUuid(uuid);
-			console.log(item);
 
 			if (!item || item.documentName !== 'Item') return;
 
 			// Get the rarity from the item's system data
 			const rating = item.system.rating || 'common'; // Fallback to 'common'
-			console.log(rating);
 
 			// Add the data-rarity attribute to the link
 			element.setAttribute('data-rating', rating);
@@ -321,13 +319,20 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 
 	for (const target of targets) {
 		const targetArmor = target.actor.system.armorTotal || 0;
-		const reductionFactor = (targetArmor * 100) / (targetArmor + 100) / 100;
-		const armorDR = Math.round(reductionFactor * 100);
+		const armorReductionFactor =
+			(targetArmor * 100) / (targetArmor + 100) / 100;
+		const armorDR = Math.round(armorReductionFactor * 100);
+		const flatDmgReduction = target.actor.system.flatDamageReduction || 0;
+		const durabilityPercentage = target.actor.system.durability * 100 || 0;
+		const durabilityFactor = 1 - target.actor.system.durability || 1;
+		const damageAfterFlatReduction = rollResult - flatDmgReduction;
 		const finalDamage = Math.round(
-			rollResult - rollResult * reductionFactor
+			(damageAfterFlatReduction -
+				damageAfterFlatReduction * armorReductionFactor) *
+				durabilityFactor
 		);
 
-		gmMessage += `<br>Target: ${target.name} | Final damage: ${finalDamage} (${targetArmor} armor, ${armorDR}% DR)`;
+		gmMessage += `<br>Target: ${target.name} | <strong>Final damage: ${finalDamage}</strong> (${flatDmgReduction} Flat reduction, ${targetArmor} Armor, ${durabilityPercentage} Durability)`;
 	}
 
 	// Send the message to the GM

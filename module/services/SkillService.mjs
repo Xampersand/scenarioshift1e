@@ -97,32 +97,17 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		return;
 	}
 	const { damageIncrease } = STAT_MAPPINGS[statRequirement];
-
+	const amplificationFactor = 1 + actor.system.amplification;
 	let skillDamageIncreaseTotal = 1 + damageIncrease;
 
 	const totalDice = skill.system.diceNum;
 	let damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
-	let secondDamageFormula = `${skill.system.secondDiceNum}${skill.system.secondDiceSize}+${skill.system.secondDiceBonus}`;
-	let thirdDamageFormula = `${skill.system.thirdDiceNum}${skill.system.thirdDiceSize}+${skill.system.thirdDiceBonus}`;
-	let fourthDamageFormula = `${skill.system.fourthDiceNum}${skill.system.fourthDiceSize}+${skill.system.fourthDiceBonus}`;
 	if (mode === 'megaCrit') {
 		damageFormula = `${totalDice}${skill.system.diceSize}x+${skill.system.diceBonus}`;
-		secondDamageFormula = `${skill.system.secondDiceNum}${skill.system.secondDiceSize}x+${skill.system.secondDiceBonus}`;
-		thirdDamageFormula = `${skill.system.thirdDiceNum}${skill.system.thirdDiceSize}x+${skill.system.thirdDiceBonus}`;
-		fourthDamageFormula = `${skill.system.fourthDiceNum}${skill.system.fourthDiceSize}x+${skill.system.fourthDiceBonus}`;
 	}
-	//map the additional damage formuals to an object, if the diceNum is 0 the formula is not added to the roll formula
-	const additionalDamageFormulas = {
-		second: skill.system.secondDiceNum ? `+${secondDamageFormula}` : '',
-		third: skill.system.thirdDiceNum ? `+${thirdDamageFormula}` : '',
-		fourth: skill.system.fourthDiceNum ? `+${fourthDamageFormula}` : '',
-	};
-	//combine the additional damage formulas into the roll formula
-	let rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})`;
-	if (mode === 'crit') {
-		rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
-	} else if (mode === 'megaCrit') {
-		rollFormula = `round((${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
+	let rollFormula = `round((${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor})`;
+	if (mode === 'crit' || mode === 'megaCrit') {
+		rollFormula = `round((${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*2)`;
 	}
 	if (!rollFormula) {
 		ui.notifications.warn('No damage formula found for the skill!');
@@ -138,12 +123,12 @@ export function onRollSkillDamage(actor, skillId, mode) {
 			usedWeapon.system.damageRoll.diceBonus || 0;
 		flavor = `Rolling Damage for ${skill.name} with ${usedWeapon.name}`;
 		let usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}+${usedWeaponDamageBonus}`;
-		rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})`;
+		rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor})`;
 		if (mode === 'crit') {
-			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
+			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*2)`;
 		} else if (mode === 'megaCrit') {
 			usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}x+${usedWeaponDamageBonus}`;
-			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula}${additionalDamageFormulas.second}${additionalDamageFormulas.third}${additionalDamageFormulas.fourth})*${skillDamageIncreaseTotal})*2`;
+			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*2)`;
 		}
 	}
 	try {
@@ -191,18 +176,10 @@ export async function onSkillUse(event, actor) {
 		}
 		const { total, scaling } = STAT_SCALINGS[statRequirement];
 		const playerStatHealingIncrease = (total * scaling) / 100;
-		const additionalDice = Math.floor(
-			(total - skill.system.requirement.value) /
-				skill.system.upgradeThreshold
-		);
 		const totalHealingIncrease = 1 + playerStatHealingIncrease;
 		const totalDice = skill.system.diceNum;
 		const healingFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
 		const rollFormula = `round((${healingFormula})*${totalHealingIncrease})`;
-		const additionalManaCost = Math.floor(
-			(total - skill.system.requirement.value) /
-				skill.system.upgradeThreshold
-		);
 		const totalManaCost = skill.system.manaCost;
 		try {
 			const roll = new Roll(rollFormula, actor.getRollData());
