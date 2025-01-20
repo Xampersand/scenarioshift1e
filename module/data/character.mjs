@@ -137,11 +137,11 @@ export default class SS1ECharacter extends SS1EActorBase {
 		);
 
 		//stat scalings
-		const ARMOR_INCREMENT = 0.8;
-		const EVASION_INCREMENT = 0.7;
-		const STR_ACCURACY_INCREMENT = 0.5;
+		const ARMOR_INCREMENT = 1;
+		const EVASION_INCREMENT = 0.75;
+		const STR_ACCURACY_INCREMENT = 0.25;
 		const AGI_ACCURACY_INCREMENT = 0.75;
-		const INT_ACCURACY_INCREMENT = 1;
+		const INT_ACCURACY_INCREMENT = 0.8;
 		const INT_MANA_INCREMENT = 5;
 		const CON_MANA_INCREMENT = 1;
 		const HEALTH_INCREMENT = 3;
@@ -150,9 +150,9 @@ export default class SS1ECharacter extends SS1EActorBase {
 		// damage scaling, x point of stat = 1% increase in damage
 		// this is generic, for specific scaling, change in roll formulas
 		const AGILITY_DAMAGE_SCALING = 1;
-		const INTELLIGENCE_DAMAGE_SCALING = 1;
-		const STRENGTH_DAMAGE_SCALING = 1;
-		const CONSTITUTION_DAMAGE_SCALING = 1;
+		const INTELLIGENCE_DAMAGE_SCALING = 1.2;
+		const STRENGTH_DAMAGE_SCALING = 0.9;
+		const CONSTITUTION_DAMAGE_SCALING = 0.9;
 
 		//base combat stats
 		this.evasionBase = this.agiTotal * EVASION_INCREMENT;
@@ -169,13 +169,13 @@ export default class SS1ECharacter extends SS1EActorBase {
 
 		//base damage increases
 		this.damageIncreaseAgiBase =
-			this.agiTotal / AGILITY_DAMAGE_SCALING / 100;
+			this.agiTotal * AGILITY_DAMAGE_SCALING / 100;
 		this.damageIncreaseIntBase =
-			this.intTotal / INTELLIGENCE_DAMAGE_SCALING / 100;
+			this.intTotal * INTELLIGENCE_DAMAGE_SCALING / 100;
 		this.damageIncreaseStrBase =
-			this.strTotal / STRENGTH_DAMAGE_SCALING / 100;
+			this.strTotal * STRENGTH_DAMAGE_SCALING / 100;
 		this.damageIncreaseConBase =
-			this.conTotal / CONSTITUTION_DAMAGE_SCALING / 100;
+			this.conTotal * CONSTITUTION_DAMAGE_SCALING / 100;
 
 		// making bonus increases a percentage
 		this.damageIncreaseStrBonus = this.damageIncreaseStrBonus / 100;

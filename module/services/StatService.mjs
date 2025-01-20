@@ -22,8 +22,8 @@ export function onStatLevelUp(event) {
 			statTotalValue + 1
 		}</span> ${statLabel})</p>
         <p>Cost per level: 	${
-			baseCost + Math.floor(statValue / 10) * 100
-		} coins. (${baseCost} + ${costPerLevel} every 10 levels.)</p>
+			costToLevel(baseCost, costPerLevel, statValue, 1)
+		} coins. (${baseCost} + ${costPerLevel} every 10 levels. Doubles cost every 25 levels after 50.)</p>
         <label for="level-increase">Levels to increase:</label>
         <input type="number" id="level-increase" name="level-increase" value="1" min="1" style="width: 50px;">
       </div>`,
@@ -35,16 +35,7 @@ export function onStatLevelUp(event) {
 					const levelsToIncrease = parseInt(
 						document.getElementById('level-increase').value
 					);
-					let totalCost = 0;
-
-					// Calculate the total cost for each level increase
-					for (let i = 0; i < levelsToIncrease; i++) {
-						const currentLevel = statValue + i;
-						const levelCost =
-							baseCost +
-							Math.floor(currentLevel / 10) * costPerLevel;
-						totalCost += levelCost;
-					}
+					let totalCost = costToLevel(baseCost, costPerLevel, statValue, levelsToIncrease);
 
 					if (this.actor.system.coins >= totalCost) {
 						const updatedCoins =
@@ -91,4 +82,24 @@ export function onStatLevelUp(event) {
 		},
 		default: 'no',
 	}).render(true);
+}
+
+export function costToLevel(baseCost, costPerLevel, statValue, levelsToIncrease, breakpoint = 50, doubling = 25) {
+    let totalCost = 0;
+
+    for (let i = 0; i < levelsToIncrease; i++) {
+        const currentLevel = statValue + i;
+
+        let levelCost;
+	
+        if (currentLevel < breakpoint) {
+            levelCost = baseCost + Math.floor(currentLevel / 10) * costPerLevel;
+        } else {
+            levelCost = (baseCost * 2 / 3 + Math.floor(currentLevel / 10) * costPerLevel) * 2 ** (Math.floor((currentLevel - breakpoint) / doubling) + 1);
+        }
+
+        totalCost += levelCost;
+    }
+
+    return totalCost;
 }
