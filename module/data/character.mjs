@@ -110,10 +110,32 @@ export default class SS1ECharacter extends SS1EActorBase {
 	}
 
 	prepareBaseData() {
-		this.addItemModifiers();
+		
 	}
 
-	prepareEmbeddedDocuments() {}
+
+	getItemsWithEffects(items) {
+		return items.filter((item) => {
+			return item.collections.effects.size > 0;
+		})
+	}
+	prepareEmbeddedDocuments() {
+		this.getItemsWithEffects(this.parent.collections.items).forEach((item) => {
+			item.effects.forEach((effect) => {
+				const updatedChanges = effect.changes.map(change => {
+					console.log(change);
+					if (change.value.slice(0, 1) === "@") {
+						const key = change.value.slice(1).split('.').pop();
+						const value = this[key];
+						console.log(key, value, this.intTotal);
+						change.value = value;
+					}
+					return change;
+				});
+				effect.update({ changes: updatedChanges });
+			})
+		})
+	}
 
 	prepareDerivedData() {
 		// Making multipliers into percentages
@@ -237,13 +259,11 @@ export default class SS1ECharacter extends SS1EActorBase {
 		this.healthCurrent = Math.round(this.healthCurrent);
 		this.manaCurrent = Math.round(this.manaCurrent);
 		this.critMultiTotal = this.critMultiBase + this.critMultiBonus;
+
+		this.prepareEmbeddedDocuments();
 	}
 
-	addItemModifiers() {
-		const items = this.parent.items;
-		for (const item of items) {
-		}
-	}
+	
 	calculateTotals() {}
 	getRollData() {
 		const data = {};
