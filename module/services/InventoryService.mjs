@@ -57,6 +57,10 @@ export function openItemDialog(event, itemId, actor) {
 			for (let effect of this.effects) {
 				await effect.update({ disabled: false });
 			}
+
+			if (this.actor) {
+				Hooks.call("itemEquipChange", this.actor);
+			}
 		};
 
 		item.onUnequip = async function () {
@@ -64,6 +68,10 @@ export function openItemDialog(event, itemId, actor) {
 			// Toggle off active effects
 			for (let effect of this.effects) {
 				await effect.update({ disabled: true });
+			}
+
+			if (this.actor) {
+				Hooks.call("itemEquipChange", this.actor);
 			}
 		};
 	}

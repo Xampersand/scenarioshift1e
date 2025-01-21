@@ -148,8 +148,7 @@ export function adjustCoins(actor, amount) {
 	actor
 		.update({
 			'system.coins': newCoins,
-		})
-		.then(() => this.render()); // Re-render the sheet after the update
+		});
 
 	// Log the result or give feedback
 	console.log(

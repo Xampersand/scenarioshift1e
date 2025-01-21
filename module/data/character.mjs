@@ -123,7 +123,6 @@ export default class SS1ECharacter extends SS1EActorBase {
 		this.getItemsWithEffects(this.parent.collections.items).forEach((item) => {
 			item.effects.forEach((effect) => {
 				const updatedChanges = effect.changes.map(change => {
-					console.log(change);
 					if (change.value.slice(0, 1) === "@") {
 						const key = change.value.slice(1).split('.').pop();
 						const value = this[key];
