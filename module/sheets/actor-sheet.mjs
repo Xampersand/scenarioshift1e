@@ -84,7 +84,6 @@ export class SS1EActorSheet extends ActorSheet {
 				name: item.name,
 				img: item.img,
 			}));
-		console.log(actorData);
 
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
@@ -112,30 +111,44 @@ export class SS1EActorSheet extends ActorSheet {
 		// Assign this width to the template data
 		context.hpBarWidth = hpBarWidth;
 		context.manaBarWidth = manaBarWidth;
-		// Making damage number percentage in the sheet
-		context.strDamageIncreasePercentage = Math.round(
-			context.system.damageIncreaseStrTotal * 100
-		);
-		context.agiDamageIncreasePercentage = Math.round(
-			context.system.damageIncreaseAgiTotal * 100
-		);
-		context.intDamageIncreasePercentage = Math.round(
-			context.system.damageIncreaseIntTotal * 100
-		);
-		context.conDamageIncreasePercentage = Math.round(
-			context.system.damageIncreaseConTotal * 100
-		);
 
-		// making bonus increase number a percentage
-		context.strDamageIncreaseBonusPercentage =
-			context.system.damageIncreaseStrTempBonus * 100;
-		context.agiDamageIncreaseBonusPercentage =
-			context.system.damageIncreaseAgiTempBonus * 100;
-		context.intDamageIncreaseBonusPercentage =
-			context.system.damageIncreaseIntTempBonus * 100;
-		context.conDamageIncreaseBonusPercentage =
-			context.system.damageIncreaseConTempBonus * 100;
+		context.CONFIG = {
+			SS1E: CONFIG.SS1E,
+			INCREASES: {},
+		}
+		
+		function camelCase(word) {
+			return word.charAt(0).toUpperCase() + word.slice(1);
+		}
 
+		for (const [key, stat] of Object.entries(CONFIG.SS1E.stats)) {
+			context[stat.short + "DamageIncreasePercentage"] = Math.round(
+				context.system["damageIncrease" + camelCase(stat.short) + "Total"] * 100
+			);
+
+			context[stat.short + "DamageIncreaseBonusPercentage"] = Math.round(
+				context.system["damageIncrease" + camelCase(stat.short) + "TempBonus"] * 100
+			);
+
+			context.CONFIG.INCREASES[stat.short + "DamageIncreasePercentage"] = context[stat.short + "DamageIncreasePercentage"];
+			context.CONFIG.INCREASES[stat.short + "DamageIncreaseBonusPercentage"] = context[stat.short + "DamageIncreaseBonusPercentage"];
+		}
+		
+		for (const [_, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
+			context[damageType + "DamageIncreasePercentage"] = Math.round(
+				context.system[damageType + "DmgIncreaseTotal"] * 100
+			);
+			
+			context[damageType + "DamageIncreaseBonusPercentage"] = Math.round(
+				context.system[damageType + "DmgIncreaseTempBonus"] * 100
+			);
+			
+			context.CONFIG.INCREASES[damageType + "DamageIncreasePercentage"] = context[damageType + "DamageIncreasePercentage"];
+			context.CONFIG.INCREASES[damageType + "DamageIncreaseBonusPercentage"] = context[damageType + "DamageIncreaseBonusPercentage"];
+		}
+		
+		console.log(context.CONFIG);
+		
 		context.constellations = game.actors.filter(
 			(actor) => actor.type === 'constellation'
 		);

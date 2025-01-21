@@ -5,6 +5,7 @@
     <a class='item' data-tab='inventory'>INVENTORY</a>
     <a class='item' data-tab='abilities'>COMBAT</a>
     <a class="item" data-tab="details">DETAILS</a>
+    {{#if isEditing}}<a class="item" data-tab="debug">DEBUG</a>{{/if}}
   </nav>
   <section class='ss1e sheet actor character'>
     <div class='sheet-body'>
@@ -290,42 +291,17 @@
                 <label>Damage Increases:</label>
               </div>
             </div>
-            <div class='stat-flexrow'>
-              <div class='combat-stat-block'>
-                <label class='str-dmg-label' for='str-dmg-stat'>Strength:&nbsp;</label>
-                <div class="stat-numbers">
-                <span class='str-dmg-stat'>{{strDamageIncreasePercentage}}%</span>
-                <span id="temp-str-dmg" class="str-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{strDamageIncreaseBonusPercentage}}%&#41;</span>
+            {{#each CONFIG.SS1E.stats as |stat|}}
+              <div class='stat-flexrow'>
+                <div class='combat-stat-block'>
+                  <label class='{{stat.short}}-dmg-label' for='{{stat.short}}-dmg-stat'>{{stat.name}}:&nbsp;</label>
+                  <div class="stat-numbers">
+                    <span class='{{stat.short}}-dmg-stat'>{{getDamageIncreasePercentage ../CONFIG.INCREASES}}%</span>
+                    <span id="temp-{{stat.short}}-dmg" class="{{stat.short}}-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{getDamageIncreaseBonusPercentage ../CONFIG.INCREASES}}%&#41;</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class='stat-flexrow'>
-              <div class='combat-stat-block'>
-                <label class='agi-dmg-label' for='agi-dmg-stat'>Agility:&nbsp;</label>
-                <div class="stat-numbers">
-                <span class='agi-dmg-stat'>{{agiDamageIncreasePercentage}}%</span>
-                <span id="temp-agi-dmg" class="agi-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{agiDamageIncreaseBonusPercentage}}%&#41;</span>
-                </div>
-              </div>
-            </div>
-            <div class='stat-flexrow'>
-              <div class='combat-stat-block'>
-                <label class='con-dmg-label' for='con-dmg-stat'>Constitution:&nbsp;</label>
-                <div class="stat-numbers">
-                <span class='con-dmg-stat'>{{conDamageIncreasePercentage}}%</span>
-                <span id="temp-con-dmg" class="con-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{conDamageIncreaseBonusPercentage}}%&#41;</span>
-                </div>
-              </div>
-            </div>
-            <div class='stat-flexrow'>
-              <div class='combat-stat-block'>
-                <label class='int-dmg-label' for='int-dmg-stat'>Intelligence:&nbsp;</label>
-                <div class="stat-numbers">
-                <span class='int-dmg-stat'>{{intDamageIncreasePercentage}}%</span>
-                <span id="temp-int-dmg" class="int-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{intDamageIncreaseBonusPercentage}}%&#41;</span>
-                </div>
-              </div>
-            </div>
+            {{/each}}
           </div>
           <div class="equipped-item-container">
             <div class="gear-container">
@@ -533,15 +509,38 @@
         </div>
       </div>
       <div class="tab" data-tab="details">
-      <div class="character-details-container">
-        {{!-- make a detail row for each data line in the actor object --}}
-        {{#each actor.system as |value key|}}
-          <div class="detail-row">
-            <label for="system.{{key}}" class="input-label">{{key}}:</label>
-              <span>{{value}}</span>
+        <div class='bottom'>
+          <div class='stat-container'>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label>Detailed Damage Increases:</label>
+              </div>
+            </div>
+            {{#each CONFIG.SS1E.damageTypes as |damageType|}}
+              <div class='stat-flexrow'>
+                <div class='combat-stat-block'>
+                  <label class='{{damageType}}-dmg-label' for='{{damageType}}-dmg-stat'>{{damageType}}:&nbsp;</label>
+                  <div class="stat-numbers">
+                    <span class='{{damageType}}-dmg-stat'>{{getDamageIncreasePercentageDamageType ../CONFIG.INCREASES}}%</span>
+                    <span id="temp-{{damageType}}-dmg" class="{{damageType}}-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{getDamageIncreaseBonusPercentageDamageType ../CONFIG.INCREASES}}%&#41;</span>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
           </div>
-        {{/each}}
+        </div>
       </div>
-    </div>
+
+      <div class="tab" data-tab="debug">
+        <div class="character-details-container">
+          {{!-- make a detail row for each data line in the actor object --}}
+          {{#each actor.system as |value key|}}
+            <div class="detail-row">
+              <label for="system.{{key}}" class="input-label">{{key}}:</label>
+                <span>{{value}}</span>
+            </div>
+          {{/each}}
+        </div>
+      </div>
   </section>
 </form>

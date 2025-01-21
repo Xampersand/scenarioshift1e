@@ -32,43 +32,25 @@ export function openEditTempStatDialog(actorId, statId, currentValue) {
 // Function to update the temporary bonus value
 export function updateTempBonus(actorId, statId, newValue) {
 	const actor = game.actors.get(actorId); // Use the passed actorId to get the actor
-	switch (statId) {
-		case 'temp-evasion':
-			actor.update({ 'system.evasionTempBonus': newValue });
-			break;
-		case 'temp-accuracy':
-			actor.update({ 'system.accuracyTempBonus': newValue });
-			break;
-		case 'temp-armor':
-			actor.update({ 'system.armorTempBonus': newValue });
-			break;
-		case 'temp-str':
-			actor.update({ 'system.strTempBonus': newValue });
-			break;
-		case 'temp-agi':
-			actor.update({ 'system.agiTempBonus': newValue });
-			break;
-		case 'temp-con':
-			actor.update({ 'system.conTempBonus': newValue });
-			break;
-		case 'temp-int':
-			actor.update({ 'system.intTempBonus': newValue });
-			break;
-		case 'temp-str-dmg':
-			actor.update({ 'system.damageIncreaseStrTempBonus': newValue });
-			break;
-		case 'temp-agi-dmg':
-			actor.update({ 'system.damageIncreaseAgiTempBonus': newValue });
-			break;
-		case 'temp-con-dmg':
-			actor.update({ 'system.damageIncreaseConTempBonus': newValue });
-			break;
-		case 'temp-int-dmg':
-			actor.update({ 'system.damageIncreaseIntTempBonus': newValue });
-			break;
-		case 'temp-initiative':
-			actor.update({ 'system.initiativeTempBonus': newValue });
-			break;
-		// Add more cases as needed
+
+	const statCases = {};
+
+	function camelCase(word) {
+		return word.charAt(0).toUpperCase() + word.slice(1);
 	}
+
+	statCases['temp-evasion'] = 'system.evasionTempBonus';
+	statCases['temp-armor'] = 'system.armorTempBonus';
+	statCases['temp-accuracy'] = 'system.accuracyTempBonus';
+
+	for (const [key, stat] of Object.entries(CONFIG.SS1E.stats)) {
+		statCases["temp-" + stat.short] = 'system.' + stat.short + 'TempBonus';
+		statCases["temp-" + stat.short + "-dmg"] = 'system.damageIncrease' + camelCase(stat.short) + 'TempBonus';
+	}
+
+	for (const [key, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
+		statCases["temp-" + damageType + "-dmg"] = 'system.' + damageType + 'DmgIncreaseTempBonus';
+	}
+
+	actor.update({ [statCases[statId]]: newValue });
 }

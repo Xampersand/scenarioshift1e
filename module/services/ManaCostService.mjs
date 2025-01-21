@@ -3,5 +3,6 @@ export function spendManaCost(actor, manaCost) {
 	const updateData = {
 		[`system.manaCurrent`]: actor.system.manaCurrent - manaCost,
 	};
+	Hooks.call("manaSpent", manaCost);
 	actor.update(updateData).then(() => actor.sheet.render(true)); // Apply the update and render the item sheet
 }

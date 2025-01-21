@@ -317,10 +317,11 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 		const armorReductionFactor =
 			(targetArmor * 100) / (targetArmor + 100) / 100;
 		const armorDR = Math.round(armorReductionFactor * 100);
-		const flatDmgReduction = target.actor.system.flatDamageReduction || 0;
+		const flatDmgReduction = target.actor.system.flatDmgReduction || 0;
 		const durabilityPercentage = target.actor.system.durability * 100 || 0;
 		const durabilityFactor = 1 - target.actor.system.durability || 1;
 		const damageAfterFlatReduction = rollResult - flatDmgReduction;
+
 		const finalDamage = Math.round(
 			(damageAfterFlatReduction -
 				damageAfterFlatReduction * armorReductionFactor) *
@@ -370,11 +371,21 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 		let megaMiss = false;
 		let megaCrit = false;
 
+		let actor;
+		if (sender.isGM) {
+			const controlledTokens = canvas.tokens.controlled;
+			actor = controlledTokens[0].actor;
+		} else {
+			actor = game.actors.get(sender.character?.id || sender.character);
+		}
+
+		const megacritBreakpoint = actor.system.megacritBreakpoint;
+
 		for (const diceTerm of diceTerms) {
 			const diceResults = diceTerm.results;
 			for (const dieResult of diceResults) {
 				if (dieResult.result === 1) megaMiss = true;
-				if (dieResult.result === 100) megaCrit = true;
+				if (dieResult.result >= megacritBreakpoint) megaCrit = true;
 			}
 		}
 

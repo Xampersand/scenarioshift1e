@@ -55,4 +55,23 @@ export const preloadHandlebarsTemplates = async function () {
     'skill-sheet-description',
     skillSheetDescriptionTemplatePath
   );
+
+  Handlebars.registerHelper("getDamageIncreasePercentage", function (context) {
+    const key = this.short + "DamageIncreasePercentage";
+    return context[key];
+  });
+  Handlebars.registerHelper("getDamageIncreaseBonusPercentage", function (context) {
+    const key = this.short + "DamageIncreaseBonusPercentage";
+    return context[key];
+  });
+
+
+  Handlebars.registerHelper("getDamageIncreasePercentageDamageType", function (context) {
+    const key = this + "DamageIncreasePercentage";
+    return context[key];
+  });
+  Handlebars.registerHelper("getDamageIncreaseBonusPercentageDamageType", function (context) {
+    const key = this + "DamageIncreaseBonusPercentage";
+    return context[key];
+  });
 };

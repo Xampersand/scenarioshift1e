@@ -72,7 +72,7 @@ export class SS1EItemSheet extends ItemSheet {
 			'poison',
 			'arcane',
 			'necrotic',
-			'true',
+			'true'
 		];
 		context.possibleSkillTypes = [
 			'offensive',

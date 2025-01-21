@@ -24,8 +24,23 @@ SS1E.ratings = {
   mythical: 'Mythical',
 };
 
+SS1E.stats = {
+  str: {name: "Strength", short: "str"},
+  agi: {name: "Agility", short: "agi"},
+  con: {name: "Constitution", short: "con"},
+  int: {name: "Intelligence", short: "int"},
+}
+
 SS1E.damageTypes = {
   bludgeoning: 'bludgeoning',
-  slashing: 'slashing',
-  piercing: 'piercing',
-};
+	piercing: 'piercing',
+	slashing: 'slashing',
+	fire: 'fire',
+	cold: 'cold',
+	lightning: 'lightning',
+	poison: 'poison',
+	arcane: 'arcane',
+	necrotic: 'necrotic',
+	true: 'true',
+	healing: 'healing',
+}

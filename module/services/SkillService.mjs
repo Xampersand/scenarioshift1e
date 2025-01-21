@@ -99,6 +99,7 @@ export function onRollSkillDamage(actor, skillId, mode) {
 	const amplificationFactor = 1 + actor.system.amplification;
 	const critMulti = actor.system.critMultiTotal || 2;
 	let skillDamageIncreaseTotal = 1 + damageIncrease;
+	skillDamageIncreaseTotal += actor.system[skill.system.damageType.toLowerCase() + "DmgIncreaseTotal"];
 
 	const totalDice = skill.system.diceNum;
 	let damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
@@ -176,10 +177,14 @@ export async function onSkillUse(event, actor) {
 		}
 		const { total, scaling } = STAT_SCALINGS[statRequirement];
 		const playerStatHealingIncrease = (total * scaling) / 100;
-		const totalHealingIncrease = 1 + playerStatHealingIncrease;
+		let totalHealingIncrease = 1 + playerStatHealingIncrease;
+		const bonusHealingIncrease = actor.system.healingDmgIncreaseTotal;
+
+		totalHealingIncrease += bonusHealingIncrease;
+		const resonance = 1 + actor.system.resonance || 1;
 		const totalDice = skill.system.diceNum;
 		const healingFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
-		const rollFormula = `round((${healingFormula})*${totalHealingIncrease})`;
+		const rollFormula = `round((${healingFormula})*${totalHealingIncrease})*${resonance}`;
 		const totalManaCost = skill.system.manaCost;
 		try {
 			const roll = new Roll(rollFormula, actor.getRollData());

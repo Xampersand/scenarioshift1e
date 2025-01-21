@@ -68,8 +68,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.baseHealthRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
 		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
-		schema.flatManaRegen = new fields.NumberField({ initial: 0 });
-		schema.flatHealthRegen = new fields.NumberField({ initial: 0 });
+
 		schema.attackSkillWeapon = new fields.StringField({ initial: '' });
 		schema.initiativeBase = new fields.NumberField({ initial: 0 });
 		schema.initiativeBonus = new fields.NumberField({ initial: 0 });
@@ -84,24 +83,32 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.agiRollBonus = new fields.NumberField({ initial: 0 });
 		schema.conRollBonus = new fields.NumberField({ initial: 0 });
 		schema.intRollBonus = new fields.NumberField({ initial: 0 });
+
+		// Damage Increases Schema
+
+		for (const [_, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
+			schema[damageType + "DmgIncreaseBase"] = new fields.NumberField({ initial: 0 });
+			schema[damageType + "DmgIncreaseBonus"] = new fields.NumberField({ initial: 0 });
+			schema[damageType + "DmgIncreaseTempBonus"] = new fields.NumberField({ initial: 0 });
+			schema[damageType + "DmgIncreaseTotal"] = new fields.NumberField({ initial: 0 });
+		}
+		
+		// Flat Schema
 		schema.flatDmgReduction = new fields.NumberField({ initial: 0 });
-		schema.bludgeoningDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.piercingDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.slashingDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.fireDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.coldDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.lightningDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.poisonDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.arcaneDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.necroticDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.trueDmgIncrease = new fields.NumberField({ initial: 0 });
-		schema.durability = new fields.NumberField({ initial: 0 });
-		schema.amplification = new fields.NumberField({ initial: 0 });
-		schema.megacritBreakpoint = new fields.NumberField({ initial: 100 });
+		schema.flatManaRegen = new fields.NumberField({ initial: 0 });
+		schema.flatHealthRegen = new fields.NumberField({ initial: 0 });
+		schema.flatDmgBonus = new fields.NumberField({ initial: 0});
+		
+		// Crit Schema
 		schema.critMultiBase = new fields.NumberField({ initial: 2 });
 		schema.critMultiBonus = new fields.NumberField({ initial: 0 });
 		schema.critMultiTotal = new fields.NumberField({ initial: 0 });
-
+		schema.megacritBreakpoint = new fields.NumberField({ initial: 100 });
+		
+		// Multiplier Schema
+		schema.durability = new fields.NumberField({ initial: 0 });
+		schema.amplification = new fields.NumberField({ initial: 0 });
+		schema.resonance = new fields.NumberField({ initial: 0 });
 		return schema;
 	}
 
@@ -208,23 +215,31 @@ export default class SS1ECharacter extends SS1EActorBase {
 		this.damageIncreaseIntTempBonus = this.damageIncreaseIntTempBonus / 100;
 		this.damageIncreaseConTempBonus = this.damageIncreaseConTempBonus / 100;
 
+		
 		// total damage increases
 		this.damageIncreaseStrTotal =
-			this.damageIncreaseStrBase +
-			this.damageIncreaseStrBonus +
-			this.damageIncreaseStrTempBonus;
+		this.damageIncreaseStrBase +
+		this.damageIncreaseStrBonus +
+		this.damageIncreaseStrTempBonus;
 		this.damageIncreaseAgiTotal =
-			this.damageIncreaseAgiBase +
-			this.damageIncreaseAgiBonus +
-			this.damageIncreaseAgiTempBonus;
+		this.damageIncreaseAgiBase +
+		this.damageIncreaseAgiBonus +
+		this.damageIncreaseAgiTempBonus;
 		this.damageIncreaseIntTotal =
-			this.damageIncreaseIntBase +
-			this.damageIncreaseIntBonus +
-			this.damageIncreaseIntTempBonus;
+		this.damageIncreaseIntBase +
+		this.damageIncreaseIntBonus +
+		this.damageIncreaseIntTempBonus;
 		this.damageIncreaseConTotal =
-			this.damageIncreaseConBase +
-			this.damageIncreaseConBonus +
-			this.damageIncreaseConTempBonus;
+		this.damageIncreaseConBase +
+		this.damageIncreaseConBonus +
+		this.damageIncreaseConTempBonus;
+
+		for (const [_, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
+			this[damageType + "DmgIncreaseBase"] = this[damageType + "DmgIncreaseBase"] / 100;
+			this[damageType + "DmgIncreaseBonus"] = this[damageType + "DmgIncreaseBonus"] / 100;
+			this[damageType + "DmgIncreaseTempBonus"] = this[damageType + "DmgIncreaseTempBonus"] / 100;
+			this[damageType + "DmgIncreaseTotal"] = this[damageType + "DmgIncreaseBase"] + this[damageType + "DmgIncreaseBonus"] + this[damageType + "DmgIncreaseTempBonus"];
+		}
 
 		//total combat stats
 		this.evasionTotal = Math.round(
