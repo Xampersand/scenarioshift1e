@@ -24,6 +24,16 @@ SS1E.ratings = {
   mythical: 'Mythical',
 };
 
+SS1E.derived = {
+  evasion: {name: "Evasion", short: "evasion"},
+  accuracy: {name: "Accuracy", short: "accuracy"},
+  armor: {name: "Armor", short: "armor"},
+  shred: {name: "Shred", short: "shred"},
+  penetration: {name: "Penetration", short: "penetration"},
+  health: {name: "Health", short: "health"},
+  mana: {name: "Mana", short: "mana"},
+}
+
 SS1E.stats = {
   str: {name: "Strength", short: "str"},
   agi: {name: "Agility", short: "agi"},

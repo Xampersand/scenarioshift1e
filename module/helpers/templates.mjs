@@ -74,4 +74,13 @@ export const preloadHandlebarsTemplates = async function () {
     const key = this + "DamageIncreaseBonusPercentage";
     return context[key];
   });
+
+  Handlebars.registerHelper("getDamageResistancePercentageDamageType", function (context) {
+    const key = this + "DamageResistancePercentage";
+    return context[key];
+  });
+  Handlebars.registerHelper("getDamageResistanceBonusPercentageDamageType", function (context) {
+    const key = this + "DamageResistanceBonusPercentage";
+    return context[key];
+  });
 };

@@ -60,8 +60,6 @@ export default class SS1EActorBase extends foundry.abstract.TypeDataModel {
     schema.intMulti = new fields.NumberField({ initial: 0 });
     schema.intTotal = new fields.NumberField({ initial: 0 });
 
-    console.log(CONFIG.SS1E);
-
     schema.attributes = new fields.ArrayField(
       new fields.EmbeddedDataField(SS1EItemBase)
     );
@@ -71,7 +69,7 @@ export default class SS1EActorBase extends foundry.abstract.TypeDataModel {
     );
     schema.itemSlots = new fields.NumberField({
       ...requiredInteger,
-      initial: 5,
+      initial: 50,
     });
 
     return schema;

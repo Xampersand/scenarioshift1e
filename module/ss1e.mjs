@@ -312,23 +312,82 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 
 	let gmMessage = `${sender.name} rolled an initial damage of: ${rollResult}`;
 
+	let actor;
+	if (sender.isGM) {
+		const controlledTokens = canvas.tokens.controlled;
+		actor = controlledTokens[0].actor;
+	} else {
+		actor = game.actors.get(sender.character?.id || sender.character);
+	}
+
+	const lastAttackRoll = actor.system.lastAttackRoll;
+	const wasUnarmedRoll = lastAttackRoll === "Unarmed";
+
+	let damageType = "";
+
+	if (wasUnarmedRoll) {
+		damageType = "bludgeoning";
+	} else {
+		const rolledItem = actor.items.get(lastAttackRoll);
+		console.log(rolledItem);
+		const rolledDamageType = rolledItem.system.damageType.toLowerCase();
+		switch(rolledItem.type) {
+			case 'meleeWeapon': {
+				damageType = rolledDamageType;
+				break;
+			};
+			case 'skill': {
+				if (rolledItem.system.isAttackSkill === true) {
+					const usedWeapon = actor.items.get(actor.system.attackSkillWeapon);
+					const weaponDamageType = usedWeapon.system.damageType.toLowerCase();
+					if (["bludgeoning", "piercing", "slashing"].includes(weaponDamageType)) {
+						damageType = weaponDamageType;
+					} else {
+						damageType = rolledDamageType;
+					}
+				} else {
+					damageType = rolledDamageType;
+				}
+				break;
+			}
+		}
+	}
+
 	for (const target of targets) {
+		const targetDamageTypeFlatResistance = target.actor.system[damageType + "FlatDmgResistanceTotal"];
+		const targetDamageTypeResistance = target.actor.system[damageType + "DmgResistanceTotal"];
+
 		const targetArmor = target.actor.system.armorTotal || 0;
-		const armorReductionFactor =
-			(targetArmor * 100) / (targetArmor + 100) / 100;
-		const armorDR = Math.round(armorReductionFactor * 100);
-		const flatDmgReduction = target.actor.system.flatDmgReduction || 0;
+		const finalArmor = Math.max(targetArmor * (1 - actor.system.shredTotal) - actor.system.penetrationTotal, 0);
+		const armorReductionFactor = (finalArmor * 100) / (finalArmor + 100) / 100;
+
 		const durabilityPercentage = target.actor.system.durability * 100 || 0;
 		const durabilityFactor = 1 - target.actor.system.durability || 1;
-		const damageAfterFlatReduction = rollResult - flatDmgReduction;
 
-		const finalDamage = Math.round(
-			(damageAfterFlatReduction -
-				damageAfterFlatReduction * armorReductionFactor) *
-				durabilityFactor
-		);
+		const damageAfterPercentageReduction = Math.max(0, rollResult * (1 - targetDamageTypeResistance));
+		const damageAfterFlatReduction = Math.max(0, damageAfterPercentageReduction - targetDamageTypeFlatResistance);
 
-		gmMessage += `<br>Target: ${target.name} | <strong>Final damage: ${finalDamage}</strong> (${flatDmgReduction} Flat reduction, ${targetArmor} Armor, ${durabilityPercentage} Durability)`;
+		const finalDamage = Math.round((damageAfterFlatReduction - damageAfterFlatReduction * armorReductionFactor) * durabilityFactor);
+
+		const resistances = {
+			'Resistance': [targetDamageTypeResistance * 100, true],
+			'Flat Resistance': [targetDamageTypeFlatResistance],
+			'Armor': [finalArmor],
+			'Durability': [durabilityPercentage, true]
+		}
+
+		gmMessage += `<br>Target: ${target.name} | <strong>Final damage: ${finalDamage} ${damageType}</strong> (`
+		for (const [name, resistance] of Object.entries(resistances)) {
+			if (resistance[0] <= 0) {
+				continue;
+			}
+			gmMessage += `${name} ${resistance[0]}`
+			if (resistance[1] === true) {
+				gmMessage += `%`;
+			}
+			gmMessage += ` `;
+		}
+		gmMessage += `)`
 	}
 
 	await ChatMessage.create({

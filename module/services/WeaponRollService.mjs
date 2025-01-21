@@ -22,7 +22,6 @@ export function onRollMeleeWeapon(actor, itemId, mode) {
 		return;
 	}
 
-	console.log(weapon.system);
 	weaponDamageIncreaseTotal += actor.system[weapon.system.damageType.toLowerCase() + "DmgIncreaseTotal"];
 
 	const critMulti = actor.system.critMultiTotal || 2;
@@ -40,6 +39,12 @@ export function onRollMeleeWeapon(actor, itemId, mode) {
 		);
 		return;
 	}
+
+	// Update Last Attack Roll
+	const updateData = {
+		['system.lastAttackRoll']: weapon.id
+	}
+	actor.update(updateData).then(() => actor.sheet.render(true));
 
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
@@ -69,6 +74,12 @@ export function onRollUnarmedDamage(actor, mode) {
 		ui.notifications.warn('No unarmed damage formula found!');
 		return;
 	}
+
+	// Update Last Attack Roll
+	const updateData = {
+		['system.lastAttackRoll']: "Unarmed"
+	}
+	actor.update(updateData).then(() => actor.sheet.render(true));
 
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());

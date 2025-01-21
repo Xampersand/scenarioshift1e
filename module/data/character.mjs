@@ -1,5 +1,17 @@
 import SS1EActorBase from './actor-base.mjs';
 
+function camelCase(word) {
+	return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+const suffixes = ["Base", "Bonus", "TempBonus", "Total"];
+const fieldTypes = [
+	"DmgIncrease",
+	"FlatDmgIncrease",
+	"DmgResistance",
+	"FlatDmgResistance"
+];
+
 export default class SS1ECharacter extends SS1EActorBase {
 	static defineSchema() {
 		const fields = foundry.data.fields;
@@ -11,93 +23,63 @@ export default class SS1ECharacter extends SS1EActorBase {
 		});
 		schema.attributes = new fields.StringField({ initial: 'None' });
 		schema.stigmas = new fields.StringField({ initial: 'None' });
-		schema.evasionBase = new fields.NumberField({ initial: 0 });
-		schema.evasionBonus = new fields.NumberField({ initial: 0 });
-		schema.evasionTempBonus = new fields.NumberField({ initial: 0 });
-		schema.evasionMulti = new fields.NumberField({ initial: 1 });
-		schema.evasionTotal = new fields.NumberField({ initial: 0 });
-		schema.accuracyBase = new fields.NumberField({ initial: 0 });
-		schema.accuracyBonus = new fields.NumberField({ initial: 0 });
-		schema.accuracyTempBonus = new fields.NumberField({ initial: 0 });
-		schema.accuracyMulti = new fields.NumberField({ initial: 1 });
-		schema.accuracyTotal = new fields.NumberField({ initial: 0 });
-		schema.armorBase = new fields.NumberField({ initial: 0 });
-		schema.armorBonus = new fields.NumberField({ initial: 0 });
-		schema.armorTempBonus = new fields.NumberField({ initial: 0 });
-		schema.armorMulti = new fields.NumberField({ initial: 1 });
-		schema.armorTotal = new fields.NumberField({ initial: 0 });
-		schema.healthMaxBase = new fields.NumberField({ initial: 5 });
-		schema.healthMaxBonus = new fields.NumberField({ initial: 0 });
-		schema.healthMaxTempBonus = new fields.NumberField({ initial: 0 });
-		schema.healthMaxMulti = new fields.NumberField({ initial: 1 });
-		schema.healthMaxTotal = new fields.NumberField({ initial: 0 });
-		schema.healthCurrent = new fields.NumberField({ initial: 5 });
-		schema.manaMaxBase = new fields.NumberField({ initial: 0 });
-		schema.manaMaxBonus = new fields.NumberField({ initial: 0 });
-		schema.manaMaxTempBonus = new fields.NumberField({ initial: 0 });
-		schema.manaMaxMulti = new fields.NumberField({ initial: 1 });
-		schema.manaMaxTotal = new fields.NumberField({ initial: 0 });
-		schema.manaCurrent = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseStrBase = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseAgiBase = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseIntBase = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseConBase = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseStrBonus = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseAgiBonus = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseIntBonus = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseConBonus = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseStrTempBonus = new fields.NumberField({
-			initial: 0,
-		});
-		schema.damageIncreaseAgiTempBonus = new fields.NumberField({
-			initial: 0,
-		});
-		schema.damageIncreaseIntTempBonus = new fields.NumberField({
-			initial: 0,
-		});
-		schema.damageIncreaseConTempBonus = new fields.NumberField({
-			initial: 0,
-		});
-		schema.damageIncreaseStrTotal = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseAgiTotal = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseIntTotal = new fields.NumberField({ initial: 0 });
-		schema.damageIncreaseConTotal = new fields.NumberField({ initial: 0 });
+
 		schema.actionPointsMax = new fields.NumberField({ initial: 4 });
 		schema.actionPointsCurrent = new fields.NumberField({ initial: 0 });
-		schema.baseManaRegen = new fields.NumberField({ initial: 0.05 });
-		schema.baseHealthRegen = new fields.NumberField({ initial: 0 });
-		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
-		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
 
 		schema.attackSkillWeapon = new fields.StringField({ initial: '' });
+		schema.lastAttackRoll = new fields.StringField({ initial: '' });
+		
+		// Derived Stats Schema
+
+		for (const [_, stat] of Object.entries(CONFIG.SS1E.derived)) {
+			let key = stat.short;
+			if (stat.short === "health" || stat.short === "mana") key = stat.short + "Max";
+			for (const suffix of suffixes) {
+				schema[key + suffix] = new fields.NumberField({ initial: 0 });
+			}
+			schema[key + "Multi"] = new fields.NumberField({ initial: 1 });
+		}
+
+		// Resource Specific Schema
+
+		schema.healthMaxBase = new fields.NumberField({ initial: 5 });
+		schema.healthCurrent = new fields.NumberField({ initial: 5 });
+		schema.baseHealthRegen = new fields.NumberField({ initial: 0 });
+		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
+
+		schema.manaCurrent = new fields.NumberField({ initial: 0 });
+		schema.baseManaRegen = new fields.NumberField({ initial: 0.05 });
+		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
+
+
+		// Initiative Schema
+
 		schema.initiativeBase = new fields.NumberField({ initial: 0 });
 		schema.initiativeBonus = new fields.NumberField({ initial: 0 });
 		schema.initiativeTempBonus = new fields.NumberField({ initial: 0 });
 		schema.initiativeTotal = new fields.NumberField({ initial: 0 });
 		schema.initiativeMulti = new fields.NumberField({ initial: 1 });
-		schema.strRollBaseBonus = new fields.NumberField({ initial: 0 });
-		schema.agiRollBaseBonus = new fields.NumberField({ initial: 0 });
-		schema.conRollBaseBonus = new fields.NumberField({ initial: 0 });
-		schema.intRollBaseBonus = new fields.NumberField({ initial: 0 });
-		schema.strRollBonus = new fields.NumberField({ initial: 0 });
-		schema.agiRollBonus = new fields.NumberField({ initial: 0 });
-		schema.conRollBonus = new fields.NumberField({ initial: 0 });
-		schema.intRollBonus = new fields.NumberField({ initial: 0 });
 
-		// Damage Increases Schema
+		// Rolls Schema
 
-		for (const [_, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
-			schema[damageType + "DmgIncreaseBase"] = new fields.NumberField({ initial: 0 });
-			schema[damageType + "DmgIncreaseBonus"] = new fields.NumberField({ initial: 0 });
-			schema[damageType + "DmgIncreaseTempBonus"] = new fields.NumberField({ initial: 0 });
-			schema[damageType + "DmgIncreaseTotal"] = new fields.NumberField({ initial: 0 });
+		for (const [_, stat] of Object.entries(CONFIG.SS1E.stats)) {
+			schema[stat.short + "RollBaseBonus"] = new fields.NumberField({ initial: 0 });
+			schema[stat.short + "RollBonus"] = new fields.NumberField({ initial: 0 });
 		}
-		
-		// Flat Schema
-		schema.flatDmgReduction = new fields.NumberField({ initial: 0 });
+
+		// Stat Damage Increases Schema
+
+		for (const [_, stat] of Object.entries(CONFIG.SS1E.stats)) {
+			for (const suffix of suffixes) {
+				const fieldName = `damageIncrease${camelCase(stat.short)}${suffix}`;
+				schema[fieldName] = new fields.NumberField({ initial: 0 });
+			}
+		}
+
+		// Regen Schema
 		schema.flatManaRegen = new fields.NumberField({ initial: 0 });
 		schema.flatHealthRegen = new fields.NumberField({ initial: 0 });
-		schema.flatDmgBonus = new fields.NumberField({ initial: 0});
 		
 		// Crit Schema
 		schema.critMultiBase = new fields.NumberField({ initial: 2 });
@@ -106,9 +88,21 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.megacritBreakpoint = new fields.NumberField({ initial: 100 });
 		
 		// Multiplier Schema
-		schema.durability = new fields.NumberField({ initial: 0 });
 		schema.amplification = new fields.NumberField({ initial: 0 });
+		schema.durability = new fields.NumberField({ initial: 0 });
 		schema.resonance = new fields.NumberField({ initial: 0 });
+
+
+		// Derived Increases Schema
+
+		for (const damageType of Object.values(CONFIG.SS1E.damageTypes)) {
+			for (const fieldType of fieldTypes) {
+				for (const suffix of suffixes) {
+					const fieldName = `${damageType}${fieldType}${suffix}`;
+					schema[fieldName] = new fields.NumberField({ initial: 0 });
+				}
+			}
+		}
 		return schema;
 	}
 
@@ -126,43 +120,14 @@ export default class SS1ECharacter extends SS1EActorBase {
 			return item.collections.effects.size > 0;
 		})
 	}
-	prepareEmbeddedDocuments() {
-		this.getItemsWithEffects(this.parent.collections.items).forEach((item) => {
-			item.effects.forEach((effect) => {
-				const updatedChanges = effect.changes.map(change => {
-					if (change.value.slice(0, 1) === "@") {
-						const key = change.value.slice(1).split('.').pop();
-						const value = this[key];
-						console.log(key, value, this.intTotal);
-						change.value = value;
-					}
-					return change;
-				});
-				effect.update({ changes: updatedChanges });
-			})
-		})
-	}
+	prepareEmbeddedDocuments() {}
 
 	prepareDerivedData() {
 		// Making multipliers into percentages
-		this.strMulti = 1 + this.strMulti / 100;
-		this.agiMulti = 1 + this.agiMulti / 100;
-		this.conMulti = 1 + this.conMulti / 100;
-		this.intMulti = 1 + this.intMulti / 100;
-
-		// Total stats
-		this.strTotal = Math.round(
-			(this.strBase + this.strBonus + this.strTempBonus) * this.strMulti
-		);
-		this.agiTotal = Math.round(
-			(this.agiBase + this.agiBonus + this.agiTempBonus) * this.agiMulti
-		);
-		this.conTotal = Math.round(
-			(this.conBase + this.conBonus + this.conTempBonus) * this.conMulti
-		);
-		this.intTotal = Math.round(
-			(this.intBase + this.intBonus + this.intTempBonus) * this.intMulti
-		);
+		for (const stat of Object.values(CONFIG.SS1E.stats)) {
+			this[stat.short + "Multi"] = 1 + this[stat.short + "Multi"] / 100;
+			this[stat.short + "Total"] = Math.round(this[stat.short + "Base"] + this[stat.short + "Bonus"] + this[stat.short + "TempBonus"]) * this[stat.short + "Multi"];
+		}
 
 		//stat scalings
 		const ARMOR_INCREMENT = 1;
@@ -205,40 +170,23 @@ export default class SS1ECharacter extends SS1EActorBase {
 		this.damageIncreaseConBase =
 			this.conTotal * CONSTITUTION_DAMAGE_SCALING / 100;
 
-		// making bonus increases a percentage
-		this.damageIncreaseStrBonus = this.damageIncreaseStrBonus / 100;
-		this.damageIncreaseAgiBonus = this.damageIncreaseAgiBonus / 100;
-		this.damageIncreaseIntBonus = this.damageIncreaseIntBonus / 100;
-		this.damageIncreaseConBonus = this.damageIncreaseConBonus / 100;
-		this.damageIncreaseStrTempBonus = this.damageIncreaseStrTempBonus / 100;
-		this.damageIncreaseAgiTempBonus = this.damageIncreaseAgiTempBonus / 100;
-		this.damageIncreaseIntTempBonus = this.damageIncreaseIntTempBonus / 100;
-		this.damageIncreaseConTempBonus = this.damageIncreaseConTempBonus / 100;
+		// making bonus increases a percentage & total damage increases
 
-		
-		// total damage increases
-		this.damageIncreaseStrTotal =
-		this.damageIncreaseStrBase +
-		this.damageIncreaseStrBonus +
-		this.damageIncreaseStrTempBonus;
-		this.damageIncreaseAgiTotal =
-		this.damageIncreaseAgiBase +
-		this.damageIncreaseAgiBonus +
-		this.damageIncreaseAgiTempBonus;
-		this.damageIncreaseIntTotal =
-		this.damageIncreaseIntBase +
-		this.damageIncreaseIntBonus +
-		this.damageIncreaseIntTempBonus;
-		this.damageIncreaseConTotal =
-		this.damageIncreaseConBase +
-		this.damageIncreaseConBonus +
-		this.damageIncreaseConTempBonus;
+		for (const stat of Object.values(CONFIG.SS1E.stats)) {
+			const key = "damageIncrease" + camelCase(stat.short);
+			this[key + "Bonus"] = this[key + "Bonus"] / 100;
+			this[key + "TempBonus"] = this[key + "TempBonus"] / 100;
+			this[key + "Total"] = this[key + "Base"] + this[key + "Bonus"] + this[key + "TempBonus"];
+		}
 
-		for (const [_, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
-			this[damageType + "DmgIncreaseBase"] = this[damageType + "DmgIncreaseBase"] / 100;
-			this[damageType + "DmgIncreaseBonus"] = this[damageType + "DmgIncreaseBonus"] / 100;
-			this[damageType + "DmgIncreaseTempBonus"] = this[damageType + "DmgIncreaseTempBonus"] / 100;
-			this[damageType + "DmgIncreaseTotal"] = this[damageType + "DmgIncreaseBase"] + this[damageType + "DmgIncreaseBonus"] + this[damageType + "DmgIncreaseTempBonus"];
+		for (const damageType of Object.values(CONFIG.SS1E.damageTypes)) {
+			for (const fieldType of fieldTypes) {
+				const key = damageType + fieldType;
+				this[key + "Base"] = this[key + "Base"] / 100;
+				this[key + "Bonus"] = this[key + "Bonus"] / 100;
+				this[key + "TempBonus"] = this[key + "TempBonus"] / 100;
+				this[key + "Total"] = this[key + "Base"] + this[key + "Bonus"] + this[key + "TempBonus"];
+			}
 		}
 
 		//total combat stats

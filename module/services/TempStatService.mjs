@@ -50,6 +50,7 @@ export function updateTempBonus(actorId, statId, newValue) {
 
 	for (const [key, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
 		statCases["temp-" + damageType + "-dmg"] = 'system.' + damageType + 'DmgIncreaseTempBonus';
+		statCases["temp-" + damageType + "-dmg-resist"] = 'system.' + damageType + 'DmgResistanceTempBonus';
 	}
 
 	actor.update({ [statCases[statId]]: newValue });

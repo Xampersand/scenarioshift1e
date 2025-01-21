@@ -528,6 +528,25 @@
               </div>
             {{/each}}
           </div>
+
+          <div class='stat-container'>
+            <div class='stat-flexrow'>
+              <div class='combat-stat-block'>
+                <label>Detailed Damage Resistances:</label>
+              </div>
+            </div>
+            {{#each CONFIG.SS1E.damageTypes as |damageType|}}
+              <div class='stat-flexrow'>
+                <div class='combat-stat-block'>
+                  <label class='{{damageType}}-dmg-resist-label' for='{{damageType}}-dmg-resist-stat'>{{damageType}}:&nbsp;</label>
+                  <div class="stat-numbers">
+                    <span class='{{damageType}}-dmg-resist-stat'>{{getDamageResistancePercentageDamageType ../CONFIG.INCREASES}}%</span>
+                    <span id="temp-{{damageType}}-dmg-resist" class="{{damageType}}-resist-stat" data-action="edit-temp-stat">&nbsp;&#40;+{{getDamageResistanceBonusPercentageDamageType ../CONFIG.INCREASES}}%&#41;</span>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
         </div>
       </div>
 

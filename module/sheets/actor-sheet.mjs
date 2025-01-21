@@ -146,8 +146,19 @@ export class SS1EActorSheet extends ActorSheet {
 			context.CONFIG.INCREASES[damageType + "DamageIncreasePercentage"] = context[damageType + "DamageIncreasePercentage"];
 			context.CONFIG.INCREASES[damageType + "DamageIncreaseBonusPercentage"] = context[damageType + "DamageIncreaseBonusPercentage"];
 		}
-		
-		console.log(context.CONFIG);
+
+		for (const [_, damageType] of Object.entries(CONFIG.SS1E.damageTypes)) {
+			context[damageType + "DamageResistancePercentage"] = Math.round(
+				context.system[damageType + "DmgResistanceTotal"] * 100
+			);
+			
+			context[damageType + "DamageResistanceBonusPercentage"] = Math.round(
+				context.system[damageType + "DmgResistanceTempBonus"] * 100
+			);
+			
+			context.CONFIG.INCREASES[damageType + "DamageResistancePercentage"] = context[damageType + "DamageResistancePercentage"];
+			context.CONFIG.INCREASES[damageType + "DamageResistanceBonusPercentage"] = context[damageType + "DamageResistanceBonusPercentage"];
+		}
 		
 		context.constellations = game.actors.filter(
 			(actor) => actor.type === 'constellation'
