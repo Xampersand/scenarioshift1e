@@ -26,7 +26,7 @@ export function onRollMeleeWeapon(actor, itemId, mode) {
 
 	const critMulti = actor.system.critMultiTotal || 2;
 	const amplificationFactor = 1 + actor.system.amplification || 1;
-	const flatDmgBonus = actor.system.flatDmgBonus || 0;
+	const flatDmgBonus = actor.system[weapon.system.damageType + "FlatDmgIncreaseTotal"] || 0;
 	let rollFormula = `round((${flatDmgBonus}+${weapon.system.damageFormula})*${weaponDamageIncreaseTotal}*${amplificationFactor})`;
 	if (mode === 'crit') {
 		rollFormula = `round((${flatDmgBonus}+${weapon.system.damageFormula})*${weaponDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;

@@ -182,10 +182,14 @@ export default class SS1ECharacter extends SS1EActorBase {
 		for (const damageType of Object.values(CONFIG.SS1E.damageTypes)) {
 			for (const fieldType of fieldTypes) {
 				const key = damageType + fieldType;
-				this[key + "Base"] = this[key + "Base"] / 100;
-				this[key + "Bonus"] = this[key + "Bonus"] / 100;
-				this[key + "TempBonus"] = this[key + "TempBonus"] / 100;
-				this[key + "Total"] = this[key + "Base"] + this[key + "Bonus"] + this[key + "TempBonus"];
+				if (fieldType.includes("Flat")) {
+					this[key + "Total"] = this[key + "Base"] + this[key + "Bonus"] + this[key + "TempBonus"];
+				} else {
+					this[key + "Base"] = this[key + "Base"] / 100;
+					this[key + "Bonus"] = this[key + "Bonus"] / 100;
+					this[key + "TempBonus"] = this[key + "TempBonus"] / 100;
+					this[key + "Total"] = this[key + "Base"] + this[key + "Bonus"] + this[key + "TempBonus"];
+				}
 			}
 		}
 
