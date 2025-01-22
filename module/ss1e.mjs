@@ -475,6 +475,22 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 Hooks.once('ready', function () {
 	// Wait to register hotbar drop hook on ready so that modules csould register earlier if they want to
 	Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
+
+	Hooks.on("renderRollTableConfig", (app, html, data) => {
+		// Loop through each element with the "details" class
+		$(html).find(".details").each((_, element) => {
+			const text = $(element).text().split("(")
+			if (text.length > 1) { // Make sure the split worked (i.e., there is text after the '(')
+				const itemId = text[1].slice(0, -1);  // Remove the closing parenthesis
+				const item = game.items.get(itemId);
+				if (item) {
+					$(element).attr("data-rating", item.system.rating);
+					$(element).text(text[0].slice(0, -1));
+				}
+			}
+		});
+	});
+	  
 });
 
 /* -------------------------------------------- */
