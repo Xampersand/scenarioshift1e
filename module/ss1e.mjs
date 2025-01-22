@@ -168,6 +168,31 @@ Handlebars.registerHelper('filterNonSkillItems', function (items, options) {
 	return options.fn({ items: filteredItems });
 }); //need this for inventory to filter out skills from normal inv
 
+Handlebars.registerHelper("getDamageIncreasePercentage", function (context) {
+	const key = this.short + "DamageIncreasePercentage";
+	return context[key];
+});
+Handlebars.registerHelper("getDamageIncreaseBonusPercentage", function (context) {
+	const key = this.short + "DamageIncreaseBonusPercentage";
+	return context[key];
+});
+Handlebars.registerHelper("getDamageIncreasePercentageDamageType", function (context) {
+	const key = this + "DamageIncreasePercentage";
+	return context[key];
+});
+Handlebars.registerHelper("getDamageIncreaseBonusPercentageDamageType", function (context) {
+	const key = this + "DamageIncreaseBonusPercentage";
+	return context[key];
+});
+Handlebars.registerHelper("getDamageResistancePercentageDamageType", function (context) {
+	const key = this + "DamageResistancePercentage";
+	return context[key];
+});
+Handlebars.registerHelper("getDamageResistanceBonusPercentageDamageType", function (context) {
+	const key = this + "DamageResistanceBonusPercentage";
+	return context[key];
+});
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
@@ -354,16 +379,28 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 	}
 
 	for (const target of targets) {
-		const targetDamageTypeFlatResistance = target.actor.system[damageType + "FlatDmgResistanceTotal"];
-		const targetDamageTypeResistance = target.actor.system[damageType + "DmgResistanceTotal"];
+		let targetDamageTypeFlatResistance = target.actor.system[damageType + "FlatDmgResistanceTotal"];
+		let targetDamageTypeResistance = target.actor.system[damageType + "DmgResistanceTotal"];
 
 		const targetArmor = target.actor.system.armorTotal || 0;
-		const finalArmor = Math.max(targetArmor * (1 - actor.system.shredTotal) - actor.system.penetrationTotal, 0);
-		const armorReductionFactor = (finalArmor * 100) / (finalArmor + 100) / 100;
-
-		const durabilityPercentage = target.actor.system.durability * 100 || 0;
-		const durabilityFactor = 1 - target.actor.system.durability || 1;
-
+		let finalArmor = Math.max(targetArmor * (1 - actor.system.shredTotal) - actor.system.penetrationTotal, 0);
+		let armorReductionFactor = (finalArmor * 100) / (finalArmor + 100) / 100;
+		
+		let durabilityPercentage = target.actor.system.durability * 100 || 0;
+		let durabilityFactor = 1 - target.actor.system.durability || 1;
+		
+		if (damageType === "true") {
+			finalArmor = 0;
+			armorReductionFactor = 0;
+			targetDamageTypeFlatResistance = 0;
+			targetDamageTypeResistance = 0;
+			durabilityPercentage = 0;
+			durabilityFactor = 0;
+		} else if (damageType === "psychic") {
+			finalArmor = 0;
+			armorReductionFactor = 0;
+		}
+		
 		const damageAfterPercentageReduction = Math.max(0, rollResult * (1 - targetDamageTypeResistance));
 		const damageAfterFlatReduction = Math.max(0, damageAfterPercentageReduction - targetDamageTypeFlatResistance);
 
@@ -490,7 +527,7 @@ Hooks.once('ready', function () {
 			}
 		});
 	});
-	  
+
 });
 
 /* -------------------------------------------- */

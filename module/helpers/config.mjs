@@ -49,8 +49,11 @@ SS1E.damageTypes = {
 	cold: 'cold',
 	lightning: 'lightning',
 	poison: 'poison',
+
 	arcane: 'arcane',
 	necrotic: 'necrotic',
+  psychic: 'psychic',
+
 	true: 'true',
 	healing: 'healing',
 }
