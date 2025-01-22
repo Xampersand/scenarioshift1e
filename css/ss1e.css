@@ -854,9 +854,11 @@ a.content-link {
 }
 [data-rating='Legendary'] {
   color: #ffd000 !important;
+  text-shadow: #916300 2px 0 8px;
 }
 [data-rating='Rare'] {
-  color: #1867c2 !important;
+  color: #6fd6ff !important;
+  text-shadow: #165163 2px 0 8px;
 }
 [data-rating='Uncommon'] {
   color: #12b34f !important;
@@ -865,7 +867,8 @@ a.content-link {
   color: white !important;
 }
 [data-rating='Heroic'] {
-  color: #8a17cc !important;
+  color: #d57dfd !important;
+  text-shadow: #53186e 2px 0 8px;
 }
 [data-rating='Mythical'] {
   color: red !important;
