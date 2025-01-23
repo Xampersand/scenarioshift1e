@@ -401,6 +401,8 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 			armorReductionFactor = 0;
 		}
 		
+		// Damage Calculation Order: PERCENT RESISTANCE -> FLAT RESISTANCE -> ARMOR -> DURABILITY
+
 		const damageAfterPercentageReduction = Math.max(0, rollResult * (1 - targetDamageTypeResistance));
 		const damageAfterFlatReduction = Math.max(0, damageAfterPercentageReduction - targetDamageTypeFlatResistance);
 

@@ -8,9 +8,13 @@ export function onStatLevelUp(event) {
 	const statLabel = key.charAt(0).toUpperCase() + key.slice(1); // Capitalize the first letter for the label
 	const statValue = this.actor.system[statBaseKey];
 	const statTotalValue = this.actor.system[statTotalKey];
-
+	const currentCoins = this.actor.system.coins;
+	const cantAffordText = "not enough coins";
+	
 	const baseCost = 300;
 	const costPerLevel = 100;
+
+	let coinsRemaining = currentCoins - costToLevel(baseCost, costPerLevel, statValue, 1);
 
 	new Dialog({
 		title: 'Level Up!',
@@ -21,9 +25,8 @@ export function onStatLevelUp(event) {
 		}</span> (${statTotalValue} ${statLabel} → <span id="new-stat-total-value">${
 			statTotalValue + 1
 		}</span> ${statLabel})</p>
-        <p>Cost per level: 	${
-			costToLevel(baseCost, costPerLevel, statValue, 1)
-		} coins. (${baseCost} + ${costPerLevel} every 10 levels. Doubles cost every 25 levels after 50.)</p>
+        <p>Cost for <span id="levels-to-increase-display">1</span> level(s): 
+          <span id="level-up-cost">${costToLevel(baseCost, costPerLevel, statValue, 1)} coins. (${coinsRemaining >= 0 ? coinsRemaining : cantAffordText} coins left)</span></p>
         <label for="level-increase">Levels to increase:</label>
         <input type="number" id="level-increase" name="level-increase" value="1" min="1" style="width: 50px;">
       </div>`,
@@ -37,11 +40,9 @@ export function onStatLevelUp(event) {
 					);
 					let totalCost = costToLevel(baseCost, costPerLevel, statValue, levelsToIncrease);
 
-					if (this.actor.system.coins >= totalCost) {
-						const updatedCoins =
-							this.actor.system.coins - totalCost;
-						const newStatValue =
-							this.actor.system[statBaseKey] + levelsToIncrease;
+					if (currentCoins >= totalCost) {
+						const updatedCoins = currentCoins - totalCost;
+						const newStatValue = this.actor.system[statBaseKey] + levelsToIncrease;
 
 						// Prepare the data object for updating
 						let updateData = {
@@ -81,6 +82,24 @@ export function onStatLevelUp(event) {
 			},
 		},
 		default: 'no',
+		render: (html) => {
+			const input = html.find('#level-increase');
+			const costDisplay = html.find('#level-up-cost');
+			const levelsDisplay = html.find('#levels-to-increase-display');
+			const newStatValue = html.find('#new-stat-value');
+			const newStatTotalValue = html.find(`#new-stat-total-value`);
+
+			// Update the cost dynamically when the input value changes
+			input.on('input', (e) => {
+				const levelsToIncrease = parseInt(e.target.value) || 1;
+				const totalCost = costToLevel(baseCost, costPerLevel, statValue, levelsToIncrease);
+				coinsRemaining = currentCoins - totalCost;
+				levelsDisplay.text(levelsToIncrease);
+				costDisplay.text(totalCost + " coins. (" + (coinsRemaining >= 0 ? (coinsRemaining + " coins left") : cantAffordText) + ")");
+				newStatValue.text(statValue + levelsToIncrease);
+				newStatTotalValue.text(statTotalValue + levelsToIncrease);
+			});
+		},
 	}).render(true);
 }
 
