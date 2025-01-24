@@ -67,8 +67,18 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		return;
 	}
 	if (skill.system.usesCustomMacro) {
-		game.macros.getName(`${skill.system.customMacro}`).execute();
-		return;
+		if (mode === 'crit') {
+			game.macros.getName(`${skill.system.customMacro} CRIT`).execute();
+			return;
+		} else if (mode === 'megaCrit') {
+			game.macros
+				.getName(`${skill.system.customMacro} MEGACRIT`)
+				.execute();
+			return;
+		} else {
+			game.macros.getName(`${skill.system.customMacro}`).execute();
+			return;
+		}
 	}
 	const STAT_MAPPINGS = {
 		str: {
@@ -99,7 +109,10 @@ export function onRollSkillDamage(actor, skillId, mode) {
 	const amplificationFactor = 1 + actor.system.amplification;
 	const critMulti = actor.system.critMultiTotal || 2;
 	let skillDamageIncreaseTotal = 1 + damageIncrease;
-	skillDamageIncreaseTotal += actor.system[skill.system.damageType.toLowerCase() + "DmgIncreaseTotal"];
+	skillDamageIncreaseTotal +=
+		actor.system[
+			skill.system.damageType.toLowerCase() + 'DmgIncreaseTotal'
+		];
 
 	const totalDice = skill.system.diceNum;
 	let damageFormula = `${totalDice}${skill.system.diceSize}+${skill.system.diceBonus}`;
@@ -135,8 +148,8 @@ export function onRollSkillDamage(actor, skillId, mode) {
 
 	// Update Last Attack Roll
 	const updateData = {
-		['system.lastAttackRoll']: skill.id
-	}
+		['system.lastAttackRoll']: skill.id,
+	};
 	actor.update(updateData).then(() => actor.sheet.render(true));
 
 	try {
