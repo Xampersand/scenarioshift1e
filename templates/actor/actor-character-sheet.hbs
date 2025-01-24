@@ -138,6 +138,19 @@
               {{else}}
                 <span>{{system.stigmas}}</span>
               {{/if}}
+              <label>STORIES:</label>
+              {{#if isEditing}}
+                <input
+                  type='text'
+                  id='stories'
+                  class='input-text'
+                  name='system.stories'
+                  value='{{system.stories}}'
+                  placeholder='Stories'
+                />
+              {{else}}
+                <span>{{system.stories}}</span>
+              {{/if}}
             </div>
           </div>
         </div>

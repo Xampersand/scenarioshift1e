@@ -23,6 +23,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		});
 		schema.attributes = new fields.StringField({ initial: 'None' });
 		schema.stigmas = new fields.StringField({ initial: 'None' });
+		schema.stories = new fields.StringField({ initial: 'None' });
 
 		schema.actionPointsMax = new fields.NumberField({ initial: 4 });
 		schema.actionPointsCurrent = new fields.NumberField({ initial: 0 });
@@ -125,6 +126,11 @@ export default class SS1ECharacter extends SS1EActorBase {
 	prepareDerivedData() {
 		// Making multipliers into percentages
 		for (const stat of Object.values(CONFIG.SS1E.stats)) {
+			this[stat.short + "Multi"] = 1 + this[stat.short + "Multi"] / 100;
+			this[stat.short + "Total"] = Math.round(this[stat.short + "Base"] + this[stat.short + "Bonus"] + this[stat.short + "TempBonus"]) * this[stat.short + "Multi"];
+		}
+
+		for (const stat of Object.values(CONFIG.SS1E.derived)) {
 			this[stat.short + "Multi"] = 1 + this[stat.short + "Multi"] / 100;
 			this[stat.short + "Total"] = Math.round(this[stat.short + "Base"] + this[stat.short + "Bonus"] + this[stat.short + "TempBonus"]) * this[stat.short + "Multi"];
 		}

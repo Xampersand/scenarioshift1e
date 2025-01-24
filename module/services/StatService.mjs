@@ -26,7 +26,7 @@ export function onStatLevelUp(event) {
 			statTotalValue + 1
 		}</span> ${statLabel})</p>
         <p>Cost for <span id="levels-to-increase-display">1</span> level(s): 
-          <span id="level-up-cost">${costToLevel(baseCost, costPerLevel, statValue, 1)} coins. (${coinsRemaining >= 0 ? coinsRemaining : cantAffordText} coins left)</span></p>
+          <span id="level-up-cost">${costToLevel(baseCost, costPerLevel, statValue, 1)} coins. (${coinsRemaining >= 0 ? coinsRemaining + "coins left" : cantAffordText})</span></p>
         <label for="level-increase">Levels to increase:</label>
         <input type="number" id="level-increase" name="level-increase" value="1" min="1" style="width: 50px;">
       </div>`,
