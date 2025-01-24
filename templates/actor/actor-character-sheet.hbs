@@ -322,7 +322,7 @@
                 {{#each actor.items as |item|}}
                     {{#if (and (eq item.system.slotOccupied 'Helmet') item.system.equipped)}}
                       <div class="item-slot" data-item-id="{{item.id}}">
-                        <img src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
+                        <img data-rating="{{item.system.rating}}" src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
                       </div>
                     {{/if}}
                 {{/each}}
@@ -331,7 +331,7 @@
                 {{#each actor.items as |item|}}
                     {{#if (and (eq item.system.slotOccupied 'Armor') item.system.equipped)}}
                       <div class="item-slot" data-item-id="{{item.id}}">
-                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                        <img data-rating="{{item.system.rating}}" src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
                       </div>
                     {{/if}}
                 {{/each}}
@@ -340,7 +340,7 @@
                 {{#each actor.items as |item|}}
                     {{#if (and (eq item.system.slotOccupied 'Gloves') item.system.equipped)}}
                       <div class="item-slot" data-item-id="{{item.id}}">
-                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                        <img data-rating="{{item.system.rating}}" src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
                       </div>
                     {{/if}}
                 {{/each}}
@@ -349,7 +349,7 @@
                   {{#each actor.items as |item|}}
                       {{#if (and (eq item.system.slotOccupied 'Boots') item.system.equipped)}}
                         <div class="item-slot" data-item-id="{{item.id}}">
-                          <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                          <img data-rating="{{item.system.rating}}" src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
                         </div>
                         {{else}}
                       {{/if}}
@@ -361,7 +361,7 @@
                 {{#each accessories as |item index|}}
                     {{#if (eq index 0)}}
                       <div class="item-slot" data-item-id="{{item.id}}">
-                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                        <img data-rating="{{item.system.rating}}" src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
                       </div>
                     {{/if}}
                 {{/each}}
@@ -370,7 +370,7 @@
                 {{#each accessories as |item index|}}
                     {{#if (eq index 1)}}
                       <div class="item-slot" data-item-id="{{item.id}}">
-                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                        <img data-rating="{{item.system.rating}}" src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
                       </div>
                   {{/if}}
                 {{/each}}
@@ -379,7 +379,7 @@
                 {{#each accessories as |item index|}}
                     {{#if (eq index 2)}}
                       <div class="item-slot" data-item-id="{{item.id}}">
-                        <img src="{{item.img}}" title="{{item.name}}" width="44px" height="44px" data-item-id="{{item.id}}" data-action="item-view">
+                        <img data-rating="{{item.system.rating}}" src="{{item.img}}" title="{{item.name}}" width="46px" height="46px" data-item-id="{{item.id}}" data-action="item-view">
                       </div>
                   {{/if}}
                 {{/each}}

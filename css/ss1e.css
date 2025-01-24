@@ -874,22 +874,40 @@ a.content-link {
   color: red !important;
 }
 .item-view[data-rating='Legendary'] {
-  border: 2px groove #ffd000 !important;
+  border: 2px solid #ffd000 !important;
 }
 .item-view[data-rating='Rare'] {
-  border: 2px groove #1867c2 !important;
+  border: 2px solid #346fdb !important;
 }
 .item-view[data-rating='Uncommon'] {
-  border: 2px groove #12b34f !important;
+  border: 2px solid #12b34f !important;
 }
 .item-view[data-rating='Common'] {
-  border: 2px groove white !important;
+  border: 2px solid white !important;
 }
 .item-view[data-rating='Heroic'] {
-  border: 2px groove #8a17cc !important;
+  border: 2px solid #a354c7 !important;
 }
 .item-view[data-rating='Mythical'] {
-  border: 2px groove red !important;
+  border: 2px solid red !important;
+}
+img[data-rating='Common'] {
+  border: 2px solid white !important;
+}
+img[data-rating='Uncommon'] {
+  border: 2px solid #12b34f !important;
+}
+img[data-rating='Rare'] {
+  border: 2px solid #346fdb !important;
+}
+img[data-rating='Legendary'] {
+  border: 2px solid #ffd000 !important;
+}
+img[data-rating='Heroic'] {
+  border: 2px solid #a354c7 !important;
+}
+img[data-rating='Mythical'] {
+  border: 2px solid red !important;
 }
 .ss1e.sheet.actor.character .character-inventory .sheet-inventory .item-container {
   display: grid;
@@ -1130,6 +1148,9 @@ a.content-link {
   border: 1px solid #52c8ff;
 }
 .ss1e.sheet.actor.character .bottom .equipped-item-container .gear-container .gear-slot img {
+  border: none;
+}
+.ss1e.sheet.actor.character .bottom .equipped-item-container .gear-container .gear-slot:has([data-rating]) {
   border: none;
 }
 .ss1e.sheet.actor.character .bottom .equipped-item-container .accessory-container {
