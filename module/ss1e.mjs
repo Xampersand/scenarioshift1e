@@ -351,7 +351,7 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 	let damageType = "";
 
 	if (wasUnarmedRoll) {
-		damageType = "bludgeoning";
+		damageType = "physical";
 	} else {
 		const rolledItem = actor.items.get(lastAttackRoll);
 		console.log(rolledItem);
@@ -365,7 +365,7 @@ Hooks.on('diceSoNiceMessageProcessed', async (messageId, interception) => {
 				if (rolledItem.system.isAttackSkill === true) {
 					const usedWeapon = actor.items.get(actor.system.attackSkillWeapon);
 					const weaponDamageType = usedWeapon.system.damageType.toLowerCase();
-					if (["bludgeoning", "piercing", "slashing"].includes(weaponDamageType)) {
+					if (weaponDamageType === "physical") {
 						damageType = weaponDamageType;
 					} else {
 						damageType = rolledDamageType;

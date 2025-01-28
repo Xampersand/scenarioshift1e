@@ -42,18 +42,8 @@ SS1E.stats = {
 }
 
 SS1E.damageTypes = {
-  bludgeoning: 'bludgeoning',
-	piercing: 'piercing',
-	slashing: 'slashing',
-	fire: 'fire',
-	cold: 'cold',
-	lightning: 'lightning',
-	poison: 'poison',
-
-	arcane: 'arcane',
-	necrotic: 'necrotic',
-  psychic: 'psychic',
-
+  physical: 'physical',
+  magical: 'magical',
 	true: 'true',
 	healing: 'healing',
 }

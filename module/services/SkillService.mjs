@@ -66,6 +66,11 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		ui.notifications.warn('No skill found!');
 		return;
 	}
+	// Update Last Attack Roll
+	const updateData = {
+		['system.lastAttackRoll']: skill.id,
+	};
+	actor.update(updateData).then(() => actor.sheet.render(true));
 	if (skill.system.usesCustomMacro) {
 		if (mode === 'crit') {
 			game.macros.getName(`${skill.system.customMacro} CRIT`).execute();
@@ -145,12 +150,6 @@ export function onRollSkillDamage(actor, skillId, mode) {
 			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
 		}
 	}
-
-	// Update Last Attack Roll
-	const updateData = {
-		['system.lastAttackRoll']: skill.id,
-	};
-	actor.update(updateData).then(() => actor.sheet.render(true));
 
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());

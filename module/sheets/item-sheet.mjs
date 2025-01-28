@@ -63,15 +63,8 @@ export class SS1EItemSheet extends ItemSheet {
 		context.possibleDice = ['d4', 'd6', 'd8', 'd10', 'd12', 'd20', 'd100'];
 		//done
 		context.possibleDamageTypes = [
-			'bludgeoning',
-			'piercing',
-			'slashing',
-			'fire',
-			'cold',
-			'lightning',
-			'poison',
-			'arcane',
-			'necrotic',
+			'physical',
+			'magical',
 			'true'
 		];
 		context.possibleSkillTypes = [

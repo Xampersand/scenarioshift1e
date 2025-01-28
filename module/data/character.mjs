@@ -136,45 +136,42 @@ export default class SS1ECharacter extends SS1EActorBase {
 		}
 
 		//stat scalings
-		const ARMOR_INCREMENT = 1;
-		const EVASION_INCREMENT = 0.75;
-		const STR_ACCURACY_INCREMENT = 0.25;
-		const AGI_ACCURACY_INCREMENT = 0.75;
-		const INT_ACCURACY_INCREMENT = 0.8;
-		const INT_MANA_INCREMENT = 5;
-		const CON_MANA_INCREMENT = 1;
-		const HEALTH_INCREMENT = 3;
-		const INITIATIVE_INCREMENT = 0.5;
+		const INCREMENTS = {
+			'armor': 1,
+			'evasion': 0.7,
+			'accuracy': {
+				'str': 0.2,
+				'agi': 0.7,
+				'int': 0.6
+			},
+			'mana': 5,
+			'health': 5,
+			'initiative': 0.5
+		}
 
-		// damage scaling, x point of stat = 1% increase in damage
-		// this is generic, for specific scaling, change in roll formulas
-		const AGILITY_DAMAGE_SCALING = 1;
-		const INTELLIGENCE_DAMAGE_SCALING = 1.2;
-		const STRENGTH_DAMAGE_SCALING = 0.9;
-		const CONSTITUTION_DAMAGE_SCALING = 0.9;
+		const SCALINGS = {
+			'str': 1,
+			'agi': 1,
+			'con': 1,
+			'int': 1
+		}
 
 		//base combat stats
-		this.evasionBase = this.agiTotal * EVASION_INCREMENT;
+		this.evasionBase = this.agiTotal * INCREMENTS.evasion;
 		this.accuracyBase =
-			this.agiTotal * AGI_ACCURACY_INCREMENT +
-			this.intTotal * INT_ACCURACY_INCREMENT +
-			this.strTotal * STR_ACCURACY_INCREMENT;
-		this.armorBase = this.strTotal * ARMOR_INCREMENT;
-		this.healthMaxBase = this.conTotal * HEALTH_INCREMENT;
-		this.manaMaxBase =
-			this.conTotal * CON_MANA_INCREMENT +
-			this.intTotal * INT_MANA_INCREMENT;
-		this.initiativeBase = this.agiTotal * INITIATIVE_INCREMENT;
+			this.agiTotal * INCREMENTS.accuracy.agi +
+			this.intTotal * INCREMENTS.accuracy.int +
+			this.strTotal * INCREMENTS.accuracy.str;
+		this.armorBase = this.strTotal * INCREMENTS.armor;
+		this.healthMaxBase = this.conTotal * INCREMENTS.health;
+		this.manaMaxBase = this.intTotal * INCREMENTS.mana;
+		this.initiativeBase = this.agiTotal * INCREMENTS.initiative;
 
 		//base damage increases
-		this.damageIncreaseAgiBase =
-			this.agiTotal * AGILITY_DAMAGE_SCALING / 100;
-		this.damageIncreaseIntBase =
-			this.intTotal * INTELLIGENCE_DAMAGE_SCALING / 100;
-		this.damageIncreaseStrBase =
-			this.strTotal * STRENGTH_DAMAGE_SCALING / 100;
-		this.damageIncreaseConBase =
-			this.conTotal * CONSTITUTION_DAMAGE_SCALING / 100;
+		this.damageIncreaseAgiBase = this.agiTotal * SCALINGS.agi / 100;
+		this.damageIncreaseIntBase = this.intTotal * SCALINGS.int / 100;
+		this.damageIncreaseStrBase = this.strTotal * SCALINGS.str / 100;
+		this.damageIncreaseConBase = this.conTotal * SCALINGS.con / 100;
 
 		// making bonus increases a percentage & total damage increases
 
