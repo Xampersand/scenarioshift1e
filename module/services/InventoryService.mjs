@@ -89,6 +89,7 @@ export function openItemDialog(event, itemId, actor) {
 					callback: async () => {
 						// Check if the item has a requirement type
 						const requirement = item.system.requirement;
+						const dualRequirement = item.system.dualRequirement;
 
 						// If there's no requirement type, proceed with equip/unequip logic
 						if (!requirement || !requirement.type) {
@@ -106,9 +107,11 @@ export function openItemDialog(event, itemId, actor) {
 							}
 						} else {
 							// For items that require a specific stat, check the requirement
-							const statTotal =
-								actor.system[`${requirement.type}Total`];
-							if (statTotal >= requirement.value) {
+							const statBase =
+								actor.system[`${requirement.type}Base`];
+							const dualStatBase =
+								actor.system[`${dualRequirement.type}Base`];
+							if (statBase >= requirement.value && dualStatBase >= dualRequirement.value) {
 								if (equippables.includes(item.type)) {
 									if (item.system.equipped) {
 										await item.onUnequip();

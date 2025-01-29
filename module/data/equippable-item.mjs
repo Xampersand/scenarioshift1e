@@ -10,6 +10,11 @@ export default class SS1EEquippableItem extends SS1EItemBase {
 		};
 		const schema = super.defineSchema();
 
+		schema.dualRequirement = new fields.SchemaField({
+			type: new fields.StringField({ initial: 'agi' }),
+			value: new fields.NumberField({...requiredInteger, initial: 0})
+		});
+
 		schema.equipped = new fields.BooleanField({ required: true });
 		schema.slotOccupied = new fields.StringField({ initial: '' });
 

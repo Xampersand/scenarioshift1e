@@ -135,19 +135,18 @@ export function onRollSkillDamage(actor, skillId, mode) {
 	let flavor = `Rolling Damage for ${skill.name}`;
 	if (skill.system.isAttackSkill) {
 		const usedWeapon = actor.items.get(actor.system.attackSkillWeapon);
-		const usedWeaponDamageRoll = usedWeapon.system.damageRoll.diceNum || 0;
-		const usedWeaponDamageSize =
-			usedWeapon.system.damageRoll.diceSize || `d4`;
-		const usedWeaponDamageBonus =
-			usedWeapon.system.damageRoll.diceBonus || 0;
+		let weaponRequirementType = usedWeapon.system.requirement.type;
+		let weaponDamageFlatBonus = actor.system[weaponRequirementType + "Total"] / 5;
+		if (!["agi", "str"].includes(weaponRequirementType)) {
+			weaponDamageFlatBonus = 0;
+		}
 		flavor = `Rolling Damage for ${skill.name} with ${usedWeapon.name}`;
-		let usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}+${usedWeaponDamageBonus}`;
-		rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor})`;
+		rollFormula = `round(((${usedWeapon.system.damageFormula}+${damageFormula})*${skillDamageIncreaseTotal}+${weaponDamageFlatBonus})*${amplificationFactor})`;
 		if (mode === 'crit') {
-			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
+			rollFormula = `round(((${usedWeapon.system.damageFormula}+${damageFormula})*${skillDamageIncreaseTotal}+${weaponDamageFlatBonus})*${amplificationFactor}*${critMulti})`;
 		} else if (mode === 'megaCrit') {
-			usedWeaponDamageRollFormula = `${usedWeaponDamageRoll}${usedWeaponDamageSize}x+${usedWeaponDamageBonus}`;
-			rollFormula = `round((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}*${amplificationFactor}*${critMulti})`;
+			usedWeaponDamageRollFormula = `${usedWeapon.system.damageRoll.diceNum}${usedWeapon.system.damageRoll.diceSize}x+${usedWeapon.system.diceBonus}`;
+			rollFormula = `round(((${usedWeaponDamageRollFormula}+${damageFormula})*${skillDamageIncreaseTotal}+${weaponDamageFlatBonus})*${amplificationFactor}*${critMulti})`;
 		}
 	}
 

@@ -70,8 +70,23 @@
                 <option value="{{stat}}" {{#if (eq system.requirement.type stat)}}selected{{/if}}>{{stat}}</option>
               {{/each}}
             </select>
+            <input
+              name='system.dualRequirement.value'
+              type='text'
+              value='{{system.dualRequirement.value}}'
+              placeholder=''
+            />
+            <select name="system.dualRequirement.type">
+              <option value="{{system.dualRequirement.type}}">{{system.dualRequirement.type}}</option>
+              {{#each possibleStats as |stat|}}
+                <option value="{{stat}}" {{#if (eq system.dualRequirement.type stat)}}selected{{/if}}>{{stat}}</option>
+              {{/each}}
+            </select>
           {{else}}
-            <span>{{system.requirement.value}} {{system.requirement.type}}</span>
+            <span>{{system.requirement.value}} {{system.requirement.type}}&nbsp;</span>
+            {{#if (notEqual system.dualRequirement.value 0)}} 
+            <span>{{system.dualRequirement.value}} {{system.dualRequirement.type}}</span>
+            {{/if}}
           {{/if}}
         </div>
         <div class="slot">
