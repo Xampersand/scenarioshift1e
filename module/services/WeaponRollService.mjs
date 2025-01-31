@@ -1,4 +1,5 @@
 import { consumeActionPoints } from './ActionPointService.mjs';
+import { playAttackAnimation, playUnarmedAnimation } from './VFXService.mjs';
 
 export function onRollMeleeWeapon(actor, itemId, mode) {
 	const weapon = actor.items.get(itemId);
@@ -22,21 +23,16 @@ export function onRollMeleeWeapon(actor, itemId, mode) {
 		return;
 	}
 
-	const weaponRequirementType = weapon.system.requirement.type;
-	let weaponDamageFlatBonus = actor.system[weaponRequirementType + "Total"] / 5;
-	if (!["agi", "str"].includes(weaponRequirementType)) {
-		weaponDamageFlatBonus = 0;
-	}
 	weaponDamageIncreaseTotal += actor.system[weapon.system.damageType.toLowerCase() + "DmgIncreaseTotal"];
 
 	const critMulti = actor.system.critMultiTotal || 2;
 	const amplificationFactor = 1 + actor.system.amplification || 1;
 	const flatDmgBonus = actor.system[weapon.system.damageType + "FlatDmgIncreaseTotal"] || 0;
-	let rollFormula = `round(((${flatDmgBonus}+${weapon.system.damageFormula})*${weaponDamageIncreaseTotal}+${weaponDamageFlatBonus})*${amplificationFactor})`;
+	let rollFormula = `round(((${flatDmgBonus}+${weapon.system.damageFormula})*${weaponDamageIncreaseTotal})*${amplificationFactor})`;
 	if (mode === 'crit') {
-		rollFormula = `round(((${flatDmgBonus}+${weapon.system.damageFormula})*${weaponDamageIncreaseTotal}+${weaponDamageFlatBonus})*${amplificationFactor}*${critMulti})`;
+		rollFormula = `round(((${flatDmgBonus}+${weapon.system.damageFormula})*${weaponDamageIncreaseTotal})*${amplificationFactor}*${critMulti})`;
 	} else if (mode === 'megaCrit') {
-		rollFormula = `round(((${flatDmgBonus}+${weapon.system.damageRoll.diceNum}${weapon.system.damageRoll.diceSize}x+${weapon.system.damageRoll.diceBonus})*${weaponDamageIncreaseTotal}+${weaponDamageFlatBonus})*${amplificationFactor}*${critMulti})`;
+		rollFormula = `round(((${flatDmgBonus}+${weapon.system.damageRoll.diceNum}${weapon.system.damageRoll.diceSize}x+${weapon.system.damageRoll.diceBonus})*${weaponDamageIncreaseTotal})*${amplificationFactor}*${critMulti})`;
 	}
 	if (!rollFormula) {
 		ui.notifications.warn(
@@ -50,6 +46,7 @@ export function onRollMeleeWeapon(actor, itemId, mode) {
 		['system.lastAttackRoll']: weapon.id
 	}
 	actor.update(updateData).then(() => actor.sheet.render(true));
+	playAttackAnimation(actor, weapon);
 
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());
@@ -85,6 +82,7 @@ export function onRollUnarmedDamage(actor, mode) {
 		['system.lastAttackRoll']: "Unarmed"
 	}
 	actor.update(updateData).then(() => actor.sheet.render(true));
+	playUnarmedAnimation(actor);
 
 	try {
 		const roll = new Roll(rollFormula, actor.getRollData());

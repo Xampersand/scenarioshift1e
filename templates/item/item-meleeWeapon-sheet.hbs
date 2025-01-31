@@ -151,6 +151,17 @@
 							<span>{{system.range}}</span>
 						{{/if}}
 					</div>
+					<span class="animationType">ANIMATION TYPE:&nbsp;</span>
+					{{#if isEditing}}
+						<select name="system.animationType">
+						<option value="{{system.animationType}}">{{system.animationType}}</option>
+						{{#each possibleAnimationTypes as |type|}}
+						<option value="{{type}}" {{#if (eq system.animationType type)}}selected{{/if}}>{{type}}</option>
+						{{/each}}
+						</select>
+					{{else}}
+						<span class="animationType">{{system.animationType}}</span>
+					{{/if}}
 				</div>
 			</section>
 		</div>

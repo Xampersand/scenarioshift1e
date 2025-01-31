@@ -1,5 +1,6 @@
 import { consumeActionPoints } from './ActionPointService.mjs';
 import { spendManaCost } from './ManaCostService.mjs';
+import { playAttackAnimation, playSkillAnimation } from './VFXService.mjs';
 // rolling skill acc
 export function onRollSkillAccuracy(actor, skillId, mode) {
 	const skill = actor.items.get(skillId);
@@ -71,6 +72,7 @@ export function onRollSkillDamage(actor, skillId, mode) {
 		['system.lastAttackRoll']: skill.id,
 	};
 	actor.update(updateData).then(() => actor.sheet.render(true));
+	playSkillAnimation(actor, skill);
 	if (skill.system.usesCustomMacro) {
 		if (mode === 'crit') {
 			game.macros.getName(`${skill.system.customMacro} CRIT`).execute();
@@ -168,6 +170,7 @@ export async function onSkillUse(event, actor) {
 	const itemId = event.currentTarget.dataset.itemId;
 	const skill = actor.items.get(itemId);
 	if (skill.system.usesCustomMacro) {
+		playSkillAnimation(actor, skill);
 		game.macros.getName(`${skill.system.customMacro}`).execute();
 		return;
 	}
@@ -231,10 +234,7 @@ export async function onSkillUse(event, actor) {
 			for (let effect of skill.effects) {
 				await effect.update({ disabled: false });
 			}
-			const macro = game.macros.getName(skill.system.macroEffect);
-			if (macro) {
-				macro.execute();
-			}
+			playSkillAnimation(actor, skill);
 			spendManaCost(actor, totalManaCost);
 			consumeActionPoints(actor, skill.system.apCost);
 		} else {
@@ -259,10 +259,7 @@ export async function onSkillUse(event, actor) {
 		skill.system.skillType === 'other'
 	) {
 		const totalManaCost = skill.system.manaCost;
-		const macro = game.macros.getName(skill.system.macroEffect);
-		if (macro) {
-			macro.execute();
-		}
+		playSkillAnimation(actor, skill);
 		spendManaCost(actor, totalManaCost);
 		consumeActionPoints(actor, skill.system.apCost);
 		actor.sheet.render(true);

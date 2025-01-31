@@ -109,9 +109,13 @@ export function openItemDialog(event, itemId, actor) {
 							// For items that require a specific stat, check the requirement
 							const statBase =
 								actor.system[`${requirement.type}Base`];
-							const dualStatBase =
+							let dualStatBase =
 								actor.system[`${dualRequirement.type}Base`];
-							if (statBase >= requirement.value && dualStatBase >= dualRequirement.value) {
+							let dualReqValue = dualRequirement.value;
+
+							if (!dualRequirement.type) dualStatBase = statBase;
+
+							if (statBase >= requirement.value && dualStatBase >= dualReqValue) {
 								if (equippables.includes(item.type)) {
 									if (item.system.equipped) {
 										await item.onUnequip();

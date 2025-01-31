@@ -94,7 +94,7 @@ Hooks.on('updateCombat', async (combat, updateData, options, userId) => {
 		for (const combatant of combat.combatants) {
 			const actor = combatant.actor;
 
-			if (!actor) continue;
+			if (!actor || updateData.round === 1) continue;
 
 			// Update Action Points to max
 			const maxAP = actor.system.actionPointsMax;

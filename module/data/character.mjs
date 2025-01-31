@@ -50,7 +50,7 @@ export default class SS1ECharacter extends SS1EActorBase {
 		schema.bonusHealthRegen = new fields.NumberField({ initial: 0 });
 
 		schema.manaCurrent = new fields.NumberField({ initial: 0 });
-		schema.baseManaRegen = new fields.NumberField({ initial: 0.05 });
+		schema.baseManaRegen = new fields.NumberField({ initial: 0.02 });
 		schema.bonusManaRegen = new fields.NumberField({ initial: 0 });
 
 

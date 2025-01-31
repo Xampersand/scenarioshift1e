@@ -47,3 +47,17 @@ SS1E.damageTypes = {
 	true: 'true',
 	healing: 'healing',
 }
+
+SS1E.animationTypes = [
+  'sword', 
+  'greatsword', 
+  'quarterstaff', 
+  'shortsword', 
+  'dagger', 
+  'club',
+  'greatclub',
+  'bow',
+  'bullet',
+  'magic',
+  'scythe'
+]

@@ -23,6 +23,8 @@ export default class SS1EMeleeWeapon extends SS1EWeapon {
 				min: 0,
 			}),
 		});
+
+		schema.animationType = new fields.StringField({ initial: 'unarmed' });
 		schema.damageType = new fields.StringField({ initial: 'bludgeoning' });
 		schema.damageFormula = new fields.StringField({ initial: '' });
 

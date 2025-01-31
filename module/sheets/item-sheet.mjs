@@ -84,6 +84,7 @@ export class SS1EItemSheet extends ItemSheet {
 			'Specialization',
 		];
 		//DONE
+		context.possibleAnimationTypes = CONFIG.SS1E.animationTypes;
 		context.possibleRatings = [
 			'Common',
 			'Uncommon',
